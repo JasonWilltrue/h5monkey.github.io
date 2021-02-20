@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="2020 想跳槽一下，相关面试系列文章梳理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试-JS 事件循环 EventLoop">
+<meta property="og:url" content="http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="2020 想跳槽一下，相关面试系列文章梳理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://book.52react.cn/20190329001003.png">
+<meta property="og:image" content="http://book.52react.cn/20190329002750.png">
+<meta property="article:published_time" content="2019-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-16T09:07:09.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="面试，Javascript，基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://book.52react.cn/20190329001003.png"><title>前端面试-JS 事件循环 EventLoop | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">前端面试-JS 事件循环 EventLoop</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-01-01</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><p>2020 想跳槽一下，相关面试系列文章梳理</p>
+<a id="more"></a>
+
+        <h1 id="JS-运行机制"   >
+          <a href="#JS-运行机制" class="heading-link"><i class="fas fa-link"></i></a><a href="#JS-运行机制" class="headerlink" title="JS 运行机制"></a>JS 运行机制</h1>
+      
+        <h2 id="推荐-2-分钟视频讲的真不错"   >
+          <a href="#推荐-2-分钟视频讲的真不错" class="heading-link"><i class="fas fa-link"></i></a><a href="#推荐-2-分钟视频讲的真不错" class="headerlink" title="推荐 2 分钟视频讲的真不错"></a>推荐 2 分钟视频讲的真不错</h2>
+      <iframe src="//player.bilibili.com/player.html?aid=285227869&bvid=BV1kf4y1U7Ln&cid=177957175&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+
+        <h2 id="事件循环是个什么东西"   >
+          <a href="#事件循环是个什么东西" class="heading-link"><i class="fas fa-link"></i></a><a href="#事件循环是个什么东西" class="headerlink" title="事件循环是个什么东西"></a>事件循环是个什么东西</h2>
+      <p>就我们所知，浏览器的 js 是单线程的，也就是说，在同一时刻，最多也只有一个代码段在执行，可是浏览器又能很好的处理异步请求，那么到底是为什么呢？<br>关于执行中的线程：</p>
+<p>主线程：也就是 js 引擎执行的线程，这个线程只有一个，页面渲染、函数处理都在这个主线程上执行。<br>工作线程：也称幕后线程，这个线程可能存在于浏览器或 js 引擎内，与主线程是分开的，处理文件读取、网络请求等异步事件。</p>
+
+        <h2 id="了解下阻塞还是非阻塞"   >
+          <a href="#了解下阻塞还是非阻塞" class="heading-link"><i class="fas fa-link"></i></a><a href="#了解下阻塞还是非阻塞" class="headerlink" title="了解下阻塞还是非阻塞"></a>了解下阻塞还是非阻塞</h2>
+      <p>关于 js 阻塞还是非阻塞的问题，我觉得可以这么理解，不够在这之前，我们先理解下同步、异步、阻塞还是非阻塞的解释，在网上看到一段描述的非常好，引用下</p>
+<blockquote>
+<p>同步阻塞：小明一直盯着下载进度条，到 100% 的时候就完成。<br>同步非阻塞：小明提交下载任务后就去干别的，每过一段时间就去瞄一眼进度条，看到 100% 就完成。（轮询）<br>异步阻塞：小明换了个有下载完成通知功能的软件，下载完成就“叮”一声。不过小明仍然一直等待“叮”的声音（看起来很傻，不是吗最蠢）<br>异步非阻塞：仍然是那个会“叮”一声的下载软件，小明提交下载任务后就去干别的，听到“叮”的一声就知道完成了。（最机智）</p>
+</blockquote>
+
+        <h3 id="任务队列"   >
+          <a href="#任务队列" class="heading-link"><i class="fas fa-link"></i></a><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h3>
+      <p><strong><em>同步任务优先于异步任务。</em></strong></p>
+<ul>
+<li>在同步队列被执行完之前，任何异步的操作都不会被执行</li>
+<li>同步任务执行完之后才执行异步任务</li>
+</ul>
+
+        <h3 id="运行机制"   >
+          <a href="#运行机制" class="heading-link"><i class="fas fa-link"></i></a><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h3>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(vari=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&lt;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) [</span></span><br><span class="line"><span class="function"><span class="title">console</span>.<span class="title">log</span>(<span class="params">i</span>)</span>;</span><br><span class="line">), <span class="number">1000</span>);</span><br></pre></td></tr></table></div></figure>
+<p>涉及异步队列涉及的时间，浏览器发现 settimeout 不会马上放到运行栈里去，for 循环体执行完才去执行异步队列，异步队列没有到时间去收编 settimeout，再等待事件循环里处理</p>
+<p>Event Loop 事件循环</p>
+<ol>
+<li>运行栈运行的是同步任务。</li>
+<li>浏览器识别了事件是一个异步任务，他不会把他放在运行栈里，而是拿走。</li>
+<li>拿走了之后也不是立马放在异步队列中，同步任务执行完以后，再放入异步队列。</li>
+<li>运行栈里没有任务了，就开始执行异步任务。</li>
+<li>执行完后如果运行栈里没有任务了，再监听异步队列。</li>
+<li>这个循环的过程就是 EventLoop<br><img src="http://book.52react.cn/20190329001003.png" alt=""></li>
+<li>异步任务<br>setTimeout 和 setInterval<br>DOM 事件<br>Promise</li>
+</ol>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;one:&quot;</span> + i);</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i + <span class="number">1</span>);</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;two:&quot;</span> + (i + <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="async-await-又是如何处理的呢-？"   >
+          <a href="#async-await-又是如何处理的呢-？" class="heading-link"><i class="fas fa-link"></i></a><a href="#async-await-又是如何处理的呢-？" class="headerlink" title="async/await 又是如何处理的呢 ？"></a>async/await 又是如何处理的呢 ？</h2>
+      <p>async/await： 这哥俩个其实是 Promise 和 Generator 的语法糖，所以我们把它们转成我们熟悉的 Promise</p>
+<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;async1 start&quot;</span>);</span><br><span class="line">  <span class="keyword">await</span> async2();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;async1 end&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 等同于下面</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;async1 start&quot;</span>);</span><br><span class="line">  <span class="built_in">Promise</span>.resolve(async2()).then(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&quot;async1 end&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p><img src="http://book.52react.cn/20190329002750.png" alt=""></p>
+
+        <h2 id="分析一道题"   >
+          <a href="#分析一道题" class="heading-link"><i class="fas fa-link"></i></a><a href="#分析一道题" class="headerlink" title="分析一道题"></a>分析一道题</h2>
+      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">reslove, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;4&quot;</span>);</span><br><span class="line">  reslove(<span class="string">&quot;5&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">  fun1();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;3&quot;</span>);</span><br><span class="line">  p.then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    fun3();</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">  &#125;).then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;6&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fun3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;7&quot;</span>);</span><br><span class="line">  <span class="keyword">await</span> fun4();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;9&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun4</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;8&quot;</span>);</span><br><span class="line">  &#125;, <span class="number">3000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;10&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  fun2();</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;0&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4 0 1 3 7 10 5 9 6 2 8</span></span><br></pre></td></tr></table></div></figure>
+<ol>
+<li>分析如下执行第一条语句 new Promise 函数主动触发打印’4’</li>
+<li>走到底部的 setTimeout 遇到 fn2()放到消息队列，执行’0’</li>
+<li>调用栈清空，执行 fn2()函数，遇到 etTimeout 继续把里面的函数放到消息队列</li>
+<li>执行 fun1()，打印’1’，弹出 fun1</li>
+<li>执行’3’ 6.遇到 then()放到微任务中去，</li>
+<li>调用栈又清空了，先执行微任务中的队列，fun3()执行，打印’7’</li>
+<li>遇到 awai 任务进去执行，又遇到 setTimeout，消息队列排队’8’, 执行’10‘</li>
+<li>回到刚才的地方执行 console.log(res)，打印’5‘</li>
+<li>执行’9’,继续执行第二个 then 打印‘6’ 11.调用栈清空，微任务队列也清空，最后执行消息队列中的‘2’，‘8’</li>
+</ol>
+
+        <h2 id="为什么-JavaScript-是单线程的？"   >
+          <a href="#为什么-JavaScript-是单线程的？" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么-JavaScript-是单线程的？" class="headerlink" title="为什么 JavaScript 是单线程的？"></a>为什么 JavaScript 是单线程的？</h2>
+      <p>单线程意思就是说同一个时间只能做一件事。那这样的话效率不是很低？也没有啦，其实 javascript 的单线程特点是跟他的用途有关的。作为浏览器脚本语言，JavaScript 的主要用途是与用户互动，以及操作 DOM。假如不是单线程的话，在一个线程当我们在给某个 DOM 节点增加内容的时候，另一个线程正在删除这个 DOM 节点的内容，那还得了，那不是乱套了吗。所以 javascript 只能是单线程是最优方案。</p>
+<p>总结：</p>
+<p>理解 js 单线程的概念 一个时间只能干一件事<br>理解任务队列<br>EventLoop<br>哪些会被放入异步队列<br>放入异步队列的时机</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E9%9D%A2%E8%AF%95%EF%BC%8CJavascript%EF%BC%8C%E5%9F%BA%E7%A1%80/">面试，Javascript，基础</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-React/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">前端面试-React</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E7%AE%97%E6%B3%95/"><span class="paginator-prev__text">前端面试-算法</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS-%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">
+          JS 运行机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90-2-%E5%88%86%E9%92%9F%E8%A7%86%E9%A2%91%E8%AE%B2%E7%9A%84%E7%9C%9F%E4%B8%8D%E9%94%99"><span class="toc-number">1.1.</span> <span class="toc-text">
+          推荐 2 分钟视频讲的真不错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%98%AF%E4%B8%AA%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF"><span class="toc-number">1.2.</span> <span class="toc-text">
+          事件循环是个什么东西</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3%E4%B8%8B%E9%98%BB%E5%A1%9E%E8%BF%98%E6%98%AF%E9%9D%9E%E9%98%BB%E5%A1%9E"><span class="toc-number">1.3.</span> <span class="toc-text">
+          了解下阻塞还是非阻塞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97"><span class="toc-number">1.3.1.</span> <span class="toc-text">
+          任务队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.2.</span> <span class="toc-text">
+          运行机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#async-await-%E5%8F%88%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%9A%84%E5%91%A2-%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">
+          async&#x2F;await 又是如何处理的呢 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E4%B8%80%E9%81%93%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">
+          分析一道题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-JavaScript-%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84%EF%BC%9F"><span class="toc-number">1.6.</span> <span class="toc-text">
+          为什么 JavaScript 是单线程的？</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="默认情况下开启了服务器后，只要入口文件有更新那整个页面就会重新刷新。如果页面里引入的模块非常多的情况下让整个页面刷新就会变得有些慢，这个问题可以交给热更新去解决。热更新的意思就是只更新有改动的模块（像ajax一样局部刷新），如果我们需要自动打开浏览器，并实时刷新代码我们需要devserver">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『由浅入深Webpack系列』webpackDevServer提升效率">
+<meta property="og:url" content="http://mariogogogo.github.io/2019/06/05/%E3%80%8E%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1Webpack%E7%B3%BB%E5%88%97%E3%80%8FwebpackDevServer%E6%8F%90%E5%8D%87%E6%95%88%E7%8E%87/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="默认情况下开启了服务器后，只要入口文件有更新那整个页面就会重新刷新。如果页面里引入的模块非常多的情况下让整个页面刷新就会变得有些慢，这个问题可以交给热更新去解决。热更新的意思就是只更新有改动的模块（像ajax一样局部刷新），如果我们需要自动打开浏览器，并实时刷新代码我们需要devserver">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-06-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-16T09:06:52.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary"><title>『由浅入深Webpack系列』webpackDevServer提升效率 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2019/06/05/%E3%80%8E%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1Webpack%E7%B3%BB%E5%88%97%E3%80%8FwebpackDevServer%E6%8F%90%E5%8D%87%E6%95%88%E7%8E%87/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">『由浅入深Webpack系列』webpackDevServer提升效率</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2019-06-05</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">560</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">4分</span></span></div></header><div class="post-body"><p>默认情况下开启了服务器后，只要入口文件有更新那整个页面就会<code>重新刷新</code>。如果页面里引入的模块非常多的情况下让整个页面刷新就会变得有些慢，这个问题可以交给热更新去解决。热更新的意思就是只更新有改动的模块（像ajax一样局部刷新），如果我们需要自动打开浏览器，并实时刷新代码我们需要<code>devserver</code><br><a id="more"></a></p>
+<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">	contentBase: <span class="string">&#x27;./dist&#x27;</span>,</span><br><span class="line">	open: <span class="literal">true</span>,</span><br><span class="line">	port: <span class="number">8080</span>,  </span><br><span class="line">	hot: <span class="literal">true</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></div></figure>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contentBase</td>
+<td>静态文件路径</td>
+</tr>
+<tr>
+<td>open</td>
+<td>是否自动打开浏览器</td>
+</tr>
+<tr>
+<td>端口号</td>
+<td>自定义，默认8080</td>
+</tr>
+<tr>
+<td>hot</td>
+<td>热更新</td>
+</tr>
+</tbody>
+</table></div>
+
+        <h2 id="跨域请求"   >
+          <a href="#跨域请求" class="heading-link"><i class="fas fa-link"></i></a><a href="#跨域请求" class="headerlink" title="跨域请求"></a>跨域请求</h2>
+      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">	contentBase: <span class="string">&#x27;./dist&#x27;</span>,</span><br><span class="line">	open: <span class="literal">true</span>,</span><br><span class="line">	port: <span class="number">8080</span>,  </span><br><span class="line">	hot: <span class="literal">true</span>,</span><br><span class="line">	proxy:&#123;</span><br><span class="line">	    <span class="string">&#x27;/api&#x27;</span>:<span class="string">&#x27;http://localhost:3000&#x27;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contentBase</td>
+<td>静态文件容器</td>
+</tr>
+<tr>
+<td>open</td>
+<td>是否打开浏览器</td>
+</tr>
+<tr>
+<td>port</td>
+<td>端口</td>
+</tr>
+<tr>
+<td>hot</td>
+<td>是否要打开热更新</td>
+</tr>
+<tr>
+<td>proxy</td>
+<td>请求代理</td>
+</tr>
+</tbody>
+</table></div>
+
+        <h2 id="重写api"   >
+          <a href="#重写api" class="heading-link"><i class="fas fa-link"></i></a><a href="#重写api" class="headerlink" title="重写api"></a>重写api</h2>
+      <p>如果服务端，处理的api不是以/api开头的方式进行处理，需要在webpack的proxy重写请求api</p>
+<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">devServer:&#123;</span><br><span class="line">  proxy:&#123;</span><br><span class="line">    <span class="string">&#x27;/api&#x27;</span>:&#123;</span><br><span class="line">      target:<span class="string">&#x27;http://localhost:9000&#x27;</span>,</span><br><span class="line">      pathRewrite:&#123;<span class="string">&#x27;/api&#x27;</span>:<span class="string">&#x27;&#x27;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></div></figure>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target</td>
+<td>为请求域</td>
+</tr>
+<tr>
+<td>pathRewrite</td>
+<td>将开发模块中的以/api请求的接口，去掉/api进行代理请求</td>
+</tr>
+</tbody>
+</table></div>
+
+        <h2 id="引入Mock数据"   >
+          <a href="#引入Mock数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#引入Mock数据" class="headerlink" title="引入Mock数据"></a>引入Mock数据</h2>
+      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入mock.js</span></span><br><span class="line"><span class="keyword">const</span> Mock = <span class="built_in">require</span>(<span class="string">&#x27;./mock.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    port: <span class="number">8080</span>,</span><br><span class="line">    host: <span class="string">&#x27;0.0.0.0&#x27;</span>,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">&#x27;X-foo&#x27;</span>: <span class="string">&#x27;112233&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    inline: <span class="literal">true</span>,</span><br><span class="line">    overlay: <span class="literal">true</span>,</span><br><span class="line">    stats: <span class="string">&#x27;errors-only&#x27;</span>,</span><br><span class="line">    before: <span class="function"><span class="keyword">function</span>(<span class="params">app</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(app);</span><br><span class="line">      <span class="comment">//该函数会判断当前的环境是否是mock命令</span></span><br><span class="line">      <span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">&#x27;mock&#x27;</span>) &#123;</span><br><span class="line">        Mock(app);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">   plugins: [</span><br><span class="line">    <span class="comment">// 设置环境变量信息</span></span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">&#x27;process.env&#x27;</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="built_in">JSON</span>.stringify(process.env.NODE_ENV)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+        <h4 id="引入mock-js"   >
+          <a href="#引入mock-js" class="heading-link"><i class="fas fa-link"></i></a><a href="#引入mock-js" class="headerlink" title="引入mock.js"></a>引入mock.js</h4>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getPower = <span class="built_in">require</span>(<span class="string">&#x27;./json/parent_getPower.json&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> reConfig = <span class="built_in">require</span>(<span class="string">&#x27;./json/parent_reConfig.json&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> reConList = <span class="built_in">require</span>(<span class="string">&#x27;./json/parent_reconlist.json&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> reGroup = <span class="built_in">require</span>(<span class="string">&#x27;./json/parent_reGroup.json&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mock</span>(<span class="params">app</span>) </span>&#123;</span><br><span class="line">  app.get(<span class="string">&#x27;/xxxx/yyy&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;getPower111&#x27;</span>);</span><br><span class="line">    res.json(getPower);</span><br><span class="line">  &#125;);</span><br><span class="line">  app.post(<span class="string">&#x27;/reconfig&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;reConfig111&#x27;</span>);</span><br><span class="line">    res.json(reConfig);</span><br><span class="line">  &#125;);</span><br><span class="line">  app.post(<span class="string">&#x27;/conlist&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;reConList111&#x27;</span>);</span><br><span class="line">    res.json(reConList);</span><br><span class="line">  &#125;);</span><br><span class="line">  app.post(<span class="string">&#x27;/regroup&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;reGroup111&#x27;</span>);</span><br><span class="line">    res.json(reGroup);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = Mock;</span><br></pre></td></tr></table></div></figure>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2019/06/05/%E3%80%8E%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1Webpack%E7%B3%BB%E5%88%97%E3%80%8FwebpackDevServer%E6%8F%90%E5%8D%87%E6%95%88%E7%8E%87/">http://mariogogogo.github.io/2019/06/05/%E3%80%8E%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1Webpack%E7%B3%BB%E5%88%97%E3%80%8FwebpackDevServer%E6%8F%90%E5%8D%87%E6%95%88%E7%8E%87/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/webpack/">webpack</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2019/06/06/%E3%80%8E%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1Webpack%E7%B3%BB%E5%88%97%E3%80%8FCSS%E6%96%87%E4%BB%B6%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">『由浅入深 Webpack 系列』JS 或 CSS 文件代码分割</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2019/06/04/%E3%80%8E%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1Webpack%E7%B3%BB%E5%88%97%E3%80%8FSourceMap%E7%9A%84%E9%85%8D%E7%BD%AE/"><span class="paginator-prev__text">『由浅入深 Webpack 系列』SourceMap 的配置</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text">
+          跨域请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%86%99api"><span class="toc-number">2.</span> <span class="toc-text">
+          重写api</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5Mock%E6%95%B0%E6%8D%AE"><span class="toc-number">3.</span> <span class="toc-text">
+          引入Mock数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5mock-js"><span class="toc-number">3.0.1.</span> <span class="toc-text">
+          引入mock.js</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

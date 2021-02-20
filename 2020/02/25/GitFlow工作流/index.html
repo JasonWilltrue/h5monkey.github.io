@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="GitFlow 工作流定义了一个围绕项目发布的严格分支模型。虽然比功能分支工作流复杂几分，但提供了用于一个健壮的用于管理大型项目的框架。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitFlow 工作流">
+<meta property="og:url" content="http://mariogogogo.github.io/2020/02/25/GitFlow%E5%B7%A5%E4%BD%9C%E6%B5%81/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="GitFlow 工作流定义了一个围绕项目发布的严格分支模型。虽然比功能分支工作流复杂几分，但提供了用于一个健壮的用于管理大型项目的框架。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://book.52react.cn/20200225120815.png">
+<meta property="og:image" content="http://book.52react.cn/20200225130619.png">
+<meta property="og:image" content="http://book.52react.cn/20200225130648.png">
+<meta property="og:image" content="http://book.52react.cn/20200225130727.png">
+<meta property="og:image" content="http://book.52react.cn/20200225130815.png">
+<meta property="og:image" content="http://book.52react.cn/20200225130837.png">
+<meta property="og:image" content="http://book.52react.cn/20200225130957.png">
+<meta property="og:image" content="http://book.52react.cn/20200225131037.png">
+<meta property="og:image" content="http://book.52react.cn/20200225131059.png">
+<meta property="og:image" content="http://book.52react.cn/20200225131203.png">
+<meta property="og:image" content="http://book.52react.cn/20200225131248.png">
+<meta property="article:published_time" content="2020-02-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-16T09:07:20.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="技巧">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://book.52react.cn/20200225120815.png"><title>GitFlow 工作流 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2020/02/25/GitFlow%E5%B7%A5%E4%BD%9C%E6%B5%81/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">GitFlow 工作流</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-02-25</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.1k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">12分</span></span></div></header><div class="post-body"><p>GitFlow 工作流定义了一个围绕项目发布的严格分支模型。虽然比功能分支工作流复杂几分，但提供了用于一个健壮的用于管理大型项目的框架。</p>
+<a id="more"></a>
+
+        <h2 id="视频"   >
+          <a href="#视频" class="heading-link"><i class="fas fa-link"></i></a><a href="#视频" class="headerlink" title="视频"></a>视频</h2>
+      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/av32573821/" >Git 工作流指南 - GitFlow 工作流</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><iframe src="//player.bilibili.com/player.html?aid=32573821&cid=56999550&page=1" 
+ width="800px" height="550px"
+ scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"><br> </iframe></p>
+
+        <h2 id="概述"   >
+          <a href="#概述" class="heading-link"><i class="fas fa-link"></i></a><a href="#概述" class="headerlink" title="概述"></a>概述</h2>
+      <hr>
+<p><img src="http://book.52react.cn/20200225120815.png" alt=""></p>
+<p>GitFlow 工作流没有用超出功能分支工作流的概念和命令，而是为不同的分支分配一个很明确的角色，并定义分支之间如何和什么时候进行交互。除了使用功能分支，在做准备、维护和记录发布也使用各自的分支。当然你可以用上功能分支工作流所有的好处：Pull Requests、隔离实验性开发和更高效的协作。</p>
+
+        <h2 id="工作方式"   >
+          <a href="#工作方式" class="heading-link"><i class="fas fa-link"></i></a><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h2>
+      <p>GitFlow 工作流仍然用中央仓库作为所有开发者的交互中心。和其它的工作流一样，开发者在本地工作并 push 分支到中央仓库中。</p>
+
+        <h3 id="历史分支"   >
+          <a href="#历史分支" class="heading-link"><i class="fas fa-link"></i></a><a href="#历史分支" class="headerlink" title="历史分支"></a>历史分支</h3>
+      <p>相对使用仅有的一个 master 分支，GitFlow 工作流使用 2 个分支来记录项目的历史。master 分支存储了正式发布的历史，而 develop 分支作为功能的集成分支。这样也方便 master 分支上的所有提交分配一个版本号。</p>
+<p><img src="http://book.52react.cn/20200225130619.png" alt=""></p>
+<p>剩下要说明的问题围绕着这 2 个分支的区别展开。</p>
+
+        <h3 id="功能分支"   >
+          <a href="#功能分支" class="heading-link"><i class="fas fa-link"></i></a><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h3>
+      <p>每个新功能位于一个自己的分支，这样可以 push 到<code>中央仓库</code>以备份和协作。但功能分支不是从 master 分支上拉出新分支，而是使用 develop 分支作为父分支。当新功能完成时，合并回 develop 分支。新功能提交应该从不直接与 master 分支交互。</p>
+<p><img src="http://book.52react.cn/20200225130648.png" alt=""></p>
+<p>注意，从各种含义和目的上来看，功能分支加上 develop 分支就是功能分支工作流的用法。但 GitFlow 工作流没有在这里止步。</p>
+
+        <h3 id="发布分支"   >
+          <a href="#发布分支" class="heading-link"><i class="fas fa-link"></i></a><a href="#发布分支" class="headerlink" title="发布分支"></a>发布分支</h3>
+      <p><img src="http://book.52react.cn/20200225130727.png" alt=""></p>
+<p>一旦 develop 分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，就从 develop 分支上 fork 一个发布分支。新建的分支用于开始发布循环，所以从这个时间点开始之后新的功能不能再加到这个分支上 —— 这个分支只应该做 Bug 修复、文档生成和其它面向发布任务。一旦对外发布的工作都完成了，发布分支合并到 master 分支并分配一个版本号打好 Tag。另外，这些从新建发布分支以来的做的修改要合并回 develop 分支。</p>
+<p>使用一个用于发布准备的专门分支，使得一个团队可以在完善当前的发布版本的同时，另一个团队可以继续开发下个版本的功能。这也打造定义良好的开发阶段（比如，可以很轻松地说，『这周我们要做准备发布版本 4.0』，并且在仓库的目录结构中可以实际看到）。</p>
+<p>常用的分支约定：</p>
+<ul>
+<li>用于新建发布分支的分支: <code>develop</code></li>
+<li>用于合并的分支: <code>master</code></li>
+<li>分支命名: <code>release</code>-_ 或 release/_</li>
+</ul>
+
+        <h3 id="维护分支"   >
+          <a href="#维护分支" class="heading-link"><i class="fas fa-link"></i></a><a href="#维护分支" class="headerlink" title="维护分支"></a>维护分支</h3>
+      <p><img src="http://book.52react.cn/20200225130815.png" alt=""></p>
+<p>维护分支或说是热修复（hotfix）分支用于生成快速给产品发布版本（production releases）打补丁，这是唯一可以直接从 master 分支 fork 出来的分支。修复完成，修改应该马上合并回 master 分支和 develop 分支（当前的发布分支），master 分支应该用新的版本号打好 Tag。</p>
+<p>为 Bug 修复使用专门分支，让团队可以处理掉问题而不用打断其它工作或是等待下一个发布循环。你可以把维护分支想成是一个直接在 master 分支上处理的临时发布。</p>
+
+        <h2 id="示例"   >
+          <a href="#示例" class="heading-link"><i class="fas fa-link"></i></a><a href="#示例" class="headerlink" title="示例"></a>示例</h2>
+      <p>下面的示例演示本工作流如何用于管理单个发布循环。假设你已经创建了一个<code>中央仓库</code>。</p>
+
+        <h3 id="创建开发分支"   >
+          <a href="#创建开发分支" class="heading-link"><i class="fas fa-link"></i></a><a href="#创建开发分支" class="headerlink" title="创建开发分支"></a>创建开发分支</h3>
+      <p><img src="http://book.52react.cn/20200225130837.png" alt=""></p>
+<p>第一步为 master 分支配套一个 develop 分支。简单来做可以本地创建一个空的 develop 分支，push 到服务器上：</p>
+<figure class="highlight maxima"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch develop</span><br><span class="line">git <span class="built_in">push</span> -u <span class="built_in">origin</span> develop</span><br></pre></td></tr></table></div></figure>
+<p>以后这个分支将会包含了项目的全部历史，而 master 分支将只包含了部分历史。其它开发者这时应该克隆中央仓库，建好 develop 分支的跟踪分支：</p>
+<figure class="highlight awk"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone ssh:<span class="regexp">//u</span>ser@host<span class="regexp">/path/</span>to/repo.git</span><br><span class="line">git checkout -b develop origin/develop</span><br></pre></td></tr></table></div></figure>
+<p>现在每个开发都有了这些历史分支的本地拷贝。</p>
+
+        <h3 id="小红和小明开始开发新功能"   >
+          <a href="#小红和小明开始开发新功能" class="heading-link"><i class="fas fa-link"></i></a><a href="#小红和小明开始开发新功能" class="headerlink" title="小红和小明开始开发新功能"></a>小红和小明开始开发新功能</h3>
+      <p><img src="http://book.52react.cn/20200225130957.png" alt=""></p>
+<p>这个示例中，小红和小明开始各自的功能开发。他们需要为各自的功能创建相应的分支。新分支不是基于 master 分支，而是应该基于 <code>develop</code> 分支：</p>
+<figure class="highlight maxima"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="built_in">some</span>-<span class="built_in">feature</span> develop</span><br></pre></td></tr></table></div></figure>
+<p>他们用老套路添加提交到各自功能分支上：编辑、暂存、提交：</p>
+<figure class="highlight pgsql"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git <span class="keyword">add</span></span><br><span class="line">git <span class="keyword">commit</span></span><br></pre></td></tr></table></div></figure>
+
+        <h3 id="小红完成功能开发"   >
+          <a href="#小红完成功能开发" class="heading-link"><i class="fas fa-link"></i></a><a href="#小红完成功能开发" class="headerlink" title="小红完成功能开发"></a>小红完成功能开发</h3>
+      <p><img src="http://book.52react.cn/20200225131037.png" alt=""></p>
+<p>添加了提交后，小红觉得她的功能 OK 了。如果团队使用 Pull Requests，这时候可以发起一个用于合并到 develop 分支。否则她可以直接合并到她本地的 develop 分支后 push 到中央仓库：</p>
+<figure class="highlight maxima"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="built_in">origin</span> develop</span><br><span class="line">git checkout develop</span><br><span class="line">git merge <span class="built_in">some</span>-<span class="built_in">feature</span></span><br><span class="line">git <span class="built_in">push</span></span><br><span class="line">git branch -d <span class="built_in">some</span>-<span class="built_in">feature</span></span><br></pre></td></tr></table></div></figure>
+<p>第一条命令在合并功能前确保 develop 分支是最新的。注意，功能决不应该直接合并到 master 分支。冲突解决方法和集中式工作流一样。</p>
+
+        <h2 id="小红开始准备发布"   >
+          <a href="#小红开始准备发布" class="heading-link"><i class="fas fa-link"></i></a><a href="#小红开始准备发布" class="headerlink" title="小红开始准备发布"></a>小红开始准备发布</h2>
+      <p><img src="http://book.52react.cn/20200225131059.png" alt=""></p>
+<p>这个时候小明正在实现他的功能，小红开始准备她的第一个项目正式发布。像功能开发一样，她用一个新的分支来做发布准备。这一步也确定了发布的版本号：</p>
+<figure class="highlight apache"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> checkout -b release-<span class="number">0</span>.<span class="number">1</span> develop</span><br></pre></td></tr></table></div></figure>
+<p>这个分支是清理发布、执行所有测试、更新文档和其它为下个发布做准备操作的地方，像是一个专门用于改善发布的功能分支。</p>
+<p>只要小红创建这个分支并 push 到中央仓库，这个发布就是功能冻结的。任何不在 develop 分支中的新功能都推到下个发布循环中。</p>
+
+        <h3 id="小红完成发布"   >
+          <a href="#小红完成发布" class="heading-link"><i class="fas fa-link"></i></a><a href="#小红完成发布" class="headerlink" title="小红完成发布"></a>小红完成发布</h3>
+      <p><img src="http://book.52react.cn/20200225131203.png" alt=""></p>
+<p>一旦准备好了对外发布，小红合并修改到 master 分支和 develop 分支上，删除发布分支。合并回 develop 分支很重要，因为在发布分支中已经提交的更新需要在后面的新功能中也要是可用的。另外，如果小红的团队要求 Code Review，这是一个发起 Pull Request 的理想时机。</p>
+<figure class="highlight apache"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> checkout master</span><br><span class="line"><span class="attribute">git</span> merge release-<span class="number">0</span>.<span class="number">1</span></span><br><span class="line"><span class="attribute">git</span> push</span><br><span class="line"><span class="attribute">git</span> checkout develop</span><br><span class="line"><span class="attribute">git</span> merge release-<span class="number">0</span>.<span class="number">1</span></span><br><span class="line"><span class="attribute">git</span> push</span><br><span class="line"><span class="attribute">git</span> branch -d release-<span class="number">0</span>.<span class="number">1</span></span><br></pre></td></tr></table></div></figure>
+<p>发布分支是作为功能开发（develop 分支）和对外发布（master 分支）间的缓冲。只要有合并到 master 分支，就应该打好 Tag 以方便跟踪。</p>
+<figure class="highlight crmsh"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">tag</span> <span class="title">-a</span> <span class="number">0.1</span> -m <span class="string">&quot;Initial public release&quot;</span> <span class="literal">master</span></span><br><span class="line">git push --tags</span><br></pre></td></tr></table></div></figure>
+<p>Git 有提供各种勾子（hook），即仓库有事件发生时触发执行的脚本。可以配置一个勾子，在你 push 中央仓库的 master 分支时，自动构建好对外发布。</p>
+
+        <h3 id="最终用户发现-Bug"   >
+          <a href="#最终用户发现-Bug" class="heading-link"><i class="fas fa-link"></i></a><a href="#最终用户发现-Bug" class="headerlink" title="最终用户发现 Bug"></a>最终用户发现 Bug</h3>
+      <p><img src="http://book.52react.cn/20200225131248.png" alt=""></p>
+<p>对外发布后，小红回去和小明一起做下个发布的新功能开发，直到有最终用户开了一个 <code>Issues</code> 抱怨当前版本的一个 Bug。为了处理 Bug，小红（或小明）从 master 分支上拉出了一个<code>维护分支</code>，提交修改以解决问题，然后直接合并回 master 分支：</p>
+<figure class="highlight crmsh"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b issue-<span class="comment">#001 master</span></span><br><span class="line"><span class="comment"># Fix the bug</span></span><br><span class="line">git checkout <span class="literal">master</span></span><br><span class="line">git merge issue-<span class="comment">#001</span></span><br><span class="line">git push</span><br></pre></td></tr></table></div></figure>
+<p>就像发布分支，维护分支中新加这些重要修改需要包含到 develop 分支中，所以小红要执行一个合并操作。然后就可以安全地删除这个分支了：</p>
+<figure class="highlight avrasm"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git merge issue-<span class="meta">#001</span></span><br><span class="line">git <span class="keyword">push</span></span><br><span class="line">git branch -d issue-<span class="meta">#001</span></span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="总结"   >
+          <a href="#总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+      <p>到了这里， GitFlow 工作流已经感觉很舒适了。你应该也牢固的掌握了本地仓库的潜能，push/pull 模式和 Git 健壮的分支和合并模型。</p>
+<p>记住，这里演示的工作流只是可能用法的例子，而不是在实际工作中使用 Git 不可违逆的条例。所以不要畏惧按自己需要对工作流的用法做取舍。不变的目标就是让 Git 为你所用。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2020/02/25/GitFlow%E5%B7%A5%E4%BD%9C%E6%B5%81/">http://mariogogogo.github.io/2020/02/25/GitFlow%E5%B7%A5%E4%BD%9C%E6%B5%81/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/Git/">Git</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E6%8A%80%E5%B7%A7/">技巧</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/03/13/%E9%98%BF%E9%87%8C%E4%BA%91http%E5%8D%87%E7%BA%A7https/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">阿里云 http 升级 https</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/02/24/koa2+mysql%E5%90%8E%E5%8F%B0%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/"><span class="paginator-prev__text">koa2+mysql+router 后台开发项目</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91"><span class="toc-number">1.</span> <span class="toc-text">
+          视频</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">
+          概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">
+          工作方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E5%88%86%E6%94%AF"><span class="toc-number">3.1.</span> <span class="toc-text">
+          历史分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF"><span class="toc-number">3.2.</span> <span class="toc-text">
+          功能分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%86%E6%94%AF"><span class="toc-number">3.3.</span> <span class="toc-text">
+          发布分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E5%88%86%E6%94%AF"><span class="toc-number">3.4.</span> <span class="toc-text">
+          维护分支</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">
+          示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF"><span class="toc-number">4.1.</span> <span class="toc-text">
+          创建开发分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BA%A2%E5%92%8C%E5%B0%8F%E6%98%8E%E5%BC%80%E5%A7%8B%E5%BC%80%E5%8F%91%E6%96%B0%E5%8A%9F%E8%83%BD"><span class="toc-number">4.2.</span> <span class="toc-text">
+          小红和小明开始开发新功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BA%A2%E5%AE%8C%E6%88%90%E5%8A%9F%E8%83%BD%E5%BC%80%E5%8F%91"><span class="toc-number">4.3.</span> <span class="toc-text">
+          小红完成功能开发</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BA%A2%E5%BC%80%E5%A7%8B%E5%87%86%E5%A4%87%E5%8F%91%E5%B8%83"><span class="toc-number">5.</span> <span class="toc-text">
+          小红开始准备发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BA%A2%E5%AE%8C%E6%88%90%E5%8F%91%E5%B8%83"><span class="toc-number">5.1.</span> <span class="toc-text">
+          小红完成发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%94%A8%E6%88%B7%E5%8F%91%E7%8E%B0-Bug"><span class="toc-number">5.2.</span> <span class="toc-text">
+          最终用户发现 Bug</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">
+          总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

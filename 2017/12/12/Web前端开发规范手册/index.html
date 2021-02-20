@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="为提高团队协作效率, 便于后台人员添加功能及前端后期优化维护, 输出高质量的文档, 特制订此文档. 本规范文档一经确认, 前端开发人员必须按本文档规范进行前台页面开发. 本文档如有不对或者不合适的地方请及时提出, 经讨论决定后可以更改此文档.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【置顶】Web前端开发规范手册">
+<meta property="og:url" content="http://mariogogogo.github.io/2017/12/12/Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E6%89%8B%E5%86%8C/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="为提高团队协作效率, 便于后台人员添加功能及前端后期优化维护, 输出高质量的文档, 特制订此文档. 本规范文档一经确认, 前端开发人员必须按本文档规范进行前台页面开发. 本文档如有不对或者不合适的地方请及时提出, 经讨论决定后可以更改此文档.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-12-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-16T09:07:57.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="规范">
+<meta name="twitter:card" content="summary"><title>【置顶】Web前端开发规范手册 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2017/12/12/Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E6%89%8B%E5%86%8C/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">【置顶】Web前端开发规范手册</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-12-12</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.5k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">15分</span></span></div></header><div class="post-body"><p>为提高团队协作效率, 便于后台人员添加功能及前端后期优化维护, 输出高质量的文档, 特制订此文档. 本规范文档一经确认, 前端开发人员必须按本文档规范进行前台页面开发. 本文档如有不对或者不合适的地方请及时提出, 经讨论决定后可以更改此文档.<br><a id="more"></a></p>
+<p>一、规范目的<br>1.1     概述</p>
+<p>为提高团队协作效率, 便于后台人员添加功能及前端后期优化维护, 输出高质量的文档, 特制订此文档. 本规范文档一经确认, 前端开发人员必须按本文档规范进行前台页面开发. 本文档如有不对或者不合适的地方请及时提出, 经讨论决定后可以更改此文档.</p>
+<p>二、文件规范</p>
+<p>2.1  文件命名规则</p>
+<blockquote>
+<p>文件名称统一用小写的英文字母、数字和下划线的组合，其中不得包含汉字、空格和特殊字符；命名原则的指导思想一是使得你自己和工作组的每一个成员能够方便的理解每一个文件的意义，二是当我们在文件夹中使用“按名称排例”的命令时，同一种大类的文件能够排列在一起，以便我们查找、修改、替换、计算负载量等等操作。</p>
+</blockquote>
+<p>a.  HTML的命名原则<br>引文件统一使用index.htm  index.html  index.asp文件名（小写）<br>各子页命名的原则首先应该以栏目名的英语翻译取单一单词为名称。例如：<br>关于我们 \ aboutus<br>信息反馈 \ feedback<br>产 品 \ product<br>如果栏目名称多而复杂并不好以英文单词命名，则统一使用该栏目名称拼音或拼音的首字母表示；<br>每一个目录中应该包含一个缺省的html 文件，文件名统一用index.htm  index.html  index.asp；</p>
+<p>b.  图片的命名原则<br>图片的名称分为头尾两部分，用下划线隔开，头部分表示此图片的大类性质<br>例如：广告、标志、菜单、按钮等等。<br>放置在页面顶部的广告、装饰图案等长方形的图片取名： banner<br>标志性的图片取名为： logo<br>在页面上位置不固定并且带有链接的小图片我们取名为 button<br>在页面上某一个位置连续出现，性质相同的链接栏目的图片我们取名： menu<br>装饰用的照片我们取名： pic<br>不带链接表示标题的图片我们取名： title<br>范例：banner_sohu.gif  banner_sina.gif  menu_aboutus.gif  menu_job.gif  title_news.gif  logo_police.gif   logo_national.gif   pic_people.jpg<br>鼠标感应效果图片命名规范为”图片名+_+on/off”。<br>例如：menu1_on.gif  menu1_off.gif</p>
+<p>c.  javascript的命名原则<br>例如：广告条的javascript文件名为 ad.js  弹出窗口的javascript文件名为 pop.js</p>
+<p>d.  动态语言文件命名原则<br>以性质<em>描述，描述可以有多个单词，用“</em>”隔开，性质一般是该页面得概要。<br>范例：register_form.asp   register_post.asp   topic_lock.asp</p>
+<p>2.2  文件存放位置规范</p>
+<p>_Root<br>    cn    存放中文HTML文件<br>    en    存放英文HTML文件<br>    flash    存放Flash文件<br>    images    存放图片文件<br>    imagestudio    存放PSD源文件<br>    flashstudio    存放flash源文件<br>    inc    存放include文件<br>    library    存放DW库文件<br>    media    存放多媒体文件<br>    project    存放工程项目资料<br>    temp    存放客户原始资料<br>    js    存放JavaScript脚本<br>    css    存放CSS文件</p>
+<p>2.3  CSS 书写规范</p>
+<p>基本原则：</p>
+<p>CSS样式可细分为3类：自定义样式、重新定义HTML样式、链接状态样式。</p>
+<ol>
+<li>样式为设计师自定义的新 CSS 样式，影响被使用本样式的区域，用于完成网页中局部的样式设定。样式名 “.”+“相应样式效果描述的单词或缩写”例：“ .shadow ”<br>文字样式样式名“.no”+“字号”+“行距”+“颜色缩写”例：“ .no12 ” 、“ .no12-24 ”</li>
+<li>义HTML样式为设计师重新定义已有的HTML标签样式，影响全部的被设定标签样式，用于统一网页中某一标签的样式定义。样式名“HTML标签”例：hr { border: 1px dotted #333333 }</li>
+<li>态样式为设计师对链接不同状态设定特殊样式，影响被使用本样式区域中的链接。<br>该样式写法有2种： a.nav:link    nav.a:link  第一种只能修饰<a>标签中；第二种可以修饰所有包含有<a>标签的其他标签。<br>页面内的样式加载必须用链接方式<link rel="stylesheet" type="text/css" href="style/style.css"></li>
+</ol>
+<p>注意细则：</p>
+<ol>
+<li>协作开发及分工: i会根据各个模块, 同时根据页面相似程序, 事先写好大体框架文件, 分配给前端人员实现内部结构&amp;表现&amp;行为; 共用css文件base.css由i书写, 协作开发过程中, 每个页面请务必都要引入, 此文件包含reset及头部底部样式, 此文件不可随意修改;</li>
+<li>class与id的使用: id是唯一的并是父级的, class是可以重复的并是子级的, 所以id仅使用在大的模块上, class可用在重复使用率高及子级中; id原则上都是由我分发框架文件时命名的, 为JavaScript预留钩子的除外;</li>
+<li>为JavaScript预留钩子的命名, 请以 js_ 起始, 比如: js_hide, js_show;</li>
+<li>class与id命名: 大的框架命名比如header/footer/wrapper/left/right之类的在2中由i统一命名.其他样式名称由 小写英文 &amp; 数字 &amp; _ 来组合命名, 如i_comment, fontred, width200; 避免使用中文拼音, 尽量使用简易的单词组合; 总之, 命名要语义化, 简明化.</li>
+<li>规避class与id命名(此条重要, 若有不明白请及时与i沟通):<br>a, 通过从属写法规避, 示例见d;<br>b, 取父级元素id/class命名部分命名, 示例见d;<br>c, 重复使用率高的命名, 请以自己代号加下划线起始, 比如i_clear;<br>d, a,b两条, 适用于在2中已建好框架的页面, 如, 要在2中已建好框架的页面代码<div id="mainnav"></div>中加入新的div元素,<br>按a命名法则: <div id="mainnav"><div class="firstnav">…</div></div>,<br>样式写法:  #mainnav  .firstnav{…….}<br>按b命名法则: <div id="mainnav"><div class="main_firstnav">…</div></div>,<br>样式写法:  .main_firstnav{…….}</li>
+<li>css属性书写顺序, 建议遵循 布局定位属性–&gt;自身属性–&gt;文本属性–&gt;其他属性. 此条可根据自身习惯书写, 但尽量保证同类属性写在一起. 属性列举: 布局定位属性主要包括: margin、padding、float（包括clear）、position（相应的 top,right,bottom,left）、display、visibility、overflow等；自身属性主要包括: width &amp; height &amp; background &amp; border; 文本属性主要包括：font、color、text-align、text-decoration、text-indent等；其他属性包括: list-style(列表样式)、vertical-vlign、cursor、z-index(层叠顺序) 、zoom等.我所列出的这些属性只是最常用到的, 并不代表全部;</li>
+<li>书写代码前, 考虑并提高样式重复使用率;</li>
+<li>充分利用html自身属性及样式继承原理减少代码量, 比如:<br><ul class="list"><li>这儿是标题列表<span>2010-09-15</span></ul><br>定义ul.list li{position:relative}  ul.list li span{position:absolute; right:0}<br>即可实现日期居右显示</li>
+<li>样式表中中文字体名, 请务必转码成unicode码, 以避免编码错误时乱码;</li>
+<li>背景图片请尽可能使用sprite技术, 减小http请求, 考虑到多人协作开发, sprite按模块制作;</li>
+<li>使用table标签时(尽量避免使用table标签), 请不要用width/ height/cellspacing/cellpadding等table属性直接定义表现, 应尽可能的利用table自身私有属性分离结构与表现, 如thead,tr,th,td,tbody,tfoot,colgroup,scope; (cellspaing及cellpadding的css控制方法: table{border:0;margin:0;border-collapse:collapse;} table th, table td{padding:0;} , base.css文件中我会初始化表格样式)</li>
+<li>杜绝使用<meta http-equiv="X-UA-Compatible" content="IE=7" /> 兼容ie8;</li>
+<li>用png图片做图片时, 要求图片格式为png-8格式,若png-8实在影响图片质量或其中有半透明效果, 请为ie6单独定义背景:<br>background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop, src=’img/bg.png’);</li>
+<li>避免兼容性属性的使用, 比如text-shadow || css3的相关属性;</li>
+<li>减少使用影响性能的属性, 比如position:absolute || float ;</li>
+<li>必须为大区块样式添加注释, 小区块适量注释;</li>
+<li>代码缩进与格式: 建议单行书写, 可根据自身习惯, 后期优化i会统一处理;</li>
+</ol>
+
+        <h5 id="命名规则："   >
+          <a href="#命名规则：" class="heading-link"><i class="fas fa-link"></i></a><a href="#命名规则：" class="headerlink" title="命名规则："></a>命名规则：</h5>
+      <ol>
+<li>头：header</li>
+<li>内容：content/container</li>
+<li>尾：footer</li>
+<li>导航：nav</li>
+<li>侧栏：sidebar</li>
+<li>栏目：column</li>
+<li>页面外围控制整体布局宽度：wrapper</li>
+<li>左右中：left right center</li>
+<li>登录条：loginbar</li>
+<li>标志：logo</li>
+<li>广告：banner</li>
+<li>页面主体：main</li>
+<li>热点：hot</li>
+<li>新闻：news</li>
+<li>下载：download</li>
+<li>子导航：subnav</li>
+<li>菜单：menu</li>
+<li>子菜单：submenu</li>
+<li>搜索：search</li>
+<li>友情链接：friendlink</li>
+<li>页脚：footer</li>
+<li>版权：copyright</li>
+<li>滚动：scroll</li>
+<li>内容：content</li>
+<li>标签页：tab</li>
+<li>文章列表：list</li>
+<li>提示信息：msg</li>
+<li>小技巧：tips</li>
+<li>栏目标题：title</li>
+<li>加入：joinus</li>
+<li>指南：guild</li>
+<li>服务：service</li>
+<li>注册：regsiter</li>
+<li>状态：status</li>
+<li>投票：vote</li>
+<li>合作伙伴：partner
+        <h5 id="二-注释的写法"   >
+          <a href="#二-注释的写法" class="heading-link"><i class="fas fa-link"></i></a><a href="#二-注释的写法" class="headerlink" title="(二)注释的写法:"></a>(二)注释的写法:</h5>
+      /<em> Footer </em>/<br>内容区<br>/<em> End Footer </em>/
+        <h5 id="三-id的命名"   >
+          <a href="#三-id的命名" class="heading-link"><i class="fas fa-link"></i></a><a href="#三-id的命名" class="headerlink" title="(三)id的命名:"></a>(三)id的命名:</h5>
+      
+        <h6 id="1-页面结构"   >
+          <a href="#1-页面结构" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-页面结构" class="headerlink" title="(1)页面结构"></a>(1)页面结构</h6>
+      </li>
+<li>容器: container</li>
+<li>页头：header</li>
+<li>内容：content/container</li>
+<li>页面主体：main</li>
+<li>页尾：footer</li>
+<li>导航：nav</li>
+<li>侧栏：sidebar</li>
+<li>栏目：column</li>
+<li>页面外围控制整体布局宽度：wrapper</li>
+<li>左右中：left right center</li>
+</ol>
+
+        <h6 id="2-导航"   >
+          <a href="#2-导航" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-导航" class="headerlink" title="(2)导航"></a>(2)导航</h6>
+      <ol>
+<li>导航：nav</li>
+<li>主导航：mainbav</li>
+<li>子导航：subnav</li>
+<li>顶导航：topnav</li>
+<li>边导航：sidebar</li>
+<li>左导航：leftsidebar</li>
+<li>右导航：rightsidebar</li>
+<li>菜单：menu</li>
+<li>子菜单：submenu</li>
+<li>标题: title</li>
+<li>摘要: summary</li>
+</ol>
+
+        <h6 id="3-功能"   >
+          <a href="#3-功能" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-功能" class="headerlink" title="(3)功能"></a>(3)功能</h6>
+      <ol>
+<li>标志：logo</li>
+<li>广告：banner</li>
+<li>登陆：login</li>
+<li>登录条：loginbar</li>
+<li>注册：regsiter</li>
+<li>搜索：search</li>
+<li>功能区：shop</li>
+<li>标题：title</li>
+<li>加入：joinus</li>
+<li>状态：status</li>
+<li>按钮：btn</li>
+<li>滚动：scroll</li>
+<li>标签页：tab</li>
+<li>文章列表：list</li>
+<li>提示信息：msg</li>
+<li>当前的: current</li>
+<li>小技巧：tips</li>
+<li>图标: icon</li>
+<li>注释：note</li>
+<li>指南：guild</li>
+<li>服务：service</li>
+<li>热点：hot</li>
+<li>新闻：news</li>
+<li>下载：download</li>
+<li>投票：vote</li>
+<li>合作伙伴：partner</li>
+<li>友情链接：link</li>
+<li>版权：copyright\</li>
+</ol>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2017/12/12/Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E6%89%8B%E5%86%8C/">http://mariogogogo.github.io/2017/12/12/Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E6%89%8B%E5%86%8C/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E8%A7%84%E8%8C%83/">规范</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2017/12/13/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AANew%E6%93%8D%E4%BD%9C%E7%AC%A6/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">手写一个New操作符</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2017/11/14/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAcompose%E7%9A%84%E5%AE%9E%E7%8E%B0/"><span class="paginator-prev__text">手写一个 compose 实现</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">
+          命名规则：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C-%E6%B3%A8%E9%87%8A%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">
+          (二)注释的写法:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89-id%E7%9A%84%E5%91%BD%E5%90%8D"><span class="toc-number">3.</span> <span class="toc-text">
+          (三)id的命名:</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text">
+          (1)页面结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-%E5%AF%BC%E8%88%AA"><span class="toc-number">3.2.</span> <span class="toc-text">
+          (2)导航</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-%E5%8A%9F%E8%83%BD"><span class="toc-number">3.3.</span> <span class="toc-text">
+          (3)功能</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

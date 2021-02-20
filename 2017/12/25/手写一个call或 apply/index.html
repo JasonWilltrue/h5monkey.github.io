@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="call语法：        fun.call(thisArg,arg1,arg2,…)，调用一个函数, 其具有一个指定的this值和分别地提供的参数(参数的列表)。  使用：123456789101112function Product(name, price) &amp;#123;  this.name &#x3D; name;  this.price &#x3D; price;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写一个call或 apply">
+<meta property="og:url" content="http://mariogogogo.github.io/2017/12/25/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAcall%E6%88%96%20apply/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="call语法：        fun.call(thisArg,arg1,arg2,…)，调用一个函数, 其具有一个指定的this值和分别地提供的参数(参数的列表)。  使用：123456789101112function Product(name, price) &amp;#123;  this.name &#x3D; name;  this.price &#x3D; price;&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://book.52react.cn/carbon1.png">
+<meta property="og:image" content="http://book.52react.cn/carbon.png">
+<meta property="og:image" content="http://book.52react.cn/20190424102151.png">
+<meta property="article:published_time" content="2017-12-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-16T09:07:12.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://book.52react.cn/carbon1.png"><title>手写一个call或 apply | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2017/12/25/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAcall%E6%88%96%20apply/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">手写一个call或 apply</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-12-25</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">396</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">3分</span></span></div></header><div class="post-body">
+        <h1 id="call语法："   >
+          <a href="#call语法：" class="heading-link"><i class="fas fa-link"></i></a><a href="#call语法：" class="headerlink" title="call语法："></a>call语法：</h1>
+      <blockquote>
+<p>fun.call(thisArg,arg1,arg2,…)，调用一个函数, 其具有一个指定的this值和分别地提供的参数(参数的列表)。</p>
+</blockquote>
+<p>使用：<br><figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Product</span>(<span class="params">name, price</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.price = price;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Food</span>(<span class="params">name, price</span>) </span>&#123;</span><br><span class="line">  Product.call(<span class="built_in">this</span>, name, price);</span><br><span class="line">  <span class="built_in">this</span>.category = <span class="string">&#x27;food&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> Food(<span class="string">&#x27;cheese&#x27;</span>, <span class="number">5</span>).name);</span><br><span class="line"><span class="comment">//&quot;cheese&quot;</span></span><br></pre></td></tr></table></div></figure></p>
+<p>简单说下实现原理：</p>
+<ol>
+<li>将函数设为对象的属性</li>
+<li>执行&amp;删除这个函数</li>
+<li>指定 this到函数并传入给定参数执行函数</li>
+<li>如果不传入参数，默认指向为 window</li>
+</ol>
+<p>乞丐版本：<br><img src="http://book.52react.cn/carbon1.png" alt=""></p>
+<p>代码：<br>如果我们想要实现一个新的newcall理想状态应该怎么样？</p>
+<p><img src="http://book.52react.cn/carbon.png" alt=""><br><figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.newcall = <span class="function"><span class="keyword">function</span> (<span class="params">content = <span class="built_in">window</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//this指的是bar(name,age)</span></span><br><span class="line">  content.fn = <span class="built_in">this</span>;</span><br><span class="line">  <span class="comment">// 取出参数中的第一个参数 与其他参数</span></span><br><span class="line">  <span class="keyword">let</span> args = [...arguments].slice(<span class="number">1</span>);</span><br><span class="line">  <span class="comment">//content.fn就是指bar方法</span></span><br><span class="line">  <span class="keyword">let</span> result = content.fn(...args);</span><br><span class="line">  <span class="comment">//删除this</span></span><br><span class="line">  <span class="keyword">delete</span> content.fn;</span><br><span class="line">  <span class="comment">//返回新对象</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure><br><img src="http://book.52react.cn/20190424102151.png" alt=""></p>
+
+        <h1 id="apply语法："   >
+          <a href="#apply语法：" class="heading-link"><i class="fas fa-link"></i></a><a href="#apply语法：" class="headerlink" title="apply语法："></a>apply语法：</h1>
+      <blockquote>
+<p>func.apply(thisArg,[argsArray])，调用一个函数，以及作为一个数组（或类似数组对象）提供的参数。</p>
+</blockquote>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.newapply = <span class="function"><span class="keyword">function</span> (<span class="params">content = <span class="built_in">window</span></span>) </span>&#123;</span><br><span class="line">  content.fn = <span class="built_in">this</span>;</span><br><span class="line">  <span class="keyword">let</span> result;</span><br><span class="line">  <span class="comment">//判断是否有第二个参数</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">arguments</span>[<span class="number">1</span>])&#123;</span><br><span class="line">    result = content.fn(...arguments[<span class="number">1</span>]);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    result = content.fn()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">delete</span> content.fn;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line">bar.newapply(foo,[<span class="string">&quot;jack&quot;</span>])</span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="手写系列"   >
+          <a href="#手写系列" class="heading-link"><i class="fas fa-link"></i></a><a href="#手写系列" class="headerlink" title="手写系列"></a>手写系列</h1>
+      <ol>
+<li><del><strong>实现一个new操作符</strong></del></li>
+<li><del>实现一个JSON.stringify</del></li>
+<li><del>实现一个JSON.parse</del></li>
+<li><del>实现一个call或 apply</del></li>
+<li><del>实现一个Function.bind</del></li>
+<li>实现一个继承</li>
+<li>实现一个JS函数柯里化</li>
+<li>手写一个Promise(中高级必考)</li>
+<li>手写防抖(Debouncing)和节流(Throttling)</li>
+<li>手写一个JS深拷贝</li>
+<li>实现一个instanceOf</li>
+</ol>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2017/12/25/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAcall%E6%88%96%20apply/">http://mariogogogo.github.io/2017/12/25/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAcall%E6%88%96%20apply/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/JavaScript/">JavaScript</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2017/12/30/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAreduce%E7%9A%84%E5%AE%9E%E7%8E%B0/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">手写一个 reduce 实现</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2017/12/25/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAinstanceof/"><span class="paginator-prev__text">手写一个instanceof</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#call%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">
+          call语法：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#apply%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">
+          apply语法：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E7%B3%BB%E5%88%97"><span class="toc-number">3.</span> <span class="toc-text">
+          手写系列</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

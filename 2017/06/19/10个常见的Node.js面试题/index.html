@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="如果你希望找一份有关 Node.js 的工作，但又不知道从哪里入手评测自己对 node.js 的掌握程度。 本文就为你罗列了 10 个常见的 Node.js 面试题，分别考察了 Node.js 编程相关的几个主要方面。 在进入正文之前，需要提前声明两点： 这些问题只是Node.js知识体系的一个局部，并不能完全考察被面试者的实际开发能力。 对现实世界开发中遇到的问题，需要的是随机应变与团队合作，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10 个常见的 Node.js 面试题">
+<meta property="og:url" content="http://mariogogogo.github.io/2017/06/19/10%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84Node.js%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="如果你希望找一份有关 Node.js 的工作，但又不知道从哪里入手评测自己对 node.js 的掌握程度。 本文就为你罗列了 10 个常见的 Node.js 面试题，分别考察了 Node.js 编程相关的几个主要方面。 在进入正文之前，需要提前声明两点： 这些问题只是Node.js知识体系的一个局部，并不能完全考察被面试者的实际开发能力。 对现实世界开发中遇到的问题，需要的是随机应变与团队合作，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-06-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-02-18T06:09:04.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="NodeJs">
+<meta name="twitter:card" content="summary"><title>10 个常见的 Node.js 面试题 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2017/06/19/10%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84Node.js%E9%9D%A2%E8%AF%95%E9%A2%98/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">10 个常见的 Node.js 面试题</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-19</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.8k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">9分</span></span></div></header><div class="post-body"><a id="more"></a>
+<p>如果你希望找一份有关 Node.js 的工作，但又不知道从哪里入手评测自己对 node.js 的掌握程度。 本文就为你罗列了 10 个常见的 Node.js 面试题，分别考察了 Node.js 编程相关的几个主要方面。</p>
+<p>在进入正文之前，需要提前声明两点：</p>
+<pre><code>这些问题只是Node.js知识体系的一个局部，并不能完全考察被面试者的实际开发能力。
+对现实世界开发中遇到的问题，需要的是随机应变与团队合作，所以你可以尝试结对编程。
+</code></pre><p>Node.js 面试题列表</p>
+<pre><code>什么是错误优先的回调函数？
+如何避免回调地狱？
+如何用Node来监听80端口？
+什么是事件循环？
+哪些工具可以用来保证一致的编程风格？
+运算错误与程序员错误的区别？
+使用NPM有哪些好处？
+什么是stub？举个使用场景？
+什么是测试金字塔？对于HTTP API，如何利用测试金字塔？
+你最喜欢的HTTP框架，并说明原因？
+</code></pre><p>现在，我们依次来解答这些问题吧。</p>
+
+        <h5 id="什么是错误优先的回调函数？"   >
+          <a href="#什么是错误优先的回调函数？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是错误优先的回调函数？" class="headerlink" title="什么是错误优先的回调函数？"></a>什么是错误优先的回调函数？</h5>
+      <blockquote>
+<p>错误优先的回调函数用于传递错误和数据。第一个参数始终应该是一个错误对象， 用于检查程序是否发生了错误。其余的参数用于传递数据。例如：</p>
+<p>fs.readFile(filePath, function(err, data) {<br>if (err) {<br>//handle the error<br>}<br>// use the data object<br>});</p>
+</blockquote>
+<p>解析：这个题目的主要作用在于检查被面试者对于 Node 中异步操作的一些基本知识的掌握。<br>如何避免回调地狱</p>
+<p>你可以有如下几个方法：</p>
+<pre><code>模块化：将回调函数分割为独立的函数
+使用Promises
+使用yield来计算生成器或Promise
+</code></pre><p>解析：这个问题有很多种答案，取决你使用的场景，例如 ES6, ES7，或者一些控制流库。<br>如何用 Node 监听 80 端口</p>
+<blockquote>
+<p>这题有陷阱！在类 Unix 系统中你不应该尝试去监听 80 端口，因为这需要超级用户权限。 因此不推荐让你的应用直接监听这个端口。</p>
+<p>目前，如果你一定要让你的应用监听 80 端口的话，你可以有通过在 Node 应用的前方再增加一层反向代理 （例如 nginx）来实现，如下图所示。否则，建议你直接监听大于 1024 的端口。</p>
+</blockquote>
+<p>Reverse Proxy</p>
+<pre><code>方向代理指的是以代理服务器来接收Internet上的连接请求，然后将请求转发给内部网络上的服务器， 并且将服务器返回的结果发送给客户端。
+</code></pre><p>关于反向代理的更多内容，建议你阅读这篇文章。 关于如何利用 nginx 来为 node 配置方向代理的实践，可以参考这篇博文。</p>
+<p>解释：这个问题用于检查被面试者是否有实际运行 Node 应用的经验。<br>什么是事件循环</p>
+<p>Node 采用的是单线程的处理机制（所有的 I/O 请求都采用非阻塞的工作方式），至少从 Node.js 开发者的角度是这样的。 而在底层，Node.js 借助 libuv 来作为抽象封装层， 从而屏蔽不同操作系统的差异，Node 可以借助 livuv 来来实现多线程。下图表示了 Node 和 libuv 的关系。</p>
+<p>Libuv 库负责 Node API 的执行。它将不同的任务分配给不同的线程，形成一个事件循环， 以异步的方式将任务的执行结果返回给 V8 引擎。可以简单用下面这张图来表示。</p>
+<p>（图片来源于网络）</p>
+<p>每一个 I/O 都需要一个回调函数——一旦执行完便推到事件循环上用于执行。 如果你需要更多详细的解释，可以参考这个视频。 你也可以参考这篇文章。</p>
+<p>解释：这用于检查 Node.js 的底层知识，例如什么是 libuv，它的作用是什么。<br>哪些工具可以用来保证一致性的代码风格</p>
+<p>你可以选择如下的工具：</p>
+<pre><code>JSLint
+JSHint
+ESLint
+JSCS - 推荐
+</code></pre><p>在团队开发中，这些工具对于编写代码非常的有帮助，能够帮助团队开发者强制执行规定的风格指南， 还能够通过静态分析捕获常见的错误。</p>
+<p>解析：用于检查被面试者是否有大型项目开发经验。<br>运算错误与程序员错误的区别</p>
+<p>运算错误并不是 bug，这是和系统相关的问题，例如请求超时或者硬件故障。而程序员错误就是所谓的 bug。</p>
+<p>解析：这个题目和 Node 关系并不大，用于考察面试者的基础知识。<br>使用 NPM 有哪些好处？</p>
+<p>通过 NPM，你可以安装和管理项目的依赖，并且能够指明依赖项的具体版本号。 对于 Node 应用开发而言，你可以通过 package.json 文件来管理项目信息，配置脚本， 以及指明项目依赖的具体版本。</p>
+<p>关于 NPM 的更多信息，你可以参考官方文档。</p>
+<p>解析：它能考察面试者使用 npm 命令的基础知识和 Node.js 开发的实际经验。<br>什么是 Stub？举个使用场景</p>
+<p>Stub 是用于模拟一个组件或模块的函数或程序。在测试用例中， 简单的说，你可以用 Stub 去模拟一个方法，从而避免调用真实的方法， 使用 Stub 你还可以返回虚构的结果。你可以配合断言使用 Stub。</p>
+<p>举个例子，在一个读取文件的场景中，当你不想读取一个真正的文件时：</p>
+<p>var fs = require(‘fs’);</p>
+<p>var readFileStub = sinon.stub(fs, ‘readFile’, function (path, cb) {<br>return cb(null, ‘filecontent’);<br>});</p>
+<p>expect(readFileStub).to.be.called;<br>readFileStub.restore();</p>
+<pre><code>在单元测试中：Stub是完全模拟一个外部依赖，而Mock常用来判断测试通过还是失败。
+</code></pre><p>有关 Node.js 的单元测试小结，你可以参考这个链接。</p>
+<p>解析：用于测试被面试者是否有测试的经验。如果被面试者知道什么是 Stub， 那么可以继续问他是如何做单元测试的。<br>什么是测试金字塔？</p>
+<p>测试金字塔指的是： 当我们在编写测试用例时，底层的单元测试应该远比上层的端到端测试要多。</p>
+<p>当我们谈到 HTTP API 时，我们可能会涉及到：</p>
+<pre><code>有很多针对模型的底层单元测试
+但你需要测试模型间如何交互时，需要减少集成测试
+</code></pre><p>解析：本文主要考察被面试者的在测试方面的经验。<br>你最喜欢的 HTTP 框架以及原因</p>
+<p>这题没有唯一的答案。本题主要考察被面试者对于他所使用的 Node 框架的理解程度， 考察他是否能够给出选择该框架的理由，优缺点等。常用的 HTTP 框架你可以参考这个网站。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2017/06/19/10%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84Node.js%E9%9D%A2%E8%AF%95%E9%A2%98/">http://mariogogogo.github.io/2017/06/19/10%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84Node.js%E9%9D%A2%E8%AF%95%E9%A2%98/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/NodeJs/">NodeJs</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2017/06/26/%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%EF%BC%8C%E5%90%8E%E6%8C%89%E9%92%AE%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%8C%E9%98%B2%E6%AD%A2%E5%88%B7%E6%96%B0%E5%80%92%E8%AE%A1%E6%97%B6%E5%A4%B1%E6%95%88/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">发送短信验证，后按钮倒计时，防止刷新倒计时失效</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2017/06/19/jQuery%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%90%8E%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA%E6%B6%88%E6%81%AF%E6%A1%86%E7%9A%84%E6%96%B9%E6%B3%95/"><span class="paginator-prev__text">jQuery页面加载后居中显示消息框的方法</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%94%99%E8%AF%AF%E4%BC%98%E5%85%88%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">
+          什么是错误优先的回调函数？</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

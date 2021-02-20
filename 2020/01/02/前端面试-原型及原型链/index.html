@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="2020 想跳槽一下，相关面试系列文章梳理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试-原型及原型链">
+<meta property="og:url" content="http://mariogogogo.github.io/2020/01/02/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="2020 想跳槽一下，相关面试系列文章梳理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://book.52react.cn/20190324141429.png">
+<meta property="og:image" content="http://book.52react.cn/20190324143532.png">
+<meta property="og:image" content="http://book.52react.cn/20190324143151.png">
+<meta property="og:image" content="http://book.52react.cn/20190324145426.png">
+<meta property="og:image" content="http://book.52react.cn/20190324151128.png">
+<meta property="og:image" content="http://book.52react.cn/20190324151805.png">
+<meta property="og:image" content="http://book.52react.cn/20190324152232.png">
+<meta property="og:image" content="http://typora.pp.52react.cn/h5web/2021012817image-20210128171034712.png">
+<meta property="og:image" content="http://typora.pp.52react.cn/h5web/2021012817image-20210128171705889.png">
+<meta property="article:published_time" content="2020-01-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-01-29T01:28:28.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="面试，Javascript，基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://book.52react.cn/20190324141429.png"><title>前端面试-原型及原型链 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2020/01/02/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">前端面试-原型及原型链</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-01-02</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">831</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">5分</span></span></div></header><div class="post-body"><p>2020 想跳槽一下，相关面试系列文章梳理</p>
+<a id="more"></a>
+
+        <h2 id="7建对象的几种方法"   >
+          <a href="#7建对象的几种方法" class="heading-link"><i class="fas fa-link"></i></a><a href="#7建对象的几种方法" class="headerlink" title="7建对象的几种方法"></a>7建对象的几种方法</h2>
+      <p>通常三种</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//======1</span></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> a1 = <span class="keyword">new</span> <span class="built_in">Object</span>(&#123; <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span> &#125;);</span><br><span class="line"><span class="comment">//======2</span></span><br><span class="line"><span class="keyword">var</span> B = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = <span class="string">&quot;love&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> b1 = <span class="keyword">new</span> B();</span><br><span class="line"><span class="comment">//======3</span></span><br><span class="line"><span class="keyword">var</span> c = &#123; <span class="attr">name</span>: <span class="string">&quot;petter&quot;</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> c1 = <span class="built_in">Object</span>.create(c);</span><br></pre></td></tr></table></div></figure>
+<p><img src="http://book.52react.cn/20190324141429.png" alt=""><br><strong>构造函数–使用 new 运算符-&gt;生成一个实例</strong>。</p>
+<p>函数都有一个<code>prototype</code>属性，创建函数的时候 js 自动生成的，这个属性会<code>创建一个 空对象</code>就<code>是原型对象</code>。<br><img src="http://book.52react.cn/20190324143532.png" alt=""><br>原型对象如何<code>区分</code>我是被<code>哪个构造函数所引用</code>，原型对象中有一个<code>(构造器)constructor</code>会默认你声明(或者指向)的那个函数。</p>
+<p><img src="http://book.52react.cn/20190324143151.png" alt=""></p>
+
+        <h2 id="原型链"   >
+          <a href="#原型链" class="heading-link"><i class="fas fa-link"></i></a><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2>
+      <p>我从我的原型对象向上找<code>构造这个实例</code>的相关联的对象；这个关联的对象再往上找它又有<code>创造它的的原型对象</code>，以此类推一直到 Object.prototype 为止.原型链的顶端 Object.prototype，</p>
+<blockquote>
+<p>原型链靠什么向上找的过程：向上找主要靠 prototype 和——proto-这二个</p>
+</blockquote>
+<p>原型对象与原型链起了什么作业<br>当我构造函数中有很多属性和方法，我的实例就可以共用这些东西<br>当我创建很多实例，要去共用这些方法和属性。我不能每个实例都拷贝这些属性和方法；他们之间其实可以共同存在一个地方（原型对象）</p>
+<p>任何一个实例对象通过原型链找到它上面的原型对象的<code>属性和方法</code>这个是被实例所共享的；</p>
+<p><img src="http://book.52react.cn/20190324145426.png" alt=""></p>
+<blockquote>
+<p>一个实例没有找到属性或方法它就向原型对象上找，如果上级原型对象找不到则会根据原型对象的——proto-的原型对象上去找</p>
+</blockquote>
+<p>注意：</p>
+<ol>
+<li>构造函数才会有 prototype，对象没有 prototype。</li>
+<li>实例对象才会有——proto-，如果发现函数也有-proto-。</li>
+<li>函数也是对象,</li>
+</ol>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A._proto_ === <span class="built_in">Function</span>.prototype; <span class="comment">//true</span></span><br></pre></td></tr></table></div></figure>
+<p>A 的原型对象就是 Function 的原型对象</p>
+
+        <h2 id="instanceof-的原理"   >
+          <a href="#instanceof-的原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#instanceof-的原理" class="headerlink" title="instanceof 的原理"></a>instanceof 的原理</h2>
+      <p><img src="http://book.52react.cn/20190324151128.png" alt=""><br><strong>实例对象的（-proto-）和构造函数的 prototype 是不是引用同一个地址</strong><br><img src="http://book.52react.cn/20190324151805.png" alt=""><br>a 继承 b，b 继承 c<br>a 继承的对象用 instanceof 判断 b 或者 c 都返回 true，怎么区分是 b 的实例还是 c 的实例呢？<br>这就用到 constructor 的属性是哪个构造函数<br><img src="http://book.52react.cn/20190324152232.png" alt=""></p>
+<p><img src="http://typora.pp.52react.cn/h5web/2021012817image-20210128171034712.png" alt="image-20210128171034712"></p>
+
+        <h2 id="new-运算符背后原理"   >
+          <a href="#new-运算符背后原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#new-运算符背后原理" class="headerlink" title="new 运算符背后原理"></a>new 运算符背后原理</h2>
+      <p><img src="http://typora.pp.52react.cn/h5web/2021012817image-20210128171705889.png" alt="image-20210128171705889"></p>
+<ol>
+<li>new 运算符后面跟的构造函数，一个新对象被创建，继承这个构造函数的原型对象(foo.prototype)</li>
+<li>构造函数 foo 被执行，执行的时候相应的传参，同时上下文 this 被指定这个新实例，newfoo 等同于 new foo();只能用在不传参的情况下</li>
+<li>如果构造函数返回了一个新’对象‘，那么这个对象会取代 new 出来的结果，如果构造函数没有返回对象，那么 new 出来的结果为步骤 1 创建的对象</li>
+</ol>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> new2 = <span class="function"><span class="keyword">function</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> o = <span class="built_in">Object</span>.create(func.prototype);</span><br><span class="line">  <span class="keyword">var</span> k = func.call(o);</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> k == <span class="string">&quot;object&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> k;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="继承"   >
+          <a href="#继承" class="heading-link"><i class="fas fa-link"></i></a><a href="#继承" class="headerlink" title="继承"></a>继承</h2>
+      <p>说到原型链还可以联系到继承</p>
+<blockquote>
+<p>面试题：原型如何实现继承？Class 如何实现继承？Class 本质是什么？</p>
+</blockquote>
+
+        <h3 id="组合继承"   >
+          <a href="#组合继承" class="heading-link"><i class="fas fa-link"></i></a><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h3>
+      
+        <h3 id="寄生组合继承"   >
+          <a href="#寄生组合继承" class="heading-link"><i class="fas fa-link"></i></a><a href="#寄生组合继承" class="headerlink" title="寄生组合继承"></a>寄生组合继承</h3>
+      </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2020/01/02/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/">http://mariogogogo.github.io/2020/01/02/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E9%9D%A2%E8%AF%95%EF%BC%8CJavascript%EF%BC%8C%E5%9F%BA%E7%A1%80/">面试，Javascript，基础</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/01/22/Axios%E5%B0%81%E8%A3%85/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Axios封装</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-React/"><span class="paginator-prev__text">前端面试-React</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">
+          7建对象的几种方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-number">2.</span> <span class="toc-text">
+          原型链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof-%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">
+          instanceof 的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new-%E8%BF%90%E7%AE%97%E7%AC%A6%E8%83%8C%E5%90%8E%E5%8E%9F%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">
+          new 运算符背后原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">5.</span> <span class="toc-text">
+          继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="toc-number">5.1.</span> <span class="toc-text">
+          组合继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%84%E7%94%9F%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF"><span class="toc-number">5.2.</span> <span class="toc-text">
+          寄生组合继承</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

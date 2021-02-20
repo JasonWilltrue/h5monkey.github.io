@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="React 生命周期会经历三个过程？  挂载过程 运行时过程 卸载过程 错误处理 errorHanding（只发生在 render 阶段）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React系列_生命周期">
+<meta property="og:url" content="http://mariogogogo.github.io/2018/11/16/React%E7%B3%BB%E5%88%97_%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="React 生命周期会经历三个过程？  挂载过程 运行时过程 卸载过程 错误处理 errorHanding（只发生在 render 阶段）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://book.52react.cn/20181214134520.png">
+<meta property="og:image" content="http://book.52react.cn/20190331172732.png">
+<meta property="og:image" content="http://book.52react.cn/20190331172907.png">
+<meta property="og:image" content="http://book.52react.cn/20190331173419.png">
+<meta property="og:image" content="http://book.52react.cn/20190331233644.png">
+<meta property="og:image" content="http://book.52react.cn/20190331233453.png">
+<meta property="og:image" content="http://book.52react.cn/20190331234539.png">
+<meta property="og:image" content="http://book.52react.cn/20181214134457.png">
+<meta property="article:published_time" content="2018-11-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-16T09:07:46.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://book.52react.cn/20181214134520.png"><title>React系列_生命周期 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2018/11/16/React%E7%B3%BB%E5%88%97_%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">React系列_生命周期</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2018-11-16</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><p>React 生命周期会经历三个过程？</p>
+<ol>
+<li>挂载过程</li>
+<li>运行时过程</li>
+<li>卸载过程</li>
+<li>错误处理 errorHanding（只发生在 render 阶段）<a id="more"></a>
+</li>
+</ol>
+<p><img src="http://book.52react.cn/20181214134520.png" alt="生命周期图"></p>
+
+        <h3 id="先来看下装载过程"   >
+          <a href="#先来看下装载过程" class="heading-link"><i class="fas fa-link"></i></a><a href="#先来看下装载过程" class="headerlink" title="先来看下装载过程"></a>先来看下装载过程</h3>
+      <ol>
+<li>constructor</li>
+<li>componentWillMont</li>
+<li>render</li>
+<li>componentDidMont</li>
+</ol>
+
+        <h4 id="注意："   >
+          <a href="#注意：" class="heading-link"><i class="fas fa-link"></i></a><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4>
+      <p><img src="http://book.52react.cn/20190331172732.png" alt=""></p>
+<p>render 调用后，componentDidMont 函数不会马上被调用，render 函数返回的东西(jsx 表示的对象)已经在渲染，组件已经被装载到了 Dom 树上</p>
+<p>如果有三个组件 A,B,C 要三个组件全部 render 以后才能调用 componentDidMont 方法，因为 react 肯定要把所有组件全部返回结果综合起来才知道如何渲染</p>
+<p>cwm 与 cdm 还有一个区别：cwm 可以在服务端或浏览器端调用，componentDidMont 只能在浏览器端调用；</p>
+
+        <h3 id="更新过期"   >
+          <a href="#更新过期" class="heading-link"><i class="fas fa-link"></i></a><a href="#更新过期" class="headerlink" title="更新过期"></a>更新过期</h3>
+      <p><img src="http://book.52react.cn/20190331172907.png" alt=""></p>
+<ol>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate</li>
+<li>render</li>
+<li>componentDidUpdate</li>
+</ol>
+<p>如果</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate () &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">&#x27;List+shouldComponentUpdate&#x27;</span>);</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></div></figure>
+<p><img src="http://book.52react.cn/20190331173419.png" alt=""></p>
+
+        <h4 id="componentWillReceiveProps"   >
+          <a href="#componentWillReceiveProps" class="heading-link"><i class="fas fa-link"></i></a><a href="#componentWillReceiveProps" class="headerlink" title="componentWillReceiveProps"></a>componentWillReceiveProps</h4>
+      <p>表示这个只在 props 引起的组件更新过程中，才会被调用，state 的更新不会被触发，参数 nextProps 是父组件传递到当前组件的新 props，需要比较 nextprops 与当前 props 是否相等，才决定是否执行 props 变化后的逻辑，比如更新新的 props 调用 this.setState 触发组件重新渲染</p>
+<blockquote>
+<p>注意：在此方法中调用 render，只有在组件 render 及其后的方法中，this.state 才指向更新后的 state，在 render 之前的方法 shouldComponentUpdate，componentWillUpdate 中，this.state 依然指向的更新前的 state</p>
+</blockquote>
+<p>大部分情况下 componentWillReceiveProps 生命周期函数是没用的，即可以略去不写，</p>
+<p>但是在 constructor 函数中初始化了某个 state，必须用 componentWillReceiveProps 来更新 state，不可省去，否则 render 中的 state 将得不到更新。<br>同时如果您想在子组件监听 watch 值变化做处理，也可以用到 componentWillReceiveProps</p>
+<p>使用 componentWillReceiveProps 的时候，不要去向上分发，调用父组件的相关 setState 方法，否则会成为死循环</p>
+
+        <h4 id="shouldComponentUpdate"   >
+          <a href="#shouldComponentUpdate" class="heading-link"><i class="fas fa-link"></i></a><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h4>
+      <p>表示是否继续执行更新的过程，当返回 true（默认返回值）组件会继续更新，当返回 false 则组件更新停止，后续的 cwillupdate 和 render 和 cdidupdate 都不会被调用，参数 nextProps。<br>nextState 与组件当前的 props 和 state 比较，减少组件的渲染，优化组件的性能,<br>但一般不建议这么做：原因是 组件在 render 中还是会 diff 比较组件之间的不同</p>
+
+        <h4 id="componentWillUpdate"   >
+          <a href="#componentWillUpdate" class="heading-link"><i class="fas fa-link"></i></a><a href="#componentWillUpdate" class="headerlink" title="componentWillUpdate"></a>componentWillUpdate</h4>
+      <p>表示在 render 调用前执行，可以作为组件更新发生前执行某些工作的地方，（很少用到）</p>
+
+        <h4 id="componentDidUpdate"   >
+          <a href="#componentDidUpdate" class="heading-link"><i class="fas fa-link"></i></a><a href="#componentDidUpdate" class="headerlink" title="componentDidUpdate"></a>componentDidUpdate</h4>
+      <p>表示组件更新后被调用，有 2 个参数 prevProps preState 表示更新前的状态值，可以用来操作更新后的 Dom 地方，</p>
+
+        <h3 id="卸载过期"   >
+          <a href="#卸载过期" class="heading-link"><i class="fas fa-link"></i></a><a href="#卸载过期" class="headerlink" title="卸载过期"></a>卸载过期</h3>
+      
+        <h4 id="componentWillUnmount"   >
+          <a href="#componentWillUnmount" class="heading-link"><i class="fas fa-link"></i></a><a href="#componentWillUnmount" class="headerlink" title="componentWillUnmount"></a>componentWillUnmount</h4>
+      <p>在 cwu 中用非 react 方法创造的 dom 元素，如果撒手不管的话，很可能造成内存泄露，必须在 cwu 中把这些 dom 元素清理掉；<br>比如清除一些不必要的定时器，清除 componentWillMont 手动创建的 Dom 元素避免内存泄露</p>
+<blockquote>
+<p>注意：只有类组件才有生命周期函数</p>
+</blockquote>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>生命周期</th>
+<th>调用次数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getDefaultProps</td>
+<td>调用 1 次</td>
+</tr>
+<tr>
+<td>getInitialState</td>
+<td>调用 1 次</td>
+</tr>
+<tr>
+<td>componentWillMount</td>
+<td>调用 1 次</td>
+</tr>
+<tr>
+<td>render</td>
+<td>调用&gt;=1 次</td>
+</tr>
+<tr>
+<td>componentDidMount</td>
+<td>仅客户端，调用 1 次</td>
+</tr>
+<tr>
+<td>componentWillReceiveProps</td>
+<td>调用&gt;=0 次</td>
+</tr>
+<tr>
+<td>ShouldComponentUpdate</td>
+<td>调用&gt;=0 次</td>
+</tr>
+<tr>
+<td>componentWillUpdate</td>
+<td>调用&gt;=0 次</td>
+</tr>
+<tr>
+<td>render</td>
+<td>调用&gt;=1 次</td>
+</tr>
+<tr>
+<td>componentDidUpdate</td>
+<td>调用&gt;=0 次</td>
+</tr>
+<tr>
+<td>componentWillUnmount</td>
+<td>调用 1 次</td>
+</tr>
+</tbody>
+</table></div>
+
+        <h1 id="更新-react16-3-之后的生命周期"   >
+          <a href="#更新-react16-3-之后的生命周期" class="heading-link"><i class="fas fa-link"></i></a><a href="#更新-react16-3-之后的生命周期" class="headerlink" title="更新 react16.3 之后的生命周期"></a>更新 react16.3 之后的生命周期</h1>
+      <p>react16.3 新增了一些生命周期函数：</p>
+<ol>
+<li>getDerivedStateFromProps</li>
+<li>getSnapshotBeforeUpdate</li>
+</ol>
+<p>同时 FB 声明在 react17 将删除：</p>
+<ol>
+<li>componentWillMount、</li>
+<li>componentWillReceiveProps、</li>
+<li>componentWillUpdate</li>
+</ol>
+<p>在 16.3 的版本中将保留这三个函数，并添加了别名：</p>
+<ol>
+<li>UNSAFE_componentWillMount</li>
+<li>UNSAFE_componentWillReceiveProps</li>
+<li>UNSAFE_componentWillUpdate</li>
+</ol>
+<p>在此我们主要介绍</p>
+<ol>
+<li>getDerivedStateFromProps</li>
+<li>getSnapshotBeforeUpdate</li>
+</ol>
+<p>getDerivedStateFromProps(nextProps, prevState)：从 props 派生出 state</p>
+<ul>
+<li>执行次数：多次</li>
+<li>触发条件：组件实例化及接收新 props 后调用</li>
+<li>替代：替代原来的 componentWillReceiveProps，并且加载第一次时也调用<br>初始化的时候<br><img src="http://book.52react.cn/20190331233644.png" alt=""></li>
+</ul>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">todoList</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	 <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">		 <span class="built_in">console</span>.log(<span class="string">&#x27;constructor&#x27;</span>);</span><br><span class="line">		 <span class="built_in">super</span>(props)</span><br><span class="line">		 <span class="built_in">this</span>.state=&#123;&#125;</span><br><span class="line">	 &#125;</span><br><span class="line">	<span class="keyword">static</span> getDerivedStateFromProps (props, state)&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">&#x27;getDerivedStateFromProps&#x27;</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(props);</span><br><span class="line">		<span class="built_in">console</span>.log(state);</span><br><span class="line">		 <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></div></figure>
+<p><img src="http://book.52react.cn/20190331233453.png" alt="更新可能带来的性能问题"><br>为什么要用<code>static</code>？<br><code>static</code> 是 ES6 的写法，当我们定义一个函数为 static 时，就意味着无法通过 this 调用我们在类中定义的方法（原理和 js 中原型链继承相关，具体我就不说了，可自行搜索）。</p>
+<p>不足之处：<br>在<code>getDerivedStateFromProps</code>中，在条件限制下(if/else)调用 setState。如果不设任何条件 setState，这个函数超高的调用频率，不停的 setState，会导致频繁的重绘，既有可能产生性能问题，同时也容易产生 bug。</p>
+<p>getSnapshotBeforeUpdate(nextProps, prevState)：从 props 派生出 state</p>
+<ul>
+<li>执行次数：多次</li>
+<li>触发条件：组件 render 时调用</li>
+<li>返回值：返回值传递给 componentDidUpdate(prevProps, prevState, snapshot)</li>
+<li>替代：替代原来的 componentWillupdate</li>
+</ul>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getSnapshotBeforeUpdate (prevProps, prevState) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;getSnapshotBeforeUpdate&#x27;</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(prevProps);</span><br><span class="line">    <span class="built_in">console</span>.log(prevState);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></div></figure>
+<p><code>getSnapshotBeforeUpdate</code> 是在 render 之后触发，它的要点在于触发时，Dom 还没有更新，开发者可以做一些事情，返回值会作为第三个参数传递给接下来将要触发的 componentDidUpdate。<br><img src="http://book.52react.cn/20190331234539.png" alt=""></p>
+<p>作为一个不常用的生命周期，getSnapshotBeforeUpdate React 16 给的建议当然还是：<code>能不用就尽量不要用</code>。 - - ！！！</p>
+<p><img src="http://book.52react.cn/20181214134457.png" alt=""></p>
+
+        <h2 id="最后小结："   >
+          <a href="#最后小结：" class="heading-link"><i class="fas fa-link"></i></a><a href="#最后小结：" class="headerlink" title="最后小结："></a>最后小结：</h2>
+      <p>到目前为止(React 16.4)，React 的渲染机制遵循同步渲染:</p>
+<ol>
+<li>首次渲染: willMount &gt; render &gt; didMount，</li>
+<li>props 更新时: receiveProps &gt; shouldUpdate &gt; willUpdate &gt; render &gt; didUpdate</li>
+<li>state 更新时: shouldUpdate &gt; willUpdate &gt; render &gt; didUpdate</li>
+<li>卸载时: willUnmount</li>
+</ol>
+
+        <h2 id="参考"   >
+          <a href="#参考" class="heading-link"><i class="fas fa-link"></i></a><a href="#参考" class="headerlink" title="参考"></a>参考</h2>
+      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://blog.csdn.net/Napoleonxxx/article/details/81120854" >React v15 到 v16.3, v16.4 新生命周期总结以及使用场景</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/soyxiaobi/p/9559117.html" >React 生命周期执行顺序详解</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2018/11/16/React%E7%B3%BB%E5%88%97_%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">http://mariogogogo.github.io/2018/11/16/React%E7%B3%BB%E5%88%97_%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/React/">React</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2018/12/01/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">移动端的那些事</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2018/11/15/React%E7%B3%BB%E5%88%97_prop%E4%B8%8Estate/"><span class="paginator-prev__text">React系列_prop与state</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%88%E6%9D%A5%E7%9C%8B%E4%B8%8B%E8%A3%85%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">
+          先来看下装载过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">
+          注意：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E8%BF%87%E6%9C%9F"><span class="toc-number">2.</span> <span class="toc-text">
+          更新过期</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#componentWillReceiveProps"><span class="toc-number">2.1.</span> <span class="toc-text">
+          componentWillReceiveProps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shouldComponentUpdate"><span class="toc-number">2.2.</span> <span class="toc-text">
+          shouldComponentUpdate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#componentWillUpdate"><span class="toc-number">2.3.</span> <span class="toc-text">
+          componentWillUpdate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#componentDidUpdate"><span class="toc-number">2.4.</span> <span class="toc-text">
+          componentDidUpdate</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E8%BF%87%E6%9C%9F"><span class="toc-number">3.</span> <span class="toc-text">
+          卸载过期</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#componentWillUnmount"><span class="toc-number">3.1.</span> <span class="toc-text">
+          componentWillUnmount</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0-react16-3-%E4%B9%8B%E5%90%8E%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number"></span> <span class="toc-text">
+          更新 react16.3 之后的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">
+          最后小结：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number"></span> <span class="toc-text">
+          参考</span></a></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

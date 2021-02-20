@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="介绍下变量和常量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="swift4语法基础">
+<meta property="og:url" content="http://mariogogogo.github.io/2019/01/01/swift4%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="介绍下变量和常量">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-16T09:07:52.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="Swift">
+<meta name="twitter:card" content="summary"><title>swift4语法基础 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2019/01/01/swift4%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">swift4语法基础</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2019-01-01</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">680</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">5分</span></span></div></header><div class="post-body"><p>介绍下变量和常量<br><a id="more"></a></p>
+
+        <h1 id="2-1变量与常量"   >
+          <a href="#2-1变量与常量" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-1变量与常量" class="headerlink" title="2.1变量与常量"></a>2.1变量与常量</h1>
+      <p>let代表常量</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="type">MAX_VALUE</span> <span class="operator">=</span> <span class="number">25</span></span><br></pre></td></tr></table></div></figure>
+<p>var代表变量</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> currentCount <span class="operator">=</span> <span class="number">100</span></span><br></pre></td></tr></table></div></figure>
+<blockquote>
+<p>注意：一旦常量或变量确定类型，就不能使用相同名称再次声明或改变它的类型，同时常量与变量不能相互转换</p>
+</blockquote>
+
+        <h1 id="2-2注释"   >
+          <a href="#2-2注释" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-2注释" class="headerlink" title="2.2注释"></a>2.2注释</h1>
+      <p>//代表单行注释<br>/<em>+</em>代表多行注释*+**/</p>
+
+        <h1 id="2-3分号"   >
+          <a href="#2-3分号" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-3分号" class="headerlink" title="2.3分号"></a>2.3分号</h1>
+      <p>基本上不需要分号除非：<br><figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sun <span class="operator">=</span> <span class="string">&quot;☀️&quot;</span>；<span class="built_in">print</span>(sun)</span><br></pre></td></tr></table></div></figure></p>
+
+        <h1 id="2-4整数"   >
+          <a href="#2-4整数" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-4整数" class="headerlink" title="2.4整数"></a>2.4整数</h1>
+      <p>整数表示：正数，负数，零</p>
+
+        <h1 id="2-5浮点数"   >
+          <a href="#2-5浮点数" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-5浮点数" class="headerlink" title="2.5浮点数"></a>2.5浮点数</h1>
+      <p>浮动数Double，Float</p>
+
+        <h1 id="2-6类型安全和类型推断"   >
+          <a href="#2-6类型安全和类型推断" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-6类型安全和类型推断" class="headerlink" title="2.6类型安全和类型推断"></a>2.6类型安全和类型推断</h1>
+      <p>如果我们的代码需要一个string类型的值，就绝对不会传过去一个Int类型的值，有了类型推断，编译器根据我们给的相关变量，常量，或类测属性复制，在编译器自动推断表达式的类型，只要我们声明常量或变量赋予它一个”字面量“就会触发类型推断</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age<span class="operator">=</span> <span class="number">23</span></span><br><span class="line"><span class="keyword">let</span> name <span class="operator">=</span> <span class="string">&quot;jack&quot;</span></span><br><span class="line"><span class="keyword">let</span> pi <span class="operator">=</span> <span class="number">3.1415926</span></span><br><span class="line"><span class="keyword">let</span> 面积 <span class="operator">=</span> pi <span class="operator">*</span> pow(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="2-7数值型字面量"   >
+          <a href="#2-7数值型字面量" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-7数值型字面量" class="headerlink" title="2.7数值型字面量"></a>2.7数值型字面量</h1>
+      <figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="type">Interger</span> <span class="operator">=</span> <span class="number">17</span></span><br><span class="line"><span class="keyword">let</span> twojinzhi <span class="operator">=</span> <span class="number">0b0001</span></span><br><span class="line"><span class="keyword">let</span> bajinzhi <span class="operator">=</span> <span class="number">0o21</span></span><br><span class="line"><span class="keyword">let</span> shiliujinzhi <span class="operator">=</span> <span class="number">0x11</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="2-8数值类型转换"   >
+          <a href="#2-8数值类型转换" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-8数值类型转换" class="headerlink" title="2.8数值类型转换"></a>2.8数值类型转换</h1>
+      <p>整数与浮动数相互转化</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//int -&gt; d</span></span><br><span class="line"><span class="keyword">let</span>  three <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"><span class="keyword">let</span> point <span class="operator">=</span> <span class="number">0.14159</span>;</span><br><span class="line"><span class="keyword">let</span> pis <span class="operator">=</span> <span class="type">Double</span>(three) <span class="operator">+</span> point;</span><br><span class="line"></span><br><span class="line"><span class="comment">//d -&gt; int</span></span><br><span class="line"><span class="keyword">let</span> intPi <span class="operator">=</span> <span class="type">Int</span>(pis)</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<p>类型别名：就是给现有的类型定义另一个名字，可以使<code>typealias</code>关键词定义类型别名</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typealias</span> <span class="type">AudioSample</span> <span class="operator">=</span> <span class="type">UInt16</span></span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="2-9布尔值"   >
+          <a href="#2-9布尔值" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-9布尔值" class="headerlink" title="2.9布尔值"></a>2.9布尔值</h1>
+      <figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hasKey <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">if</span>(hasKey)&#123;</span><br><span class="line">    <span class="built_in">print</span>(&#x27;kaimen&#x27;)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">print</span>(&#x27;guanmen&#x27;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="2-10元组"   >
+          <a href="#2-10元组" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-10元组" class="headerlink" title="2.10元组"></a>2.10元组</h1>
+      <p>元组的定义：临时把任意数据的多个值组合起来的一个复合类型，适用手机客户端webapi请求返回的数据集合</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http404Error <span class="operator">=</span> (<span class="number">404</span>,<span class="string">&quot;没找到页面&quot;</span>)</span><br><span class="line"><span class="comment">//通过下标来找</span></span><br><span class="line"><span class="keyword">var</span> code <span class="operator">=</span> http404Error.<span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> msg <span class="operator">=</span> http404Error.<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="2-11可选类型"   >
+          <a href="#2-11可选类型" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-11可选类型" class="headerlink" title="2.11可选类型"></a>2.11可选类型</h1>
+      <p>可选类型定义：用来处理可能缺失值得类型</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> number <span class="operator">=</span> &#x27;<span class="number">1234</span>&#x27;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> isNumber <span class="operator">=</span> <span class="type">Int</span>(number)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(isNumber <span class="operator">!=</span> <span class="literal">nil</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;is number:<span class="subst">\(isNumber)</span>&quot;</span>)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     <span class="built_in">print</span>(<span class="string">&quot;not number:<span class="subst">\(isNumber)</span>&quot;</span>)  <span class="comment">// Optional(1234)</span></span><br><span class="line">     </span><br><span class="line">     <span class="built_in">print</span>(<span class="string">&quot;not number:<span class="subst">\(isNumber<span class="operator">!</span>)</span>&quot;</span>)  <span class="comment">// 1234</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<p>增加<code>isNumber!</code>拆包</p>
+<p>我们只能给<code>可选类型</code>的变量赋予nil值，它表示没有值。</p>
+<p>建议声明变量时候设置为可选变量，他们会自动设置默认值nil</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> emptyString :<span class="type">String</span>?</span><br><span class="line"><span class="built_in">print</span>(emptyString)   <span class="comment">// nil</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<p>如果确定有默认值则</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reward：<span class="type">Int</span>! <span class="operator">=</span> <span class="number">8_000</span></span><br><span class="line"><span class="built_in">print</span>(reward)   <span class="comment">// 8000</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="2-12错误处理"   >
+          <a href="#2-12错误处理" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-12错误处理" class="headerlink" title="2.12错误处理"></a>2.12错误处理</h1>
+      <p>当函数遇到一个错误情况时，它就会出现<code>throw</code>一个错误</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasError</span>()</span> <span class="keyword">throws</span>&#123;</span><br><span class="line">    print (&#x27;处理抛出错误&#x27;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> hasError()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> <span class="operator">&lt;</span># throwing expression #<span class="operator">&gt;</span></span><br><span class="line">&#125; <span class="keyword">catch</span> <span class="operator">&lt;</span>#pattenrn#<span class="operator">&gt;</span>&#123;</span><br><span class="line">    <span class="operator">&lt;</span>#statements#<span class="operator">&gt;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="2-13断言"   >
+          <a href="#2-13断言" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-13断言" class="headerlink" title="2.13断言"></a>2.13断言</h1>
+      <p>断言：主要用于运行时调试</p>
+<figure class="highlight swift"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> andAge <span class="operator">=</span> <span class="number">16</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">assert</span>(andAge <span class="operator">&gt;</span> <span class="number">16</span>,<span class="string">&quot;andyde 年龄没有到16岁&quot;</span>) <span class="comment">//执行这句</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2019/01/01/swift4%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/">http://mariogogogo.github.io/2019/01/01/swift4%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/Swift/">Swift</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2019/01/02/swift4%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E7%AC%A6/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">swift4基本运算符</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2018/12/30/2018%E6%80%BB%E7%BB%93/"><span class="paginator-prev__text">2018 年总结</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2-1%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">
+          2.1变量与常量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-2%E6%B3%A8%E9%87%8A"><span class="toc-number">2.</span> <span class="toc-text">
+          2.2注释</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-3%E5%88%86%E5%8F%B7"><span class="toc-number">3.</span> <span class="toc-text">
+          2.3分号</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-4%E6%95%B4%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">
+          2.4整数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-5%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">
+          2.5浮点数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-6%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E5%92%8C%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD"><span class="toc-number">6.</span> <span class="toc-text">
+          2.6类型安全和类型推断</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-7%E6%95%B0%E5%80%BC%E5%9E%8B%E5%AD%97%E9%9D%A2%E9%87%8F"><span class="toc-number">7.</span> <span class="toc-text">
+          2.7数值型字面量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-8%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">8.</span> <span class="toc-text">
+          2.8数值类型转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-9%E5%B8%83%E5%B0%94%E5%80%BC"><span class="toc-number">9.</span> <span class="toc-text">
+          2.9布尔值</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-10%E5%85%83%E7%BB%84"><span class="toc-number">10.</span> <span class="toc-text">
+          2.10元组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-11%E5%8F%AF%E9%80%89%E7%B1%BB%E5%9E%8B"><span class="toc-number">11.</span> <span class="toc-text">
+          2.11可选类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-12%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">12.</span> <span class="toc-text">
+          2.12错误处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-13%E6%96%AD%E8%A8%80"><span class="toc-number">13.</span> <span class="toc-text">
+          2.13断言</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

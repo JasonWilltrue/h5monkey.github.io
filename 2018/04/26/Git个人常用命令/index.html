@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="刚进入新公司，被告知团队是用 Git 管理项目代码的，而你却从来没用过 Git。纵然同事告诉你「没事，先自学一下」「有问题可以问我」，但你肯定不想一进公司就花太多时间在自我学习上，也不想过多地打扰这些刚认识的同事。怎么办？ 对你来说，最重要的是，先知道 Git 怎么用。先把最基本的掌握了，至于正规团队使用 Git 有什么额外要求、Git 有什么高级用法、Git 的原理这些，都可以放在这之后。万事开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 个人常用命令">
+<meta property="og:url" content="http://mariogogogo.github.io/2018/04/26/Git%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="刚进入新公司，被告知团队是用 Git 管理项目代码的，而你却从来没用过 Git。纵然同事告诉你「没事，先自学一下」「有问题可以问我」，但你肯定不想一进公司就花太多时间在自我学习上，也不想过多地打扰这些刚认识的同事。怎么办？ 对你来说，最重要的是，先知道 Git 怎么用。先把最基本的掌握了，至于正规团队使用 Git 有什么额外要求、Git 有什么高级用法、Git 的原理这些，都可以放在这之后。万事开">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://book.52react.cn/git教程多看！！.png">
+<meta property="article:published_time" content="2018-04-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-08T01:41:35.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="技巧">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://book.52react.cn/git教程多看！！.png"><title>Git 个人常用命令 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2018/04/26/Git%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Git 个人常用命令</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2018-04-26</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><p>刚进入新公司，被告知团队是用 Git 管理项目代码的，而你却从来没用过 <code>Git</code>。纵然同事告诉你「没事，先自学一下」「有问题可以问我」，但你肯定不想一进公司就花太多时间在自我学习上，也不想过多地打扰这些刚认识的同事。怎么办？</p>
+<p>对你来说，最重要的是，先知道 Git 怎么用。先把最基本的掌握了，至于正规团队使用 Git 有什么额外要求、<code>Git</code> 有什么高级用法、Git 的原理这些，都可以放在这之后。万事开头难，你先把 <code>Git</code> 最基本的使用掌握了，后面的再一步一步来。…</p>
+<a id="more"></a>
+
+        <h2 id="把远程仓库取到本地"   >
+          <a href="#把远程仓库取到本地" class="heading-link"><i class="fas fa-link"></i></a><a href="#把远程仓库取到本地" class="headerlink" title="把远程仓库取到本地"></a>把远程仓库取到本地</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 你刚复制的地址</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="它会列出你的提交历史"   >
+          <a href="#它会列出你的提交历史" class="heading-link"><i class="fas fa-link"></i></a><a href="#它会列出你的提交历史" class="headerlink" title="它会列出你的提交历史"></a>它会列出你的提交历史</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="status-是用来查看工作目录当前状态的指令"   >
+          <a href="#status-是用来查看工作目录当前状态的指令" class="heading-link"><i class="fas fa-link"></i></a><a href="#status-是用来查看工作目录当前状态的指令" class="headerlink" title="status 是用来查看工作目录当前状态的指令"></a><code>status</code> 是用来查看工作目录当前状态的指令</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></div></figure>
+<ol>
+<li>你在 master branch</li>
+<li>当前 branch 没有落后于 origin/master</li>
+<li>你有 untracked files （未追踪的文件），文件名是 shopping list.txt。</li>
+<li>你可以使用 git add 来开始追踪文件。…</li>
+</ol>
+
+        <h2 id="你通过-add-指令暂存的内容，都会被写进这个文件里"   >
+          <a href="#你通过-add-指令暂存的内容，都会被写进这个文件里" class="heading-link"><i class="fas fa-link"></i></a><a href="#你通过-add-指令暂存的内容，都会被写进这个文件里" class="headerlink" title="你通过 add 指令暂存的内容，都会被写进这个文件里"></a>你通过 <code>add</code> 指令暂存的内容，都会被写进这个文件里</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="提交的方式是用-commit-指令"   >
+          <a href="#提交的方式是用-commit-指令" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交的方式是用-commit-指令" class="headerlink" title="提交的方式是用 commit 指令"></a>提交的方式是用 commit 指令</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="提交一次或多次之后，把本地提交-push-到中央仓库（git-push）"   >
+          <a href="#提交一次或多次之后，把本地提交-push-到中央仓库（git-push）" class="heading-link"><i class="fas fa-link"></i></a><a href="#提交一次或多次之后，把本地提交-push-到中央仓库（git-push）" class="headerlink" title="提交一次或多次之后，把本地提交 push 到中央仓库（git push）"></a>提交一次或多次之后，把本地提交 <code>push</code> 到中央仓库（<code>git push</code>）</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="你想创建一个叫做-“feature1”-的-branch-分支"   >
+          <a href="#你想创建一个叫做-“feature1”-的-branch-分支" class="heading-link"><i class="fas fa-link"></i></a><a href="#你想创建一个叫做-“feature1”-的-branch-分支" class="headerlink" title="你想创建一个叫做 “feature1” 的 branch 分支"></a>你想创建一个叫做 “feature1” 的 branch 分支</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch feature1</span><br><span class="line">git checkout -b feature1</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="切换-branch"   >
+          <a href="#切换-branch" class="heading-link"><i class="fas fa-link"></i></a><a href="#切换-branch" class="headerlink" title="切换 branch"></a>切换 branch</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature1</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="删除-branch"   >
+          <a href="#删除-branch" class="heading-link"><i class="fas fa-link"></i></a><a href="#删除-branch" class="headerlink" title="删除 branch"></a>删除 branch</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d feature1</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="合并分支"   >
+          <a href="#合并分支" class="heading-link"><i class="fas fa-link"></i></a><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h2>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge feature1</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="思维导图分享"   >
+          <a href="#思维导图分享" class="heading-link"><i class="fas fa-link"></i></a><a href="#思维导图分享" class="headerlink" title="思维导图分享"></a>思维导图分享</h2>
+      <p><img src="http://book.52react.cn/git教程多看！！.png" alt="git流程图"></p>
+
+        <h2 id="常用-Git-命令总结"   >
+          <a href="#常用-Git-命令总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#常用-Git-命令总结" class="headerlink" title="常用 Git 命令总结"></a>常用 Git 命令总结</h2>
+      <hr>
+<ul>
+<li><p>git config –global user.name “你的名字” 让你全部的 Git 仓库绑定你的名字</p>
+</li>
+<li><p>git config –global user.email “你的邮箱” 让你全部的 Git 仓库绑定你的邮箱</p>
+</li>
+<li><p>git init 初始化你的仓库</p>
+</li>
+<li><p>git add . 把工作区的文件全部提交到暂存区</p>
+</li>
+<li><p>git add ./<file>/ 把工作区的 &lt; file &gt; 文件提交到暂存区</p>
+</li>
+<li><p>git commit -m “xxx” 把暂存区的所有文件提交到仓库区，暂存区空空荡荡</p>
+</li>
+<li><p>git remote add origin <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://github.com/name/name_cangku.git" >https://github.com/name/name_cangku.git</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 把本地仓库与远程仓库连接起来</p>
+</li>
+<li><p>git push -u origin master 把仓库区的主分支 master 提交到远程仓库里</p>
+</li>
+<li><p>git push -u origin &lt;其他分支&gt; 把其他分支提交到远程仓库</p>
+</li>
+<li><p>git status 查看当前仓库的状态</p>
+</li>
+<li><p>git diff 查看文件修改的具体内容</p>
+</li>
+<li><p>git log 显示从最近到最远的提交历史</p>
+</li>
+<li><p>git clone + 仓库地址下载克隆文件</p>
+</li>
+<li><p>git reset –hard + 版本号 回溯版本，版本号在 commit 的时候与 master 跟随在一起</p>
+</li>
+<li><p>git reflog 显示命令历史</p>
+</li>
+<li><p>git checkout – <file> 撤销命令，用版本库里的文件替换掉工作区的文件。我觉得就像是 Git 世界的 ctrl + z</p>
+</li>
+<li><p>git rm 删除版本库的文件</p>
+</li>
+<li><p>git branch 查看当前所有分支</p>
+</li>
+<li><p>git branch &lt;分支名字&gt; 创建分支</p>
+</li>
+<li><p>git checkout &lt;分支名字&gt; 切换到分支</p>
+</li>
+<li><p>git merge &lt;分支名字&gt; 合并分支</p>
+</li>
+<li><p>git branch -d &lt;分支名字&gt; 删除分支, 有可能会删除失败，因为 Git 会保护没有被合并的分支</p>
+</li>
+<li><p>git branch -D + &lt;分支名字&gt; 强行删除，丢弃没被合并的分支</p>
+</li>
+<li><p>git log –graph 查看分支合并图</p>
+</li>
+<li><p>git merge –no-ff &lt;分支名字&gt; 合并分支的时候禁用 Fast forward 模式, 因为这个模式会丢失分支历史信息</p>
+</li>
+<li><p>git stash 当有其他任务插进来时，把当前工作现场 “存储” 起来, 以后恢复后继续工作</p>
+</li>
+<li><p>git stash list 查看你刚刚 “存放” 起来的工作去哪里了</p>
+</li>
+<li><p>git stash apply 恢复却不删除 stash 内容</p>
+</li>
+<li><p>git stash drop 删除 stash 内容</p>
+</li>
+<li><p>git stash pop 恢复的同时把 stash 内容也删了</p>
+</li>
+<li><p>git remote 查看远程库的信息，会显示 origin，远程仓库默认名称为 origin</p>
+</li>
+<li><p>git remote -v 显示更详细的信息</p>
+</li>
+<li><p>git pull 把最新的提交从远程仓库中抓取下来，在本地合并, 和 git push 相反</p>
+</li>
+<li><p>git rebase 把分叉的提交历史 “整理” 成一条直线，看上去更直观</p>
+</li>
+<li><p>git tag 查看所有标签，可以知道历史版本的 tag</p>
+</li>
+<li><p>git tag <name> 打标签，默认为 HEAD。比如 git tag v1.0</p>
+</li>
+<li><p>git tag <tagName> &lt; 版本号 &gt; 把版本号打上标签，版本号就是 commit 时，跟在旁边的一串字母数字</p>
+</li>
+<li><p>git show <tagName> 查看标签信息</p>
+</li>
+<li><p>git tag -a <tagName> -m “&lt; 说明 &gt;” 创建带说明的标签。-a 指定标签名，-m 指定说明文字</p>
+</li>
+<li><p>git tag -d <tagName> 删除标签</p>
+</li>
+<li><p>git push origin <tagname> 推送某个标签到远程</p>
+</li>
+<li><p>git push origin –tags 一次性推送全部尚未推送到远程的本地标签</p>
+</li>
+<li><p>git push origin :refs/tags/<tagname> 删除远程标签 &lt; tagname&gt;</p>
+</li>
+<li><p>git config –global color.ui true 让 Git 显示颜色，会让命令输出看起来更醒目</p>
+</li>
+<li><p>git add -f <file> 强制提交已忽略的的文件</p>
+</li>
+<li><p>git check-ignore -v <file> 检查为什么 Git 会忽略该文件</p>
+</li>
+</ul>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2018/04/26/Git%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">http://mariogogogo.github.io/2018/04/26/Git%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/Git/">Git</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E6%8A%80%E5%B7%A7/">技巧</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2018/05/01/%E8%BF%99%E4%B8%AA%E5%8F%ABPuppeteer%E7%9A%84%E5%B0%8F%E7%88%AC%E8%99%AB%EF%BC%8C%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%81/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">这个叫Puppeteer的小爬虫，了解一下！</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2018/04/26/%E4%BB%BF%E7%BE%8E%E5%9B%A2App%EF%BC%88%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E7%BB%84%E4%BB%B6%EF%BC%89/"><span class="paginator-prev__text">仿美团App（个人中心组件）</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%8F%96%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-number">1.</span> <span class="toc-text">
+          把远程仓库取到本地</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%83%E4%BC%9A%E5%88%97%E5%87%BA%E4%BD%A0%E7%9A%84%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2"><span class="toc-number">2.</span> <span class="toc-text">
+          它会列出你的提交历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#status-%E6%98%AF%E7%94%A8%E6%9D%A5%E6%9F%A5%E7%9C%8B%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%E5%BD%93%E5%89%8D%E7%8A%B6%E6%80%81%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">
+          status 是用来查看工作目录当前状态的指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%A0%E9%80%9A%E8%BF%87-add-%E6%8C%87%E4%BB%A4%E6%9A%82%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%8C%E9%83%BD%E4%BC%9A%E8%A2%AB%E5%86%99%E8%BF%9B%E8%BF%99%E4%B8%AA%E6%96%87%E4%BB%B6%E9%87%8C"><span class="toc-number">4.</span> <span class="toc-text">
+          你通过 add 指令暂存的内容，都会被写进这个文件里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%B9%E5%BC%8F%E6%98%AF%E7%94%A8-commit-%E6%8C%87%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">
+          提交的方式是用 commit 指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E4%B8%80%E6%AC%A1%E6%88%96%E5%A4%9A%E6%AC%A1%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%8A%8A%E6%9C%AC%E5%9C%B0%E6%8F%90%E4%BA%A4-push-%E5%88%B0%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93%EF%BC%88git-push%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">
+          提交一次或多次之后，把本地提交 push 到中央仓库（git push）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%A0%E6%83%B3%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8F%AB%E5%81%9A-%E2%80%9Cfeature1%E2%80%9D-%E7%9A%84-branch-%E5%88%86%E6%94%AF"><span class="toc-number">7.</span> <span class="toc-text">
+          你想创建一个叫做 “feature1” 的 branch 分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E6%8D%A2-branch"><span class="toc-number">8.</span> <span class="toc-text">
+          切换 branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-branch"><span class="toc-number">9.</span> <span class="toc-text">
+          删除 branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF"><span class="toc-number">10.</span> <span class="toc-text">
+          合并分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%88%86%E4%BA%AB"><span class="toc-number">11.</span> <span class="toc-text">
+          思维导图分享</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8-Git-%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"><span class="toc-number">12.</span> <span class="toc-text">
+          常用 Git 命令总结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>
