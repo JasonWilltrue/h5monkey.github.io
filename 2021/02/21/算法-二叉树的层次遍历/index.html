@@ -1,0 +1,457 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="学会二叉树的层序遍历，可以一口气撸完leetcode上八道题目:  107.二叉树的层次遍历II  199.二叉树的右视图 637.二叉树的层平均值  429.N叉树的前序遍历  515.在每个树行中找最大值 116.填充每个节点的下一个右侧节点指针  117.填充每个节点的下一个右侧节点指针II">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树的层序遍历">
+<meta property="og:url" content="http://mariogogogo.github.io/2021/02/21/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/index.html">
+<meta property="og:site_name" content="Mario">
+<meta property="og:description" content="学会二叉树的层序遍历，可以一口气撸完leetcode上八道题目:  107.二叉树的层次遍历II  199.二叉树的右视图 637.二叉树的层平均值  429.N叉树的前序遍历  515.在每个树行中找最大值 116.填充每个节点的下一个右侧节点指针  117.填充每个节点的下一个右侧节点指针II">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/image-202102211418559202021022114.png">
+<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/image-202102211439511272021022114.png">
+<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/image-202102211523112642021022115.png">
+<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/2021-02-21%2015.56.07-38942632021022115.gif">
+<meta property="article:published_time" content="2021-02-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-02-21T13:51:32.000Z">
+<meta property="article:author" content="Codding">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://typora.pp.52react.cn/fuckb/image-202102211418559202021022114.png"><title>二叉树的层序遍历 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2021/02/21/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">二叉树的层序遍历</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-02-21</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">932</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">7分</span></span></div></header><div class="post-body"><p>学会二叉树的层序遍历，可以一口气撸完leetcode上八道题目:</p>
+<ul>
+<li>107.二叉树的层次遍历II </li>
+<li>199.二叉树的右视图</li>
+<li>637.二叉树的层平均值 </li>
+<li>429.N叉树的前序遍历 </li>
+<li>515.在每个树行中找最大值</li>
+<li>116.填充每个节点的下一个右侧节点指针 </li>
+<li>117.填充每个节点的下一个右侧节点指针II</li>
+</ul>
+<a id="more"></a>
+
+        <h2 id="二叉树的层次遍历-II"   >
+          <a href="#二叉树的层次遍历-II" class="heading-link"><i class="fas fa-link"></i></a><a href="#二叉树的层次遍历-II" class="headerlink" title="二叉树的层次遍历 II"></a><strong>二叉树的层次遍历</strong> II</h2>
+      <p>题目链接:<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/" >https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>给定一个二叉树，返回其节点值自底向上的层次遍历。 (即按从叶子节点所在层到根节点所在的层，逐 层从左向右遍历)</p>
+<p><img src="http://typora.pp.52react.cn/fuckb/image-202102211418559202021022114.png" alt="image-20210221141855920"></p>
+
+        <h3 id="思路"   >
+          <a href="#思路" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路" class="headerlink" title="思路"></a>思路</h3>
+      <p>1.前面都是层次遍历套路</p>
+<p>2.最后结果再用数组reverse方法</p>
+
+        <h3 id="图解"   >
+          <a href="#图解" class="heading-link"><i class="fas fa-link"></i></a><a href="#图解" class="headerlink" title="图解"></a>图解</h3>
+      <p><img src="http://typora.pp.52react.cn/fuckb/image-202102211439511272021022114.png" alt="image-20210221143951127"></p>
+
+        <h3 id="代码"   >
+          <a href="#代码" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码" class="headerlink" title="代码"></a>代码</h3>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> levelOrderBottom = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(!root) <span class="keyword">return</span> []</span><br><span class="line">   <span class="keyword">const</span> q = [[root,<span class="number">0</span>]]</span><br><span class="line">   <span class="keyword">const</span> res = []</span><br><span class="line">   <span class="keyword">while</span>(q.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">       <span class="keyword">const</span> [n,level] =q.shift()</span><br><span class="line">       <span class="keyword">if</span>(!res[level])&#123;</span><br><span class="line">         res.push([n.val])</span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         res[level].push(n.val)  </span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span>(n.left) q.push([n.left,level+<span class="number">1</span>])</span><br><span class="line">       <span class="keyword">if</span>(n.right)q.push([n.right,level+<span class="number">1</span>])</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//反转</span></span><br><span class="line">   <span class="keyword">return</span> res.reverse()</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="199-二叉树的右视图"   >
+          <a href="#199-二叉树的右视图" class="heading-link"><i class="fas fa-link"></i></a><a href="#199-二叉树的右视图" class="headerlink" title="199.二叉树的右视图"></a>199.<strong>二叉树的右视图</strong></h2>
+      <p>题目链接:<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-right-side-view/" >https://leetcode-cn.com/problems/binary-tree-right-side-view/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>给定一棵二叉树，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
+<figure class="highlight elm"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,null,<span class="number">5</span>,null,<span class="number">4</span>]</span><br><span class="line">输出: [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">   <span class="number">1</span>            &lt;-<span class="comment">--</span></span><br><span class="line"> /   \</span><br><span class="line"><span class="number">2</span>     <span class="number">3</span>         &lt;-<span class="comment">--</span></span><br><span class="line"> \     \</span><br><span class="line">  <span class="number">5</span>     <span class="number">4</span>       &lt;-<span class="comment">--</span></span><br></pre></td></tr></table></div></figure>
+
+        <h3 id="思路-1"   >
+          <a href="#思路-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3>
+      <ol>
+<li><p>层序遍历的时候，</p>
+</li>
+<li><p><code>判断是否遍历到单层的最后面的元素</code> (重点分析 对每一层q的数组进行while len–操作)</p>
+</li>
+<li><p>如果是，就放进result数组中，随后返回result 就可以了。</p>
+</li>
+</ol>
+
+        <h3 id="图解-1"   >
+          <a href="#图解-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#图解-1" class="headerlink" title="图解"></a>图解</h3>
+      <p><img src="http://typora.pp.52react.cn/fuckb/image-202102211523112642021022115.png" alt="image-20210221152311264" style="zoom:80%;" /></p>
+
+        <h3 id="代码-1"   >
+          <a href="#代码-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rightSideView = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(!root) <span class="keyword">return</span> []</span><br><span class="line">   <span class="keyword">const</span> q = [root]</span><br><span class="line">   <span class="keyword">const</span> res = []</span><br><span class="line">    <span class="keyword">while</span>(q.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> len = q.length</span><br><span class="line">        <span class="comment">//对每一层进行遍历 [1]  [2,3 ]  [4,5,6]   [7]</span></span><br><span class="line">        <span class="keyword">while</span>(len)&#123;</span><br><span class="line">          <span class="keyword">let</span> n = q.shift()</span><br><span class="line">            <span class="comment">//每一层最后一位</span></span><br><span class="line">            <span class="keyword">if</span>(len === <span class="number">1</span>) res.push(n.val)</span><br><span class="line">            <span class="keyword">if</span>(n.left) q.push(n.left)</span><br><span class="line">            <span class="keyword">if</span>(n.right) q.push(n.right)</span><br><span class="line">            len--</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="637-二叉树的层平均值"   >
+          <a href="#637-二叉树的层平均值" class="heading-link"><i class="fas fa-link"></i></a><a href="#637-二叉树的层平均值" class="headerlink" title="637.二叉树的层平均值"></a>637.<strong>二叉树的层平均值</strong></h2>
+      <p>题目链接:<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/average-of-levels-in-binary-tree/" >https://leetcode-cn.com/problems/average-of-levels-in-binary-tree/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>给定一个非空二叉树, 返回一个由每层节点平均值组成的数组。</p>
+<figure class="highlight tap"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line"> <span class="number"> 9 </span> 20</span><br><span class="line">    /  \</span><br><span class="line">  <span class="number"> 15 </span>  7</span><br><span class="line">输出：[3, 14.5, 11]</span><br><span class="line">解释：</span><br><span class="line">第<span class="number"> 0 </span>层的平均值是<span class="number"> 3 </span>,  第1层是 14.5 , 第2层是<span class="number"> 11 </span>。因此返回 [3, 14.5, 11] 。</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+        <h3 id="思路-2"   >
+          <a href="#思路-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3>
+      <ol>
+<li><p>用层序遍历的方法。维护一个队列去遍历节点。</p>
+</li>
+<li><p>用 for 循环控制一层的节点逐个出列，节点值累加求和。</p>
+</li>
+<li><p>节点出列的同时，下一层的子节点加入队列，在 for 循环结束时，队列中就全是下一层的节点。</p>
+</li>
+<li><p>此时当前层的求和也好了，除以当前层的节点个数，就是当前层的平均值，加入结果数组。</p>
+</li>
+<li><p>接着处理下一层的节点，重复以上步骤，就构建好了结果数组。</p>
+</li>
+</ol>
+
+        <h3 id="图解-2"   >
+          <a href="#图解-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#图解-2" class="headerlink" title="图解"></a>图解</h3>
+      <p><img src="http://typora.pp.52react.cn/fuckb/2021-02-21%2015.56.07-38942632021022115.gif" alt="2021-02-21 15.56.07"></p>
+
+        <h3 id="代码-2"   >
+          <a href="#代码-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> averageOfLevels = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span> []</span><br><span class="line">    <span class="keyword">const</span> p = [root]</span><br><span class="line">    <span class="keyword">const</span> res = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(p.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> size = p.length <span class="comment">//每一层的长度</span></span><br><span class="line">        <span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt;size;i++)&#123;</span><br><span class="line">             <span class="keyword">const</span> n = p.shift()</span><br><span class="line">              <span class="comment">//每一层的总和</span></span><br><span class="line">              sum += n.val</span><br><span class="line">             <span class="keyword">if</span>(n.left) p.push(n.left)</span><br><span class="line">             <span class="keyword">if</span>(n.right) p.push(n.right)</span><br><span class="line">        &#125;</span><br><span class="line">        res.push(sum/size)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="429-N叉树的层序遍历"   >
+          <a href="#429-N叉树的层序遍历" class="heading-link"><i class="fas fa-link"></i></a><a href="#429-N叉树的层序遍历" class="headerlink" title="429.N叉树的层序遍历"></a>429.N<strong>叉树的层序遍历</strong></h2>
+      <p>题目链接:<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/" >https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> </p>
+<p>给定一个 N 叉树，返回其节点值的层序遍历。 (即从左到右，逐层遍历)。</p>
+
+        <h3 id="思路-3"   >
+          <a href="#思路-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3>
+      
+        <h3 id="图解-3"   >
+          <a href="#图解-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#图解-3" class="headerlink" title="图解"></a>图解</h3>
+      
+        <h3 id="代码-3"   >
+          <a href="#代码-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3>
+      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> levelOrder = <span class="function">(<span class="params">root</span>)=&gt;</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(!root) <span class="keyword">return</span></span><br><span class="line">   <span class="keyword">const</span> p = [root]</span><br><span class="line">   <span class="keyword">const</span> res = []</span><br><span class="line">   <span class="keyword">while</span>(p.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">const</span> size = p.length</span><br><span class="line">      <span class="keyword">const</span> temp = []</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i&lt; size;i++)&#123;</span><br><span class="line">          <span class="keyword">const</span> n = p.shift()</span><br><span class="line">          temp.push(n.val)</span><br><span class="line">          p.push(...n.children)</span><br><span class="line">      &#125;</span><br><span class="line">     res.push(temp)</span><br><span class="line">   &#125;</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2021/02/21/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/">http://mariogogogo.github.io/2021/02/21/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2021/02/20/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%85%88%E4%B8%AD%E5%90%8E%E9%81%8D%E5%8E%86/"><span class="paginator-prev__text">二叉树的先中后层序遍历</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86-II"><span class="toc-number">1.</span> <span class="toc-text">
+          二叉树的层次遍历 II</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text">
+          思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3"><span class="toc-number">1.2.</span> <span class="toc-text">
+          图解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.</span> <span class="toc-text">
+          代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#199-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE"><span class="toc-number">2.</span> <span class="toc-text">
+          199.二叉树的右视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-number">2.1.</span> <span class="toc-text">
+          思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3-1"><span class="toc-number">2.2.</span> <span class="toc-text">
+          图解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-number">2.3.</span> <span class="toc-text">
+          代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#637-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC"><span class="toc-number">3.</span> <span class="toc-text">
+          637.二叉树的层平均值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-number">3.1.</span> <span class="toc-text">
+          思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3-2"><span class="toc-number">3.2.</span> <span class="toc-text">
+          图解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-number">3.3.</span> <span class="toc-text">
+          代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#429-N%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">4.</span> <span class="toc-text">
+          429.N叉树的层序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-number">4.1.</span> <span class="toc-text">
+          思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3-3"><span class="toc-number">4.2.</span> <span class="toc-text">
+          图解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-number">4.3.</span> <span class="toc-text">
+          代码</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#valine-container',
+    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
+    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
+    notify: true,
+    verify: true,
+    placeholder: '快去评论下吧',
+    avatar: 'mp',
+    meta: guest_info,
+    pageSize: '10' || 10,
+    visitor: false,
+    recordIP: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: window.location.pathname
+  });
+}
+
+if (false) {
+  loadValine();
+} else {
+  window.addEventListener('DOMContentLoaded', loadValine, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
