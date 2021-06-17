@@ -1,129 +1,273 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="TCP&#x2F;IP       首先介绍下Mac下抓取端口包的工具角tcpdump命令：1sudo tcpdump  port 8080 -n">
-<meta property="og:type" content="article">
-<meta property="og:title" content="理解WebSocket与TCP&#x2F;IP🔥">
-<meta property="og:url" content="http://mariogogogo.github.io/2019/07/30/%E7%90%86%E8%A7%A3WebSocket%E4%B8%8ETCP-IP/index.html">
-<meta property="og:site_name" content="Mario">
-<meta property="og:description" content="TCP&#x2F;IP       首先介绍下Mac下抓取端口包的工具角tcpdump命令：1sudo tcpdump  port 8080 -n">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://book.52react.cn/http关系.png">
-<meta property="og:image" content="http://book.52react.cn/20190731225039.png">
-<meta property="og:image" content="http://book.52react.cn/20190731224641.png">
-<meta property="og:image" content="http://book.52react.cn/20190731225127.png">
-<meta property="og:image" content="http://book.52react.cn/20190731225646.png">
-<meta property="article:published_time" content="2019-07-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-16T09:07:07.000Z">
-<meta property="article:author" content="Codding">
-<meta property="article:tag" content="网络基础">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://book.52react.cn/http关系.png"><title>理解WebSocket与TCP/IP🔥 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2019/07/30/%E7%90%86%E8%A7%A3WebSocket%E4%B8%8ETCP-IP/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: ["google","bing","baidu"],
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":true},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="好前端才分对错，成年人只分利弊">
+    <meta name="author" content="Mariogogogo">
+    
+    <title>
+        
+            理解WebSocket与TCP/IP🔥 |
+        
+        Mario Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">理解WebSocket与TCP/IP🔥</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2019-07-30</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.7k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">9分</span></span></div></header><div class="post-body">
-        <h2 id="TCP-IP"   >
-          <a href="#TCP-IP" class="heading-link"><i class="fas fa-link"></i></a><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2>
-      <p>首先介绍下Mac下抓取端口包的工具角<code>tcpdump</code><br>命令：<br><figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tcpdump  port <span class="number">8080</span> -n</span><br></pre></td></tr></table></div></figure><br><a id="more"></a></p>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mariogogogo.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"1240px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
-        <h3 id="一个完整的http链接"   >
-          <a href="#一个完整的http链接" class="heading-link"><i class="fas fa-link"></i></a><a href="#一个完整的http链接" class="headerlink" title="一个完整的http链接"></a>一个完整的http链接</h3>
-      <p>我们先来看下抓到包的数据分析<br><img src="http://book.52react.cn/http关系.png" alt=""></p>
 
-        <h4 id="TCP的三次握手"   >
-          <a href="#TCP的三次握手" class="heading-link"><i class="fas fa-link"></i></a><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h4>
-      <p><img src="http://book.52react.cn/20190731225039.png" alt=""></p>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mario Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">理解WebSocket与TCP/IP🔥</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Mariogogogo</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2019-07-30 00:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Web/">Web</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><p>首先介绍下Mac下抓取端口包的工具角<code>tcpdump</code><br>命令：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tcpdump  port <span class="number">8080</span> -n</span><br></pre></td></tr></table></figure><br><a id="more"></a></p>
+<h3 id="一个完整的http链接"><a href="#一个完整的http链接" class="headerlink" title="一个完整的http链接"></a>一个完整的http链接</h3><p>我们先来看下抓到包的数据分析<br><img src="http://book.52react.cn/http关系.png" alt=""></p>
+<h4 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h4><p><img src="http://book.52react.cn/20190731225039.png" alt=""></p>
 <ol>
 <li>手机端–&gt;服务器发送了一个tcp包，带上了<code>SYN</code>标志位，表示建立连接，并指名包开始序列号<code>seq</code>（单位字节）</li>
 <li>服务器–&gt;手机端进行回复，发送了一个<code>SYN+ACK</code>的报文段，表示同意建立连接</li>
 <li>手机端–&gt;服务端发送一个ACK，同时改变接受窗口大小，完成三次握手</li>
 </ol>
-
-        <h4 id="TCP的为什么是三次握手？"   >
-          <a href="#TCP的为什么是三次握手？" class="heading-link"><i class="fas fa-link"></i></a><a href="#TCP的为什么是三次握手？" class="headerlink" title="TCP的为什么是三次握手？"></a>TCP的为什么是三次握手？</h4>
-      <p>为什么不是二次或者四次呢？</p>
+<h4 id="TCP的为什么是三次握手？"><a href="#TCP的为什么是三次握手？" class="headerlink" title="TCP的为什么是三次握手？"></a>TCP的为什么是三次握手？</h4><p>为什么不是二次或者四次呢？</p>
 <blockquote>
 <p>如果采取两次握手，相当于第二次握手结束便建立连接，如果发送SYN的一方不想连接了，也不会有反馈，另一方却一直在等待，浪费了时间。当然可以采取4次甚至N次握手，但是有必要吗？建立连接的时间太长，效果也会大打折扣。所以3次只是折中方案，保证了可靠性，又节俭了建立连接的时间。</p>
 </blockquote>
-
-        <h4 id="什么是接收窗口呢？"   >
-          <a href="#什么是接收窗口呢？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是接收窗口呢？" class="headerlink" title="什么是接收窗口呢？"></a>什么是接收窗口呢？</h4>
-      <p>tcp报文头，窗口大小只有2个字节16位，最大只能2^16-1 = 64kb大小，当初设计tcp的人没有想到现代网速那么快，所以可选项加了一个<code>wscale</code>指数字段，最大为14，最大窗口大小为1G</p>
-
-        <h4 id="接受窗口用来做什么呢？"   >
-          <a href="#接受窗口用来做什么呢？" class="heading-link"><i class="fas fa-link"></i></a><a href="#接受窗口用来做什么呢？" class="headerlink" title="接受窗口用来做什么呢？"></a>接受窗口用来做什么呢？</h4>
-      <p>它根据自身网络情况设置不同大小的值用来控制对方发送速度，避免对方发送太快，导致网络<code>拥塞</code></p>
-
-        <h3 id="发送数据"   >
-          <a href="#发送数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h3>
-      <p>建立好tcp之后 手机端–&gt;服务端发送一个http请求，带上<code>PUSH</code>标志位：表示一个比较紧急的报文，告诉服务器立即把数据从缓存里发送给程序，不能再继续缓存了<br><img src="http://book.52react.cn/20190731224641.png" alt=""></p>
-
-        <h4 id="TCP的四次挥手"   >
-          <a href="#TCP的四次挥手" class="heading-link"><i class="fas fa-link"></i></a><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h4>
-      <p><img src="http://book.52react.cn/20190731225127.png" alt=""><br>为什么要挥手四次？<br>前二次挥手让连接处于半关闭状态，此时手机端<code>不可</code>向服务端发送数据，而服务器<code>可以继续</code>向手机端发送数据，所以四次的原因是<code>可以有一个处于半关闭的状态</code></p>
+<h4 id="什么是接收窗口呢？"><a href="#什么是接收窗口呢？" class="headerlink" title="什么是接收窗口呢？"></a>什么是接收窗口呢？</h4><p>tcp报文头，窗口大小只有2个字节16位，最大只能2^16-1 = 64kb大小，当初设计tcp的人没有想到现代网速那么快，所以可选项加了一个<code>wscale</code>指数字段，最大为14，最大窗口大小为1G</p>
+<h4 id="接受窗口用来做什么呢？"><a href="#接受窗口用来做什么呢？" class="headerlink" title="接受窗口用来做什么呢？"></a>接受窗口用来做什么呢？</h4><p>它根据自身网络情况设置不同大小的值用来控制对方发送速度，避免对方发送太快，导致网络<code>拥塞</code></p>
+<h3 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h3><p>建立好tcp之后 手机端–&gt;服务端发送一个http请求，带上<code>PUSH</code>标志位：表示一个比较紧急的报文，告诉服务器立即把数据从缓存里发送给程序，不能再继续缓存了<br><img src="http://book.52react.cn/20190731224641.png" alt=""></p>
+<h4 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h4><p><img src="http://book.52react.cn/20190731225127.png" alt=""><br>为什么要挥手四次？<br>前二次挥手让连接处于半关闭状态，此时手机端<code>不可</code>向服务端发送数据，而服务器<code>可以继续</code>向手机端发送数据，所以四次的原因是<code>可以有一个处于半关闭的状态</code></p>
 <ol>
 <li>手机端–&gt;服务端 发送一个<code>FIN</code>，要等30s才能关闭，为什么要等30秒?因为这个是由<code>keep-alive</code>字段影响，同一个域可能要请求多个资源，不能一个请求完了就马上关闭</li>
 <li>服务端–&gt;手机端 发送<code>ACK</code> 这个时候连接处于<code>半关闭状态</code>，手机端不能再发送数据给服务端，但服务端可以向手机端发送</li>
 <li>服务端–&gt;手机端 把连接关闭了 于是向手机端发送<code>FIN</code></li>
 <li>手机端–&gt;服务端 发送了一个ACK，此时链接完全关闭，手机端关闭了进入<code>TIME_WAIT</code>状态</li>
 </ol>
-
-        <h4 id="为什么服务端不用进入TIME-WAIT状态"   >
-          <a href="#为什么服务端不用进入TIME-WAIT状态" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么服务端不用进入TIME-WAIT状态" class="headerlink" title="为什么服务端不用进入TIME_WAIT状态?"></a>为什么服务端不用进入TIME_WAIT状态?</h4>
-      <blockquote>
+<h4 id="为什么服务端不用进入TIME-WAIT状态"><a href="#为什么服务端不用进入TIME-WAIT状态" class="headerlink" title="为什么服务端不用进入TIME_WAIT状态?"></a>为什么服务端不用进入TIME_WAIT状态?</h4><blockquote>
 <p>因为一个完整的<code>套接字</code>包括四个元素：互联双方的IP+端口号，只要一方被破坏了就不能构成<code>相同的</code>套接字。限制手机端应该比较合理，因为服务端可能还要继续监听那个端口</p>
 </blockquote>
-
-        <h4 id="发送窗口是怎么算的"   >
-          <a href="#发送窗口是怎么算的" class="heading-link"><i class="fas fa-link"></i></a><a href="#发送窗口是怎么算的" class="headerlink" title="发送窗口是怎么算的?"></a>发送窗口是怎么算的?</h4>
-      <blockquote>
+<h4 id="发送窗口是怎么算的"><a href="#发送窗口是怎么算的" class="headerlink" title="发送窗口是怎么算的?"></a>发送窗口是怎么算的?</h4><blockquote>
 <p>wscale是一个二进制指数，wscale=5 表示左移5位 === 2的5次幂</p>
 </blockquote>
-
-        <h3 id="四层网络协议"   >
-          <a href="#四层网络协议" class="heading-link"><i class="fas fa-link"></i></a><a href="#四层网络协议" class="headerlink" title="四层网络协议"></a>四层网络协议</h3>
-      <p><img src="http://book.52react.cn/20190731225646.png" alt=""></p>
-
-        <h2 id="假如要发送一个http文本，最后会被包装成"   >
-          <a href="#假如要发送一个http文本，最后会被包装成" class="heading-link"><i class="fas fa-link"></i></a><a href="#假如要发送一个http文本，最后会被包装成" class="headerlink" title="假如要发送一个http文本，最后会被包装成"></a>假如要发送一个http文本，最后会被包装成</h2>
-      
-        <h2 id="物理帧头-IP报头文-TCP报头文-HTTP报头文-文本数据"   >
-          <a href="#物理帧头-IP报头文-TCP报头文-HTTP报头文-文本数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#物理帧头-IP报头文-TCP报头文-HTTP报头文-文本数据" class="headerlink" title="物理帧头 | IP报头文 | TCP报头文 | HTTP报头文 | 文本数据"></a>物理帧头 | IP报头文 | TCP报头文 | HTTP报头文 | 文本数据</h2>
-      <p>1.物理地址<br>每个网卡都有一个全球唯一的物理地址。路由器向局域网所有主机发送数据，网卡会比较物理地址是否与自己地址一致，如果一致就接受，否则丢弃。</p>
+<h3 id="四层网络协议"><a href="#四层网络协议" class="headerlink" title="四层网络协议"></a>四层网络协议</h3><p><img src="http://book.52react.cn/20190731225646.png" alt=""></p>
+<h2 id="假如要发送一个http文本，最后会被包装成"><a href="#假如要发送一个http文本，最后会被包装成" class="headerlink" title="假如要发送一个http文本，最后会被包装成"></a>假如要发送一个http文本，最后会被包装成</h2><h2 id="物理帧头-IP报头文-TCP报头文-HTTP报头文-文本数据"><a href="#物理帧头-IP报头文-TCP报头文-HTTP报头文-文本数据" class="headerlink" title="物理帧头 | IP报头文 | TCP报头文 | HTTP报头文 | 文本数据"></a>物理帧头 | IP报头文 | TCP报头文 | HTTP报头文 | 文本数据</h2><p>1.物理地址<br>每个网卡都有一个全球唯一的物理地址。路由器向局域网所有主机发送数据，网卡会比较物理地址是否与自己地址一致，如果一致就接受，否则丢弃。</p>
 <p>2.网际层ARP<br>ARP是一个地址解析协议，当我访问10.2.200.140的时候我需要知道它的物理路径地址，如果是个局域网我就局域网广播一个ARP请求，然后就会告诉我，物理地址</p>
 <p>3.网际层traceroute<br>可以追踪路由路径，原理是向目标主机发送ICMP报文，发送第一个报文时，设置TTL=0 报文生存时间为0，下一个路由器收到这个报文后，不会继续转发了，会给原主机发送出错的报文。就可知道第一个路由的ip地址，同里TTL为1 就可以知道第二个路由的IP地址</p>
-
-        <h3 id="拥塞控制"   >
-          <a href="#拥塞控制" class="heading-link"><i class="fas fa-link"></i></a><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3>
-      <p>什么阻塞控制？</p>
+<h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><p>什么阻塞控制？</p>
 <hr>
 <p>比如我想上传一个文件观察报文的发送情况，在0，7s的时间内 发送1448*9 = 17kb的数据；<br>这个时候网络卡顿了，又会这样呢？在1.45s的时间内，总共发送了9个包===5kb数据</p>
 <p>1.接受窗口<br>上传过程中，服务器不断调整它接受的窗口大小<br>2.拥塞窗口<br>我本地有自己的一个拥塞窗口cwnd</p>
 <p>当cwmd &gt; rwnd的时候对方接收能力限制了我的发送速度，当rwnd &gt; cwnd的时候，是我的网络情况造成发送比较慢</p>
 <p>慢启动与阻塞避免<br>当我们访问一个Linux服务器，服务在收到get请求后进行响应，第一次同时只发3个包，并且从时间间隔上看肯定它是故意的。为什么第一个会是3个呢。因为Linux初始化窗口就是3MSS，说明第一次只能发3个包</p>
-
-        <h3 id="HTTP请求头大小限制"   >
-          <a href="#HTTP请求头大小限制" class="heading-link"><i class="fas fa-link"></i></a><a href="#HTTP请求头大小限制" class="headerlink" title="HTTP请求头大小限制"></a>HTTP请求头大小限制</h3>
-      <p>1.请求头大小限制</p>
-<div class="table-container"><table>
+<h3 id="HTTP请求头大小限制"><a href="#HTTP请求头大小限制" class="headerlink" title="HTTP请求头大小限制"></a>HTTP请求头大小限制</h3><p>1.请求头大小限制</p>
+<table>
 <thead>
 <tr>
 <th>Nginx</th>
@@ -136,333 +280,235 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 <td>8k</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>2.URL长度限制<br>一个比较安全的值应该是<code>8K</code>，同时注意get请求参数是在URL里数据不能太大。<br>3.Cookie的长度限制<br>一般一个domain的cookie不能超过4kb，50个cookie，不然浏览器可能不会支持。</p>
+<h2 id="理解WebSocket"><a href="#理解WebSocket" class="headerlink" title="理解WebSocket"></a>理解WebSocket</h2><p>怎么实现一个HTTP的web实时聊天？怎么知道对方有没有收到发送消息给我呢？<br>1.使用轮询，每隔2s发一个请求给服务端查询，<code>缺点浪费资源</code><br>2.使用Service Worker实现浏览器的Push 这种方法要先注册Fcm账号获取一个id，用ServiceWorker监听，服务向 Android.com/send发送消息，谷歌服务器收到消息向那个id发送一个推送，实现了浏览器的push，<code>缺点兼容性不好</code><br>3.WebSocket建立长连接</p>
+<p>代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&quot;ws://192.168.8.88:8080&quot;</span>)</span><br><span class="line">socket.open = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    socket.send(<span class="string">&quot;长江长江，我是黄河&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">socket.onmessage = <span class="function">(<span class="params">event</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.title = <span class="string">&quot;收到来自黄河的消息：&quot;</span>+event.data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="谈谈WebSocket和WebRTC"><a href="#谈谈WebSocket和WebRTC" class="headerlink" title="谈谈WebSocket和WebRTC"></a>谈谈WebSocket和WebRTC</h2><p>WebSocket可以发数据，也可以接收数据，不保证传送的效率和质量。<br>WebRTC可用于可靠的传输音频视频，建立P2P链接，不需要服务端进行转发数据，虚拟电话，在线面试等现在很多用它实现</p>
 
-        <h2 id="理解WebSocket"   >
-          <a href="#理解WebSocket" class="heading-link"><i class="fas fa-link"></i></a><a href="#理解WebSocket" class="headerlink" title="理解WebSocket"></a>理解WebSocket</h2>
-      <p>怎么实现一个HTTP的web实时聊天？怎么知道对方有没有收到发送消息给我呢？<br>1.使用轮询，每隔2s发一个请求给服务端查询，<code>缺点浪费资源</code><br>2.使用Service Worker实现浏览器的Push 这种方法要先注册Fcm账号获取一个id，用ServiceWorker监听，服务向 Android.com/send发送消息，谷歌服务器收到消息向那个id发送一个推送，实现了浏览器的push，<code>缺点兼容性不好</code><br>3.WebSocket建立长连接</p>
-<p>代码：<br><figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">&quot;ws://192.168.8.88:8080&quot;</span>)</span><br><span class="line">socket.open = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">    socket.send(<span class="string">&quot;长江长江，我是黄河&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">socket.onmessage = <span class="function">(<span class="params">event</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.title = <span class="string">&quot;收到来自黄河的消息：&quot;</span>+event.data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></p>
+        </div>
 
-        <h2 id="谈谈WebSocket和WebRTC"   >
-          <a href="#谈谈WebSocket和WebRTC" class="heading-link"><i class="fas fa-link"></i></a><a href="#谈谈WebSocket和WebRTC" class="headerlink" title="谈谈WebSocket和WebRTC"></a>谈谈WebSocket和WebRTC</h2>
-      <p>WebSocket可以发数据，也可以接收数据，不保证传送的效率和质量。<br>WebRTC可用于可靠的传输音频视频，建立P2P链接，不需要服务端进行转发数据，虚拟电话，在线面试等现在很多用它实现</p>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2019/07/30/%E7%90%86%E8%A7%A3WebSocket%E4%B8%8ETCP-IP/">http://mariogogogo.github.io/2019/07/30/%E7%90%86%E8%A7%A3WebSocket%E4%B8%8ETCP-IP/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2019/07/31/Nodejs%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">NodeJS中间件原理</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2019/07/26/NodeJs%E7%9A%84MVC%E6%A8%A1%E5%9E%8B/"><span class="paginator-prev__text">NodeJs的MVC模型</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP"><span class="toc-number">1.</span> <span class="toc-text">
-          TCP&#x2F;IP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84http%E9%93%BE%E6%8E%A5"><span class="toc-number">1.1.</span> <span class="toc-text">
-          一个完整的http链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">
-          TCP的三次握手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E7%9A%84%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">
-          TCP的为什么是三次握手？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%A5%E6%94%B6%E7%AA%97%E5%8F%A3%E5%91%A2%EF%BC%9F"><span class="toc-number">1.1.3.</span> <span class="toc-text">
-          什么是接收窗口呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%97%E7%AA%97%E5%8F%A3%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-number">1.1.4.</span> <span class="toc-text">
-          接受窗口用来做什么呢？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.</span> <span class="toc-text">
-          发送数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">
-          TCP的四次挥手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8D%E7%94%A8%E8%BF%9B%E5%85%A5TIME-WAIT%E7%8A%B6%E6%80%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">
-          为什么服务端不用进入TIME_WAIT状态?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E7%AA%97%E5%8F%A3%E6%98%AF%E6%80%8E%E4%B9%88%E7%AE%97%E7%9A%84"><span class="toc-number">1.2.3.</span> <span class="toc-text">
-          发送窗口是怎么算的?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E5%B1%82%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.3.</span> <span class="toc-text">
-          四层网络协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%87%E5%A6%82%E8%A6%81%E5%8F%91%E9%80%81%E4%B8%80%E4%B8%AAhttp%E6%96%87%E6%9C%AC%EF%BC%8C%E6%9C%80%E5%90%8E%E4%BC%9A%E8%A2%AB%E5%8C%85%E8%A3%85%E6%88%90"><span class="toc-number">2.</span> <span class="toc-text">
-          假如要发送一个http文本，最后会被包装成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B8%A7%E5%A4%B4-IP%E6%8A%A5%E5%A4%B4%E6%96%87-TCP%E6%8A%A5%E5%A4%B4%E6%96%87-HTTP%E6%8A%A5%E5%A4%B4%E6%96%87-%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE"><span class="toc-number">3.</span> <span class="toc-text">
-          物理帧头 | IP报头文 | TCP报头文 | HTTP报头文 | 文本数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="toc-number">3.1.</span> <span class="toc-text">
-          拥塞控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6"><span class="toc-number">3.2.</span> <span class="toc-text">
-          HTTP请求头大小限制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3WebSocket"><span class="toc-number">4.</span> <span class="toc-text">
-          理解WebSocket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%88%E8%B0%88WebSocket%E5%92%8CWebRTC"><span class="toc-number">5.</span> <span class="toc-text">
-          谈谈WebSocket和WebRTC</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
-  var isXML = true;
-  var search_path = 'search.xml';
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：理解WebSocket与TCP/IP🔥</li>
+        <li>本文作者：Mariogogogo</li>
+        <li>创建时间：2019-07-30 00:00:00</li>
+        <li>
+            本文链接：http://www.h5web.cc/2019/07/30/理解WebSocket与TCP-IP/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
 
-  if (!search_path) {
-    search_path = 'search.xml';
-  } else if (/json$/i.test(search_path)) {
-    isXML = false;
-  }
+            </div>
+        
 
-  var path = '/' + search_path;
-  $.ajax({
-    url: path,
-    dataType: isXML ? 'xml' : 'json',
-    async: true,
-    success: function (res) {
-      var datas = isXML ? $('entry', res).map(function () {
-        // 将 XML 转为 JSON
-        return {
-          title: $('title', this).text(),
-          content: $('content', this).text(),
-          url: $('url', this).text()
-        };
-      }).get() : res;
-      var $input = $('.search-input input');
-      var $result = $('.search-results');
-      // 搜索对象（标题、内容）的权重，影响显示顺序
-      var WEIGHT = { title: 100, content: 1 };
-      var searchPost = function () {
-        var searchText = $input.val().toLowerCase().trim();
-        // 根据空白字符分隔关键字
-        var keywords = searchText.split(/[\s]+/);
-        // 搜索结果
-        var matchPosts = [];
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/07/31/Nodejs%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8E%9F%E7%90%86/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">NodeJS中间件原理</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/07/26/NodeJs%E7%9A%84MVC%E6%A8%A1%E5%9E%8B/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">NodeJs的MVC模型</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-        // 有多个关键字时，将原文字整个保存下来
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        // 防止未输入字符时搜索
-        if (searchText.length > 0) {
-          datas.forEach(function (data) {
-            var isMatch  = false;
-            // 没有标题的文章使用预设的 i18n 变量代替
-            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
-            var titleLower = title && title.toLowerCase();
-            // 删除 HTML 标签 和 所有空白字符
-            var content = data.content && data.content.replace(/<[^>]+>/g, '');
-            var contentLower = content && content.toLowerCase();
-            // 删除重复的 /
-            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
-            // 标题中匹配到的关键词
-            var titleHitSlice = [];
-            // 内容中匹配到的关键词
-            var contentHitSlice = [];
+        
+    </div>
+</div>
 
-            keywords.forEach(function (keyword) {
-              /**
-              * 获取匹配的关键词的索引
-              * @param {String} keyword 要匹配的关键字
-              * @param {String} text 原文字
-              * @param {Boolean} caseSensitive 是否区分大小写
-              * @param {Number} weight 匹配对象的权重。权重大的优先显示
-              * @return {Array}
-              */
-              function getIndexByword (word, text, caseSensitive, weight) {
-                if (!word || !text) {
-                  return [];
-                };
 
-                var startIndex = 0; // 每次匹配的开始索引
-                var index = -1;     // 匹配到的索引值
-                var result = [];    // 匹配结果
+                
+            </div>
 
-                if (!caseSensitive) {
-                  word = word.toLowerCase();
-                  text = text.toLowerCase();
-                }
+        </div>
 
-                while((index = text.indexOf(word, startIndex)) !== -1) {
-                  var hasMatch = false;
-                  // 索引位置相同的关键词，保留长度较长的
-                  titleHitSlice.forEach(function (hit) {
-                    if (hit.index === index && hit.word.length < word.length) {
-                      hit.word = word;
-                      hasMatch = true;
-                    }
-                  });
-                  startIndex = index + word.length;
-                  !hasMatch && result.push({ index: index, word: word, weight: weight });
-                }
-                return result;
-              }
-              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
-              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
-            });
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Mariogogogo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
 
-            var hitTitle = titleHitSlice.length;
-            var hitContent = contentHitSlice.length;
+        </div>
+    </div>
 
-            if (hitTitle > 0 || hitContent > 0) {
-              isMatch = true;
-            }
-            if (isMatch) {
-              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
-                // 按照匹配文字的索引的递增顺序排序
-                hit.sort(function (left, right) {
-                  return left.index - right.index;
-                });
-              });
-              /**
-              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
-              * @param {String} text 原文本
-              * @param {Array} hitSlice 匹配项的索引信息
-              * @param {Number} start 开始索引
-              * @param {Number} end 结束索引
-              * @return {String}
-              */
-              function highlightKeyword (text, hitSlice, start, end) {
-                if (!text || !hitSlice || !hitSlice.length) {
-                  return;
-                }
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
 
-                var result = '';
-                var startIndex = start;
-                var endIndex = end;
-                hitSlice.forEach(function (hit) {
-                  if (hit.index < startIndex) {
-                    return;
-                  }
+        <!-- go comment -->
+        
+    </ul>
+</div>
 
-                  var hitWordEnd = hit.index + hit.word.length;
-                  result += text.slice(startIndex, hit.index);
-                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
-                  startIndex = hitWordEnd;
-                });
-                result += text.slice(startIndex, endIndex);
-                return result;
-              }
+        </div>
+    
 
-              var postData = {};
-              // 文章总的搜索权重
-              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
-              // 标记匹配关键词后的标题
-              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
-              // 标记匹配关键词后的内容
-              var postContent;
-              // 显示内容的长度
-              var SHOW_WORD_LENGTH = 200;
-              // 命中关键词前的字符显示长度
-              var SHOW_WORD_FRONT_LENGTH = 20;
-              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-              // 截取匹配的第一个字符，前后共 200 个字符来显示
-              if (contentHitSlice.length > 0) {
-                var firstIndex = contentHitSlice[0].index;
-                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
-                var end = firstIndex + SHOW_WORD_END_LENGTH;
-                postContent = highlightKeyword(content, contentHitSlice, start, end);
-              } else { // 未匹配到内容，直接截取前 200 个字符来显示
-                postContent = content.slice(0, SHOW_WORD_LENGTH);
-              }
-              postData.title = postTitle;
-              postData.content = postContent;
-              postData.url = postURL;
-              postData.weight = postWeight;
-              matchPosts.push(postData);
-            }
-          });
-        }
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-        var resultInnerHtml = '';
-        if (matchPosts.length) {
-          // 按权重递增的顺序排序，使权重大的优先显示
-          matchPosts.sort(function (left, right) {
-            return right.weight - left.weight;
-          });
-          resultInnerHtml += '<ul>';
-          matchPosts.forEach(function (post) {
-            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
-            resultInnerHtml += post.title;
-            resultInnerHtml += '</a><div class="search-results-content">';
-            resultInnerHtml += post.content;
-            resultInnerHtml += '</div></li>';
-          });
-          resultInnerHtml += '</ul>';
-        } else {
-          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
-        }
-        $result.html(resultInnerHtml);
-      };
-      $input.on('input', searchPost);
-      $input.on('keyup', function (e) {
-        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
-          searchPost();
-        }
-      });
-    }
-  });
-}
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-function closeSearch () {
-  $('body').css({ overflow: 'auto' });
-  $('.search-popup').css({ display: 'none' });
-  $('.search-mask').css({ display: 'none' });
-}
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
 
-window.addEventListener('DOMContentLoaded', function () {
-  Stun.utils.pjaxReloadLocalSearch = function () {
-    $('.header-nav-search').on('click', function (e) {
-      e.stopPropagation();
-      $('body').css('overflow', 'hidden');
-      $('.search-popup')
-        .velocity('stop')
-        .velocity('transition.expandIn', {
-          duration: 300,
-          complete: function () {
-            $('.search-popup input').focus();
-          }
-        });
-      $('.search-mask')
-        .velocity('stop')
-        .velocity('transition.fadeIn', {
-          duration: 300
-        });
+        <!-- rss -->
+        
 
-      initSearch();
-    });
-    $('.search-mask, .search-close').on('click', function () {
-      closeSearch();
-    });
-    $(document).on('keydown', function (e) {
-      // Escape <=> 27
-      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
-        closeSearch();
-      }
-    });
-  };
+        
 
-  Stun.utils.pjaxReloadLocalSearch();
-}, false);
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
 
-function safeOpenUrl(url) {
-  var newTab = window.open();
-  newTab.opener = null;
-  newTab.location = url;
-}
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
-function extSearch(engine) {
-  var engines = {
-    google: 'https://www.google.com/search?q=',
-    bing: 'https://cn.bing.com/search?q=',
-    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
-  };
-  var host = window.location.host;
-  var query = $('.search-input input').val().toLowerCase().trim();
-  var uri = engines[engine] + query + ' site:' + host;
+    </div>
 
-  if (query) {
-    safeOpenUrl(uri);
-  } else {
-    Stun.utils.popAlert('warning', '请输入字符');
-  }
-}
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP"><span class="nav-number">1.</span> <span class="nav-text">TCP&#x2F;IP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84http%E9%93%BE%E6%8E%A5"><span class="nav-number">1.1.</span> <span class="nav-text">一个完整的http链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">TCP的三次握手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP%E7%9A%84%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">TCP的为什么是三次握手？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%A5%E6%94%B6%E7%AA%97%E5%8F%A3%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">什么是接收窗口呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%97%E7%AA%97%E5%8F%A3%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="nav-number">1.1.4.</span> <span class="nav-text">接受窗口用来做什么呢？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.</span> <span class="nav-text">发送数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">TCP的四次挥手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8D%E7%94%A8%E8%BF%9B%E5%85%A5TIME-WAIT%E7%8A%B6%E6%80%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">为什么服务端不用进入TIME_WAIT状态?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E7%AA%97%E5%8F%A3%E6%98%AF%E6%80%8E%E4%B9%88%E7%AE%97%E7%9A%84"><span class="nav-number">1.2.3.</span> <span class="nav-text">发送窗口是怎么算的?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E5%B1%82%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.</span> <span class="nav-text">四层网络协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%87%E5%A6%82%E8%A6%81%E5%8F%91%E9%80%81%E4%B8%80%E4%B8%AAhttp%E6%96%87%E6%9C%AC%EF%BC%8C%E6%9C%80%E5%90%8E%E4%BC%9A%E8%A2%AB%E5%8C%85%E8%A3%85%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">假如要发送一个http文本，最后会被包装成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B8%A7%E5%A4%B4-IP%E6%8A%A5%E5%A4%B4%E6%96%87-TCP%E6%8A%A5%E5%A4%B4%E6%96%87-HTTP%E6%8A%A5%E5%A4%B4%E6%96%87-%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE"><span class="nav-number">3.</span> <span class="nav-text">物理帧头 | IP报头文 | TCP报头文 | HTTP报头文 | 文本数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">3.1.</span> <span class="nav-text">拥塞控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP请求头大小限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%A7%A3WebSocket"><span class="nav-number">4.</span> <span class="nav-text">理解WebSocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%88%E8%B0%88WebSocket%E5%92%8CWebRTC"><span class="nav-number">5.</span> <span class="nav-text">谈谈WebSocket和WebRTC</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
 
-var assistSearchList = window.CONFIG.assistSearch;
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
-if (Array.isArray(assistSearchList)) {
-  assistSearchList.forEach(function (name) {
-    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
-      extSearch(name);
-    }, false);
-  });
-}</script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = 'nick,mail,link';
 
-  guest_info = guest_info.split(',').filter(function(item) {
-    return GUEST_INFO.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#valine-container',
-    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
-    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
-    notify: true,
-    verify: true,
-    placeholder: '快去评论下吧',
-    avatar: 'mp',
-    meta: guest_info,
-    pageSize: '10' || 10,
-    visitor: false,
-    recordIP: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: window.location.pathname
-  });
-}
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
-if (false) {
-  loadValine();
-} else {
-  window.addEventListener('DOMContentLoaded', loadValine, false);
-}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

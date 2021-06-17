@@ -1,414 +1,488 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="一起学习ReactHooks">
-<meta property="og:type" content="article">
-<meta property="og:title" content="如何在ReactHooks中请求数据">
-<meta property="og:url" content="http://mariogogogo.github.io/2019/05/29/ReactHooks%E4%B8%AD%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE/index.html">
-<meta property="og:site_name" content="Mario">
-<meta property="og:description" content="一起学习ReactHooks">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://book.52react.cn/20190529135626.png">
-<meta property="og:image" content="http://book.52react.cn/20190529135711.png">
-<meta property="og:image" content="http://book.52react.cn/20190529141249.png">
-<meta property="og:image" content="http://book.52react.cn/20190529141842.png">
-<meta property="og:image" content="http://book.52react.cn/20190529143540.png">
-<meta property="article:published_time" content="2019-05-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-16T09:07:49.000Z">
-<meta property="article:author" content="Codding">
-<meta property="article:tag" content="React">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://book.52react.cn/20190529135626.png"><title>如何在ReactHooks中请求数据 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2019/05/29/ReactHooks%E4%B8%AD%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: ["google","bing","baidu"],
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":true},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="好前端才分对错，成年人只分利弊">
+    <meta name="author" content="Mariogogogo">
+    
+    <title>
+        
+            如何在ReactHooks中请求数据 |
+        
+        Mario Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">如何在ReactHooks中请求数据</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2019-05-29</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">2.2k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">20分</span></span></div></header><div class="post-body"><p>一起学习ReactHooks<br><a id="more"></a></p>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mariogogogo.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"1240px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
-        <h2 id="先说下错误使用"   >
-          <a href="#先说下错误使用" class="heading-link"><i class="fas fa-link"></i></a><a href="#先说下错误使用" class="headerlink" title="先说下错误使用"></a>先说下错误使用</h2>
-      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化data 和setData方法</span></span><br><span class="line">  <span class="keyword">const</span> [data,setData] = useState(&#123;<span class="attr">hits</span>:[]&#125;);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">axiosData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> response  = <span class="keyword">await</span>  axios(<span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;执行次数&#x27;</span>+response.data)</span><br><span class="line">       <span class="comment">//改变数据</span></span><br><span class="line">      setData(response.data)  <span class="comment">// data：&#123;hits:[xxxx]&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">     axiosData()</span><br><span class="line">    </span><br><span class="line">  &#125;,[])</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;data.hits.map(<span class="function"><span class="params">item</span> =&gt;</span> (</span><br><span class="line">        &lt;li key=&#123;item.objectID&#125;&gt;</span><br><span class="line">          &lt;a href=&#123;item.url&#125;&gt;&#123;item.title&#125;&lt;/a&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">      ))&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mario Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">如何在ReactHooks中请求数据</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Mariogogogo</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2019-05-29 00:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/React/">React</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/React/">React</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>10 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>一起学习ReactHooks<br><a id="more"></a></p>
+<h2 id="先说下错误使用"><a href="#先说下错误使用" class="headerlink" title="先说下错误使用"></a>先说下错误使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化data 和setData方法</span></span><br><span class="line">  <span class="keyword">const</span> [data,setData] = useState(&#123;<span class="attr">hits</span>:[]&#125;);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">axiosData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> response  = <span class="keyword">await</span>  axios(<span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;执行次数&#x27;</span>+response.data)</span><br><span class="line">       <span class="comment">//改变数据</span></span><br><span class="line">      setData(response.data)  <span class="comment">// data：&#123;hits:[xxxx]&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">     axiosData()</span><br><span class="line">    </span><br><span class="line">  &#125;,[])</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;data.hits.map(<span class="function"><span class="params">item</span> =&gt;</span> (</span><br><span class="line">        &lt;li key=&#123;item.objectID&#125;&gt;</span><br><span class="line">          &lt;a href=&#123;item.url&#125;&gt;&#123;item.title&#125;&lt;/a&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">      ))&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>但这样会有问题，请求次数循环<br><img src="http://book.52react.cn/20190529135626.png" alt=""></p>
 <blockquote>
 <p>因为effect hook不仅在组件挂载是执行，在组件更新过程中也会执行。因为我们在每一次的数据获取后都会重新设置状态，这时候组件update然后effect hook就会重新运行一遍，这就造成了数据一次又一次的获取</p>
 </blockquote>
 <p>我们只想在组件挂载阶段时获取数据。这就是你要给effect hook的第二个参数传入一个空数组的原因，这样做可以避免组件更新阶段执行 effect hook ，但是依然会在挂载阶段执行它</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化data 和setData方法</span></span><br><span class="line">  <span class="keyword">const</span> [data,setData] = useState(&#123;<span class="attr">hits</span>:[]&#125;);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">axiosData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> response  = <span class="keyword">await</span>  axios(<span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;执行次数&#x27;</span>+response.data)</span><br><span class="line">      <span class="comment">//改变数据</span></span><br><span class="line">      setData(response.data)  <span class="comment">// data：&#123;hits:[xxxx]&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">     axiosData()</span><br><span class="line">  </span><br><span class="line">  &#125;,[])</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化data 和setData方法</span></span><br><span class="line">  <span class="keyword">const</span> [data,setData] = useState(&#123;<span class="attr">hits</span>:[]&#125;);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">axiosData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> response  = <span class="keyword">await</span>  axios(<span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;执行次数&#x27;</span>+response.data)</span><br><span class="line">      <span class="comment">//改变数据</span></span><br><span class="line">      setData(response.data)  <span class="comment">// data：&#123;hits:[xxxx]&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">     axiosData()</span><br><span class="line">  </span><br><span class="line">  &#125;,[])</span><br></pre></td></tr></table></figure>
 <p><img src="http://book.52react.cn/20190529135711.png" alt=""></p>
 <p>但还是存在一个问题：第二个参数用来定义hooks所依赖的全部变量（存放在数组中），如果一个变量改变了，effect hook就会<code>被执行一次</code>，如果是一个空数组的话，hooks将<code>不会</code>在组件更新的时候执行，因为它没有监听到任何的变量。</p>
-
-        <h2 id="如何自动触发一个-hook？"   >
-          <a href="#如何自动触发一个-hook？" class="heading-link"><i class="fas fa-link"></i></a><a href="#如何自动触发一个-hook？" class="headerlink" title="如何自动触发一个 hook？"></a>如何自动触发一个 hook？</h2>
-      <p>我们在组件挂载后获取了一次数据。但是如何使用输入字段告诉API我们感兴趣的主题？“Redux”做为默认查询。但是如果想要查询关于“React”的呢？让我们实现一个input元素，可以获得“Redux”之外的话题。因此，就要为input元素引入一个新的state。</p>
+<h2 id="如何自动触发一个-hook？"><a href="#如何自动触发一个-hook？" class="headerlink" title="如何自动触发一个 hook？"></a>如何自动触发一个 hook？</h2><p>我们在组件挂载后获取了一次数据。但是如何使用输入字段告诉API我们感兴趣的主题？“Redux”做为默认查询。但是如果想要查询关于“React”的呢？让我们实现一个input元素，可以获得“Redux”之外的话题。因此，就要为input元素引入一个新的state。</p>
 <p>二步操作：<br>1.输入框输入的值动态改变传入axios请求中<br>2.当你在input中输入一些内容时，在挂载后就不会再获取任何数据了，因为我们提供了[]作为第二个参数，但是现在的effect应该依赖query，每当query改变的时候，就应该重新获取数据。</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化data 和setData方法</span></span><br><span class="line">  <span class="keyword">const</span> [data,setData] = useState(&#123;<span class="attr">hits</span>:[]&#125;);</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">axiosData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(query)</span><br><span class="line">      <span class="keyword">const</span> response  = <span class="keyword">await</span>  axios(<span class="string">`http://hn.algolia.com/api/v1/search?query=<span class="subst">$&#123;query&#125;</span>`</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;执行次数&#x27;</span>+response.data)</span><br><span class="line">      setData(response.data)  <span class="comment">// data：&#123;hits:[xxxx]&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">     axiosData()</span><br><span class="line"></span><br><span class="line">     <span class="comment">//改变数据</span></span><br><span class="line">  &#125;,[query])</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//html</span></span><br><span class="line">   &lt;input</span><br><span class="line">        type=<span class="string">&quot;text&quot;</span></span><br><span class="line">        value=&#123;query&#125;</span><br><span class="line">        onChange=&#123;<span class="function"><span class="params">event</span> =&gt;</span> setQuery(event.target.value)&#125;</span><br><span class="line">   /&gt;</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化data 和setData方法</span></span><br><span class="line">  <span class="keyword">const</span> [data,setData] = useState(&#123;<span class="attr">hits</span>:[]&#125;);</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">axiosData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(query)</span><br><span class="line">      <span class="keyword">const</span> response  = <span class="keyword">await</span>  axios(<span class="string">`http://hn.algolia.com/api/v1/search?query=<span class="subst">$&#123;query&#125;</span>`</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;执行次数&#x27;</span>+response.data)</span><br><span class="line">      setData(response.data)  <span class="comment">// data：&#123;hits:[xxxx]&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">     axiosData()</span><br><span class="line"></span><br><span class="line">     <span class="comment">//改变数据</span></span><br><span class="line">  &#125;,[query])</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//html</span></span><br><span class="line">   &lt;input</span><br><span class="line">        type=<span class="string">&quot;text&quot;</span></span><br><span class="line">        value=&#123;query&#125;</span><br><span class="line">        onChange=&#123;<span class="function"><span class="params">event</span> =&gt;</span> setQuery(event.target.value)&#125;</span><br><span class="line">   /&gt;</span><br></pre></td></tr></table></figure>
 <p><img src="http://book.52react.cn/20190529141249.png" alt=""></p>
-
-        <h3 id="如何手动触发请求？"   >
-          <a href="#如何手动触发请求？" class="heading-link"><i class="fas fa-link"></i></a><a href="#如何手动触发请求？" class="headerlink" title="如何手动触发请求？"></a>如何手动触发请求？</h3>
-      <p>现在input的值改变就会重新获取数据。但是又出现另外一个问题：每次输入一个新字符，就会触发 effect 进行一次新的请求。那么我们如何提供一个按钮来手动触发数据请求呢？</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化data 和setData方法</span></span><br><span class="line">  <span class="keyword">const</span> [data,setData] = useState(&#123;<span class="attr">hits</span>:[]&#125;);</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> [search, setSearch] = useState(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">axiosData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> response  = <span class="keyword">await</span>  axios(<span class="string">`http://hn.algolia.com/api/v1/search?query=<span class="subst">$&#123;query&#125;</span>`</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;执行次数&#x27;</span>+response.data)</span><br><span class="line">      setData(response.data)  <span class="comment">// data：&#123;hits:[xxxx]&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">     axiosData()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;search&#x27;</span>,search)</span><br><span class="line">     <span class="comment">//改变数据</span></span><br><span class="line">  &#125;,[search])</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">//html</span></span><br><span class="line">   &lt;button type=<span class="string">&quot;button&quot;</span> onClick=&#123;<span class="function">() =&gt;</span> setSearch(query)&#125;&gt;</span><br><span class="line">        Search</span><br><span class="line">   &lt;/button&gt;</span><br></pre></td></tr></table></div></figure>
+<h3 id="如何手动触发请求？"><a href="#如何手动触发请求？" class="headerlink" title="如何手动触发请求？"></a>如何手动触发请求？</h3><p>现在input的值改变就会重新获取数据。但是又出现另外一个问题：每次输入一个新字符，就会触发 effect 进行一次新的请求。那么我们如何提供一个按钮来手动触发数据请求呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化data 和setData方法</span></span><br><span class="line">  <span class="keyword">const</span> [data,setData] = useState(&#123;<span class="attr">hits</span>:[]&#125;);</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> [search, setSearch] = useState(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">axiosData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> response  = <span class="keyword">await</span>  axios(<span class="string">`http://hn.algolia.com/api/v1/search?query=<span class="subst">$&#123;query&#125;</span>`</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;执行次数&#x27;</span>+response.data)</span><br><span class="line">      setData(response.data)  <span class="comment">// data：&#123;hits:[xxxx]&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">     axiosData()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;search&#x27;</span>,search)</span><br><span class="line">     <span class="comment">//改变数据</span></span><br><span class="line">  &#125;,[search])</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">//html</span></span><br><span class="line">   &lt;button type=<span class="string">&quot;button&quot;</span> onClick=&#123;<span class="function">() =&gt;</span> setSearch(query)&#125;&gt;</span><br><span class="line">        Search</span><br><span class="line">   &lt;/button&gt;</span><br></pre></td></tr></table></figure>
 <p><img src="http://book.52react.cn/20190529141842.png" alt=""></p>
-
-        <h3 id="React-Hooks中的loading"   >
-          <a href="#React-Hooks中的loading" class="heading-link"><i class="fas fa-link"></i></a><a href="#React-Hooks中的loading" class="headerlink" title="React Hooks中的loading"></a>React Hooks中的loading</h3>
-      <p>一旦调用了effect获取了数据，（在组件挂载阶段或URL状态更改时发生），则加载状态设置为true。请求完成后，加载状态再次设置为false。<br><figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Fragment, useState, useEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [data, setData] = useState(&#123; <span class="attr">hits</span>: [] &#125;);</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> [url, setUrl] = useState(</span><br><span class="line">    <span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> [isLoading, setIsLoading] = useState(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> fetchData = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      <span class="comment">//loading显示</span></span><br><span class="line">      setIsLoading(<span class="literal">true</span>);</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">const</span> result = <span class="keyword">await</span> axios(url);</span><br><span class="line"> </span><br><span class="line">      setData(result.data);</span><br><span class="line">      <span class="comment">//loadding隐藏</span></span><br><span class="line">      setIsLoading(<span class="literal">false</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    fetchData();</span><br><span class="line">  &#125;, [url]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      &lt;input</span><br><span class="line">        type=<span class="string">&quot;text&quot;</span></span><br><span class="line">        value=&#123;query&#125;</span><br><span class="line">        onChange=&#123;<span class="function"><span class="params">event</span> =&gt;</span> setQuery(event.target.value)&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;button</span><br><span class="line">        type=<span class="string">&quot;button&quot;</span></span><br><span class="line">        onClick=&#123;<span class="function">() =&gt;</span></span><br><span class="line">          setUrl(<span class="string">`http://hn.algolia.com/api/v1/search?query=<span class="subst">$&#123;query&#125;</span>`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &gt;</span><br><span class="line">        Search</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line"></span><br><span class="line">      &#123;isLoading ? (</span><br><span class="line">        &lt;div&gt;Loading ...&lt;/div&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &#123;data.hits.map(<span class="function"><span class="params">item</span> =&gt;</span> (</span><br><span class="line">            &lt;li key=&#123;item.objectID&#125;&gt;</span><br><span class="line">              &lt;a href=&#123;item.url&#125;&gt;&#123;item.title&#125;&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">          ))&#125;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">    &lt;/Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></div></figure></p>
-
-        <h3 id="React-Hooks中的错误处理"   >
-          <a href="#React-Hooks中的错误处理" class="heading-link"><i class="fas fa-link"></i></a><a href="#React-Hooks中的错误处理" class="headerlink" title="React Hooks中的错误处理"></a>React Hooks中的错误处理</h3>
-      <p>使用async/await时，通常使用try/catch块进行错误处理。你可以在effect内做到<br><figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [data, setData] = useState(&#123; <span class="attr">hits</span>: [] &#125;);</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> [url, setUrl] = useState(</span><br><span class="line">    <span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> [isLoading, setIsLoading] = useState(<span class="literal">false</span>);</span><br><span class="line">  <span class="keyword">const</span> [isError, setIsError] = useState(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> fetchData = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      setIsError(<span class="literal">false</span>);</span><br><span class="line">      setIsLoading(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> result = <span class="keyword">await</span> axios(url);</span><br><span class="line"></span><br><span class="line">        setData(result.data);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        setIsError(<span class="literal">true</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      setIsLoading(<span class="literal">false</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    fetchData();</span><br><span class="line">  &#125;, [url]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      &lt;input</span><br><span class="line">        type=<span class="string">&quot;text&quot;</span></span><br><span class="line">        value=&#123;query&#125;</span><br><span class="line">        onChange=&#123;<span class="function"><span class="params">event</span> =&gt;</span> setQuery(event.target.value)&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;button</span><br><span class="line">        type=<span class="string">&quot;button&quot;</span></span><br><span class="line">        onClick=&#123;<span class="function">() =&gt;</span></span><br><span class="line">          setUrl(<span class="string">`http://hn.algolia.com/api/v2/search?query=<span class="subst">$&#123;query&#125;</span>`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &gt;</span><br><span class="line">        Search</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line"></span><br><span class="line">      &#123;isError &amp;&amp; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Something went wrong ...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line"></span><br><span class="line">      &#123;isLoading ? (</span><br><span class="line">        &lt;div&gt;Loading ...&lt;/div&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &#123;data.hits.map(<span class="function"><span class="params">item</span> =&gt;</span> (</span><br><span class="line">            &lt;li key=&#123;item.objectID&#125;&gt;</span><br><span class="line">              &lt;a href=&#123;item.url&#125;&gt;&#123;item.title&#125;&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">          ))&#125;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">    &lt;/Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure><br><img src="http://book.52react.cn/20190529143540.png" alt=""></p>
-
-        <h3 id="自定义-hook-获取数据"   >
-          <a href="#自定义-hook-获取数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#自定义-hook-获取数据" class="headerlink" title="自定义 hook 获取数据"></a>自定义 hook 获取数据</h3>
-      <p>我们可以定义一个自定义的hook，提取出所有与数据请求相关的东西，除了输入框的 <code>query</code> <code>state</code>，以及 <code>Loading 状态</code>、<code>错误处理</code>。还要确保返回组件中需要用到的变量。</p>
-<p>理想代码<br><figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> &#123; data, isLoading, isError, doFetch &#125; = useHackerNewsApi();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure><br>封装useHackerNewsApi</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> userHackerNewsApi = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">  <span class="comment">//初始化状态</span></span><br><span class="line">  <span class="keyword">const</span> [data, setData] = useState(&#123; <span class="attr">hits</span>: [] &#125;);</span><br><span class="line">  <span class="keyword">const</span> [url, setUrl] = useState(</span><br><span class="line">    <span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> [isLoading, setIsLoading] = useState(<span class="literal">false</span>);</span><br><span class="line">  <span class="keyword">const</span> [isError, setIsError] = useState(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> fetchData = <span class="keyword">async</span> ()=&gt;&#123;</span><br><span class="line">      setIsError(<span class="literal">false</span>);</span><br><span class="line">      setIsLoading(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> result = <span class="keyword">await</span> axios(url);</span><br><span class="line"></span><br><span class="line">        setData(result.data);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        setIsError(<span class="literal">true</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      setIsLoading(<span class="literal">false</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//调用请求</span></span><br><span class="line">    fetchData()</span><br><span class="line">  &#125;,[url])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> doFetch = <span class="function">(<span class="params">url</span>)=&gt;</span>&#123;</span><br><span class="line">     setUrl(url)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;data,isLoading,isError,doFetch&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
-        <h3 id="关于数据获取的-Reducer-Hook"   >
-          <a href="#关于数据获取的-Reducer-Hook" class="heading-link"><i class="fas fa-link"></i></a><a href="#关于数据获取的-Reducer-Hook" class="headerlink" title="关于数据获取的 Reducer Hook"></a>关于数据获取的 Reducer Hook</h3>
-      <p>让我们用reduce把一些状态调用连接起来使用</p>
+<h3 id="React-Hooks中的loading"><a href="#React-Hooks中的loading" class="headerlink" title="React Hooks中的loading"></a>React Hooks中的loading</h3><p>一旦调用了effect获取了数据，（在组件挂载阶段或URL状态更改时发生），则加载状态设置为true。请求完成后，加载状态再次设置为false。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Fragment, useState, useEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [data, setData] = useState(&#123; <span class="attr">hits</span>: [] &#125;);</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> [url, setUrl] = useState(</span><br><span class="line">    <span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> [isLoading, setIsLoading] = useState(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> fetchData = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      <span class="comment">//loading显示</span></span><br><span class="line">      setIsLoading(<span class="literal">true</span>);</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">const</span> result = <span class="keyword">await</span> axios(url);</span><br><span class="line"> </span><br><span class="line">      setData(result.data);</span><br><span class="line">      <span class="comment">//loadding隐藏</span></span><br><span class="line">      setIsLoading(<span class="literal">false</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    fetchData();</span><br><span class="line">  &#125;, [url]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      &lt;input</span><br><span class="line">        type=<span class="string">&quot;text&quot;</span></span><br><span class="line">        value=&#123;query&#125;</span><br><span class="line">        onChange=&#123;<span class="function"><span class="params">event</span> =&gt;</span> setQuery(event.target.value)&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;button</span><br><span class="line">        type=<span class="string">&quot;button&quot;</span></span><br><span class="line">        onClick=&#123;<span class="function">() =&gt;</span></span><br><span class="line">          setUrl(<span class="string">`http://hn.algolia.com/api/v1/search?query=<span class="subst">$&#123;query&#125;</span>`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &gt;</span><br><span class="line">        Search</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line"></span><br><span class="line">      &#123;isLoading ? (</span><br><span class="line">        &lt;div&gt;Loading ...&lt;/div&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &#123;data.hits.map(<span class="function"><span class="params">item</span> =&gt;</span> (</span><br><span class="line">            &lt;li key=&#123;item.objectID&#125;&gt;</span><br><span class="line">              &lt;a href=&#123;item.url&#125;&gt;&#123;item.title&#125;&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">          ))&#125;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">    &lt;/Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure></p>
+<h3 id="React-Hooks中的错误处理"><a href="#React-Hooks中的错误处理" class="headerlink" title="React Hooks中的错误处理"></a>React Hooks中的错误处理</h3><p>使用async/await时，通常使用try/catch块进行错误处理。你可以在effect内做到<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [data, setData] = useState(&#123; <span class="attr">hits</span>: [] &#125;);</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> [url, setUrl] = useState(</span><br><span class="line">    <span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> [isLoading, setIsLoading] = useState(<span class="literal">false</span>);</span><br><span class="line">  <span class="keyword">const</span> [isError, setIsError] = useState(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> fetchData = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      setIsError(<span class="literal">false</span>);</span><br><span class="line">      setIsLoading(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> result = <span class="keyword">await</span> axios(url);</span><br><span class="line"></span><br><span class="line">        setData(result.data);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        setIsError(<span class="literal">true</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      setIsLoading(<span class="literal">false</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    fetchData();</span><br><span class="line">  &#125;, [url]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      &lt;input</span><br><span class="line">        type=<span class="string">&quot;text&quot;</span></span><br><span class="line">        value=&#123;query&#125;</span><br><span class="line">        onChange=&#123;<span class="function"><span class="params">event</span> =&gt;</span> setQuery(event.target.value)&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;button</span><br><span class="line">        type=<span class="string">&quot;button&quot;</span></span><br><span class="line">        onClick=&#123;<span class="function">() =&gt;</span></span><br><span class="line">          setUrl(<span class="string">`http://hn.algolia.com/api/v2/search?query=<span class="subst">$&#123;query&#125;</span>`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &gt;</span><br><span class="line">        Search</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line"></span><br><span class="line">      &#123;isError &amp;&amp; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Something went wrong ...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line"></span><br><span class="line">      &#123;isLoading ? (</span><br><span class="line">        &lt;div&gt;Loading ...&lt;/div&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &#123;data.hits.map(<span class="function"><span class="params">item</span> =&gt;</span> (</span><br><span class="line">            &lt;li key=&#123;item.objectID&#125;&gt;</span><br><span class="line">              &lt;a href=&#123;item.url&#125;&gt;&#123;item.title&#125;&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">          ))&#125;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">    &lt;/Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br></pre></td></tr></table></figure><br><img src="http://book.52react.cn/20190529143540.png" alt=""></p>
+<h3 id="自定义-hook-获取数据"><a href="#自定义-hook-获取数据" class="headerlink" title="自定义 hook 获取数据"></a>自定义 hook 获取数据</h3><p>我们可以定义一个自定义的hook，提取出所有与数据请求相关的东西，除了输入框的 <code>query</code> <code>state</code>，以及 <code>Loading 状态</code>、<code>错误处理</code>。还要确保返回组件中需要用到的变量。</p>
+<p>理想代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> &#123; data, isLoading, isError, doFetch &#125; = useHackerNewsApi();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      ...</span><br><span class="line">    &lt;/Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>封装useHackerNewsApi</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> userHackerNewsApi = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">  <span class="comment">//初始化状态</span></span><br><span class="line">  <span class="keyword">const</span> [data, setData] = useState(&#123; <span class="attr">hits</span>: [] &#125;);</span><br><span class="line">  <span class="keyword">const</span> [url, setUrl] = useState(</span><br><span class="line">    <span class="string">&#x27;http://hn.algolia.com/api/v1/search?query=redux&#x27;</span>,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">const</span> [isLoading, setIsLoading] = useState(<span class="literal">false</span>);</span><br><span class="line">  <span class="keyword">const</span> [isError, setIsError] = useState(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> fetchData = <span class="keyword">async</span> ()=&gt;&#123;</span><br><span class="line">      setIsError(<span class="literal">false</span>);</span><br><span class="line">      setIsLoading(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> result = <span class="keyword">await</span> axios(url);</span><br><span class="line"></span><br><span class="line">        setData(result.data);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        setIsError(<span class="literal">true</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      setIsLoading(<span class="literal">false</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//调用请求</span></span><br><span class="line">    fetchData()</span><br><span class="line">  &#125;,[url])</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> doFetch = <span class="function">(<span class="params">url</span>)=&gt;</span>&#123;</span><br><span class="line">     setUrl(url)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;data,isLoading,isError,doFetch&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="关于数据获取的-Reducer-Hook"><a href="#关于数据获取的-Reducer-Hook" class="headerlink" title="关于数据获取的 Reducer Hook"></a>关于数据获取的 Reducer Hook</h3><p>让我们用reduce把一些状态调用连接起来使用</p>
 <blockquote>
 <p>Reducer Hook 返回一个 state 对象和一个函数（用来改变 state 对象）。这个函数被称为分发函数（dispatch function），它分发一个 action，action 具有 type 和 payload 两个属性。所有的这些信息都在 reducer 函数中被接收，根据之前的状态提取一个新的状态</p>
 </blockquote>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> [&#123; data, isLoading, isError &#125;, doFetch] = useDataApi(</span><br><span class="line">    <span class="string">`http://hn.algolia.com/api/v1/search?query=redux`</span>,</span><br><span class="line">    &#123; <span class="attr">hits</span>: [] &#125;,</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      &lt;form</span><br><span class="line">        onSubmit=&#123;<span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">          doFetch(</span><br><span class="line">            <span class="string">`http://hn.algolia.com/api/v1/search?query=<span class="subst">$&#123;query&#125;</span>`</span>,</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          event.preventDefault();</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      &gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=<span class="string">&quot;text&quot;</span></span><br><span class="line">          value=&#123;query&#125;</span><br><span class="line">          onChange=&#123;<span class="function"><span class="params">event</span> =&gt;</span> setQuery(event.target.value)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;button type=<span class="string">&quot;submit&quot;</span>&gt;Search&lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">      &#123;isError &amp;&amp; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Something went wrong ...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line"></span><br><span class="line">      &#123;isLoading ? (</span><br><span class="line">        &lt;div&gt;Loading ...&lt;/div&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &#123;data.hits.map(<span class="function"><span class="params">item</span> =&gt;</span> (</span><br><span class="line">            &lt;li key=&#123;item.objectID&#125;&gt;</span><br><span class="line">              &lt;a href=&#123;item.url&#125;&gt;&#123;item.title&#125;&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">          ))&#125;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">    &lt;/Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [query, setQuery] = useState(<span class="string">&#x27;redux&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> [&#123; data, isLoading, isError &#125;, doFetch] = useDataApi(</span><br><span class="line">    <span class="string">`http://hn.algolia.com/api/v1/search?query=redux`</span>,</span><br><span class="line">    &#123; <span class="attr">hits</span>: [] &#125;,</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Fragment&gt;</span><br><span class="line">      &lt;form</span><br><span class="line">        onSubmit=&#123;<span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">          doFetch(</span><br><span class="line">            <span class="string">`http://hn.algolia.com/api/v1/search?query=<span class="subst">$&#123;query&#125;</span>`</span>,</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          event.preventDefault();</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      &gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          type=<span class="string">&quot;text&quot;</span></span><br><span class="line">          value=&#123;query&#125;</span><br><span class="line">          onChange=&#123;<span class="function"><span class="params">event</span> =&gt;</span> setQuery(event.target.value)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;button type=<span class="string">&quot;submit&quot;</span>&gt;Search&lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">      &#123;isError &amp;&amp; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Something went wrong ...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line"></span><br><span class="line">      &#123;isLoading ? (</span><br><span class="line">        &lt;div&gt;Loading ...&lt;/div&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &#123;data.hits.map(<span class="function"><span class="params">item</span> =&gt;</span> (</span><br><span class="line">            &lt;li key=&#123;item.objectID&#125;&gt;</span><br><span class="line">              &lt;a href=&#123;item.url&#125;&gt;&#123;item.title&#125;&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">          ))&#125;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">    &lt;/Fragment&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure>
+<h4 id="如何设计useDataApi"><a href="#如何设计useDataApi" class="headerlink" title="如何设计useDataApi"></a>如何设计useDataApi</h4><p>现在，在获取数据时，可以使用 dispatch 函数向 reducer 函数发送信息。使用 dispatch 函数发送的对象具有一个必填的 type 属性和一个可选的 payload 属性。type 属性告诉 reducer 函数需要转换的 state 是哪个，还可以从 payload 中提取新的 state。在这里只有三个状态转换：初始化数据过程，通知数据请求成功的结果，以及通知数据请求失败的结果。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> useDataApi = <span class="function">(<span class="params">initialUrl,initialData</span>)=&gt;</span>&#123;</span><br><span class="line">     <span class="keyword">const</span> [url,setUrl] = useState(initialUrl);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">const</span> [state,dispatch] = useReducer(dataFetchReducer,&#123;</span><br><span class="line">         isLoading:<span class="literal">false</span>,</span><br><span class="line">         isError:<span class="literal">false</span>,</span><br><span class="line">         data:initialData,</span><br><span class="line">     &#125;)</span><br><span class="line"></span><br><span class="line">     useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> fetchData = <span class="keyword">async</span> ()=&gt;&#123;</span><br><span class="line">           dispatch(&#123;<span class="attr">type</span>:<span class="string">&quot;FETCH_INIT&quot;</span>&#125;)</span><br><span class="line">           <span class="keyword">try</span>&#123;</span><br><span class="line">             <span class="keyword">const</span> result = <span class="keyword">await</span>  axios(url);</span><br><span class="line">             dispatch(&#123;<span class="attr">type</span>:<span class="string">&quot;FETCH_SUCCESS&quot;</span>,<span class="attr">payload</span>:result.data&#125;)</span><br><span class="line">           &#125;<span class="keyword">catch</span> (e) &#123;</span><br><span class="line">             dispatch(&#123;<span class="attr">type</span>:<span class="string">&quot;FETCH_FAILURE&quot;</span>,<span class="attr">payload</span>:e&#125;)</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">       fetchData();</span><br><span class="line"></span><br><span class="line">     &#125;,[url])</span><br><span class="line">      <span class="comment">//只返回state中包含data isloading /  setUrl</span></span><br><span class="line">     <span class="keyword">return</span> [state, setUrl];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h4 id="reducer函数的实现"><a href="#reducer函数的实现" class="headerlink" title="reducer函数的实现"></a>reducer函数的实现</h4><p>它需要处理三个不同的状态转换，称为FETCH_INIT，FETCH_SUCCESS和FETCH_FAILURE。每个状态转换都需要返回一个新的状态对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dataFetchReducer = <span class="function">(<span class="params">state, action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;FETCH_INIT&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state, <span class="attr">isLoading</span>: <span class="literal">true</span>, <span class="attr">isError</span>: <span class="literal">false</span> &#125;;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;FETCH_SUCCESS&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        isLoading: <span class="literal">false</span>,</span><br><span class="line">        isError: <span class="literal">false</span>,</span><br><span class="line">        data: action.payload,</span><br><span class="line">      &#125;;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;FETCH_FAILURE&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        isLoading: <span class="literal">false</span>,</span><br><span class="line">        isError: <span class="literal">true</span>,</span><br><span class="line">      &#125;;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="在-Hook-中中断数据请求"><a href="#在-Hook-中中断数据请求" class="headerlink" title="在 Hook 中中断数据请求"></a>在 Hook 中中断数据请求</h3><p>下次再更新<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br></pre></td></tr></table></figure></p>
+<p>参考<br><a class="link"   target="_blank" rel="noopener" href="https://www.robinwieruch.de/react-hooks-fetch-data/" >Robin Wieruch<i class="fas fa-external-link-alt"></i></a></p>
 
-        <h4 id="如何设计useDataApi"   >
-          <a href="#如何设计useDataApi" class="heading-link"><i class="fas fa-link"></i></a><a href="#如何设计useDataApi" class="headerlink" title="如何设计useDataApi"></a>如何设计useDataApi</h4>
-      <p>现在，在获取数据时，可以使用 dispatch 函数向 reducer 函数发送信息。使用 dispatch 函数发送的对象具有一个必填的 type 属性和一个可选的 payload 属性。type 属性告诉 reducer 函数需要转换的 state 是哪个，还可以从 payload 中提取新的 state。在这里只有三个状态转换：初始化数据过程，通知数据请求成功的结果，以及通知数据请求失败的结果。<br><figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> useDataApi = <span class="function">(<span class="params">initialUrl,initialData</span>)=&gt;</span>&#123;</span><br><span class="line">     <span class="keyword">const</span> [url,setUrl] = useState(initialUrl);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">const</span> [state,dispatch] = useReducer(dataFetchReducer,&#123;</span><br><span class="line">         isLoading:<span class="literal">false</span>,</span><br><span class="line">         isError:<span class="literal">false</span>,</span><br><span class="line">         data:initialData,</span><br><span class="line">     &#125;)</span><br><span class="line"></span><br><span class="line">     useEffect(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> fetchData = <span class="keyword">async</span> ()=&gt;&#123;</span><br><span class="line">           dispatch(&#123;<span class="attr">type</span>:<span class="string">&quot;FETCH_INIT&quot;</span>&#125;)</span><br><span class="line">           <span class="keyword">try</span>&#123;</span><br><span class="line">             <span class="keyword">const</span> result = <span class="keyword">await</span>  axios(url);</span><br><span class="line">             dispatch(&#123;<span class="attr">type</span>:<span class="string">&quot;FETCH_SUCCESS&quot;</span>,<span class="attr">payload</span>:result.data&#125;)</span><br><span class="line">           &#125;<span class="keyword">catch</span> (e) &#123;</span><br><span class="line">             dispatch(&#123;<span class="attr">type</span>:<span class="string">&quot;FETCH_FAILURE&quot;</span>,<span class="attr">payload</span>:e&#125;)</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">       fetchData();</span><br><span class="line"></span><br><span class="line">     &#125;,[url])</span><br><span class="line">      <span class="comment">//只返回state中包含data isloading /  setUrl</span></span><br><span class="line">     <span class="keyword">return</span> [state, setUrl];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure></p>
+        </div>
 
-        <h4 id="reducer函数的实现"   >
-          <a href="#reducer函数的实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#reducer函数的实现" class="headerlink" title="reducer函数的实现"></a>reducer函数的实现</h4>
-      <p>它需要处理三个不同的状态转换，称为FETCH_INIT，FETCH_SUCCESS和FETCH_FAILURE。每个状态转换都需要返回一个新的状态对象<br><figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dataFetchReducer = <span class="function">(<span class="params">state, action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;FETCH_INIT&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state, <span class="attr">isLoading</span>: <span class="literal">true</span>, <span class="attr">isError</span>: <span class="literal">false</span> &#125;;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;FETCH_SUCCESS&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        isLoading: <span class="literal">false</span>,</span><br><span class="line">        isError: <span class="literal">false</span>,</span><br><span class="line">        data: action.payload,</span><br><span class="line">      &#125;;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;FETCH_FAILURE&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        isLoading: <span class="literal">false</span>,</span><br><span class="line">        isError: <span class="literal">true</span>,</span><br><span class="line">      &#125;;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></div></figure></p>
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：如何在ReactHooks中请求数据</li>
+        <li>本文作者：Mariogogogo</li>
+        <li>创建时间：2019-05-29 00:00:00</li>
+        <li>
+            本文链接：http://www.h5web.cc/2019/05/29/ReactHooks中请求数据/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
 
-        <h3 id="在-Hook-中中断数据请求"   >
-          <a href="#在-Hook-中中断数据请求" class="heading-link"><i class="fas fa-link"></i></a><a href="#在-Hook-中中断数据请求" class="headerlink" title="在 Hook 中中断数据请求"></a>在 Hook 中中断数据请求</h3>
-      <p>下次再更新<br><figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br></pre></td></tr></table></div></figure></p>
-<p>参考<br><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.robinwieruch.de/react-hooks-fetch-data/" >Robin Wieruch</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2019/05/29/ReactHooks%E4%B8%AD%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE/">http://mariogogogo.github.io/2019/05/29/ReactHooks%E4%B8%AD%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/React/">React</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2019/06/01/%E3%80%8E%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1Webpack%E7%B3%BB%E5%88%97%E3%80%8F%E6%A6%82%E5%BF%B5%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">『由浅入深Webpack系列』概念和基础使用</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2019/05/03/React%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97Fiber/"><span class="paginator-prev__text">React源码系列Fiber</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E8%AF%B4%E4%B8%8B%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">
-          先说下错误使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%87%AA%E5%8A%A8%E8%A7%A6%E5%8F%91%E4%B8%80%E4%B8%AA-hook%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">
-          如何自动触发一个 hook？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%89%8B%E5%8A%A8%E8%A7%A6%E5%8F%91%E8%AF%B7%E6%B1%82%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">
-          如何手动触发请求？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React-Hooks%E4%B8%AD%E7%9A%84loading"><span class="toc-number">2.2.</span> <span class="toc-text">
-          React Hooks中的loading</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#React-Hooks%E4%B8%AD%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">2.3.</span> <span class="toc-text">
-          React Hooks中的错误处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-hook-%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">2.4.</span> <span class="toc-text">
-          自定义 hook 获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E7%9A%84-Reducer-Hook"><span class="toc-number">2.5.</span> <span class="toc-text">
-          关于数据获取的 Reducer Hook</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1useDataApi"><span class="toc-number">2.5.1.</span> <span class="toc-text">
-          如何设计useDataApi</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reducer%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.5.2.</span> <span class="toc-text">
-          reducer函数的实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Hook-%E4%B8%AD%E4%B8%AD%E6%96%AD%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82"><span class="toc-number">2.6.</span> <span class="toc-text">
-          在 Hook 中中断数据请求</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
-  var isXML = true;
-  var search_path = 'search.xml';
+            </div>
+        
 
-  if (!search_path) {
-    search_path = 'search.xml';
-  } else if (/json$/i.test(search_path)) {
-    isXML = false;
-  }
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/06/01/%E3%80%8E%E7%94%B1%E6%B5%85%E5%85%A5%E6%B7%B1Webpack%E7%B3%BB%E5%88%97%E3%80%8F%E6%A6%82%E5%BF%B5%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">『由浅入深Webpack系列』概念和基础使用</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/05/03/React%E6%BA%90%E7%A0%81%E7%B3%BB%E5%88%97Fiber/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">React源码系列Fiber</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-  var path = '/' + search_path;
-  $.ajax({
-    url: path,
-    dataType: isXML ? 'xml' : 'json',
-    async: true,
-    success: function (res) {
-      var datas = isXML ? $('entry', res).map(function () {
-        // 将 XML 转为 JSON
-        return {
-          title: $('title', this).text(),
-          content: $('content', this).text(),
-          url: $('url', this).text()
-        };
-      }).get() : res;
-      var $input = $('.search-input input');
-      var $result = $('.search-results');
-      // 搜索对象（标题、内容）的权重，影响显示顺序
-      var WEIGHT = { title: 100, content: 1 };
-      var searchPost = function () {
-        var searchText = $input.val().toLowerCase().trim();
-        // 根据空白字符分隔关键字
-        var keywords = searchText.split(/[\s]+/);
-        // 搜索结果
-        var matchPosts = [];
+        
+    </div>
+</div>
 
-        // 有多个关键字时，将原文字整个保存下来
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        // 防止未输入字符时搜索
-        if (searchText.length > 0) {
-          datas.forEach(function (data) {
-            var isMatch  = false;
-            // 没有标题的文章使用预设的 i18n 变量代替
-            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
-            var titleLower = title && title.toLowerCase();
-            // 删除 HTML 标签 和 所有空白字符
-            var content = data.content && data.content.replace(/<[^>]+>/g, '');
-            var contentLower = content && content.toLowerCase();
-            // 删除重复的 /
-            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
-            // 标题中匹配到的关键词
-            var titleHitSlice = [];
-            // 内容中匹配到的关键词
-            var contentHitSlice = [];
 
-            keywords.forEach(function (keyword) {
-              /**
-              * 获取匹配的关键词的索引
-              * @param {String} keyword 要匹配的关键字
-              * @param {String} text 原文字
-              * @param {Boolean} caseSensitive 是否区分大小写
-              * @param {Number} weight 匹配对象的权重。权重大的优先显示
-              * @return {Array}
-              */
-              function getIndexByword (word, text, caseSensitive, weight) {
-                if (!word || !text) {
-                  return [];
-                };
+                
+            </div>
 
-                var startIndex = 0; // 每次匹配的开始索引
-                var index = -1;     // 匹配到的索引值
-                var result = [];    // 匹配结果
+        </div>
 
-                if (!caseSensitive) {
-                  word = word.toLowerCase();
-                  text = text.toLowerCase();
-                }
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Mariogogogo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
 
-                while((index = text.indexOf(word, startIndex)) !== -1) {
-                  var hasMatch = false;
-                  // 索引位置相同的关键词，保留长度较长的
-                  titleHitSlice.forEach(function (hit) {
-                    if (hit.index === index && hit.word.length < word.length) {
-                      hit.word = word;
-                      hasMatch = true;
-                    }
-                  });
-                  startIndex = index + word.length;
-                  !hasMatch && result.push({ index: index, word: word, weight: weight });
-                }
-                return result;
-              }
-              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
-              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
-            });
+        </div>
+    </div>
 
-            var hitTitle = titleHitSlice.length;
-            var hitContent = contentHitSlice.length;
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
 
-            if (hitTitle > 0 || hitContent > 0) {
-              isMatch = true;
-            }
-            if (isMatch) {
-              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
-                // 按照匹配文字的索引的递增顺序排序
-                hit.sort(function (left, right) {
-                  return left.index - right.index;
-                });
-              });
-              /**
-              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
-              * @param {String} text 原文本
-              * @param {Array} hitSlice 匹配项的索引信息
-              * @param {Number} start 开始索引
-              * @param {Number} end 结束索引
-              * @return {String}
-              */
-              function highlightKeyword (text, hitSlice, start, end) {
-                if (!text || !hitSlice || !hitSlice.length) {
-                  return;
-                }
+        <!-- go comment -->
+        
+    </ul>
+</div>
 
-                var result = '';
-                var startIndex = start;
-                var endIndex = end;
-                hitSlice.forEach(function (hit) {
-                  if (hit.index < startIndex) {
-                    return;
-                  }
+        </div>
+    
 
-                  var hitWordEnd = hit.index + hit.word.length;
-                  result += text.slice(startIndex, hit.index);
-                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
-                  startIndex = hitWordEnd;
-                });
-                result += text.slice(startIndex, endIndex);
-                return result;
-              }
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-              var postData = {};
-              // 文章总的搜索权重
-              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
-              // 标记匹配关键词后的标题
-              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
-              // 标记匹配关键词后的内容
-              var postContent;
-              // 显示内容的长度
-              var SHOW_WORD_LENGTH = 200;
-              // 命中关键词前的字符显示长度
-              var SHOW_WORD_FRONT_LENGTH = 20;
-              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-              // 截取匹配的第一个字符，前后共 200 个字符来显示
-              if (contentHitSlice.length > 0) {
-                var firstIndex = contentHitSlice[0].index;
-                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
-                var end = firstIndex + SHOW_WORD_END_LENGTH;
-                postContent = highlightKeyword(content, contentHitSlice, start, end);
-              } else { // 未匹配到内容，直接截取前 200 个字符来显示
-                postContent = content.slice(0, SHOW_WORD_LENGTH);
-              }
-              postData.title = postTitle;
-              postData.content = postContent;
-              postData.url = postURL;
-              postData.weight = postWeight;
-              matchPosts.push(postData);
-            }
-          });
-        }
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-        var resultInnerHtml = '';
-        if (matchPosts.length) {
-          // 按权重递增的顺序排序，使权重大的优先显示
-          matchPosts.sort(function (left, right) {
-            return right.weight - left.weight;
-          });
-          resultInnerHtml += '<ul>';
-          matchPosts.forEach(function (post) {
-            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
-            resultInnerHtml += post.title;
-            resultInnerHtml += '</a><div class="search-results-content">';
-            resultInnerHtml += post.content;
-            resultInnerHtml += '</div></li>';
-          });
-          resultInnerHtml += '</ul>';
-        } else {
-          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
-        }
-        $result.html(resultInnerHtml);
-      };
-      $input.on('input', searchPost);
-      $input.on('keyup', function (e) {
-        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
-          searchPost();
-        }
-      });
-    }
-  });
-}
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
 
-function closeSearch () {
-  $('body').css({ overflow: 'auto' });
-  $('.search-popup').css({ display: 'none' });
-  $('.search-mask').css({ display: 'none' });
-}
+        <!-- rss -->
+        
 
-window.addEventListener('DOMContentLoaded', function () {
-  Stun.utils.pjaxReloadLocalSearch = function () {
-    $('.header-nav-search').on('click', function (e) {
-      e.stopPropagation();
-      $('body').css('overflow', 'hidden');
-      $('.search-popup')
-        .velocity('stop')
-        .velocity('transition.expandIn', {
-          duration: 300,
-          complete: function () {
-            $('.search-popup input').focus();
-          }
-        });
-      $('.search-mask')
-        .velocity('stop')
-        .velocity('transition.fadeIn', {
-          duration: 300
-        });
+        
 
-      initSearch();
-    });
-    $('.search-mask, .search-close').on('click', function () {
-      closeSearch();
-    });
-    $(document).on('keydown', function (e) {
-      // Escape <=> 27
-      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
-        closeSearch();
-      }
-    });
-  };
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
 
-  Stun.utils.pjaxReloadLocalSearch();
-}, false);
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
-function safeOpenUrl(url) {
-  var newTab = window.open();
-  newTab.opener = null;
-  newTab.location = url;
-}
+    </div>
 
-function extSearch(engine) {
-  var engines = {
-    google: 'https://www.google.com/search?q=',
-    bing: 'https://cn.bing.com/search?q=',
-    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
-  };
-  var host = window.location.host;
-  var query = $('.search-input input').val().toLowerCase().trim();
-  var uri = engines[engine] + query + ' site:' + host;
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E8%AF%B4%E4%B8%8B%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">先说下错误使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%87%AA%E5%8A%A8%E8%A7%A6%E5%8F%91%E4%B8%80%E4%B8%AA-hook%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">如何自动触发一个 hook？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%89%8B%E5%8A%A8%E8%A7%A6%E5%8F%91%E8%AF%B7%E6%B1%82%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">如何手动触发请求？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-Hooks%E4%B8%AD%E7%9A%84loading"><span class="nav-number">2.2.</span> <span class="nav-text">React Hooks中的loading</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-Hooks%E4%B8%AD%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">React Hooks中的错误处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-hook-%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-number">2.4.</span> <span class="nav-text">自定义 hook 获取数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E7%9A%84-Reducer-Hook"><span class="nav-number">2.5.</span> <span class="nav-text">关于数据获取的 Reducer Hook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1useDataApi"><span class="nav-number">2.5.1.</span> <span class="nav-text">如何设计useDataApi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reducer%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.5.2.</span> <span class="nav-text">reducer函数的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-Hook-%E4%B8%AD%E4%B8%AD%E6%96%AD%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82"><span class="nav-number">2.6.</span> <span class="nav-text">在 Hook 中中断数据请求</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
 
-  if (query) {
-    safeOpenUrl(uri);
-  } else {
-    Stun.utils.popAlert('warning', '请输入字符');
-  }
-}
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
-var assistSearchList = window.CONFIG.assistSearch;
 
-if (Array.isArray(assistSearchList)) {
-  assistSearchList.forEach(function (name) {
-    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
-      extSearch(name);
-    }, false);
-  });
-}</script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = 'nick,mail,link';
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
-  guest_info = guest_info.split(',').filter(function(item) {
-    return GUEST_INFO.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#valine-container',
-    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
-    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
-    notify: true,
-    verify: true,
-    placeholder: '快去评论下吧',
-    avatar: 'mp',
-    meta: guest_info,
-    pageSize: '10' || 10,
-    visitor: false,
-    recordIP: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: window.location.pathname
-  });
-}
+    
 
-if (false) {
-  loadValine();
-} else {
-  window.addEventListener('DOMContentLoaded', loadValine, false);
-}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

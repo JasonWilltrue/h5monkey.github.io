@@ -1,73 +1,246 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="总结一下有如下问题：手动部署成本太高，改错别字都很麻烦一台服务器由于时间累积导致环境变得“脏乱差”重装系统成本太高，难以迁移">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker 初体验打造超溜的前端环境">
-<meta property="og:url" content="http://mariogogogo.github.io/2019/12/31/Docker%E5%88%9D%E4%BD%93%E9%AA%8C/index.html">
-<meta property="og:site_name" content="Mario">
-<meta property="og:description" content="总结一下有如下问题：手动部署成本太高，改错别字都很麻烦一台服务器由于时间累积导致环境变得“脏乱差”重装系统成本太高，难以迁移">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://book.52react.cn/20191231220957.png">
-<meta property="og:image" content="http://book.52react.cn/20200102132305.png">
-<meta property="og:image" content="http://book.52react.cn/20191231222101.png">
-<meta property="article:published_time" content="2019-12-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-16T09:07:18.000Z">
-<meta property="article:author" content="Codding">
-<meta property="article:tag" content="Docker">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://book.52react.cn/20191231220957.png"><title>Docker 初体验打造超溜的前端环境 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2019/12/31/Docker%E5%88%9D%E4%BD%93%E9%AA%8C/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: ["google","bing","baidu"],
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":true},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="好前端才分对错，成年人只分利弊">
+    <meta name="author" content="Mariogogogo">
+    
+    <title>
+        
+            Docker 初体验打造超溜的前端环境 |
+        
+        Mario Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Docker 初体验打造超溜的前端环境</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2019-12-31</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.9k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">15分</span></span></div></header><div class="post-body"><p>总结一下有如下问题：<br>手动部署成本太高，改错别字都很麻烦<br>一台服务器由于时间累积导致环境变得“脏乱差”<br>重装系统成本太高，难以迁移</p>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mariogogogo.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"1240px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mario Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Docker 初体验打造超溜的前端环境</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Mariogogogo</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2019-12-31 00:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Docker/">Docker</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Docker/">Docker</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>8 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>总结一下有如下问题：<br>手动部署成本太高，改错别字都很麻烦<br>一台服务器由于时间累积导致环境变得“脏乱差”<br>重装系统成本太高，难以迁移</p>
 <a id="more"></a>
 <p>而 Docker，正是我解决所有问题 SCP-500 万能药！<br>那么 Docker 是如何做的呢？<br>镜像与容器<br>Docker 中有两个重要概念。<br>一个是容器（Container）：容器特别像一个虚拟机，容器中运行着一个完整的操作系统。可以在容器中装 Nodejs，可以执行 npm install，可以做一切你当前操作系统能做的事情<br>另一个是镜像（Image）：镜像是一个文件，它是用来创建容器的。如果你有装过 Windows 操作系统，那么 Docker 镜像特别像“Win7 纯净版.rar”文件<br>上边就是你所需要了解的 Docker 全部基础知识。就这么简单<br>顺便一提，在 Docker 中，我们通常称你当前使用的真实操作系统为“宿主机”(Host)</p>
-
-        <h2 id="写个-vue-node-的案例实战下"   >
-          <a href="#写个-vue-node-的案例实战下" class="heading-link"><i class="fas fa-link"></i></a><a href="#写个-vue-node-的案例实战下" class="headerlink" title="写个 vue+node 的案例实战下"></a>写个 vue+node 的案例实战下</h2>
-      <p><strong>目录结构</strong></p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">├── vue_docker    <span class="comment">//vue项目</span></span><br><span class="line">│   ├── Dockerfile</span><br><span class="line">│   ├── README.md</span><br><span class="line">│   ├── babel.config.js</span><br><span class="line">│   ├── dist</span><br><span class="line">│   │   ├── css</span><br><span class="line">│   │   ├── favicon.ico</span><br><span class="line">│   │   ├── img</span><br><span class="line">│   │   ├── index.html</span><br><span class="line">│   │   └── js</span><br><span class="line">│   ├── docker-compose.debug.yml</span><br><span class="line">│   ├── docker-compose.yml</span><br><span class="line">│   ├── nginx             <span class="comment">//nginx配置信息</span></span><br><span class="line">│   │   └── <span class="keyword">default</span>.conf</span><br><span class="line">│   ├── package.json</span><br><span class="line">│   ├── public</span><br><span class="line">│   │   ├── favicon.ico</span><br><span class="line">│   │   └── index.html</span><br><span class="line">│   ├── src</span><br><span class="line">│   │   ├── App.vue</span><br><span class="line">│   │   ├── assets</span><br><span class="line">│   │   ├── components</span><br><span class="line">│   │   ├── main.js</span><br><span class="line">│   │   ├── router</span><br><span class="line">│   │   └── views</span><br><span class="line">│   └── yarn.lock</span><br><span class="line">└── vue_docker_server   <span class="comment">//node项目</span></span><br><span class="line">    ├── Dockerfile</span><br><span class="line">    ├── docker-compose.debug.yml</span><br><span class="line">    ├── docker-compose.yml</span><br><span class="line">    ├── package.json</span><br><span class="line">    ├── server.js</span><br><span class="line">    ├── test.txt</span><br><span class="line">    └── yarn.lock</span><br></pre></td></tr></table></div></figure>
-
-        <h3 id="部署-vue"   >
-          <a href="#部署-vue" class="heading-link"><i class="fas fa-link"></i></a><a href="#部署-vue" class="headerlink" title="部署 vue"></a>部署 vue</h3>
-      <p>过程省略了写过 vue 的都知道…</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn build</span><br></pre></td></tr></table></div></figure>
+<h2 id="写个-vue-node-的案例实战下"><a href="#写个-vue-node-的案例实战下" class="headerlink" title="写个 vue+node 的案例实战下"></a>写个 vue+node 的案例实战下</h2><p><strong>目录结构</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">├── vue_docker    <span class="comment">//vue项目</span></span><br><span class="line">│   ├── Dockerfile</span><br><span class="line">│   ├── README.md</span><br><span class="line">│   ├── babel.config.js</span><br><span class="line">│   ├── dist</span><br><span class="line">│   │   ├── css</span><br><span class="line">│   │   ├── favicon.ico</span><br><span class="line">│   │   ├── img</span><br><span class="line">│   │   ├── index.html</span><br><span class="line">│   │   └── js</span><br><span class="line">│   ├── docker-compose.debug.yml</span><br><span class="line">│   ├── docker-compose.yml</span><br><span class="line">│   ├── nginx             <span class="comment">//nginx配置信息</span></span><br><span class="line">│   │   └── <span class="keyword">default</span>.conf</span><br><span class="line">│   ├── package.json</span><br><span class="line">│   ├── public</span><br><span class="line">│   │   ├── favicon.ico</span><br><span class="line">│   │   └── index.html</span><br><span class="line">│   ├── src</span><br><span class="line">│   │   ├── App.vue</span><br><span class="line">│   │   ├── assets</span><br><span class="line">│   │   ├── components</span><br><span class="line">│   │   ├── main.js</span><br><span class="line">│   │   ├── router</span><br><span class="line">│   │   └── views</span><br><span class="line">│   └── yarn.lock</span><br><span class="line">└── vue_docker_server   <span class="comment">//node项目</span></span><br><span class="line">    ├── Dockerfile</span><br><span class="line">    ├── docker-compose.debug.yml</span><br><span class="line">    ├── docker-compose.yml</span><br><span class="line">    ├── package.json</span><br><span class="line">    ├── server.js</span><br><span class="line">    ├── test.txt</span><br><span class="line">    └── yarn.lock</span><br></pre></td></tr></table></figure>
+<h3 id="部署-vue"><a href="#部署-vue" class="headerlink" title="部署 vue"></a>部署 vue</h3><p>过程省略了写过 vue 的都知道…</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn build</span><br></pre></td></tr></table></figure>
 <p><img src="http://book.52react.cn/20191231220957.png" alt=""></p>
-
-        <h3 id="部署-node"   >
-          <a href="#部署-node" class="heading-link"><i class="fas fa-link"></i></a><a href="#部署-node" class="headerlink" title="部署 node"></a>部署 node</h3>
-      <p>创建 server.js</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">&quot;koa&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&quot;koa-router&quot;</span>)();</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&quot;koa-bodyparser&quot;</span>);</span><br><span class="line">app.use(bodyParser());</span><br><span class="line">app.use(router.routes());</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">&quot;/&quot;</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.response.body = <span class="string">&quot;hello,word&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">&quot;/api/json&quot;</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.body = &#123;</span><br><span class="line">    code: <span class="number">0</span>,</span><br><span class="line">    data: <span class="string">&quot;This is message from node container&quot;</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="number">8000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;http://localhost:8000&quot;</span>);</span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="部署-nginx-config-配置文件"   >
-          <a href="#部署-nginx-config-配置文件" class="heading-link"><i class="fas fa-link"></i></a><a href="#部署-nginx-config-配置文件" class="headerlink" title="部署 nginx config 配置文件"></a>部署 nginx config 配置文件</h4>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//路径:/nginx/default.conf/</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen       <span class="number">80</span>;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    access_log  /<span class="keyword">var</span>/log/nginx/host.access.log  main;</span><br><span class="line">    error_log  /<span class="keyword">var</span>/log/nginx/error.log  error;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        # 这个是nginx的默认文件路径</span><br><span class="line">        # root   /usr/share/nginx/html;</span><br><span class="line">        # 自定义的nginx显示路径</span><br><span class="line">        root   /home/web/app;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	# 代理以 api 为前缀的请求</span><br><span class="line">	 location ~^/api &#123;</span><br><span class="line">			proxy_pass http:<span class="comment">//192.168.8.93:8000;</span></span><br><span class="line">			proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">			proxy_set_header Host $http_host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    #error_page  <span class="number">404</span>              /<span class="number">404.</span>html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        # root   /usr/share/nginx/html;</span><br><span class="line">        root   /home/web/app;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="docker-二种启动模式"   >
-          <a href="#docker-二种启动模式" class="heading-link"><i class="fas fa-link"></i></a><a href="#docker-二种启动模式" class="headerlink" title="docker 二种启动模式"></a>docker 二种启动模式</h2>
-      
-        <h3 id="Dockerfile-启动"   >
-          <a href="#Dockerfile-启动" class="heading-link"><i class="fas fa-link"></i></a><a href="#Dockerfile-启动" class="headerlink" title="Dockerfile 启动"></a>Dockerfile 启动</h3>
-      <p>在 vue 项目根目录创建 Dockerfile 文件配置如下</p>
-<figure class="highlight gradle"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> nginx</span><br><span class="line"><span class="keyword">COPY</span> dist<span class="regexp">/ /u</span>sr<span class="regexp">/share/</span>nginx<span class="regexp">/html/</span></span><br><span class="line"><span class="keyword">COPY</span> nginx<span class="regexp">/default.conf /</span>etc<span class="regexp">/nginx/</span>conf.d/<span class="keyword">default</span>.conf</span><br></pre></td></tr></table></div></figure>
+<h3 id="部署-node"><a href="#部署-node" class="headerlink" title="部署 node"></a>部署 node</h3><p>创建 server.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">&quot;koa&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">&quot;koa-router&quot;</span>)();</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&quot;koa-bodyparser&quot;</span>);</span><br><span class="line">app.use(bodyParser());</span><br><span class="line">app.use(router.routes());</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">&quot;/&quot;</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.response.body = <span class="string">&quot;hello,word&quot;</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">&quot;/api/json&quot;</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  ctx.body = &#123;</span><br><span class="line">    code: <span class="number">0</span>,</span><br><span class="line">    data: <span class="string">&quot;This is message from node container&quot;</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="number">8000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;http://localhost:8000&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="部署-nginx-config-配置文件"><a href="#部署-nginx-config-配置文件" class="headerlink" title="部署 nginx config 配置文件"></a>部署 nginx config 配置文件</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//路径:/nginx/default.conf/</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen       <span class="number">80</span>;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    access_log  /<span class="keyword">var</span>/log/nginx/host.access.log  main;</span><br><span class="line">    error_log  /<span class="keyword">var</span>/log/nginx/error.log  error;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        # 这个是nginx的默认文件路径</span><br><span class="line">        # root   /usr/share/nginx/html;</span><br><span class="line">        # 自定义的nginx显示路径</span><br><span class="line">        root   /home/web/app;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	# 代理以 api 为前缀的请求</span><br><span class="line">	 location ~^/api &#123;</span><br><span class="line">			proxy_pass http:<span class="comment">//192.168.8.93:8000;</span></span><br><span class="line">			proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">			proxy_set_header Host $http_host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    #error_page  <span class="number">404</span>              /<span class="number">404.</span>html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        # root   /usr/share/nginx/html;</span><br><span class="line">        root   /home/web/app;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="docker-二种启动模式"><a href="#docker-二种启动模式" class="headerlink" title="docker 二种启动模式"></a>docker 二种启动模式</h2><h3 id="Dockerfile-启动"><a href="#Dockerfile-启动" class="headerlink" title="Dockerfile 启动"></a>Dockerfile 启动</h3><p>在 vue 项目根目录创建 Dockerfile 文件配置如下</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> nginx</span><br><span class="line"><span class="keyword">COPY</span> dist<span class="regexp">/ /u</span>sr<span class="regexp">/share/</span>nginx<span class="regexp">/html/</span></span><br><span class="line"><span class="keyword">COPY</span> nginx<span class="regexp">/default.conf /</span>etc<span class="regexp">/nginx/</span>conf.d/<span class="keyword">default</span>.conf</span><br></pre></td></tr></table></figure>
 <ol>
 <li>自定义构建镜像的时候基于<code>Dockerfile</code>来构建。</li>
 <li>FROM nginx 命令的意思该镜像是基于 <code>nginx:latest</code> 镜像而构建的。</li>
@@ -75,397 +248,272 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 <li>COPY nginx/default.conf /etc/nginx/conf.d/default.conf 命令的意思是将 nginx 目录下的 default.conf 复制到 etc/nginx/conf.d/default.conf，用本地的 default.conf 配置来替换 nginx 镜像里的默认配置。</li>
 </ol>
 <p><strong>执行命令</strong></p>
-<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t vuenginxcontainer .</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t vuenginxcontainer .</span><br></pre></td></tr></table></figure>
 <p><strong><code>-t</code> 是给镜像命名 <code>.</code>是基于当前目录的 Dockerfile 来构建镜像</strong></p>
-<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image ls | grep vuenginxcontainer</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image ls | grep vuenginxcontainer</span><br></pre></td></tr></table></figure>
 <p>到此时我们的 vue 应用镜像 vuenginxcontainer 已经成功创建。接下来，我们基于该镜像启动一个 docker 容器。</p>
 <p>基于 vuenginxcontainer 镜像启动容器，运行命令：</p>
-<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p <span class="number">3000</span>:<span class="number">80</span> \</span><br><span class="line">-d --name vueApp \</span><br><span class="line">vuenginxcontainer</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p <span class="number">3000</span>:<span class="number">80</span> \</span><br><span class="line">-d --name vueApp \</span><br><span class="line">vuenginxcontainer</span><br></pre></td></tr></table></figure>
 <ol>
 <li><code>docker run</code> 基于镜像启动一个容器</li>
 <li><code>-p 3000:80</code> 端口映射，将宿主的 3000 端口映射到容器的 80 端口</li>
 <li><code>-d</code> 后台方式运行</li>
 <li><code>--name</code> 容器名 查看 docker 进程</li>
 </ol>
-<p><code>docker ps</code>可以发现名为 vueApp 的容器已经运行起来。此时访问 <span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://localhost:3000" >http://localhost:3000</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 应该就能访问到该 vue 应用</p>
-
-        <h4 id="node-docker-部署"   >
-          <a href="#node-docker-部署" class="heading-link"><i class="fas fa-link"></i></a><a href="#node-docker-部署" class="headerlink" title="node_docker 部署"></a>node_docker 部署</h4>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM node</span><br><span class="line"></span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line"></span><br><span class="line">COPY package*.json ./</span><br><span class="line"></span><br><span class="line">RUN npm install</span><br><span class="line"></span><br><span class="line">COPY . .</span><br><span class="line"></span><br><span class="line">EXPOSE <span class="number">8080</span></span><br><span class="line">CMD [ <span class="string">&quot;npm&quot;</span>, <span class="string">&quot;start&quot;</span> ]</span><br></pre></td></tr></table></div></figure>
+<p><code>docker ps</code>可以发现名为 vueApp 的容器已经运行起来。此时访问 <a class="link"   target="_blank" rel="noopener" href="http://localhost:3000" >http://localhost:3000<i class="fas fa-external-link-alt"></i></a> 应该就能访问到该 vue 应用</p>
+<h4 id="node-docker-部署"><a href="#node-docker-部署" class="headerlink" title="node_docker 部署"></a>node_docker 部署</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM node</span><br><span class="line"></span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line"></span><br><span class="line">COPY package*.json ./</span><br><span class="line"></span><br><span class="line">RUN npm install</span><br><span class="line"></span><br><span class="line">COPY . .</span><br><span class="line"></span><br><span class="line">EXPOSE <span class="number">8080</span></span><br><span class="line">CMD [ <span class="string">&quot;npm&quot;</span>, <span class="string">&quot;start&quot;</span> ]</span><br></pre></td></tr></table></figure>
 <p><strong>执行</strong></p>
-<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t nodewebserver .</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t nodewebserver .</span><br></pre></td></tr></table></figure>
 <p><strong>启动</strong></p>
-<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p <span class="number">5000</span>:<span class="number">8080</span> \</span><br><span class="line">-d --name nodeserver \</span><br><span class="line">nodewebserver</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p <span class="number">5000</span>:<span class="number">8080</span> \</span><br><span class="line">-d --name nodeserver \</span><br><span class="line">nodewebserver</span><br></pre></td></tr></table></figure>
 <p><img src="http://book.52react.cn/20200102132305.png" alt=""></p>
-
-        <h4 id="docker-compose-启动"   >
-          <a href="#docker-compose-启动" class="heading-link"><i class="fas fa-link"></i></a><a href="#docker-compose-启动" class="headerlink" title="docker-compose 启动"></a>docker-compose 启动</h4>
-      
-        <h5 id="vue-项目-docker-compose-配置"   >
-          <a href="#vue-项目-docker-compose-配置" class="heading-link"><i class="fas fa-link"></i></a><a href="#vue-项目-docker-compose-配置" class="headerlink" title="vue 项目 docker-compose 配置"></a>vue 项目 docker-compose 配置</h5>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&quot;2&quot;</span></span><br><span class="line">services:</span><br><span class="line">  # 服务名称</span><br><span class="line">  nginx:</span><br><span class="line">    # 镜像:版本</span><br><span class="line">    image: nginx</span><br><span class="line">    # 映射容器80端口到本地80端口</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;3000:80&quot;</span></span><br><span class="line">    # 数据卷 映射本地文件到容器</span><br><span class="line">    volumes:</span><br><span class="line">      # 映射nginx.conf文件到容器的/etc/nginx/conf.d目录并覆盖default.conf文件</span><br><span class="line">      - ./nginx/<span class="keyword">default</span>.conf:<span class="regexp">/etc/</span>nginx/conf.d/<span class="keyword">default</span>.conf</span><br><span class="line">      # 映射build文件夹到容器的/usr/share/nginx/html文件夹与config中的root路径一致</span><br><span class="line">      - ./dist:<span class="regexp">/home/</span>web/app</span><br><span class="line">    # 覆盖容器启动后默认执行的命令。</span><br><span class="line">    command: <span class="regexp">/bin/</span>bash -c <span class="string">&quot;nginx -g &#x27;daemon off;&#x27;&quot;</span></span><br></pre></td></tr></table></div></figure>
+<h4 id="docker-compose-启动"><a href="#docker-compose-启动" class="headerlink" title="docker-compose 启动"></a>docker-compose 启动</h4><h5 id="vue-项目-docker-compose-配置"><a href="#vue-项目-docker-compose-配置" class="headerlink" title="vue 项目 docker-compose 配置"></a>vue 项目 docker-compose 配置</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&quot;2&quot;</span></span><br><span class="line">services:</span><br><span class="line">  # 服务名称</span><br><span class="line">  nginx:</span><br><span class="line">    # 镜像:版本</span><br><span class="line">    image: nginx</span><br><span class="line">    # 映射容器80端口到本地80端口</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;3000:80&quot;</span></span><br><span class="line">    # 数据卷 映射本地文件到容器</span><br><span class="line">    volumes:</span><br><span class="line">      # 映射nginx.conf文件到容器的/etc/nginx/conf.d目录并覆盖default.conf文件</span><br><span class="line">      - ./nginx/<span class="keyword">default</span>.conf:<span class="regexp">/etc/</span>nginx/conf.d/<span class="keyword">default</span>.conf</span><br><span class="line">      # 映射build文件夹到容器的/usr/share/nginx/html文件夹与config中的root路径一致</span><br><span class="line">      - ./dist:<span class="regexp">/home/</span>web/app</span><br><span class="line">    # 覆盖容器启动后默认执行的命令。</span><br><span class="line">    command: <span class="regexp">/bin/</span>bash -c <span class="string">&quot;nginx -g &#x27;daemon off;&#x27;&quot;</span></span><br></pre></td></tr></table></figure>
 <p>启动</p>
-<figure class="highlight awk"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>关闭</span><br><span class="line">docker-compose down</span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="node-项目-docker-compose-配置"   >
-          <a href="#node-项目-docker-compose-配置" class="heading-link"><i class="fas fa-link"></i></a><a href="#node-项目-docker-compose-配置" class="headerlink" title="node 项目 docker-compose 配置"></a>node 项目 docker-compose 配置</h4>
-      <figure class="highlight"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&quot;3&quot;</span></span><br><span class="line">services:</span><br><span class="line">  web:</span><br><span class="line">    image: node:<span class="number">10.13</span>-alpine</span><br><span class="line">    user: node</span><br><span class="line">    working_dir: <span class="regexp">/home/</span>node/app</span><br><span class="line">    environment:</span><br><span class="line">      - PORT=<span class="number">8000</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./:/home/node/app # 将本地目录映射到容器内</span><br><span class="line">    command: [&quot;node&quot;, &quot;server.js&quot;] # 运行命令</span><br><span class="line">    ports:</span><br><span class="line">      - 8000:8000 # 本地端口:容器端口</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>关闭</span><br><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+<h4 id="node-项目-docker-compose-配置"><a href="#node-项目-docker-compose-配置" class="headerlink" title="node 项目 docker-compose 配置"></a>node 项目 docker-compose 配置</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">&quot;3&quot;</span></span><br><span class="line">services:</span><br><span class="line">  web:</span><br><span class="line">    image: node:<span class="number">10.13</span>-alpine</span><br><span class="line">    user: node</span><br><span class="line">    working_dir: <span class="regexp">/home/</span>node/app</span><br><span class="line">    environment:</span><br><span class="line">      - PORT=<span class="number">8000</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./:/home/node/app # 将本地目录映射到容器内</span><br><span class="line">    command: [&quot;node&quot;, &quot;server.js&quot;] # 运行命令</span><br><span class="line">    ports:</span><br><span class="line">      - 8000:8000 # 本地端口:容器端口</span><br></pre></td></tr></table></figure>
 <p>启动</p>
-<figure class="highlight awk"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>关闭</span><br><span class="line">docker-compose down</span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="跨域转发"   >
-          <a href="#跨域转发" class="heading-link"><i class="fas fa-link"></i></a><a href="#跨域转发" class="headerlink" title="跨域转发"></a>跨域转发</h4>
-      <p>想要将 vueApp 容器 上的请求转发到 nodeserver 容器上。首先需要知道 nodeserver 容器的 ip 地址和端口，目前已知 nodeserver 容器内部服务监听在 8080 端口，还需要知道 ip 即可。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>关闭</span><br><span class="line">docker-compose down</span><br></pre></td></tr></table></figure>
+<h4 id="跨域转发"><a href="#跨域转发" class="headerlink" title="跨域转发"></a>跨域转发</h4><p>想要将 vueApp 容器 上的请求转发到 nodeserver 容器上。首先需要知道 nodeserver 容器的 ip 地址和端口，目前已知 nodeserver 容器内部服务监听在 8080 端口，还需要知道 ip 即可。</p>
 <p>如何查看容器地址?</p>
 <p><code>docker inspect 02277acc3efc</code></p>
-<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 代理以 api 为前缀的请求</span><br><span class="line">  location ~^/api &#123;</span><br><span class="line">         proxy_pass http:<span class="comment">//192.168.8.93:8000;</span></span><br><span class="line">         proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">         proxy_set_header Host $http_host;</span><br><span class="line">         proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 代理以 api 为前缀的请求</span><br><span class="line">  location ~^/api &#123;</span><br><span class="line">         proxy_pass http:<span class="comment">//192.168.8.93:8000;</span></span><br><span class="line">         proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">         proxy_set_header Host $http_host;</span><br><span class="line">         proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p><img src="http://book.52react.cn/20191231222101.png" alt=""></p>
-
-        <h2 id="docker-compose-yml-配置详解"   >
-          <a href="#docker-compose-yml-配置详解" class="heading-link"><i class="fas fa-link"></i></a><a href="#docker-compose-yml-配置详解" class="headerlink" title="docker-compose.yml 配置详解"></a>docker-compose.yml 配置详解</h2>
-      <p>每个 docker-compose.yml 必须定义 image 或者 build 中的一个，其它的是可选的。</p>
+<h2 id="docker-compose-yml-配置详解"><a href="#docker-compose-yml-配置详解" class="headerlink" title="docker-compose.yml 配置详解"></a>docker-compose.yml 配置详解</h2><p>每个 docker-compose.yml 必须定义 image 或者 build 中的一个，其它的是可选的。</p>
 <p>image<br>指定镜像 tag 或者 ID。示例：</p>
-<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">image: redis 或者 node 或者 nginx</span><br><span class="line">image: ubuntu:<span class="number">14.04</span></span><br><span class="line">image: tutum/influxdb</span><br><span class="line">image: example-registry.com:<span class="number">4000</span>/postgresql</span><br><span class="line">image: a4bc65fd</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">image: redis 或者 node 或者 nginx</span><br><span class="line">image: ubuntu:<span class="number">14.04</span></span><br><span class="line">image: tutum/influxdb</span><br><span class="line">image: example-registry.com:<span class="number">4000</span>/postgresql</span><br><span class="line">image: a4bc65fd</span><br></pre></td></tr></table></figure>
+<h3 id="脚本执行"><a href="#脚本执行" class="headerlink" title="脚本执行"></a>脚本执行</h3><p>内容只是把以上命令整合到一起执行：</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份原代码</span></span><br><span class="line">tar -zcvf gentle-vue.tar ./gentle-vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除原代码文件夹</span></span><br><span class="line">rm -rf gentle-vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉取代码</span></span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/FJ_WoMenDeShiJie/gentle-vue.git</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[32m\n代码拉取\n\033[0m&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝 node_modules</span></span><br><span class="line">cp ./node.tar ./gentle-vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># build 打包 vue 项目，生成 dist 文件夹</span></span><br><span class="line"><span class="built_in">cd</span> ./gentle-vue</span><br><span class="line">tar -zxvf node.tar</span><br><span class="line">npm run build</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[32m\nvue项目打包完成\n\033[0m&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除原镜像</span></span><br><span class="line">docker rmi gentle-vue &amp;&gt; /dev/null</span><br><span class="line"><span class="built_in">echo</span>  -e <span class="string">&quot;\033[32m\n删除原镜像文件\n\033[0m&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝 dockerfile 到工程目录下</span></span><br><span class="line">cp ../dockerfile ./</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建镜像</span></span><br><span class="line">docker build -t gentle-vue .</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[32m\n新镜像构建成功\n\033[0m&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除原容器</span></span><br><span class="line">docker rm -f gentle-vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动容器</span></span><br><span class="line">docker run -p 3000:80 -d --name gentle-vue gentle-vue</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[32m\n前端工程部署完成\n\033[0m&quot;</span></span><br><span class="line">这样部署就方便多了。</span><br></pre></td></tr></table></figure>
+<h2 id="Docker-的常用命令"><a href="#Docker-的常用命令" class="headerlink" title="Docker 的常用命令"></a>Docker 的常用命令</h2><h3 id="镜像常用命令"><a href="#镜像常用命令" class="headerlink" title="镜像常用命令"></a>镜像常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker pull [镜像名称:版本] 拉取镜像</span><br><span class="line">docker images  镜像列表</span><br><span class="line">docker rmi [镜像名称:版本] 删除镜像</span><br><span class="line">docker history [镜像名称] 镜像操作记录</span><br><span class="line">docker tag [镜像名称:版本][新镜像名称:新版本]</span><br><span class="line">docker inspect [镜像名称:版本] 查看镜像详细</span><br><span class="line">docker search [关键字] 搜索镜像</span><br><span class="line">docker login 镜像登陆</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="容器常用命令"><a href="#容器常用命令" class="headerlink" title="容器常用命令"></a>容器常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a 容器列表(所有容器)</span><br><span class="line">docker ps  查看所有(运行的)容器</span><br><span class="line">docker exec -ti &lt;id&gt; bash  以 bash 命令进入容器内</span><br><span class="line">docker run -ti --name [容器名称][镜像名称:版本] bash 启动容器并进入</span><br><span class="line">docker logs 查看容器日志</span><br><span class="line">docker top &lt;container_id&gt; 查看容器最近的一个进程</span><br><span class="line">docker run -ti --name [容器名称] -p 8080:80 [镜像名称:版本] bash  端口映射</span><br><span class="line">docker rm &lt;container_id&gt; 删除容器</span><br><span class="line">docker stop &lt;container_id&gt; 停止容器</span><br><span class="line">docker start &lt;container_id&gt; 开启容器</span><br><span class="line">docker restart &lt;container_id&gt; 重启容器</span><br><span class="line">docker inspect &lt;container_id&gt; 查看容器详情</span><br><span class="line">docker commit [容器名称] my_image:v1.0  容器提交为新的镜像</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/LCUFcIAfyiRmFPsYjyjYnQ" >前端工程师学 Docker ？ 看这篇就够了<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/AcjsHdg8ivgXN7FMA7jeYg" >Docker 搭建你的第一个 Node 项目到服务器<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/axetroy/blog/issues/178" >Docker 打造超溜的前端环境<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://beginor.github.io/2017/06/08/use-compose-instead-of-run.html" >使用 docker-compose 替代 docker run<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/" >官方文档<i class="fas fa-external-link-alt"></i></a></p>
 
-        <h3 id="脚本执行"   >
-          <a href="#脚本执行" class="heading-link"><i class="fas fa-link"></i></a><a href="#脚本执行" class="headerlink" title="脚本执行"></a>脚本执行</h3>
-      <p>内容只是把以上命令整合到一起执行：</p>
-<figure class="highlight zsh"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份原代码</span></span><br><span class="line">tar -zcvf gentle-vue.tar ./gentle-vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除原代码文件夹</span></span><br><span class="line">rm -rf gentle-vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉取代码</span></span><br><span class="line">git <span class="built_in">clone</span> https://gitee.com/FJ_WoMenDeShiJie/gentle-vue.git</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[32m\n代码拉取\n\033[0m&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝 node_modules</span></span><br><span class="line">cp ./node.tar ./gentle-vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># build 打包 vue 项目，生成 dist 文件夹</span></span><br><span class="line"><span class="built_in">cd</span> ./gentle-vue</span><br><span class="line">tar -zxvf node.tar</span><br><span class="line">npm run build</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[32m\nvue项目打包完成\n\033[0m&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除原镜像</span></span><br><span class="line">docker rmi gentle-vue &amp;&gt; /dev/null</span><br><span class="line"><span class="built_in">echo</span>  -e <span class="string">&quot;\033[32m\n删除原镜像文件\n\033[0m&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝 dockerfile 到工程目录下</span></span><br><span class="line">cp ../dockerfile ./</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建镜像</span></span><br><span class="line">docker build -t gentle-vue .</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[32m\n新镜像构建成功\n\033[0m&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除原容器</span></span><br><span class="line">docker rm -f gentle-vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动容器</span></span><br><span class="line">docker run -p 3000:80 -d --name gentle-vue gentle-vue</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[32m\n前端工程部署完成\n\033[0m&quot;</span></span><br><span class="line">这样部署就方便多了。</span><br></pre></td></tr></table></div></figure>
+        </div>
 
-        <h2 id="Docker-的常用命令"   >
-          <a href="#Docker-的常用命令" class="heading-link"><i class="fas fa-link"></i></a><a href="#Docker-的常用命令" class="headerlink" title="Docker 的常用命令"></a>Docker 的常用命令</h2>
-      
-        <h3 id="镜像常用命令"   >
-          <a href="#镜像常用命令" class="heading-link"><i class="fas fa-link"></i></a><a href="#镜像常用命令" class="headerlink" title="镜像常用命令"></a>镜像常用命令</h3>
-      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker pull [镜像名称:版本] 拉取镜像</span><br><span class="line">docker images  镜像列表</span><br><span class="line">docker rmi [镜像名称:版本] 删除镜像</span><br><span class="line">docker history [镜像名称] 镜像操作记录</span><br><span class="line">docker tag [镜像名称:版本][新镜像名称:新版本]</span><br><span class="line">docker inspect [镜像名称:版本] 查看镜像详细</span><br><span class="line">docker search [关键字] 搜索镜像</span><br><span class="line">docker login 镜像登陆</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Docker 初体验打造超溜的前端环境</li>
+        <li>本文作者：Mariogogogo</li>
+        <li>创建时间：2019-12-31 00:00:00</li>
+        <li>
+            本文链接：http://www.h5web.cc/2019/12/31/Docker初体验/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
 
-        <h3 id="容器常用命令"   >
-          <a href="#容器常用命令" class="heading-link"><i class="fas fa-link"></i></a><a href="#容器常用命令" class="headerlink" title="容器常用命令"></a>容器常用命令</h3>
-      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a 容器列表(所有容器)</span><br><span class="line">docker ps  查看所有(运行的)容器</span><br><span class="line">docker exec -ti &lt;id&gt; bash  以 bash 命令进入容器内</span><br><span class="line">docker run -ti --name [容器名称][镜像名称:版本] bash 启动容器并进入</span><br><span class="line">docker logs 查看容器日志</span><br><span class="line">docker top &lt;container_id&gt; 查看容器最近的一个进程</span><br><span class="line">docker run -ti --name [容器名称] -p 8080:80 [镜像名称:版本] bash  端口映射</span><br><span class="line">docker rm &lt;container_id&gt; 删除容器</span><br><span class="line">docker stop &lt;container_id&gt; 停止容器</span><br><span class="line">docker start &lt;container_id&gt; 开启容器</span><br><span class="line">docker restart &lt;container_id&gt; 重启容器</span><br><span class="line">docker inspect &lt;container_id&gt; 查看容器详情</span><br><span class="line">docker commit [容器名称] my_image:v1.0  容器提交为新的镜像</span><br></pre></td></tr></table></div></figure>
+            </div>
+        
 
-        <h2 id="参考"   >
-          <a href="#参考" class="heading-link"><i class="fas fa-link"></i></a><a href="#参考" class="headerlink" title="参考"></a>参考</h2>
-      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/LCUFcIAfyiRmFPsYjyjYnQ" >前端工程师学 Docker ？ 看这篇就够了</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/AcjsHdg8ivgXN7FMA7jeYg" >Docker 搭建你的第一个 Node 项目到服务器</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://github.com/axetroy/blog/issues/178" >Docker 打造超溜的前端环境</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://beginor.github.io/2017/06/08/use-compose-instead-of-run.html" >使用 docker-compose 替代 docker run</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-<p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/" >官方文档</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2019/12/31/Docker%E5%88%9D%E4%BD%93%E9%AA%8C/">http://mariogogogo.github.io/2019/12/31/Docker%E5%88%9D%E4%BD%93%E9%AA%8C/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/Docker/">Docker</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-CSS%E7%9B%B8%E5%85%B3/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">前端面试-CSS 相关</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2019/12/15/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AE%9E%E7%8E%B0/"><span class="paginator-prev__text">前端路由原理解析和实现</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E4%B8%AA-vue-node-%E7%9A%84%E6%A1%88%E4%BE%8B%E5%AE%9E%E6%88%98%E4%B8%8B"><span class="toc-number">1.</span> <span class="toc-text">
-          写个 vue+node 的案例实战下</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2-vue"><span class="toc-number">1.1.</span> <span class="toc-text">
-          部署 vue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2-node"><span class="toc-number">1.2.</span> <span class="toc-text">
-          部署 node</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2-nginx-config-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.1.</span> <span class="toc-text">
-          部署 nginx config 配置文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E4%BA%8C%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">
-          docker 二种启动模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile-%E5%90%AF%E5%8A%A8"><span class="toc-number">2.1.</span> <span class="toc-text">
-          Dockerfile 启动</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#node-docker-%E9%83%A8%E7%BD%B2"><span class="toc-number">2.1.1.</span> <span class="toc-text">
-          node_docker 部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-compose-%E5%90%AF%E5%8A%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text">
-          docker-compose 启动</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#vue-%E9%A1%B9%E7%9B%AE-docker-compose-%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">
-          vue 项目 docker-compose 配置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#node-%E9%A1%B9%E7%9B%AE-docker-compose-%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.3.</span> <span class="toc-text">
-          node 项目 docker-compose 配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F%E8%BD%AC%E5%8F%91"><span class="toc-number">2.1.4.</span> <span class="toc-text">
-          跨域转发</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-compose-yml-%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">
-          docker-compose.yml 配置详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C"><span class="toc-number">3.1.</span> <span class="toc-text">
-          脚本执行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">
-          Docker 的常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">4.1.</span> <span class="toc-text">
-          镜像常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text">
-          容器常用命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">
-          参考</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
-  var isXML = true;
-  var search_path = 'search.xml';
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-CSS%E7%9B%B8%E5%85%B3/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">前端面试-CSS 相关</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/12/15/%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E7%9A%84%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90%E4%B8%8E%E5%AE%9E%E7%8E%B0/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">前端路由原理解析和实现</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-  if (!search_path) {
-    search_path = 'search.xml';
-  } else if (/json$/i.test(search_path)) {
-    isXML = false;
-  }
+        
+    </div>
+</div>
 
-  var path = '/' + search_path;
-  $.ajax({
-    url: path,
-    dataType: isXML ? 'xml' : 'json',
-    async: true,
-    success: function (res) {
-      var datas = isXML ? $('entry', res).map(function () {
-        // 将 XML 转为 JSON
-        return {
-          title: $('title', this).text(),
-          content: $('content', this).text(),
-          url: $('url', this).text()
-        };
-      }).get() : res;
-      var $input = $('.search-input input');
-      var $result = $('.search-results');
-      // 搜索对象（标题、内容）的权重，影响显示顺序
-      var WEIGHT = { title: 100, content: 1 };
-      var searchPost = function () {
-        var searchText = $input.val().toLowerCase().trim();
-        // 根据空白字符分隔关键字
-        var keywords = searchText.split(/[\s]+/);
-        // 搜索结果
-        var matchPosts = [];
 
-        // 有多个关键字时，将原文字整个保存下来
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        // 防止未输入字符时搜索
-        if (searchText.length > 0) {
-          datas.forEach(function (data) {
-            var isMatch  = false;
-            // 没有标题的文章使用预设的 i18n 变量代替
-            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
-            var titleLower = title && title.toLowerCase();
-            // 删除 HTML 标签 和 所有空白字符
-            var content = data.content && data.content.replace(/<[^>]+>/g, '');
-            var contentLower = content && content.toLowerCase();
-            // 删除重复的 /
-            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
-            // 标题中匹配到的关键词
-            var titleHitSlice = [];
-            // 内容中匹配到的关键词
-            var contentHitSlice = [];
+                
+            </div>
 
-            keywords.forEach(function (keyword) {
-              /**
-              * 获取匹配的关键词的索引
-              * @param {String} keyword 要匹配的关键字
-              * @param {String} text 原文字
-              * @param {Boolean} caseSensitive 是否区分大小写
-              * @param {Number} weight 匹配对象的权重。权重大的优先显示
-              * @return {Array}
-              */
-              function getIndexByword (word, text, caseSensitive, weight) {
-                if (!word || !text) {
-                  return [];
-                };
+        </div>
 
-                var startIndex = 0; // 每次匹配的开始索引
-                var index = -1;     // 匹配到的索引值
-                var result = [];    // 匹配结果
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Mariogogogo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
 
-                if (!caseSensitive) {
-                  word = word.toLowerCase();
-                  text = text.toLowerCase();
-                }
+        </div>
+    </div>
 
-                while((index = text.indexOf(word, startIndex)) !== -1) {
-                  var hasMatch = false;
-                  // 索引位置相同的关键词，保留长度较长的
-                  titleHitSlice.forEach(function (hit) {
-                    if (hit.index === index && hit.word.length < word.length) {
-                      hit.word = word;
-                      hasMatch = true;
-                    }
-                  });
-                  startIndex = index + word.length;
-                  !hasMatch && result.push({ index: index, word: word, weight: weight });
-                }
-                return result;
-              }
-              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
-              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
-            });
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
 
-            var hitTitle = titleHitSlice.length;
-            var hitContent = contentHitSlice.length;
+        <!-- go comment -->
+        
+    </ul>
+</div>
 
-            if (hitTitle > 0 || hitContent > 0) {
-              isMatch = true;
-            }
-            if (isMatch) {
-              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
-                // 按照匹配文字的索引的递增顺序排序
-                hit.sort(function (left, right) {
-                  return left.index - right.index;
-                });
-              });
-              /**
-              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
-              * @param {String} text 原文本
-              * @param {Array} hitSlice 匹配项的索引信息
-              * @param {Number} start 开始索引
-              * @param {Number} end 结束索引
-              * @return {String}
-              */
-              function highlightKeyword (text, hitSlice, start, end) {
-                if (!text || !hitSlice || !hitSlice.length) {
-                  return;
-                }
+        </div>
+    
 
-                var result = '';
-                var startIndex = start;
-                var endIndex = end;
-                hitSlice.forEach(function (hit) {
-                  if (hit.index < startIndex) {
-                    return;
-                  }
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-                  var hitWordEnd = hit.index + hit.word.length;
-                  result += text.slice(startIndex, hit.index);
-                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
-                  startIndex = hitWordEnd;
-                });
-                result += text.slice(startIndex, endIndex);
-                return result;
-              }
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-              var postData = {};
-              // 文章总的搜索权重
-              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
-              // 标记匹配关键词后的标题
-              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
-              // 标记匹配关键词后的内容
-              var postContent;
-              // 显示内容的长度
-              var SHOW_WORD_LENGTH = 200;
-              // 命中关键词前的字符显示长度
-              var SHOW_WORD_FRONT_LENGTH = 20;
-              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-              // 截取匹配的第一个字符，前后共 200 个字符来显示
-              if (contentHitSlice.length > 0) {
-                var firstIndex = contentHitSlice[0].index;
-                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
-                var end = firstIndex + SHOW_WORD_END_LENGTH;
-                postContent = highlightKeyword(content, contentHitSlice, start, end);
-              } else { // 未匹配到内容，直接截取前 200 个字符来显示
-                postContent = content.slice(0, SHOW_WORD_LENGTH);
-              }
-              postData.title = postTitle;
-              postData.content = postContent;
-              postData.url = postURL;
-              postData.weight = postWeight;
-              matchPosts.push(postData);
-            }
-          });
-        }
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
 
-        var resultInnerHtml = '';
-        if (matchPosts.length) {
-          // 按权重递增的顺序排序，使权重大的优先显示
-          matchPosts.sort(function (left, right) {
-            return right.weight - left.weight;
-          });
-          resultInnerHtml += '<ul>';
-          matchPosts.forEach(function (post) {
-            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
-            resultInnerHtml += post.title;
-            resultInnerHtml += '</a><div class="search-results-content">';
-            resultInnerHtml += post.content;
-            resultInnerHtml += '</div></li>';
-          });
-          resultInnerHtml += '</ul>';
-        } else {
-          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
-        }
-        $result.html(resultInnerHtml);
-      };
-      $input.on('input', searchPost);
-      $input.on('keyup', function (e) {
-        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
-          searchPost();
-        }
-      });
-    }
-  });
-}
+        <!-- rss -->
+        
 
-function closeSearch () {
-  $('body').css({ overflow: 'auto' });
-  $('.search-popup').css({ display: 'none' });
-  $('.search-mask').css({ display: 'none' });
-}
+        
 
-window.addEventListener('DOMContentLoaded', function () {
-  Stun.utils.pjaxReloadLocalSearch = function () {
-    $('.header-nav-search').on('click', function (e) {
-      e.stopPropagation();
-      $('body').css('overflow', 'hidden');
-      $('.search-popup')
-        .velocity('stop')
-        .velocity('transition.expandIn', {
-          duration: 300,
-          complete: function () {
-            $('.search-popup input').focus();
-          }
-        });
-      $('.search-mask')
-        .velocity('stop')
-        .velocity('transition.fadeIn', {
-          duration: 300
-        });
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
 
-      initSearch();
-    });
-    $('.search-mask, .search-close').on('click', function () {
-      closeSearch();
-    });
-    $(document).on('keydown', function (e) {
-      // Escape <=> 27
-      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
-        closeSearch();
-      }
-    });
-  };
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
-  Stun.utils.pjaxReloadLocalSearch();
-}, false);
+    </div>
 
-function safeOpenUrl(url) {
-  var newTab = window.open();
-  newTab.opener = null;
-  newTab.location = url;
-}
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E4%B8%AA-vue-node-%E7%9A%84%E6%A1%88%E4%BE%8B%E5%AE%9E%E6%88%98%E4%B8%8B"><span class="nav-number">1.</span> <span class="nav-text">写个 vue+node 的案例实战下</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2-vue"><span class="nav-number">1.1.</span> <span class="nav-text">部署 vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2-node"><span class="nav-number">1.2.</span> <span class="nav-text">部署 node</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2-nginx-config-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">部署 nginx config 配置文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-%E4%BA%8C%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">docker 二种启动模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile-%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.</span> <span class="nav-text">Dockerfile 启动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#node-docker-%E9%83%A8%E7%BD%B2"><span class="nav-number">2.1.1.</span> <span class="nav-text">node_docker 部署</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-compose-%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.2.</span> <span class="nav-text">docker-compose 启动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vue-%E9%A1%B9%E7%9B%AE-docker-compose-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">vue 项目 docker-compose 配置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#node-%E9%A1%B9%E7%9B%AE-docker-compose-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.3.</span> <span class="nav-text">node 项目 docker-compose 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F%E8%BD%AC%E5%8F%91"><span class="nav-number">2.1.4.</span> <span class="nav-text">跨域转发</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose-yml-%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">docker-compose.yml 配置详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C"><span class="nav-number">3.1.</span> <span class="nav-text">脚本执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">Docker 的常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">镜像常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">容器常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
 
-function extSearch(engine) {
-  var engines = {
-    google: 'https://www.google.com/search?q=',
-    bing: 'https://cn.bing.com/search?q=',
-    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
-  };
-  var host = window.location.host;
-  var query = $('.search-input input').val().toLowerCase().trim();
-  var uri = engines[engine] + query + ' site:' + host;
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
-  if (query) {
-    safeOpenUrl(uri);
-  } else {
-    Stun.utils.popAlert('warning', '请输入字符');
-  }
-}
 
-var assistSearchList = window.CONFIG.assistSearch;
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
-if (Array.isArray(assistSearchList)) {
-  assistSearchList.forEach(function (name) {
-    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
-      extSearch(name);
-    }, false);
-  });
-}</script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = 'nick,mail,link';
+    
 
-  guest_info = guest_info.split(',').filter(function(item) {
-    return GUEST_INFO.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#valine-container',
-    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
-    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
-    notify: true,
-    verify: true,
-    placeholder: '快去评论下吧',
-    avatar: 'mp',
-    meta: guest_info,
-    pageSize: '10' || 10,
-    visitor: false,
-    recordIP: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: window.location.pathname
-  });
-}
+</main>
 
-if (false) {
-  loadValine();
-} else {
-  window.addEventListener('DOMContentLoaded', loadValine, false);
-}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

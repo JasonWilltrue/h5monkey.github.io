@@ -1,47 +1,235 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="如何高效的存储和使用这些数据，让页面可以看起来不卡">
-<meta property="og:type" content="article">
-<meta property="og:title" content="理解SQL">
-<meta property="og:url" content="http://mariogogogo.github.io/2019/08/04/%E7%90%86%E8%A7%A3SQL/index.html">
-<meta property="og:site_name" content="Mario">
-<meta property="og:description" content="如何高效的存储和使用这些数据，让页面可以看起来不卡">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://book.52react.cn/20190810224204.png">
-<meta property="og:image" content="http://book.52react.cn/20190810230252.png">
-<meta property="og:image" content="http://book.52react.cn/20190810230323.png">
-<meta property="article:published_time" content="2019-08-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-16T09:07:07.000Z">
-<meta property="article:author" content="Codding">
-<meta property="article:tag" content="网络基础">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://book.52react.cn/20190810224204.png"><title>理解SQL | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2019/08/04/%E7%90%86%E8%A7%A3SQL/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: ["google","bing","baidu"],
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":true},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="好前端才分对错，成年人只分利弊">
+    <meta name="author" content="Mariogogogo">
+    
+    <title>
+        
+            理解SQL |
+        
+        Mario Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">理解SQL</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2019-08-04</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.3k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">7分</span></span></div></header><div class="post-body"><p>如何高效的存储和使用这些数据，让页面可以看起来不卡<br><a id="more"></a></p>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mariogogogo.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"1240px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
-        <h2 id="cookie与localStorage"   >
-          <a href="#cookie与localStorage" class="heading-link"><i class="fas fa-link"></i></a><a href="#cookie与localStorage" class="headerlink" title="cookie与localStorage"></a>cookie与localStorage</h2>
-      <div class="table-container"><table>
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mario Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">理解SQL</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Mariogogogo</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2019-08-04 00:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Web/">Web</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>如何高效的存储和使用这些数据，让页面可以看起来不卡<br><a id="more"></a></p>
+<h2 id="cookie与localStorage"><a href="#cookie与localStorage" class="headerlink" title="cookie与localStorage"></a>cookie与localStorage</h2><table>
 <thead>
 <tr>
 <th>cookie</th>
@@ -66,423 +254,259 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 <td>字符串方式存取</td>
 </tr>
 </tbody>
-</table></div>
-
-        <h2 id="webSQL"   >
-          <a href="#webSQL" class="heading-link"><i class="fas fa-link"></i></a><a href="#webSQL" class="headerlink" title="webSQL"></a>webSQL</h2>
-      
-        <h3 id="什么是关系型数据库？"   >
-          <a href="#什么是关系型数据库？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是关系型数据库？" class="headerlink" title="什么是关系型数据库？"></a>什么是关系型数据库？</h3>
-      <p>由一张张二维表组成的数据库</p>
-
-        <h3 id="什么是SQL呢？"   >
-          <a href="#什么是SQL呢？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是SQL呢？" class="headerlink" title="什么是SQL呢？"></a>什么是SQL呢？</h3>
-      <p>一种操作关系型的DB语言，支持创建表，插入表，修改，删除，查询<br>常见的关系型数据库有：<code>MySQL,SQLite,SQLSever,Oracle</code></p>
-
-        <h4 id="创建一个DB"   >
-          <a href="#创建一个DB" class="heading-link"><i class="fas fa-link"></i></a><a href="#创建一个DB" class="headerlink" title="创建一个DB"></a>创建一个DB</h4>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> db = <span class="built_in">window</span>.openDatabase(</span><br><span class="line">    <span class="string">&quot;order_test&quot;</span>,    <span class="xml">&lt;----数据库名称</span></span><br><span class="line">    &quot;1.0&quot;,           &lt;----版本</span><br><span class="line">    &quot;order map data&quot;,&lt;----描述</span><br><span class="line">    &quot;2*1024*1024&quot;    &lt;----可用空间</span><br><span class="line">)</span><br></pre></td></tr></table></div></figure>
+</table>
+<h2 id="webSQL"><a href="#webSQL" class="headerlink" title="webSQL"></a>webSQL</h2><h3 id="什么是关系型数据库？"><a href="#什么是关系型数据库？" class="headerlink" title="什么是关系型数据库？"></a>什么是关系型数据库？</h3><p>由一张张二维表组成的数据库</p>
+<h3 id="什么是SQL呢？"><a href="#什么是SQL呢？" class="headerlink" title="什么是SQL呢？"></a>什么是SQL呢？</h3><p>一种操作关系型的DB语言，支持创建表，插入表，修改，删除，查询<br>常见的关系型数据库有：<code>MySQL,SQLite,SQLSever,Oracle</code></p>
+<h4 id="创建一个DB"><a href="#创建一个DB" class="headerlink" title="创建一个DB"></a>创建一个DB</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> db = <span class="built_in">window</span>.openDatabase(</span><br><span class="line">    <span class="string">&quot;order_test&quot;</span>,    <span class="xml">&lt;----数据库名称</span></span><br><span class="line">    &quot;1.0&quot;,           &lt;----版本</span><br><span class="line">    &quot;order map data&quot;,&lt;----描述</span><br><span class="line">    &quot;2*1024*1024&quot;    &lt;----可用空间</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>返回一个<code>db对象</code></p>
-
-        <h4 id="创建表"   >
-          <a href="#创建表" class="heading-link"><i class="fas fa-link"></i></a><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table <span class="keyword">if</span> not exists order_data(order_id primary key,format_city,lat,lng,price,create_time)</span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="插入数据"   >
-          <a href="#插入数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h4>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into order_data values($&#123;order.orderId&#125;,<span class="string">&#x27;$&#123;order.format_city&#125;&#x27;</span>,$&#123;order.lat&#125;,$&#123;order.lng&#125; ...);</span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="主键唯一约束"   >
-          <a href="#主键唯一约束" class="heading-link"><i class="fas fa-link"></i></a><a href="#主键唯一约束" class="headerlink" title="主键唯一约束"></a>主键唯一约束</h4>
-      <p>一般我们认为主键是自动生成的，myslq可以指定某个整数字段为<code>auto_increment</code>;而webSQL不能指定，需要创建指定当前字段为integer<br><figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table student(id integer primary key,age,score)</span><br></pre></td></tr></table></div></figure></p>
-
-        <h4 id="Select查询"   >
-          <a href="#Select查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#Select查询" class="headerlink" title="Select查询"></a>Select查询</h4>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select format_city <span class="keyword">as</span> city,count(order_id) <span class="keyword">as</span> <span class="string">&#x27;count&#x27;</span>,sum(price) <span class="keyword">as</span> amount <span class="keyword">from</span> order_data by format_city order by date</span><br></pre></td></tr></table></div></figure>
+<h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table <span class="keyword">if</span> not exists order_data(order_id primary key,format_city,lat,lng,price,create_time)</span><br></pre></td></tr></table></figure>
+<h4 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into order_data values($&#123;order.orderId&#125;,<span class="string">&#x27;$&#123;order.format_city&#125;&#x27;</span>,$&#123;order.lat&#125;,$&#123;order.lng&#125; ...);</span><br></pre></td></tr></table></figure>
+<h4 id="主键唯一约束"><a href="#主键唯一约束" class="headerlink" title="主键唯一约束"></a>主键唯一约束</h4><p>一般我们认为主键是自动生成的，myslq可以指定某个整数字段为<code>auto_increment</code>;而webSQL不能指定，需要创建指定当前字段为integer<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table student(id integer primary key,age,score)</span><br></pre></td></tr></table></figure></p>
+<h4 id="Select查询"><a href="#Select查询" class="headerlink" title="Select查询"></a>Select查询</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select format_city <span class="keyword">as</span> city,count(order_id) <span class="keyword">as</span> <span class="string">&#x27;count&#x27;</span>,sum(price) <span class="keyword">as</span> amount <span class="keyword">from</span> order_data by format_city order by date</span><br></pre></td></tr></table></figure>
 <p>我们也可以查询某个order是否存在，判断满足动态更新的需求</p>
-<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select order_id <span class="keyword">from</span> order_data where order_id = $&#123;order.orderId&#125;</span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="建立索引"   >
-          <a href="#建立索引" class="heading-link"><i class="fas fa-link"></i></a><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h4>
-      
-        <h5 id="为什么要创建索引？"   >
-          <a href="#为什么要创建索引？" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么要创建索引？" class="headerlink" title="为什么要创建索引？"></a>为什么要创建索引？</h5>
-      <p>为了提高搜索效率，如果没有建立索引查询某个字段是否等于某个值的数据需要遍历所有的数据，查找复杂度<code>O(N)</code>,但是如果建立索引使用二叉查找树或者它的变种，查找复杂度变<code>O(logN)</code>,Mysql使用的<code>B+树</code>，另外字符串可以使用哈希变数字，字符串所以要比数字低效很多</p>
-
-        <h3 id="关系型数据库的优缺点"   >
-          <a href="#关系型数据库的优缺点" class="heading-link"><i class="fas fa-link"></i></a><a href="#关系型数据库的优缺点" class="headerlink" title="关系型数据库的优缺点"></a>关系型数据库的优缺点</h3>
-      
-        <h4 id="优点"   >
-          <a href="#优点" class="heading-link"><i class="fas fa-link"></i></a><a href="#优点" class="headerlink" title="优点"></a>优点</h4>
-      <p>1.支持复杂的查询，可以联表查询，表达式查询，嵌表查询</p>
-
-        <h4 id="缺点"   >
-          <a href="#缺点" class="heading-link"><i class="fas fa-link"></i></a><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4>
-      <p>1.不方便横向扩展，给数据库添加一个字段，如果数据库达到亿级，那么这个操作复杂性就很差了<br>2.海量数据SQL联表查询，性能会非常差<br>3.为了保持事务的一致特性，难以应对高并发</p>
-
-        <h2 id="非关系型数据库也叫NoSQL数据库"   >
-          <a href="#非关系型数据库也叫NoSQL数据库" class="heading-link"><i class="fas fa-link"></i></a><a href="#非关系型数据库也叫NoSQL数据库" class="headerlink" title="非关系型数据库也叫NoSQL数据库"></a>非关系型数据库也叫NoSQL数据库</h2>
-      <p>特点：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select order_id <span class="keyword">from</span> order_data where order_id = $&#123;order.orderId&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h4><h5 id="为什么要创建索引？"><a href="#为什么要创建索引？" class="headerlink" title="为什么要创建索引？"></a>为什么要创建索引？</h5><p>为了提高搜索效率，如果没有建立索引查询某个字段是否等于某个值的数据需要遍历所有的数据，查找复杂度<code>O(N)</code>,但是如果建立索引使用二叉查找树或者它的变种，查找复杂度变<code>O(logN)</code>,Mysql使用的<code>B+树</code>，另外字符串可以使用哈希变数字，字符串所以要比数字低效很多</p>
+<h3 id="关系型数据库的优缺点"><a href="#关系型数据库的优缺点" class="headerlink" title="关系型数据库的优缺点"></a>关系型数据库的优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>1.支持复杂的查询，可以联表查询，表达式查询，嵌表查询</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>1.不方便横向扩展，给数据库添加一个字段，如果数据库达到亿级，那么这个操作复杂性就很差了<br>2.海量数据SQL联表查询，性能会非常差<br>3.为了保持事务的一致特性，难以应对高并发</p>
+<h2 id="非关系型数据库也叫NoSQL数据库"><a href="#非关系型数据库也叫NoSQL数据库" class="headerlink" title="非关系型数据库也叫NoSQL数据库"></a>非关系型数据库也叫NoSQL数据库</h2><p>特点：</p>
 <blockquote>
 <p>存储比较灵活，查找没有像关系型数据库那么好用，适用于数据量很大，只需要单表key查询，一致性不很高的场景</p>
 </blockquote>
-
-        <h3 id="IndexedDB"   >
-          <a href="#IndexedDB" class="heading-link"><i class="fas fa-link"></i></a><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h3>
-      <p>为什么要叫IndexedDB或者索引数据库呢？<br>因为它主页通过创建索引惊喜查询</p>
+<h3 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h3><p>为什么要叫IndexedDB或者索引数据库呢？<br>因为它主页通过创建索引惊喜查询</p>
 <p>IndexedDB可以支持插入<code>JSON格式</code>的不一样的数据</p>
-
-        <h3 id="非关系型数据库的横向扩展"   >
-          <a href="#非关系型数据库的横向扩展" class="heading-link"><i class="fas fa-link"></i></a><a href="#非关系型数据库的横向扩展" class="headerlink" title="非关系型数据库的横向扩展"></a>非关系型数据库的横向扩展</h3>
-      <p>因为可以每个数据的类型不一样，所以不存在添加字段的问题，而相同的类型可以创建索引，提高搜索效率；但是也又小问题，NoSql<code>做不了</code>复杂查询，如果要比如按照city/日期归类，那么需要开一个<code>游标循环</code>处理。时间和性能开销很大；</p>
-
-        <h3 id="兼容性"   >
-          <a href="#兼容性" class="heading-link"><i class="fas fa-link"></i></a><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3>
-      <p><img src="http://book.52react.cn/20190810224204.png" alt=""></p>
-
-        <h2 id="数据库与Promise"   >
-          <a href="#数据库与Promise" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据库与Promise" class="headerlink" title="数据库与Promise"></a>数据库与Promise</h2>
-      <p>我们都知道数据库是异步操作；如果我们先发一个请求获取数据，然后插入数据，重复N次后，再查询数据。如何保证每次都成功写入数据库呢？</p>
+<h3 id="非关系型数据库的横向扩展"><a href="#非关系型数据库的横向扩展" class="headerlink" title="非关系型数据库的横向扩展"></a>非关系型数据库的横向扩展</h3><p>因为可以每个数据的类型不一样，所以不存在添加字段的问题，而相同的类型可以创建索引，提高搜索效率；但是也又小问题，NoSql<code>做不了</code>复杂查询，如果要比如按照city/日期归类，那么需要开一个<code>游标循环</code>处理。时间和性能开销很大；</p>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p><img src="http://book.52react.cn/20190810224204.png" alt=""></p>
+<h2 id="数据库与Promise"><a href="#数据库与Promise" class="headerlink" title="数据库与Promise"></a>数据库与Promise</h2><p>我们都知道数据库是异步操作；如果我们先发一个请求获取数据，然后插入数据，重复N次后，再查询数据。如何保证每次都成功写入数据库呢？</p>
 <p>我们可以使用Promise来解决</p>
-<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promises = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span> ; i&lt;orders.length;i++)&#123;</span><br><span class="line">  <span class="keyword">var</span> order = orders[i]</span><br><span class="line">  <span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">     dataProcess.executeSql(<span class="string">&#x27;插入sql语句&#x27;</span>,<span class="function">(<span class="params">tx,results</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//数据库返回</span></span><br><span class="line">        <span class="keyword">if</span>(results.rows.length）&#123;</span><br><span class="line">          resolve()</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果不存在，则向服务器继续请求查询</span></span><br><span class="line">        <span class="keyword">var</span> order = orders[i]</span><br><span class="line">        dataProcess.queryAdderss(order)</span><br><span class="line">     &#125;）</span><br><span class="line">  </span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">//添加进数组</span></span><br><span class="line">  promise.push(promise)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//所有的Prmise都返回了则调用finished函数</span></span><br><span class="line">Prmise.all(promises).then(dataPromcess.finished)</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promises = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span> ; i&lt;orders.length;i++)&#123;</span><br><span class="line">  <span class="keyword">var</span> order = orders[i]</span><br><span class="line">  <span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">     dataProcess.executeSql(<span class="string">&#x27;插入sql语句&#x27;</span>,<span class="function">(<span class="params">tx,results</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//数据库返回</span></span><br><span class="line">        <span class="keyword">if</span>(results.rows.length）&#123;</span><br><span class="line">          resolve()</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果不存在，则向服务器继续请求查询</span></span><br><span class="line">        <span class="keyword">var</span> order = orders[i]</span><br><span class="line">        dataProcess.queryAdderss(order)</span><br><span class="line">     &#125;）</span><br><span class="line">  </span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">//添加进数组</span></span><br><span class="line">  promise.push(promise)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//所有的Prmise都返回了则调用finished函数</span></span><br><span class="line">Prmise.all(promises).then(dataPromcess.finished)</span><br></pre></td></tr></table></figure>
+<h2 id="SQL注入攻击"><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h2><p>比如网页链接存在参数传递，后台并没有对用户的输入进行过滤，导致用户的输入直接被SQL解释器执行。SQL注入的产生条件：<br>输入一段sql片段  最终拼接成一段攻击代码<br> <img src="http://book.52react.cn/20190810230252.png" alt=""><br> <img src="http://book.52react.cn/20190810230323.png" alt=""></p>
+<h3 id="防御SQL注入"><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h3><p>归根到底，需要对用户的输入进行过滤，因为在Web攻防中，我们永远不要相信用户的输入 1。<br>1.使用预编译语句，绑定变量。<br>2.使用安全的存储过程对抗SQL注入。<br>3.检查数据类型。<br>4.使用安全函数。</p>
+<h2 id="分布式数据库"><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h2><p>简单介绍下：如果一个网站越来越火🔥，一个数据库服务很可能会扛不住，需要多搞几台服务器缓解压力，这时候需要几个数据库<code>一致性</code>，解决方案很多，最简单的是Mysql的<code>replication</code>；</p>
+<h3 id="主要工作原理"><a href="#主要工作原理" class="headerlink" title="主要工作原理"></a>主要工作原理</h3><p>假如有三台服务器，三个数据库，用户一个操作写到了其中一个<code>主</code>服务器，这个库叫master，其他二个库叫<code>slave</code>，主库会把数据库远程复制到另外二个库。</p>
 
-        <h2 id="SQL注入攻击"   >
-          <a href="#SQL注入攻击" class="heading-link"><i class="fas fa-link"></i></a><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h2>
-      <p>比如网页链接存在参数传递，后台并没有对用户的输入进行过滤，导致用户的输入直接被SQL解释器执行。SQL注入的产生条件：<br>输入一段sql片段  最终拼接成一段攻击代码<br> <img src="http://book.52react.cn/20190810230252.png" alt=""><br> <img src="http://book.52react.cn/20190810230323.png" alt=""></p>
+        </div>
 
-        <h3 id="防御SQL注入"   >
-          <a href="#防御SQL注入" class="heading-link"><i class="fas fa-link"></i></a><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h3>
-      <p>归根到底，需要对用户的输入进行过滤，因为在Web攻防中，我们永远不要相信用户的输入 1。<br>1.使用预编译语句，绑定变量。<br>2.使用安全的存储过程对抗SQL注入。<br>3.检查数据类型。<br>4.使用安全函数。</p>
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：理解SQL</li>
+        <li>本文作者：Mariogogogo</li>
+        <li>创建时间：2019-08-04 00:00:00</li>
+        <li>
+            本文链接：http://www.h5web.cc/2019/08/04/理解SQL/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
 
-        <h2 id="分布式数据库"   >
-          <a href="#分布式数据库" class="heading-link"><i class="fas fa-link"></i></a><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h2>
-      <p>简单介绍下：如果一个网站越来越火🔥，一个数据库服务很可能会扛不住，需要多搞几台服务器缓解压力，这时候需要几个数据库<code>一致性</code>，解决方案很多，最简单的是Mysql的<code>replication</code>；</p>
+            </div>
+        
 
-        <h3 id="主要工作原理"   >
-          <a href="#主要工作原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#主要工作原理" class="headerlink" title="主要工作原理"></a>主要工作原理</h3>
-      <p>假如有三台服务器，三个数据库，用户一个操作写到了其中一个<code>主</code>服务器，这个库叫master，其他二个库叫<code>slave</code>，主库会把数据库远程复制到另外二个库。</p>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2019/08/04/%E7%90%86%E8%A7%A3SQL/">http://mariogogogo.github.io/2019/08/04/%E7%90%86%E8%A7%A3SQL/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2019/08/05/HTML%20%E8%8E%B7%E5%8F%96%E5%B1%8F%E5%B9%95&amp;%E6%B5%8F%E8%A7%88%E5%99%A8&amp;%E9%A1%B5%E9%9D%A2%E7%9A%84%E9%AB%98%E5%BA%A6%E5%AE%BD%E5%BA%A6/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">HTML 获取屏幕&amp;浏览器&amp;页面的高度宽度</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2019/08/01/%E7%90%86%E8%A7%A3HTTPS%E8%BF%9E%E6%8E%A5%E5%89%8D%E5%87%A0%E6%AF%AB%E7%A7%92%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"><span class="paginator-prev__text">理解HTTPS连接前几毫米发生了什么</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie%E4%B8%8ElocalStorage"><span class="toc-number">1.</span> <span class="toc-text">
-          cookie与localStorage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webSQL"><span class="toc-number">2.</span> <span class="toc-text">
-          webSQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">
-          什么是关系型数据库？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSQL%E5%91%A2%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">
-          什么是SQL呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AADB"><span class="toc-number">2.2.1.</span> <span class="toc-text">
-          创建一个DB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-number">2.2.2.</span> <span class="toc-text">
-          创建表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-number">2.2.3.</span> <span class="toc-text">
-          插入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E9%94%AE%E5%94%AF%E4%B8%80%E7%BA%A6%E6%9D%9F"><span class="toc-number">2.2.4.</span> <span class="toc-text">
-          主键唯一约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Select%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.2.5.</span> <span class="toc-text">
-          Select查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95"><span class="toc-number">2.2.6.</span> <span class="toc-text">
-          建立索引</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%9F"><span class="toc-number">2.2.6.1.</span> <span class="toc-text">
-          为什么要创建索引？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">2.3.</span> <span class="toc-text">
-          关系型数据库的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">2.3.1.</span> <span class="toc-text">
-          优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">2.3.2.</span> <span class="toc-text">
-          缺点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%9F%E5%8F%ABNoSQL%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text">
-          非关系型数据库也叫NoSQL数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IndexedDB"><span class="toc-number">3.1.</span> <span class="toc-text">
-          IndexedDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%A8%AA%E5%90%91%E6%89%A9%E5%B1%95"><span class="toc-number">3.2.</span> <span class="toc-text">
-          非关系型数据库的横向扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">3.3.</span> <span class="toc-text">
-          兼容性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8EPromise"><span class="toc-number">4.</span> <span class="toc-text">
-          数据库与Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB"><span class="toc-number">5.</span> <span class="toc-text">
-          SQL注入攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">5.1.</span> <span class="toc-text">
-          防御SQL注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">6.</span> <span class="toc-text">
-          分布式数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">6.1.</span> <span class="toc-text">
-          主要工作原理</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
-  var isXML = true;
-  var search_path = 'search.xml';
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/08/05/HTML%20%E8%8E%B7%E5%8F%96%E5%B1%8F%E5%B9%95&amp;%E6%B5%8F%E8%A7%88%E5%99%A8&amp;%E9%A1%B5%E9%9D%A2%E7%9A%84%E9%AB%98%E5%BA%A6%E5%AE%BD%E5%BA%A6/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">HTML 获取屏幕&amp;浏览器&amp;页面的高度宽度</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/08/01/%E7%90%86%E8%A7%A3HTTPS%E8%BF%9E%E6%8E%A5%E5%89%8D%E5%87%A0%E6%AF%AB%E7%A7%92%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">理解HTTPS连接前几毫米发生了什么</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-  if (!search_path) {
-    search_path = 'search.xml';
-  } else if (/json$/i.test(search_path)) {
-    isXML = false;
-  }
+        
+    </div>
+</div>
 
-  var path = '/' + search_path;
-  $.ajax({
-    url: path,
-    dataType: isXML ? 'xml' : 'json',
-    async: true,
-    success: function (res) {
-      var datas = isXML ? $('entry', res).map(function () {
-        // 将 XML 转为 JSON
-        return {
-          title: $('title', this).text(),
-          content: $('content', this).text(),
-          url: $('url', this).text()
-        };
-      }).get() : res;
-      var $input = $('.search-input input');
-      var $result = $('.search-results');
-      // 搜索对象（标题、内容）的权重，影响显示顺序
-      var WEIGHT = { title: 100, content: 1 };
-      var searchPost = function () {
-        var searchText = $input.val().toLowerCase().trim();
-        // 根据空白字符分隔关键字
-        var keywords = searchText.split(/[\s]+/);
-        // 搜索结果
-        var matchPosts = [];
 
-        // 有多个关键字时，将原文字整个保存下来
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        // 防止未输入字符时搜索
-        if (searchText.length > 0) {
-          datas.forEach(function (data) {
-            var isMatch  = false;
-            // 没有标题的文章使用预设的 i18n 变量代替
-            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
-            var titleLower = title && title.toLowerCase();
-            // 删除 HTML 标签 和 所有空白字符
-            var content = data.content && data.content.replace(/<[^>]+>/g, '');
-            var contentLower = content && content.toLowerCase();
-            // 删除重复的 /
-            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
-            // 标题中匹配到的关键词
-            var titleHitSlice = [];
-            // 内容中匹配到的关键词
-            var contentHitSlice = [];
+                
+            </div>
 
-            keywords.forEach(function (keyword) {
-              /**
-              * 获取匹配的关键词的索引
-              * @param {String} keyword 要匹配的关键字
-              * @param {String} text 原文字
-              * @param {Boolean} caseSensitive 是否区分大小写
-              * @param {Number} weight 匹配对象的权重。权重大的优先显示
-              * @return {Array}
-              */
-              function getIndexByword (word, text, caseSensitive, weight) {
-                if (!word || !text) {
-                  return [];
-                };
+        </div>
 
-                var startIndex = 0; // 每次匹配的开始索引
-                var index = -1;     // 匹配到的索引值
-                var result = [];    // 匹配结果
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Mariogogogo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
 
-                if (!caseSensitive) {
-                  word = word.toLowerCase();
-                  text = text.toLowerCase();
-                }
+        </div>
+    </div>
 
-                while((index = text.indexOf(word, startIndex)) !== -1) {
-                  var hasMatch = false;
-                  // 索引位置相同的关键词，保留长度较长的
-                  titleHitSlice.forEach(function (hit) {
-                    if (hit.index === index && hit.word.length < word.length) {
-                      hit.word = word;
-                      hasMatch = true;
-                    }
-                  });
-                  startIndex = index + word.length;
-                  !hasMatch && result.push({ index: index, word: word, weight: weight });
-                }
-                return result;
-              }
-              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
-              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
-            });
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
 
-            var hitTitle = titleHitSlice.length;
-            var hitContent = contentHitSlice.length;
+        <!-- go comment -->
+        
+    </ul>
+</div>
 
-            if (hitTitle > 0 || hitContent > 0) {
-              isMatch = true;
-            }
-            if (isMatch) {
-              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
-                // 按照匹配文字的索引的递增顺序排序
-                hit.sort(function (left, right) {
-                  return left.index - right.index;
-                });
-              });
-              /**
-              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
-              * @param {String} text 原文本
-              * @param {Array} hitSlice 匹配项的索引信息
-              * @param {Number} start 开始索引
-              * @param {Number} end 结束索引
-              * @return {String}
-              */
-              function highlightKeyword (text, hitSlice, start, end) {
-                if (!text || !hitSlice || !hitSlice.length) {
-                  return;
-                }
+        </div>
+    
 
-                var result = '';
-                var startIndex = start;
-                var endIndex = end;
-                hitSlice.forEach(function (hit) {
-                  if (hit.index < startIndex) {
-                    return;
-                  }
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-                  var hitWordEnd = hit.index + hit.word.length;
-                  result += text.slice(startIndex, hit.index);
-                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
-                  startIndex = hitWordEnd;
-                });
-                result += text.slice(startIndex, endIndex);
-                return result;
-              }
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-              var postData = {};
-              // 文章总的搜索权重
-              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
-              // 标记匹配关键词后的标题
-              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
-              // 标记匹配关键词后的内容
-              var postContent;
-              // 显示内容的长度
-              var SHOW_WORD_LENGTH = 200;
-              // 命中关键词前的字符显示长度
-              var SHOW_WORD_FRONT_LENGTH = 20;
-              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-              // 截取匹配的第一个字符，前后共 200 个字符来显示
-              if (contentHitSlice.length > 0) {
-                var firstIndex = contentHitSlice[0].index;
-                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
-                var end = firstIndex + SHOW_WORD_END_LENGTH;
-                postContent = highlightKeyword(content, contentHitSlice, start, end);
-              } else { // 未匹配到内容，直接截取前 200 个字符来显示
-                postContent = content.slice(0, SHOW_WORD_LENGTH);
-              }
-              postData.title = postTitle;
-              postData.content = postContent;
-              postData.url = postURL;
-              postData.weight = postWeight;
-              matchPosts.push(postData);
-            }
-          });
-        }
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
 
-        var resultInnerHtml = '';
-        if (matchPosts.length) {
-          // 按权重递增的顺序排序，使权重大的优先显示
-          matchPosts.sort(function (left, right) {
-            return right.weight - left.weight;
-          });
-          resultInnerHtml += '<ul>';
-          matchPosts.forEach(function (post) {
-            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
-            resultInnerHtml += post.title;
-            resultInnerHtml += '</a><div class="search-results-content">';
-            resultInnerHtml += post.content;
-            resultInnerHtml += '</div></li>';
-          });
-          resultInnerHtml += '</ul>';
-        } else {
-          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
-        }
-        $result.html(resultInnerHtml);
-      };
-      $input.on('input', searchPost);
-      $input.on('keyup', function (e) {
-        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
-          searchPost();
-        }
-      });
-    }
-  });
-}
+        <!-- rss -->
+        
 
-function closeSearch () {
-  $('body').css({ overflow: 'auto' });
-  $('.search-popup').css({ display: 'none' });
-  $('.search-mask').css({ display: 'none' });
-}
+        
 
-window.addEventListener('DOMContentLoaded', function () {
-  Stun.utils.pjaxReloadLocalSearch = function () {
-    $('.header-nav-search').on('click', function (e) {
-      e.stopPropagation();
-      $('body').css('overflow', 'hidden');
-      $('.search-popup')
-        .velocity('stop')
-        .velocity('transition.expandIn', {
-          duration: 300,
-          complete: function () {
-            $('.search-popup input').focus();
-          }
-        });
-      $('.search-mask')
-        .velocity('stop')
-        .velocity('transition.fadeIn', {
-          duration: 300
-        });
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
 
-      initSearch();
-    });
-    $('.search-mask, .search-close').on('click', function () {
-      closeSearch();
-    });
-    $(document).on('keydown', function (e) {
-      // Escape <=> 27
-      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
-        closeSearch();
-      }
-    });
-  };
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
-  Stun.utils.pjaxReloadLocalSearch();
-}, false);
+    </div>
 
-function safeOpenUrl(url) {
-  var newTab = window.open();
-  newTab.opener = null;
-  newTab.location = url;
-}
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie%E4%B8%8ElocalStorage"><span class="nav-number">1.</span> <span class="nav-text">cookie与localStorage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webSQL"><span class="nav-number">2.</span> <span class="nav-text">webSQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">什么是关系型数据库？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSQL%E5%91%A2%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">什么是SQL呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AADB"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建一个DB</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="nav-number">2.2.2.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.3.</span> <span class="nav-text">插入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E5%94%AF%E4%B8%80%E7%BA%A6%E6%9D%9F"><span class="nav-number">2.2.4.</span> <span class="nav-text">主键唯一约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Select%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.2.5.</span> <span class="nav-text">Select查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95"><span class="nav-number">2.2.6.</span> <span class="nav-text">建立索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%9F"><span class="nav-number">2.2.6.1.</span> <span class="nav-text">为什么要创建索引？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">2.3.</span> <span class="nav-text">关系型数据库的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">2.3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">2.3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%9F%E5%8F%ABNoSQL%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">非关系型数据库也叫NoSQL数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IndexedDB"><span class="nav-number">3.1.</span> <span class="nav-text">IndexedDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%A8%AA%E5%90%91%E6%89%A9%E5%B1%95"><span class="nav-number">3.2.</span> <span class="nav-text">非关系型数据库的横向扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-number">3.3.</span> <span class="nav-text">兼容性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8EPromise"><span class="nav-number">4.</span> <span class="nav-text">数据库与Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB"><span class="nav-number">5.</span> <span class="nav-text">SQL注入攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E5%BE%A1SQL%E6%B3%A8%E5%85%A5"><span class="nav-number">5.1.</span> <span class="nav-text">防御SQL注入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">6.</span> <span class="nav-text">分布式数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">6.1.</span> <span class="nav-text">主要工作原理</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
 
-function extSearch(engine) {
-  var engines = {
-    google: 'https://www.google.com/search?q=',
-    bing: 'https://cn.bing.com/search?q=',
-    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
-  };
-  var host = window.location.host;
-  var query = $('.search-input input').val().toLowerCase().trim();
-  var uri = engines[engine] + query + ' site:' + host;
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
-  if (query) {
-    safeOpenUrl(uri);
-  } else {
-    Stun.utils.popAlert('warning', '请输入字符');
-  }
-}
 
-var assistSearchList = window.CONFIG.assistSearch;
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
-if (Array.isArray(assistSearchList)) {
-  assistSearchList.forEach(function (name) {
-    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
-      extSearch(name);
-    }, false);
-  });
-}</script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = 'nick,mail,link';
+    
 
-  guest_info = guest_info.split(',').filter(function(item) {
-    return GUEST_INFO.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#valine-container',
-    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
-    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
-    notify: true,
-    verify: true,
-    placeholder: '快去评论下吧',
-    avatar: 'mp',
-    meta: guest_info,
-    pageSize: '10' || 10,
-    visitor: false,
-    recordIP: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: window.location.pathname
-  });
-}
+</main>
 
-if (false) {
-  loadValine();
-} else {
-  window.addEventListener('DOMContentLoaded', loadValine, false);
-}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

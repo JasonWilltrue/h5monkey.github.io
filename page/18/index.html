@@ -1,502 +1,605 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="好前端才分对错，成年人只分利弊">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mario">
-<meta property="og:url" content="http://mariogogogo.github.io/page/18/index.html">
-<meta property="og:site_name" content="Mario">
-<meta property="og:description" content="好前端才分对错，成年人只分利弊">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Codding">
-<meta name="twitter:card" content="summary"><title> | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/page/18/index.html"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: ["google","bing","baidu"],
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":true},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="好前端才分对错，成年人只分利弊">
+    <meta name="author" content="Mariogogogo">
+    
+    <title>
+        
+        Mario Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/09/17/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%89%BE%E4%B8%AA%E6%A3%80%E5%AF%9F%E9%95%BF/">JAVASCRIPT设计模式之找个检察长</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-09-17</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">342</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">3分</span></span></div></header><div class="post-body"><div class="post-excerpt"><h5 id="new的含义"   >
-          <a href="#new的含义" class="heading-link"><i class="fas fa-link"></i></a><a href="#new的含义" class="headerlink" title="new的含义"></a>new的含义</h5>
-      <p>new的作用就是对当前对象的this的不断赋值，如果没有new，就会执行函数，这个函数在全局作用域执行，所以this指向对象自然是全局变量 window；<br>book变量得不到Book这个类执行，所以undefined；<br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/09/17/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%89%BE%E4%B8%AA%E6%A3%80%E5%AF%9F%E9%95%BF/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/09/16/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E6%98%8E%E6%98%9F/">JAVASCRIPT设计模式之封装明星</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-09-16</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">395</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">3分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>面向对象是思想<br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/09/16/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B0%81%E8%A3%85%E6%98%8E%E6%98%9F/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/09/14/JAVASCRIPT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">JAVASCRIPT学习笔记之数组对象知识点总结</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-09-14</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">331</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">2分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>数组对象是使用单独的变量名来存储一系列的值；数组可以用一个变量名存储所有的值，并且可以用变量名访问任何一个值；数组中的每个元素都有自己的的ID索引，以便它可以很容易地被访问到……<br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/09/14/JAVASCRIPT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%95%B0%E7%BB%84%E5%AF%B9%E8%B1%A1%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/09/14/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%89%8D%E8%A6%81%E4%BA%86%E8%A7%A3%E8%BF%99%E4%BA%9B/">Javascript设计模式学习之前要了解这些</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-09-14</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">8分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>我们刚进入公司都是小白，某天公司项目经理给让做一个表单验证</p>
-<p>90%的你会做这样的传统的面相过程编程<br><img src="http://book.52react.cn/20190303013854.png" alt=""><br><figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//传统面相过程</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">checkName</span>(<span class="params">argument</span>) </span>&#123;</span><br><span class="line">       <span class="comment">// body... </span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">checkEmail</span>(<span class="params">argument</span>) </span>&#123;</span><br><span class="line">       <span class="comment">// body... </span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">checkPwd</span>(<span class="params">argument</span>) </span>&#123;</span><br><span class="line">       <span class="comment">// body... </span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure><br>缺点：设置了很多全局变量，不利于团队开发</p>
-<p>因为这跟下面的变量名提前在function没有区别？</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> checkName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//验证姓名</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<p><strong>如果团队中有人跟你用了同一个变量名定义了方法那你的方法就被覆盖了</strong></p>
-<p>我们一步一步优化：<br>先看看用<code>对象收编变量</code>的方法试试</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> CheckObject = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">CheckObject.checkName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">&#x27;检查姓名&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = CheckObject.checkName();</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></div></figure>
-<p>这样也有缺点：当别人想用你代码的时候比较麻烦，这个对象不能复制一份或者说这个对象<code>new</code>出来的新对象，新对象中没有<code>继承</code>这些新方法</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 被new之后方法  新建对象内部没有方法</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> CheckObject();</span><br><span class="line"><span class="comment">// console.log(b.checkName());  </span></span><br><span class="line"><span class="comment">//index.js:18 Uncaught TypeError: b.checkName is not a function</span></span><br></pre></td></tr></table></div></figure>
-<p><img src="http://book.52react.cn/20190303012130.png" alt=""></p>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mariogogogo.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"1240px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
-        <h4 id="类也可以"   >
-          <a href="#类也可以" class="heading-link"><i class="fas fa-link"></i></a><a href="#类也可以" class="headerlink" title="类也可以"></a>类也可以</h4>
-      <p>所以我们应该添加<code>this</code>关键字</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> CheckObject = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">this</span>.checkName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;new检查姓名&#x27;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> a2 = <span class="keyword">new</span> CheckObject();</span><br><span class="line"><span class="built_in">console</span>.log(a2);</span><br><span class="line"><span class="comment">//CheckObject &#123;checkName: ƒ&#125;</span></span><br><span class="line"><span class="comment">// checkName: ƒ()</span></span><br><span class="line"><span class="comment">// __proto__: Object</span></span><br><span class="line"> </span><br><span class="line"> <span class="built_in">console</span>.log(a2.checkName());</span><br></pre></td></tr></table></div></figure>
-<p><img src="http://book.52react.cn/20190303012424.png" alt=""></p>
-<p>但这个还是有一点缺点：<br>我们把所有方法都放在函数内部，通过this定义，所以每一次通过<code>new</code>关键词来创建新对象，this上的属性进行复制，然而有时候这样的方法创建造成的<code>性能消耗</code>是很奢侈的</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/********************************* */</span></span><br><span class="line"><span class="comment">/*************检查 */</span></span><br><span class="line"> <span class="keyword">var</span> CheckObject           = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">     CheckObject.prototype = &#123;</span><br><span class="line">     checkName:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;检查姓名new&#x27;</span>);</span><br><span class="line">     &#125;,</span><br><span class="line">     checkAge : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;检查年龄new&#x27;</span>);</span><br><span class="line">     &#125;,</span><br><span class="line">     checkSex :<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;检查性别new&#x27;</span>);</span><br><span class="line">        </span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> c = <span class="keyword">new</span> CheckObject();</span><br><span class="line"> c.checkName();</span><br><span class="line"> c.checkAge();</span><br><span class="line"> c.checkSex();</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<p>这样创建出来的对象实例所拥有的方法就只有一个了，因为他们都要在<code>prototype</code>原型依次寻找，找到都是同一个</p>
 
-        <h4 id="方法还可以链式调用"   >
-          <a href="#方法还可以链式调用" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法还可以链式调用" class="headerlink" title="方法还可以链式调用"></a>方法还可以链式调用</h4>
-      <p>如果对a写三遍调用也太麻烦了所以我们用this做返回，因为this指向的就是当前对象</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> CheckObject           = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; &#125;</span><br><span class="line">    CheckObject.prototype = &#123;</span><br><span class="line">   checkName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;检查姓名new&#x27;</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span> <span class="comment">//返回当前对象</span></span><br><span class="line">   &#125;,</span><br><span class="line">   checkAge: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;检查年龄new&#x27;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">   &#125;,</span><br><span class="line">   checkSex: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;检查性别new&#x27;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line"> </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> CheckObject();</span><br><span class="line">d.checkName().checkSex().checkSex();</span><br></pre></td></tr></table></div></figure>
-<p><img src="http://book.52react.cn/20190303013248.png" alt=""></p>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-        <h4 id="函数的祖先"   >
-          <a href="#函数的祖先" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数的祖先" class="headerlink" title="函数的祖先"></a>函数的祖先</h4>
-      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.addMethod = <span class="function"><span class="keyword">function</span>(<span class="params">name,fn</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>[name] = fn;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+    
+</div>
 
-        <h4 id="最后举一个简单栗子"   >
-          <a href="#最后举一个简单栗子" class="heading-link"><i class="fas fa-link"></i></a><a href="#最后举一个简单栗子" class="headerlink" title="最后举一个简单栗子"></a>最后举一个简单栗子</h4>
-      <figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>表单验证需求<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">       需求说明：给表单提交填写验证码校验方法</span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     </span><br><span class="line">    用户名：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> <span class="attr">id</span>=<span class="string">&quot;name&quot;</span>&gt;</span> 邮箱：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;email&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>&gt;</span> 密码：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> <span class="attr">maxlength</span>=<span class="string">&quot;11&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> name = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;input&quot;</span>)[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> email = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;input&quot;</span>)[<span class="number">1</span>];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> pwd = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;input&quot;</span>)[<span class="number">2</span>];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;input&quot;</span>)[<span class="number">3</span>];</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">        btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//运行</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> nameVal = name.value;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(nameVal);</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> emailVal = email.value;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> pwdVal = pwd.value;</span></span><br><span class="line">            method.checkName(nameVal).checkEmail(emailVal).checkPwd(pwdVal);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="comment">//原型连上添加方法  避免全局污染</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">Function</span>.prototype.addMethod = <span class="function"><span class="keyword">function</span>(<span class="params">name, fn</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// body... </span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">this</span>[name] = fn;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> method = <span class="keyword">new</span> <span class="built_in">Function</span>();</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    method.addMethod(<span class="string">&quot;checkName&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span></span><br><span class="line">        if (!str) &#123;</span><br><span class="line"><span class="javascript">            alert(<span class="string">&#x27;用户名不能为空&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (str.length &lt; <span class="number">6</span>) &#123;</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&#x27;用户名长度大于6&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="built_in">this</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    method.addMethod(<span class="string">&quot;checkEmail&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span></span><br><span class="line">        if (!str) &#123;</span><br><span class="line"><span class="javascript">            alert(<span class="string">&#x27;这是验证邮箱&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="built_in">this</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    method.addMethod(<span class="string">&quot;checkPwd&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span></span><br><span class="line">        if (!str) &#123;</span><br><span class="line"><span class="javascript">            alert(<span class="string">&#x27;这是输入验证密码&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (str.length &lt; <span class="number">6</span>) &#123;</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">&#x27;这是大于6位验证密码&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="built_in">this</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/09/13/Javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BDOM%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">JAVASCRIPT学习笔记之DOM知识点总结</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-09-13</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.9k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">11分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>JavaScript的window对象对应着浏览器窗口本身，因此这个对象的属性和方法统称为BOM（浏览器对象模型），如window.open(),window.location等。<br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/09/13/Javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8BDOM%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/09/08/Nodejs%E6%90%AD%E5%BB%BAsocket.io%E8%81%8A%E5%A4%A9%E5%AE%A4/">Nodejs搭建socket.io聊天室</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-09-08</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.4k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">11分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>下面是一条数据的旅程，这条数据我们叫他req。<br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/09/08/Nodejs%E6%90%AD%E5%BB%BAsocket.io%E8%81%8A%E5%A4%A9%E5%AE%A4/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/08/21/JavaScript%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/">JavaScript 开发规范</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-08-21</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.5k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">9分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>原文链接：<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://foreverz.cn/2017/08/23/JS开发规范/" >http://foreverz.cn/2017/08/23/JS开发规范/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-<p>从事前端开发也有一段时间了，一直在遵循着规范化开发，从 js 也逐渐转向了 ts ，在这个过程中也有了很多收获，在此把自己的开发心得写下来。</p>
-<p>本文参考了JavaScript 开发规范，并做了补充和修改，同时删去了框架开发相关的内容(侵删)。</p>
 
-        <h5 id="1-命名规范"   >
-          <a href="#1-命名规范" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-命名规范" class="headerlink" title="1. 命名规范"></a>1. 命名规范</h5>
-      <p>ECMAScript 规范中标识符采用驼峰大小写格式，驼峰命名法由小(大)写字母开始，后续每个单词首字母都大写。根据首字母是否大写，分为两种方式：</p>
-<p>Pascal Case 大驼峰式命名法：首字母大写。eg：<br><code>StudentInfo</code>、<code>UserInfo</code>、<code>ProductInfo</code><br>Camel Case 小驼峰式命名法：首字母小写。eg：studentInfo、userInfo、productInfo<br>标识符，则包括变量、函数名、类名、属性名和函数或类的参数，每个命名方法又略有不同，下面详细解释一下：</p>
-<p>1.1 变量</p>
-<p>命名方法：小驼峰式命名法。</p>
-<p>命名规范：前缀应当是名词。(函数的名字前缀为动词，以此区分变量和函数)</p>
-<p>命名建议：尽量在变量名字中体现所属类型，如:length、count等表示数字类型；而包含name、title表示为字符串类型。</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 好的命名方式</span></span><br><span class="line"><span class="keyword">let</span> maxCount = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">let</span> tableTitle = <span class="string">&#x27;LoginTable&#x27;</span>;</span><br><span class="line"><span class="comment">// 不好的命名方式</span></span><br><span class="line"><span class="keyword">let</span> setCount = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">let</span> getTitle = <span class="string">&#x27;LoginTable&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<p>1.2 常量</p>
-<p>命名方法：名称全部大写。</p>
-<p>命名规范：使用大写字母和下划线来组合命名，下划线用以分割单词。</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MAX_COUNT = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> URL = <span class="string">&#x27;http://www.foreverz.com&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<p>1.3 函数</p>
-<p>命名方法：小驼峰式命名法。</p>
-<p>命名规范：前缀应当为动词。</p>
-<p>命名建议：可使用常见动词约定</p>
-<div class="table-container"><table>
-<thead>
-<tr>
-<th>动词</th>
-<th>含义</th>
-<th>返回值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>can</td>
-<td>判断是否可执行某个动作(权限)</td>
-<td>函数返回一个布尔值。true：可执行；false：不可执行</td>
-</tr>
-<tr>
-<td>has</td>
-<td>判断是否含有某个值</td>
-<td>函数返回一个布尔值。true：含有此值；false：不含有此值</td>
-</tr>
-<tr>
-<td>is</td>
-<td>判断是否为某个值</td>
-<td>函数返回一个布尔值。true：为某个值；false：不为某个值</td>
-</tr>
-<tr>
-<td>get</td>
-<td>获取某个值</td>
-<td>函数返回一个非布尔值</td>
-</tr>
-<tr>
-<td>set</td>
-<td>设置某个值</td>
-<td>无返回值、返回是否设置成功或者返回链式对象</td>
-</tr>
-<tr>
-<td>load</td>
-<td>加载某些数据</td>
-<td>无返回值或者返回是否加载完成的结果</td>
-</tr>
-<tr>
-<td>render</td>
-<td>渲染生成某些数据</td>
-<td>无返回值或者返回是否渲染完成</td>
-</tr>
-</tbody>
-</table></div>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 是否可阅读</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">canRead</span>(<span class="params"></span>): <span class="title">boolean</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 获取名称</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-<p>1.4 类 &amp; 构造函数</p>
-<p>命名方法：大驼峰式命名法，首字母大写。</p>
-<p>命名规范：前缀为名称。</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  public name: string;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">name</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> Person(<span class="string">&#x27;mevyn&#x27;</span>);</span><br></pre></td></tr></table></div></figure>
-<p>1.5 类的成员</p>
-<p>类的成员包含：</p>
-<p>公共属性和方法：跟变量和函数的命名一样。</p>
-<p>私有属性和方法：前缀为_(下划线)，后面跟公共属性和方法一样的命名方式。</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  private _name: string;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123; &#125;</span><br><span class="line">  <span class="comment">// 公共方法</span></span><br><span class="line">  <span class="function"><span class="title">getName</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>._name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 公共方法</span></span><br><span class="line">  <span class="function"><span class="title">setName</span>(<span class="params">name</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>._name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> Person();</span><br><span class="line">person.setName(<span class="string">&#x27;mervyn&#x27;</span>);</span><br><span class="line">person.getName(); <span class="comment">// -&gt;mervyn</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<main class="page-container">
 
-        <h5 id="2-注释规范"   >
-          <a href="#2-注释规范" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-注释规范" class="headerlink" title="2. 注释规范"></a>2. 注释规范</h5>
-      <p>js 支持三种不同类型的注释：行内注释、单行注释和多行注释：</p>
-<p>2.1 行内注释</p>
-<p>说明：行内注释以两个斜线开始，以行尾结束。</p>
-<p>语法：code // 这是行内注释</p>
-<p>使用方式：//(双斜线)与代码之间保留一个空格，并且//(双斜线)与注释文字之间保留一个空格。</p>
-<p>命名建议：</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用来显示一个解释的评论</span></span><br><span class="line"><span class="comment">// -&gt; 用来显示表达式的结果，</span></span><br><span class="line"><span class="comment">// &gt;用来显示 console 的输出结果，</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 测试函数</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Hello World!&#x27;</span>); <span class="comment">// &gt;Hello World!</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">3</span> + <span class="number">2</span>; <span class="comment">// -&gt;5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-<p>2.2 单行注释</p>
-<p>说明：单行注释以两个斜线开始，以行尾结束。</p>
-<p>语法：// 这是单行注释</p>
-<p>使用方式：单独一行：//(双斜线)与注释文字之间保留一个空格。</p>
-<p>eg：</p>
-<p>// 调用了一个函数；1)单独在一行<br>setTitle();<br>2.3 多行注释</p>
-<p>说明：以 /<em> 开头， </em>/ 结尾</p>
-<p>语法：/<em> 注释说明 </em>/</p>
-<p>使用方法：若开始/<em>和结束</em>/都在一行，推荐采用单行注释。若至少三行注释时，第一行为/<em>，最后行为</em>/，其他行以<em>开始，并且注释文字与</em>保留一个空格。</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 代码执行到这里后会调用setTitle()函数</span></span><br><span class="line"><span class="comment">* setTitle()：设置title的值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">setTitle();</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<p>2.4 函数(方法)注释</p>
-<p>说明：函数(方法)注释也是多行注释的一种，但是包含了特殊的注释要求，参照JSDoc</p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 函数说明</span></span><br><span class="line"><span class="comment">* @关键字</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">常用注释关键字：(只列出一部分，并不是全部)</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<p>注释名    语法    含义    示例<br>@param    @param 参数名 {参数类型} 描述信息    描述参数的信息    @param name {String} 传入名称<br>@return    @return {返回类型} 描述信息    描述返回值的信息    @return {Boolean} true:可执行;false:不可执行<br>@author    @author 作者信息 [附属信息：如邮箱、日期]    描述此函数作者的信息    @author 张三 2015/07/21<br>@version    @version XX.XX.XX    描述此函数的版本号    @version 1.0.3<br>@example    @example 示例代码    演示函数的使用    @example setTitle(‘测试’)<br>/**</p>
-<ul>
-<li>合并Grid的行</li>
-<li>@param grid {Ext.Grid.Panel} 需要合并的Grid</li>
-<li>@param cols {Array} 需要合并列的Index(序号)数组；从0开始计数，序号也包含。</li>
-<li>@param isAllSome {Boolean} ：是否2个tr的cols必须完成一样才能进行合并。true：完成一样；false(默认)：不完全一样</li>
-<li>@return void</li>
-<li>@author polk6 2015/07/21</li>
-<li>@example</li>
-<li><hr>
-</li>
-<li>|  年龄 |  姓名 |                             |  年龄 |  姓名 |</li>
-<li>—————–      mergeCells(grid,[0])   —————–</li>
-<li>|  18   |  张三 |              =&gt;             |       |  张三 |</li>
-<li>—————–                             -  18   ———</li>
-<li>|  18   |  王五 |                             |       |  王五 |</li>
-<li><hr>
-<em>
-</em>/</li>
-</ul>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeCells</span>(<span class="params">grid: Ext.Grid.Panel, cols: <span class="built_in">Number</span>[], isAllSome: boolean = <span class="literal">false</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Do Something</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<p>这里只是详细讲解了 标识符命名规范 和 代码注释规范，还有很多其它的规范没来得及填充，可以参考一下Airbnb JavaScript Style Guide</p>
+    
 
-        <h5 id="参考书籍和文章："   >
-          <a href="#参考书籍和文章：" class="heading-link"><i class="fas fa-link"></i></a><a href="#参考书籍和文章：" class="headerlink" title="参考书籍和文章："></a>参考书籍和文章：</h5>
-      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://juejin.im/entry/599ed0c4f265da2499602ceb" >HTML/CSS/JS编码规范</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-<p>JavaScript高级程序设计（第3版）</p>
-<p>JavaScript 开发规范</p>
-</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/08/18/%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B-%E6%97%A5%E5%8E%86%EF%BC%88%E4%B8%89%EF%BC%89/">面向过程-日历（三）</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-08-18</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.8k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">19分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>注意实现功能：</p>
-<ol>
-<li>查找当前日期并实现之后10天可点击，其余天数不可点击</li>
-<li>点击左右按钮切换月份</li>
-<li>点击符合规则的日期把日期及价格显示在对应输入框中</li>
-<li>判断当最后一行没有日期显示时候对应高度与上一行显示日期的高度一致</li>
-</ol>
+    <div class="page-main-content">
 
-        <h5 id="效果图："   >
-          <a href="#效果图：" class="heading-link"><i class="fas fa-link"></i></a><a href="#效果图：" class="headerlink" title="效果图："></a>效果图：</h5>
-      <p><img src="http://pp.52react.cn/%E6%97%A5%E5%8E%86.gif" alt="image"></p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> aInput = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line">	<span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;div1&#x27;</span>);</span><br><span class="line">	<span class="keyword">var</span> oNowTime = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;nowTime&#x27;</span>);</span><br><span class="line">	<span class="keyword">var</span> oNextTime = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;nextTime&#x27;</span>);</span><br><span class="line">	<span class="comment">//获取span</span></span><br><span class="line">	<span class="keyword">var</span> aNowSpan = oNowTime.getElementsByTagName(<span class="string">&quot;span&quot;</span>);</span><br><span class="line">	<span class="keyword">var</span> aNextSpan = oNextTime.getElementsByTagName(<span class="string">&quot;span&quot;</span>);</span><br><span class="line">	<span class="comment">//获取所以td</span></span><br><span class="line">	<span class="keyword">var</span> aTd = oDiv.getElementsByTagName(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">	<span class="keyword">var</span> bBtn = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	aInput[<span class="number">2</span>].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> oDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">		<span class="keyword">if</span>(bBtn) &#123;</span><br><span class="line">			oDiv.style.display = <span class="string">&quot;block&quot;</span>;</span><br><span class="line">			<span class="comment">//判断是否下一年</span></span><br><span class="line">			<span class="keyword">if</span>(oDate.getMonth() + <span class="number">1</span> == <span class="number">12</span>) &#123;</span><br><span class="line">				<span class="comment">//传位置   年 月  true代表这个月还是下一个月</span></span><br><span class="line">				showDate(oNowTime, oDate.getFullYear(), oDate.getMonth() + <span class="number">1</span>, <span class="literal">true</span>);</span><br><span class="line">				showDate(oNextTime, oDate.getFullYear() + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				showDate(oNowTime, oDate.getFullYear(), oDate.getMonth() + <span class="number">1</span>, <span class="literal">true</span>);</span><br><span class="line">				showDate(oNextTime, oDate.getFullYear(), oDate.getMonth() + <span class="number">2</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//调用查找日期方法找到当前日期所对应的td</span></span><br><span class="line">			showColor(oDate.getDate());</span><br><span class="line">			showBtn();</span><br><span class="line">			showClick();</span><br><span class="line">            hideLastTr();</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			oDiv.style.display = <span class="string">&quot;none&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		bBtn = !bBtn;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">showDate</span>(<span class="params">obj, year, month, bBtn</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> oDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">		<span class="comment">//设置开关防止重新生成</span></span><br><span class="line">		<span class="keyword">if</span>(!obj.bBtn) &#123;</span><br><span class="line">			<span class="comment">//生成周表格table table有个特别在ie下用HTML是不兼容的</span></span><br><span class="line">			obj.oTitle = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">			obj.oTitle.className = <span class="string">&#x27;title&#x27;</span>;</span><br><span class="line">			obj.appendChild(obj.oTitle);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> oTable = <span class="built_in">document</span>.createElement(<span class="string">&#x27;table&#x27;</span>);</span><br><span class="line">			<span class="keyword">var</span> oThead = <span class="built_in">document</span>.createElement(<span class="string">&#x27;thead&#x27;</span>);</span><br><span class="line">			<span class="keyword">var</span> oTr = <span class="built_in">document</span>.createElement(<span class="string">&#x27;tr&#x27;</span>);</span><br><span class="line">			<span class="keyword">var</span> arr = [<span class="string">&#x27;周日&#x27;</span>, <span class="string">&#x27;周一&#x27;</span>, <span class="string">&#x27;周二&#x27;</span>, <span class="string">&#x27;周三&#x27;</span>, <span class="string">&#x27;周四&#x27;</span>, <span class="string">&#x27;周五&#x27;</span>, <span class="string">&#x27;周六&#x27;</span>];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">7</span>; i++) &#123;</span><br><span class="line">				<span class="keyword">var</span> oTh = <span class="built_in">document</span>.createElement(<span class="string">&#x27;th&#x27;</span>);</span><br><span class="line">				oTh.innerHTML = arr[i];</span><br><span class="line">				<span class="keyword">if</span>(i == <span class="number">0</span> || i == <span class="number">6</span>) &#123;</span><br><span class="line">					oTh.className = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				oTr.appendChild(oTh);</span><br><span class="line">			&#125;</span><br><span class="line">			oThead.appendChild(oTr);</span><br><span class="line">			oTable.appendChild(oThead);</span><br><span class="line">			<span class="comment">//生成日期 生成5个行 7个列  每一行七个列</span></span><br><span class="line">			<span class="keyword">var</span> oTbody = <span class="built_in">document</span>.createElement(<span class="string">&#x27;tBody&#x27;</span>);</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">				<span class="keyword">var</span> oTr = <span class="built_in">document</span>.createElement(<span class="string">&quot;tr&quot;</span>);</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">7</span>; j++) &#123;</span><br><span class="line">					<span class="keyword">var</span> oTd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">					oTr.appendChild(oTd);</span><br><span class="line">				&#125;</span><br><span class="line">				oTbody.appendChild(oTr);</span><br><span class="line">			&#125;</span><br><span class="line">			oTable.appendChild(oTbody);</span><br><span class="line">			obj.appendChild(oTable);</span><br><span class="line"></span><br><span class="line">			obj.bBtn = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//根据bbtn判断左边右边的年份换一种写法</span></span><br><span class="line">		<span class="keyword">if</span>(bBtn) &#123;</span><br><span class="line">			obj.oTitle.innerHTML = <span class="string">&#x27;&lt;div class=&quot;l&quot;&gt;&lt;span&gt;&#x27;</span> + (month - <span class="number">1</span>) + <span class="string">&#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;</span> + <span class="string">&#x27;&lt;div class=&quot;c&quot;&gt;&lt;span&gt;&#x27;</span> + year + <span class="string">&#x27;&lt;/span&gt;年&lt;span&gt;&#x27;</span> + month + <span class="string">&#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			obj.oTitle.innerHTML = <span class="string">&#x27;&lt;div class=&quot;r&quot;&gt;&lt;span&gt;&#x27;</span> + (month + <span class="number">1</span>) + <span class="string">&#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;</span> + <span class="string">&#x27;&lt;div class=&quot;c&quot;&gt;&lt;span&gt;&#x27;</span> + year + <span class="string">&#x27;&lt;/span&gt;年&lt;span&gt;&#x27;</span> + month + <span class="string">&#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//生成每一个月的天数 每次点击月份清空</span></span><br><span class="line">		<span class="keyword">var</span> aTd = obj.getElementsByTagName(<span class="string">&#x27;td&#x27;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; aTd.length; i++) &#123;</span><br><span class="line">			aTd[i].innerHTML = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//判断月份的天数</span></span><br><span class="line">		<span class="keyword">if</span>(month == <span class="number">1</span> || month == <span class="number">3</span> || month == <span class="number">5</span> || month == <span class="number">7</span> || month == <span class="number">8</span> || month == <span class="number">10</span> || month == <span class="number">12</span>) &#123;</span><br><span class="line">			dayNum = <span class="number">31</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(month == <span class="number">4</span> || month == <span class="number">6</span> || month == <span class="number">9</span> || month == <span class="number">11</span>) &#123;</span><br><span class="line">			dayNum = <span class="number">30</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(month == <span class="number">2</span> &amp;&amp; isLeapYear(year)) &#123;</span><br><span class="line">			dayNum = <span class="number">29</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			dayNum = <span class="number">28</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		oDate.setFullYear(year);</span><br><span class="line">		oDate.setMonth(month - <span class="number">1</span>);</span><br><span class="line">		oDate.setDate(<span class="number">1</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(oDate.getDay());</span><br><span class="line">		<span class="comment">//根据1号 对应的 getDay（）是周几？</span></span><br><span class="line">		<span class="keyword">switch</span>(oDate.getDay()) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">				<span class="comment">//周日 第一个td开始遍历</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">1</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">2</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">3</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">4</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">5</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">6</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//ajax请求</span></span><br><span class="line">		ajax(<span class="string">&#x27;data.js?&#x27;</span> + <span class="built_in">Math</span>.random(), <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">var</span> j = <span class="built_in">eval</span>(<span class="string">&#x27;(&#x27;</span> + str + <span class="string">&#x27;)&#x27;</span>);</span><br><span class="line">			<span class="built_in">console</span>.log(j)</span><br><span class="line">			<span class="keyword">var</span> now = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; aTd.length; i++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(aTd[i].innerHTML == <span class="number">1</span>) &#123;</span><br><span class="line">					now = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span>(j.code) &#123;</span><br><span class="line">				<span class="comment">//如果这个月的天数小于数组长度则长度最多为日期天数</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; j.list.length; i++) &#123;</span><br><span class="line">					<span class="keyword">if</span>(j.list[i]) &#123;</span><br><span class="line">						<span class="keyword">var</span> oP = <span class="built_in">document</span>.createElement(<span class="string">&#x27;p&#x27;</span>);</span><br><span class="line">						oP.innerHTML = j.list[i] + <span class="string">&#x27;元&#x27;</span>;</span><br><span class="line">						aTd[i + now].appendChild(oP);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//判断如果左边是1月 则 按钮应该是12月份</span></span><br><span class="line">		<span class="keyword">if</span>(month == <span class="number">1</span> &amp;&amp; bBtn) &#123;</span><br><span class="line">			obj.oTitle.getElementsByTagName(<span class="string">&#x27;span&#x27;</span>)[<span class="number">0</span>].innerHTML = <span class="number">12</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(month == <span class="number">12</span> &amp;&amp; !bBtn) &#123;</span><br><span class="line">			obj.oTitle.getElementsByTagName(<span class="string">&#x27;span&#x27;</span>)[<span class="number">0</span>].innerHTML = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">       </span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="comment">//判断是否是闰年</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">isLeapYear</span>(<span class="params">year</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(year % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; year % <span class="number">100</span> != <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(year % <span class="number">400</span> == <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">showColor</span>(<span class="params">date</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> result = []</span><br><span class="line">		<span class="keyword">var</span> oDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">		<span class="keyword">var</span> bBtn = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;&#x27;</span> + date + <span class="string">&#x27;(&lt;p&gt;)*&#x27;</span>);</span><br><span class="line">		<span class="keyword">var</span> index = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, len = aTd.length; i &lt; len; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(aTd[i].innerHTML != <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">				result.push(aTd[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//判断当前日期</span></span><br><span class="line">		<span class="keyword">if</span>(aNowSpan[<span class="number">1</span>].innerHTML == oDate.getFullYear() &amp;&amp; aNowSpan[<span class="number">2</span>].innerHTML == oDate.getMonth() + <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; result.length; i++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(reg.test(result[i].innerHTML) &amp;&amp; bBtn) &#123;</span><br><span class="line">					result[i].className = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">					index = i;</span><br><span class="line">					bBtn = <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//找到当天日期是td第几个然后从今天开始往后几个都可以选择</span></span><br><span class="line">			<span class="keyword">for</span>(len = index + <span class="number">11</span>; index + <span class="number">1</span> &lt; len; index++) &#123;</span><br><span class="line">				result[index + <span class="number">1</span>].className = <span class="string">&quot;blue&quot;</span>;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">//清空每个td的颜色变灰色</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; result.length; i++) &#123;</span><br><span class="line">				result[i].className = <span class="string">&quot;&quot;</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">showBtn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//获取左右2边的月份及年</span></span><br><span class="line">		<span class="keyword">var</span> leftMonth = <span class="built_in">parseInt</span>(aNowSpan[<span class="number">0</span>].innerHTML);</span><br><span class="line">		<span class="keyword">var</span> leftYear = <span class="built_in">parseInt</span>(aNowSpan[<span class="number">1</span>].innerHTML);</span><br><span class="line">		<span class="keyword">var</span> rightMonth = <span class="built_in">parseInt</span>(aNextSpan[<span class="number">0</span>].innerHTML);</span><br><span class="line">		<span class="keyword">var</span> rightYear = <span class="built_in">parseInt</span>(aNextSpan[<span class="number">1</span>].innerHTML);</span><br><span class="line">		aNowSpan[<span class="number">0</span>].parentNode.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(leftMonth == <span class="number">12</span>) &#123;</span><br><span class="line">				showDate(oNowTime, leftYear - <span class="number">1</span>, leftMonth, <span class="literal">true</span>);</span><br><span class="line">				showDate(oNextTime, leftYear, <span class="number">1</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				showDate(oNowTime, leftYear, leftMonth, <span class="literal">true</span>);</span><br><span class="line">				showDate(oNextTime, leftYear, leftMonth + <span class="number">1</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			showBtn();</span><br><span class="line">			showColor(<span class="keyword">new</span> <span class="built_in">Date</span>().getDate());</span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		aNextSpan[<span class="number">0</span>].parentNode.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(rightMonth == <span class="number">1</span>) &#123;</span><br><span class="line">				showDate(oNowTime, rightYear, <span class="number">12</span>, <span class="literal">true</span>);</span><br><span class="line">				showDate(oNextTime, rightYear + <span class="number">1</span>, rightMonth);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				showDate(oNowTime, rightYear, rightMonth - <span class="number">1</span>, <span class="literal">true</span>);</span><br><span class="line">				showDate(oNextTime, rightYear, rightMonth);</span><br><span class="line">			&#125;</span><br><span class="line">			showBtn();</span><br><span class="line">			showColor(<span class="keyword">new</span> <span class="built_in">Date</span>().getDate());</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//点击事件显示日期在输入框</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">showClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> re = <span class="regexp">/(\d+)((&lt;p&gt;)*)/</span>;</span><br><span class="line">		<span class="keyword">var</span> oDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; aTd.length; i++) &#123;</span><br><span class="line">			aTd[i].index = i;</span><br><span class="line">			aTd[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">				<span class="comment">//判断可以点击的日期</span></span><br><span class="line">				<span class="keyword">if</span>(<span class="built_in">this</span>.className == <span class="string">&quot;red&quot;</span> || <span class="built_in">this</span>.className == <span class="string">&quot;blue&quot;</span>) &#123;</span><br><span class="line">					<span class="comment">//判断左边日期还是右边日期</span></span><br><span class="line">					<span class="keyword">if</span>(<span class="built_in">this</span>.index &lt; aTd.length / <span class="number">2</span>) &#123;</span><br><span class="line">						<span class="built_in">this</span>.innerHTML.replace(re, <span class="function"><span class="keyword">function</span>(<span class="params">$<span class="number">0</span>, $<span class="number">1</span></span>) </span>&#123;</span><br><span class="line">							aInput[<span class="number">0</span>].value = oDate.getFullYear() + <span class="string">&#x27;-&#x27;</span> + (oDate.getMonth() + <span class="number">1</span>) + <span class="string">&#x27;-&#x27;</span> + $<span class="number">1</span>;</span><br><span class="line">						&#125;);</span><br><span class="line"></span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="keyword">if</span>((oDate.getMonth() + <span class="number">2</span>) == <span class="number">1</span>) &#123;</span><br><span class="line">							<span class="built_in">this</span>.innerHTML.replace(re, <span class="function"><span class="keyword">function</span>(<span class="params">$<span class="number">0</span>, $<span class="number">1</span></span>) </span>&#123;</span><br><span class="line">								aInput[<span class="number">0</span>].value = oDate.getFullYear() + <span class="number">1</span> + <span class="string">&#x27;-&#x27;</span> + (oDate.getMonth() + <span class="number">2</span>) + <span class="string">&#x27;-&#x27;</span> + $<span class="number">1</span>;</span><br><span class="line">							&#125;);</span><br><span class="line">						&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">							<span class="built_in">this</span>.innerHTML.replace(re, <span class="function"><span class="keyword">function</span>(<span class="params">$<span class="number">0</span>, $<span class="number">1</span></span>) </span>&#123;</span><br><span class="line">								aInput[<span class="number">0</span>].value = oDate.getFullYear() + <span class="string">&#x27;-&#x27;</span> + (oDate.getMonth() + <span class="number">2</span>) + <span class="string">&#x27;-&#x27;</span> + $<span class="number">1</span>;</span><br><span class="line">							&#125;);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="comment">//判断表格内是否有价格显示</span></span><br><span class="line">					<span class="keyword">if</span>(<span class="built_in">this</span>.getElementsByTagName(<span class="string">&#x27;p&#x27;</span>)[<span class="number">0</span>]) &#123;</span><br><span class="line">						aInput[<span class="number">1</span>].value = <span class="built_in">this</span>.getElementsByTagName(<span class="string">&#x27;p&#x27;</span>)[<span class="number">0</span>].innerHTML;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						aInput[<span class="number">1</span>].value = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					oDiv.style.display = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">					bBtn = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//隐藏多余的td表格框</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">hideLastTr</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> bBtn = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">var</span> bBtn2 = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">35</span>; i &lt; <span class="number">42</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(aTd[i].innerHTML != <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">				bBtn = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(bBtn) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">35</span>; i &lt; <span class="number">42</span>; i++) &#123;</span><br><span class="line"><span class="comment">//			  aTd[i].style.display = &#x27;none&#x27;;</span></span><br><span class="line">				aTd[i].style.height = <span class="string">&#x27;42px&#x27;</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">35</span>; i &lt; <span class="number">42</span>; i++) &#123;</span><br><span class="line">				aTd[i].style.height = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">77</span>; i &lt; <span class="number">84</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(aTd[i].innerHTML != <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">				bBtn2 = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(bBtn2) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">77</span>; i &lt; <span class="number">84</span>; i++) &#123;</span><br><span class="line">				aTd[i].style.height = <span class="string">&#x27;42px&#x27;</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">77</span>; i &lt; <span class="number">84</span>; i++) &#123;</span><br><span class="line">				aTd[i].style.height = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/08/17/%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B-%E6%97%A5%E5%8E%86%EF%BC%88%E4%B8%80%EF%BC%89/">面向过程-日历（一）</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-08-17</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">840</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">9分</span></span></div></header><div class="post-body"><div class="post-excerpt"><a id="more"></a>
-<p>思路：首先获取元素节点元素—&gt;根据点击事件隐藏显示元素—&gt;建立showdate方法（判断12月 则右边年份+1，月份1 ）—&gt;还要设置btn开关 防止多次重建—&gt;根据元素清空 for循环列 行、把 th tr thead加入table—&gt;根据判断每一次点击进入月份必须先清空一次td判断月份大小及闰年—&gt; switch循环加入日期</p>
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
-        <h5 id="布局是这样紫的"   >
-          <a href="#布局是这样紫的" class="heading-link"><i class="fas fa-link"></i></a><a href="#布局是这样紫的" class="headerlink" title="布局是这样紫的"></a>布局是这样紫的</h5>
-      <p><img src="http://pp.52react.cn/%E6%97%A5%E5%8E%86%E5%B8%83%E5%B1%80.png" alt="image"></p>
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mario Blog
+            </a>
+        </div>
 
-        <h5 id="HTML"   >
-          <a href="#HTML" class="heading-link"><i class="fas fa-link"></i></a><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h5>
-      <figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;确定&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;div1&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;nowTime&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;l&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span>月<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;c&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>2000<span class="tag">&lt;/<span class="name">span</span>&gt;</span>年<span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span>月<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                	<span class="tag">&lt;<span class="name">th</span>&gt;</span>周一<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span>&gt;</span>周二<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span>&gt;</span>周三<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span>&gt;</span>周四<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span>&gt;</span>周五<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">&quot;red&quot;</span>&gt;</span>周六<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">&quot;red&quot;</span>&gt;</span>周日<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">           		<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                	<span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                	<span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                    	1</span><br><span class="line">                    	<span class="tag">&lt;<span class="name">p</span>&gt;</span>200元<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;nextTime&quot;</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;r&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span>月<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;c&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>2000<span class="tag">&lt;/<span class="name">span</span>&gt;</span>年<span class="tag">&lt;<span class="name">span</span>&gt;</span>3<span class="tag">&lt;/<span class="name">span</span>&gt;</span>月<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                	<span class="tag">&lt;<span class="name">th</span>&gt;</span>周一<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span>&gt;</span>周二<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span>&gt;</span>周三<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span>&gt;</span>周四<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span>&gt;</span>周五<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">&quot;red&quot;</span>&gt;</span>周六<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">th</span> <span class="attr">class</span>=<span class="string">&quot;red&quot;</span>&gt;</span>周日<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">           		<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                	<span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                	<span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                    	1</span><br><span class="line">                    	<span class="tag">&lt;<span class="name">p</span>&gt;</span>200元<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">td</span>&gt;</span>1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="active"
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <h5 id="CSS"   >
-          <a href="#CSS" class="heading-link"><i class="fas fa-link"></i></a><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h5>
-      <figure class="highlight css"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">*&#123; <span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>; <span class="attribute">font-size</span>:<span class="number">12px</span>;&#125;</span><br><span class="line"><span class="selector-id">#div1</span>&#123; <span class="attribute">margin</span>:<span class="number">20px</span>; <span class="attribute">position</span>:absolute; <span class="attribute">top</span>:<span class="number">25px</span>; <span class="attribute">left</span>:<span class="number">10px</span>; <span class="attribute">display</span>:block;&#125;</span><br><span class="line"><span class="selector-id">#nowTime</span>&#123; <span class="attribute">width</span>:<span class="number">330px</span>; <span class="attribute">float</span><span class="selector-pseudo">:left</span>;&#125;</span><br><span class="line"><span class="selector-id">#nextTime</span> &#123; <span class="attribute">width</span>:<span class="number">330px</span>; <span class="attribute">float</span><span class="selector-pseudo">:left</span>; <span class="attribute">margin</span>:<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span>;&#125;</span><br><span class="line"><span class="selector-class">.title</span>&#123; <span class="attribute">width</span>:<span class="number">100%</span>; <span class="attribute">height</span>:<span class="number">30px</span>; <span class="attribute">background</span>:red; <span class="attribute">color</span>:<span class="number">#FFFFFF</span>; <span class="attribute">position</span>:relative;&#125;</span><br><span class="line"><span class="selector-class">.title</span> <span class="selector-class">.c</span>&#123; <span class="attribute">text-align</span>:center; <span class="attribute">line-height</span>:<span class="number">30px</span>;&#125;</span><br><span class="line"><span class="selector-class">.title</span> <span class="selector-class">.l</span>&#123; <span class="attribute">position</span>:absolute; <span class="attribute">top</span>:<span class="number">6px</span>; <span class="attribute">left</span>:<span class="number">5px</span>;&#125;</span><br><span class="line"><span class="selector-class">.title</span> <span class="selector-class">.r</span>&#123; <span class="attribute">position</span>:absolute; <span class="attribute">top</span>:<span class="number">6px</span>; <span class="attribute">right</span>:<span class="number">5px</span>;&#125;</span><br><span class="line"><span class="selector-tag">table</span>&#123; <span class="attribute">width</span>:<span class="number">100%</span>; <span class="attribute">background</span>:<span class="number">#dee3e9</span>; <span class="attribute">color</span>:<span class="number">#9ea7ac</span>;&#125;</span><br><span class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span>&#123; <span class="attribute">background</span>:<span class="number">#f9fafc</span>;&#125;</span><br><span class="line"><span class="selector-tag">table</span> <span class="selector-tag">th</span>&#123; <span class="attribute">width</span>:<span class="number">46px</span>; <span class="attribute">padding</span>:<span class="number">5px</span>;&#125;</span><br><span class="line"><span class="selector-tag">table</span> <span class="selector-tag">td</span>&#123; <span class="attribute">padding</span>:<span class="number">5px</span>; <span class="attribute">text-align</span>:center;&#125;</span><br><span class="line"><span class="selector-class">.red</span>&#123; <span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"><span class="selector-class">.blue</span>&#123; <span class="attribute">color</span>:<span class="number">#0000FF</span>;&#125;</span><br><span class="line"><span class="selector-tag">table</span> <span class="selector-tag">td</span> <span class="selector-tag">p</span>&#123; <span class="attribute">color</span>:<span class="number">#FF0000</span>;&#125;</span><br><span class="line"><span class="selector-tag">input</span>&#123; <span class="attribute">margin</span>:<span class="number">20px</span>;&#125;</span><br></pre></td></tr></table></div></figure></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/08/17/%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B-%E6%97%A5%E5%8E%86%EF%BC%88%E4%BA%8C%EF%BC%89/">面向过程-日历（二）</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-08-17</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">965</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">10分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>现在用面向过程方式</p>
-<ol>
-<li>点击按钮显示或隐藏日历</li>
-<li>设置日期对象 通过showDate方法传对应日期过去</li>
-<li>showDate方法动态生成table日历表格</li>
-<li>根据日期判断闰年</li>
-<li>根据月份判断天数遍历从每月1号对应周几开始遍历第几个td开始**</li>
-</ol>
-<p><img src="http://pp.52react.cn/%E6%97%A5%E5%8E%862.jpg" alt="image"></p>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> aInput = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line">	<span class="keyword">var</span> oDiv = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;div1&#x27;</span>);</span><br><span class="line">	<span class="keyword">var</span> oNowTime = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;nowTime&#x27;</span>);</span><br><span class="line">	<span class="keyword">var</span> oNextTime = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;nextTime&#x27;</span>);</span><br><span class="line">	<span class="keyword">var</span> bBtn = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	aInput[<span class="number">2</span>].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> oDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">		<span class="keyword">if</span>(bBtn) &#123;</span><br><span class="line">			oDiv.style.display = <span class="string">&quot;block&quot;</span>;</span><br><span class="line">			<span class="comment">//判断是否下一年</span></span><br><span class="line">			<span class="keyword">if</span>(oDate.getMonth() + <span class="number">1</span> == <span class="number">12</span>) &#123;</span><br><span class="line">				<span class="comment">//传位置   年 月  true代表这个月还是下一个月</span></span><br><span class="line">				showDate(oNowTime, oDate.getFullYear(), oDate.getMonth() + <span class="number">1</span>, <span class="literal">true</span>);</span><br><span class="line">				showDate(oNextTime, oDate.getFullYear() + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				showDate(oNowTime, oDate.getFullYear(), oDate.getMonth() + <span class="number">1</span>, <span class="literal">true</span>);</span><br><span class="line">				showDate(oNextTime, oDate.getFullYear(), oDate.getMonth() + <span class="number">2</span>);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			oDiv.style.display = <span class="string">&quot;none&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		bBtn = !bBtn;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">showDate</span>(<span class="params">obj, year, month, bBtn</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> oDate = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">		<span class="comment">//设置开关防止重新生成</span></span><br><span class="line">		<span class="keyword">if</span>(!obj.bBtn) &#123;</span><br><span class="line">			<span class="comment">//生成周表格table table有个特别在ie下用HTML是不兼容的</span></span><br><span class="line">			obj.oTitle = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">			obj.oTitle.className = <span class="string">&#x27;title&#x27;</span>;</span><br><span class="line">			obj.appendChild(obj.oTitle);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> oTable = <span class="built_in">document</span>.createElement(<span class="string">&#x27;table&#x27;</span>);</span><br><span class="line">			<span class="keyword">var</span> oThead = <span class="built_in">document</span>.createElement(<span class="string">&#x27;thead&#x27;</span>);</span><br><span class="line">			<span class="keyword">var</span> oTr = <span class="built_in">document</span>.createElement(<span class="string">&#x27;tr&#x27;</span>);</span><br><span class="line">			<span class="keyword">var</span> arr = [<span class="string">&#x27;周一&#x27;</span>, <span class="string">&#x27;周二&#x27;</span>, <span class="string">&#x27;周三&#x27;</span>, <span class="string">&#x27;周四&#x27;</span>, <span class="string">&#x27;周五&#x27;</span>, <span class="string">&#x27;周六&#x27;</span>, <span class="string">&#x27;周日&#x27;</span>];</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">7</span>; i++) &#123;</span><br><span class="line">				<span class="keyword">var</span> oTh = <span class="built_in">document</span>.createElement(<span class="string">&#x27;th&#x27;</span>);</span><br><span class="line">				oTh.innerHTML = arr[i];</span><br><span class="line">				<span class="keyword">if</span>(i == <span class="number">5</span> || i == <span class="number">6</span>) &#123;</span><br><span class="line">					oTh.className = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				oTr.appendChild(oTh);</span><br><span class="line">			&#125;</span><br><span class="line">			oThead.appendChild(oTr);</span><br><span class="line">			oTable.appendChild(oThead);</span><br><span class="line">			<span class="comment">//生成日期 生成6个行 7个列  每一行七个列</span></span><br><span class="line">			<span class="keyword">var</span> oTbody = <span class="built_in">document</span>.createElement(<span class="string">&#x27;tBody&#x27;</span>);</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">				<span class="keyword">var</span> oTr = <span class="built_in">document</span>.createElement(<span class="string">&quot;tr&quot;</span>);</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">7</span>; j++) &#123;</span><br><span class="line">					<span class="keyword">var</span> oTd = <span class="built_in">document</span>.createElement(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">					oTr.appendChild(oTd);</span><br><span class="line">				&#125;</span><br><span class="line">				oTbody.appendChild(oTr);</span><br><span class="line">			&#125;</span><br><span class="line">			oTable.appendChild(oTbody);</span><br><span class="line">			obj.appendChild(oTable);</span><br><span class="line"></span><br><span class="line">			obj.bBtn = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//	 obj.oTitle.innerHTML = (bBtn ? &#x27;&lt;div class=&quot;l&quot;&gt;&lt;span&gt;&#x27; + (month - 1) + &#x27;&lt;/span&gt;月&lt;/div&gt;&#x27; : &#x27;&lt;div class=&quot;r&quot;&gt;&lt;span&gt;&#x27; + (month + 1) + &#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;) + &#x27;&lt;div class=&quot;c&quot;&gt;&lt;span&gt;&#x27; + year + &#x27;&lt;/span&gt;年&lt;span&gt;&#x27; + month + &#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;;</span></span><br><span class="line">		<span class="comment">//换一种写法</span></span><br><span class="line">		<span class="keyword">if</span>(bBtn) &#123;</span><br><span class="line">			obj.oTitle.innerHTML = <span class="string">&#x27;&lt;div class=&quot;l&quot;&gt;&lt;span&gt;&#x27;</span> + (month - <span class="number">1</span>) + <span class="string">&#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;</span> + <span class="string">&#x27;&lt;div class=&quot;c&quot;&gt;&lt;span&gt;&#x27;</span> + year + <span class="string">&#x27;&lt;/span&gt;年&lt;span&gt;&#x27;</span> + month + <span class="string">&#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			obj.oTitle.innerHTML = <span class="string">&#x27;&lt;div class=&quot;r&quot;&gt;&lt;span&gt;&#x27;</span> + (month + <span class="number">1</span>) + <span class="string">&#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;</span> + <span class="string">&#x27;&lt;div class=&quot;c&quot;&gt;&lt;span&gt;&#x27;</span> + year + <span class="string">&#x27;&lt;/span&gt;年&lt;span&gt;&#x27;</span> + month + <span class="string">&#x27;&lt;/span&gt;月&lt;/div&gt;&#x27;</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//生成每一个月的天数 每次点击月份清空</span></span><br><span class="line">		<span class="keyword">var</span> aTd = obj.getElementsByTagName(<span class="string">&#x27;td&#x27;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; aTd.length; i++) &#123;</span><br><span class="line">			aTd[i].innerHTML = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//判断月份的天数</span></span><br><span class="line">		<span class="keyword">if</span>(month == <span class="number">1</span> || month == <span class="number">3</span> || month == <span class="number">5</span> || month == <span class="number">7</span> || month == <span class="number">8</span> || month == <span class="number">10</span> || month == <span class="number">12</span>) &#123;</span><br><span class="line">			dayNum = <span class="number">31</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(month == <span class="number">4</span> || month == <span class="number">6</span> || month == <span class="number">9</span> || month == <span class="number">11</span>) &#123;</span><br><span class="line">			dayNum = <span class="number">30</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(month == <span class="number">2</span> &amp;&amp; isLeapYear(year)) &#123;</span><br><span class="line">			dayNum = <span class="number">29</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			dayNum = <span class="number">28</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		oDate.setFullYear(year);</span><br><span class="line">		oDate.setMonth(month - <span class="number">1</span>);</span><br><span class="line">		oDate.setDate(<span class="number">1</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(oDate.getDay());</span><br><span class="line">		<span class="comment">//根据1号 对应的 getDay（）是周几？</span></span><br><span class="line">		<span class="keyword">switch</span>(oDate.getDay()) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">				<span class="comment">//周日 第七个td开始遍历</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">6</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">1</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">2</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">3</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">4</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dayNum; i++) &#123;</span><br><span class="line">					aTd[i + <span class="number">5</span>].innerHTML = i + <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//判断是否是闰年</span></span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">isLeapYear</span>(<span class="params">year</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(year % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; year % <span class="number">100</span> != <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span>(year % <span class="number">400</span> == <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure></div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/page/17/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/19/"><i class="fas fa-angle-right"></i></a></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
-  var isXML = true;
-  var search_path = 'search.xml';
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active"
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+        </ul>
+    </div>
 
-  if (!search_path) {
-    search_path = 'search.xml';
-  } else if (/json$/i.test(search_path)) {
-    isXML = false;
-  }
+    <div class="window-mask"></div>
 
-  var path = '/' + search_path;
-  $.ajax({
-    url: path,
-    dataType: isXML ? 'xml' : 'json',
-    async: true,
-    success: function (res) {
-      var datas = isXML ? $('entry', res).map(function () {
-        // 将 XML 转为 JSON
-        return {
-          title: $('title', this).text(),
-          content: $('content', this).text(),
-          url: $('url', this).text()
-        };
-      }).get() : res;
-      var $input = $('.search-input input');
-      var $result = $('.search-results');
-      // 搜索对象（标题、内容）的权重，影响显示顺序
-      var WEIGHT = { title: 100, content: 1 };
-      var searchPost = function () {
-        var searchText = $input.val().toLowerCase().trim();
-        // 根据空白字符分隔关键字
-        var keywords = searchText.split(/[\s]+/);
-        // 搜索结果
-        var matchPosts = [];
+</header>
 
-        // 有多个关键字时，将原文字整个保存下来
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        // 防止未输入字符时搜索
-        if (searchText.length > 0) {
-          datas.forEach(function (data) {
-            var isMatch  = false;
-            // 没有标题的文章使用预设的 i18n 变量代替
-            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
-            var titleLower = title && title.toLowerCase();
-            // 删除 HTML 标签 和 所有空白字符
-            var content = data.content && data.content.replace(/<[^>]+>/g, '');
-            var contentLower = content && content.toLowerCase();
-            // 删除重复的 /
-            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
-            // 标题中匹配到的关键词
-            var titleHitSlice = [];
-            // 内容中匹配到的关键词
-            var contentHitSlice = [];
 
-            keywords.forEach(function (keyword) {
-              /**
-              * 获取匹配的关键词的索引
-              * @param {String} keyword 要匹配的关键字
-              * @param {String} text 原文字
-              * @param {Boolean} caseSensitive 是否区分大小写
-              * @param {Number} weight 匹配对象的权重。权重大的优先显示
-              * @return {Array}
-              */
-              function getIndexByword (word, text, caseSensitive, weight) {
-                if (!word || !text) {
-                  return [];
-                };
+        </div>
 
-                var startIndex = 0; // 每次匹配的开始索引
-                var index = -1;     // 匹配到的索引值
-                var result = [];    // 匹配结果
+        <div class="page-main-content-middle">
 
-                if (!caseSensitive) {
-                  word = word.toLowerCase();
-                  text = text.toLowerCase();
-                }
+            <div class="main-content">
 
-                while((index = text.indexOf(word, startIndex)) !== -1) {
-                  var hasMatch = false;
-                  // 索引位置相同的关键词，保留长度较长的
-                  titleHitSlice.forEach(function (hit) {
-                    if (hit.index === index && hit.word.length < word.length) {
-                      hit.word = word;
-                      hasMatch = true;
-                    }
-                  });
-                  startIndex = index + word.length;
-                  !hasMatch && result.push({ index: index, word: word, weight: weight });
-                }
-                return result;
-              }
-              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
-              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
-            });
+                
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
 
-            var hitTitle = titleHitSlice.length;
-            var hitContent = contentHitSlice.length;
+                
 
-            if (hitTitle > 0 || hitContent > 0) {
-              isMatch = true;
-            }
-            if (isMatch) {
-              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
-                // 按照匹配文字的索引的递增顺序排序
-                hit.sort(function (left, right) {
-                  return left.index - right.index;
-                });
-              });
-              /**
-              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
-              * @param {String} text 原文本
-              * @param {Array} hitSlice 匹配项的索引信息
-              * @param {Number} start 开始索引
-              * @param {Number} end 结束索引
-              * @return {String}
-              */
-              function highlightKeyword (text, hitSlice, start, end) {
-                if (!text || !hitSlice || !hitSlice.length) {
-                  return;
-                }
+                <h3 class="home-article-title">
+                    <a href="/2017/11/13/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAbind%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+                        手写个 bind 实现
+                    </a>
+                </h3>
 
-                var result = '';
-                var startIndex = start;
-                var endIndex = end;
-                hitSlice.forEach(function (hit) {
-                  if (hit.index < startIndex) {
-                    return;
-                  }
+                <div class="home-article-content markdown-body">
+                    
+                        bind 的介绍
 
-                  var hitWordEnd = hit.index + hit.word.length;
-                  result += text.slice(startIndex, hit.index);
-                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
-                  startIndex = hitWordEnd;
-                });
-                result += text.slice(startIndex, endIndex);
-                return result;
-              }
+bind() 方法会创建一个新函数。当这个新函数被调用时，bind() 的第一个参数将作为它运行时的 this，之后的一序列参数将会在传递的实参前传入作为它的参数。
 
-              var postData = {};
-              // 文章总的搜索权重
-              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
-              // 标记匹配关键词后的标题
-              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
-              // 标记匹配关键词后的内容
-              var postContent;
-              // 显示内容的长度
-              var SHOW_WORD_LENGTH = 200;
-              // 命中关键词前的字符显示长度
-              var SHOW_WORD_FRONT_LENGTH = 20;
-              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+首先介绍下区别
+第一个返回一个新函数的实现1234567891...
+                    
+                </div>
 
-              // 截取匹配的第一个字符，前后共 200 个字符来显示
-              if (contentHitSlice.length > 0) {
-                var firstIndex = contentHitSlice[0].index;
-                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
-                var end = firstIndex + SHOW_WORD_END_LENGTH;
-                postContent = highlightKeyword(content, contentHitSlice, start, end);
-              } else { // 未匹配到内容，直接截取前 200 个字符来显示
-                postContent = content.slice(0, SHOW_WORD_LENGTH);
-              }
-              postData.title = postTitle;
-              postData.content = postContent;
-              postData.url = postURL;
-              postData.weight = postWeight;
-              matchPosts.push(postData);
-            }
-          });
-        }
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Nov 13 2017 00:00:00 GMT+0800">2017-11-13</span></span>
+        
+        
+    </div>
 
-        var resultInnerHtml = '';
-        if (matchPosts.length) {
-          // 按权重递增的顺序排序，使权重大的优先显示
-          matchPosts.sort(function (left, right) {
-            return right.weight - left.weight;
-          });
-          resultInnerHtml += '<ul>';
-          matchPosts.forEach(function (post) {
-            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
-            resultInnerHtml += post.title;
-            resultInnerHtml += '</a><div class="search-results-content">';
-            resultInnerHtml += post.content;
-            resultInnerHtml += '</div></li>';
-          });
-          resultInnerHtml += '</ul>';
-        } else {
-          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
-        }
-        $result.html(resultInnerHtml);
-      };
-      $input.on('input', searchPost);
-      $input.on('keyup', function (e) {
-        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
-          searchPost();
-        }
-      });
-    }
-  });
-}
+    <a href="/2017/11/13/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAbind%E7%9A%84%E5%AE%9E%E7%8E%B0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
 
-function closeSearch () {
-  $('body').css({ overflow: 'auto' });
-  $('.search-popup').css({ display: 'none' });
-  $('.search-mask').css({ display: 'none' });
-}
+            </li>
+        
+            <li class="home-article-item">
 
-window.addEventListener('DOMContentLoaded', function () {
-  Stun.utils.pjaxReloadLocalSearch = function () {
-    $('.header-nav-search').on('click', function (e) {
-      e.stopPropagation();
-      $('body').css('overflow', 'hidden');
-      $('.search-popup')
-        .velocity('stop')
-        .velocity('transition.expandIn', {
-          duration: 300,
-          complete: function () {
-            $('.search-popup input').focus();
-          }
-        });
-      $('.search-mask')
-        .velocity('stop')
-        .velocity('transition.fadeIn', {
-          duration: 300
-        });
+                
 
-      initSearch();
-    });
-    $('.search-mask, .search-close').on('click', function () {
-      closeSearch();
-    });
-    $(document).on('keydown', function (e) {
-      // Escape <=> 27
-      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
-        closeSearch();
-      }
-    });
-  };
+                <h3 class="home-article-title">
+                    <a href="/2017/10/31/%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%A7%E6%89%BF/">
+                        JAVASCRIPT 设计模式之寄生式继承
+                    </a>
+                </h3>
 
-  Stun.utils.pjaxReloadLocalSearch();
-}, false);
+                <div class="home-article-content markdown-body">
+                    
+                        <p>寄生式继承</p>
+                    
+                </div>
 
-function safeOpenUrl(url) {
-  var newTab = window.open();
-  newTab.opener = null;
-  newTab.location = url;
-}
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Oct 31 2017 15:13:48 GMT+0800">2017-10-31</span></span>
+        
+        
+    </div>
 
-function extSearch(engine) {
-  var engines = {
-    google: 'https://www.google.com/search?q=',
-    bing: 'https://cn.bing.com/search?q=',
-    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
-  };
-  var host = window.location.host;
-  var query = $('.search-input input').val().toLowerCase().trim();
-  var uri = engines[engine] + query + ' site:' + host;
+    <a href="/2017/10/31/%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%A7%E6%89%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
 
-  if (query) {
-    safeOpenUrl(uri);
-  } else {
-    Stun.utils.popAlert('warning', '请输入字符');
-  }
-}
+            </li>
+        
+            <li class="home-article-item">
 
-var assistSearchList = window.CONFIG.assistSearch;
+                
 
-if (Array.isArray(assistSearchList)) {
-  assistSearchList.forEach(function (name) {
-    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
-      extSearch(name);
-    }, false);
-  });
-}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
+                <h3 class="home-article-title">
+                    <a href="/2017/10/26/webpack3.10.0%E4%BD%BF%E7%94%A8/">
+                        webpack3.10.0使用
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>前端工程师必备技能<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Oct 26 2017 00:00:00 GMT+0800">2017-10-26</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/10/26/webpack3.10.0%E4%BD%BF%E7%94%A8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/10/24/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%80%BC%E7%B1%BB%E5%9E%8B/">
+                        引用类型和值类型
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>每种数据类型的内存分配</p>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Oct 24 2017 15:13:48 GMT+0800">2017-10-24</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/10/24/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%80%BC%E7%B1%BB%E5%9E%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/10/23/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+                        数据类型判断的几种方式
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>如何判断数据类型？？<br>基础数据类型的判断几种方式</p>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Oct 23 2017 15:13:48 GMT+0800">2017-10-23</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/10/23/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/09/22/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF/">
+                        JAVASCRIPT设计模式之原型继承
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>涉及到多个对象，我们通过原型模式来实现对新对象的创建<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Sep 22 2017 15:13:48 GMT+0800">2017-09-22</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/09/22/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BF/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/09/21/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+                        JAVASCRIPT设计模式之原型模式
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>项目经理要求：页面中有很多焦点图 每个焦点图的实现方式不一样，左右切换 上下切换<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Sep 21 2017 15:13:48 GMT+0800">2017-09-21</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/09/21/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/09/20/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
+                        JAVASCRIPT设计模式之建造者模式
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>需求分析：发布简历 种类多目的为了创建对象，<br>更关心创造这个对象的整个过程<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Sep 20 2017 15:13:48 GMT+0800">2017-09-20</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/09/20/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/09/19/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%99%E6%88%91%E4%B8%80%E5%BC%A0%E5%90%8D%E7%89%87%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
+                        JAVASCRIPT设计模式之给我一张名片工厂模式
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>项目经理要求小白做一个需求投放各式各样的广告<br>需求总在变如何应对？<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Sep 19 2017 15:13:48 GMT+0800">2017-09-19</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/09/19/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%BB%99%E6%88%91%E4%B8%80%E5%BC%A0%E5%90%8D%E7%89%87%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/09/18/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9E%8B%E4%B9%8B%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
+                        JAVASCRIPT设计模式之简单工厂模式
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>需求登陆模块用户输入框需求：有多种提示框，如确认框，警告框，输入框；<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Sep 18 2017 15:13:48 GMT+0800">2017-09-18</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/09/18/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9E%8B%E4%B9%8B%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/page/17/"
+        >上一页</a>
+    
+
+    
+        <a class="next btn"
+           href="/page/19/"
+        >下一页</a>
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Mariogogogo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

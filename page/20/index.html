@@ -1,396 +1,600 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="好前端才分对错，成年人只分利弊">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mario">
-<meta property="og:url" content="http://mariogogogo.github.io/page/20/index.html">
-<meta property="og:site_name" content="Mario">
-<meta property="og:description" content="好前端才分对错，成年人只分利弊">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Codding">
-<meta name="twitter:card" content="summary"><title> | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/page/20/index.html"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: ["google","bing","baidu"],
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":true},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="好前端才分对错，成年人只分利弊">
+    <meta name="author" content="Mariogogogo">
+    
+    <title>
+        
+        Mario Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/06/30/Node%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81/">NodeJs之短信发送</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-30</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">498</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">4分</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
-<p>我们在平常的开发中经常会遇到在注册的时候要发送手机短信验证码，或者是在一些安全性校验的时候要发送手机短信验证码， 于是找了很多短信验证码平台，但是支持nodejs的平台很少，今天就介绍一个少有的支持node的短信验证平台</p>
-</blockquote></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/06/30/Node%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%81/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/06/30/Node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/">NodeJs之邮件发送</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-30</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">320</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">2分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>使用Nodejs收发电子邮件也非常简单，Nodemailer包就可以帮助快速实现发邮件的功能。<br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/06/30/Node%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/06/29/NodeJs%E4%B9%8B%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/">NodeJs之博客（三）</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-29</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">309</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">2分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>增加==cookie==与数据库==mongodb==<br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/06/29/NodeJs%E4%B9%8B%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/06/28/NodeJs%E4%B9%8B%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/">NodeJs之博客（二）</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-28</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">406</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">3分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>增加第三方模块<br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/06/28/NodeJs%E4%B9%8B%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/06/27/NodeJs%E4%B9%8B%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/">NodeJs之博客（一）</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-27</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">984</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">5分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>做一个博客项目学习下<br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/06/27/NodeJs%E4%B9%8B%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/06/26/%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%EF%BC%8C%E5%90%8E%E6%8C%89%E9%92%AE%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%8C%E9%98%B2%E6%AD%A2%E5%88%B7%E6%96%B0%E5%80%92%E8%AE%A1%E6%97%B6%E5%A4%B1%E6%95%88/">发送短信验证，后按钮倒计时，防止刷新倒计时失效</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-26</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">404</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">3分</span></span></div></header><div class="post-body"><div class="post-excerpt"><blockquote>
-<p>在开发“发送短信验证”功能时候，要解决一个问题，防止恶意或频繁发送短信验证码问题。一般原理是“当点击发送按钮时，发送ajax请求到服务器发送短信验证码，成功则把发送按钮设置为不可点击，并且调用定时器，按钮显示倒计时”。如果就这样不对倒计时存储做处理，那么当刷新页面，会出现倒计时失效，按钮可点击。提供以下解决方案：</p>
-<p>利用cookie存储倒计时</p>
-<p>利用HTML5的localStorage 存储倒计时</p>
-</blockquote></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/06/26/%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%EF%BC%8C%E5%90%8E%E6%8C%89%E9%92%AE%E5%80%92%E8%AE%A1%E6%97%B6%EF%BC%8C%E9%98%B2%E6%AD%A2%E5%88%B7%E6%96%B0%E5%80%92%E8%AE%A1%E6%97%B6%E5%A4%B1%E6%95%88/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/06/19/10%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84Node.js%E9%9D%A2%E8%AF%95%E9%A2%98/">10 个常见的 Node.js 面试题</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-19</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.8k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">9分</span></span></div></header><div class="post-body"><div class="post-excerpt"><a id="more"></a>
-<p>如果你希望找一份有关 Node.js 的工作，但又不知道从哪里入手评测自己对 node.js 的掌握程度。 本文就为你罗列了 10 个常见的 Node.js 面试题，分别考察了 Node.js 编程相关的几个主要方面。</p>
-<p>在进入正文之前，需要提前声明两点：</p>
-<pre><code>这些问题只是Node.js知识体系的一个局部，并不能完全考察被面试者的实际开发能力。
-对现实世界开发中遇到的问题，需要的是随机应变与团队合作，所以你可以尝试结对编程。
-</code></pre><p>Node.js 面试题列表</p>
-<pre><code>什么是错误优先的回调函数？
-如何避免回调地狱？
-如何用Node来监听80端口？
-什么是事件循环？
-哪些工具可以用来保证一致的编程风格？
-运算错误与程序员错误的区别？
-使用NPM有哪些好处？
-什么是stub？举个使用场景？
-什么是测试金字塔？对于HTTP API，如何利用测试金字塔？
-你最喜欢的HTTP框架，并说明原因？
-</code></pre><p>现在，我们依次来解答这些问题吧。</p>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mariogogogo.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"1240px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
-        <h5 id="什么是错误优先的回调函数？"   >
-          <a href="#什么是错误优先的回调函数？" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是错误优先的回调函数？" class="headerlink" title="什么是错误优先的回调函数？"></a>什么是错误优先的回调函数？</h5>
-      <blockquote>
-<p>错误优先的回调函数用于传递错误和数据。第一个参数始终应该是一个错误对象， 用于检查程序是否发生了错误。其余的参数用于传递数据。例如：</p>
-<p>fs.readFile(filePath, function(err, data) {<br>if (err) {<br>//handle the error<br>}<br>// use the data object<br>});</p>
-</blockquote>
-<p>解析：这个题目的主要作用在于检查被面试者对于 Node 中异步操作的一些基本知识的掌握。<br>如何避免回调地狱</p>
-<p>你可以有如下几个方法：</p>
-<pre><code>模块化：将回调函数分割为独立的函数
-使用Promises
-使用yield来计算生成器或Promise
-</code></pre><p>解析：这个问题有很多种答案，取决你使用的场景，例如 ES6, ES7，或者一些控制流库。<br>如何用 Node 监听 80 端口</p>
-<blockquote>
-<p>这题有陷阱！在类 Unix 系统中你不应该尝试去监听 80 端口，因为这需要超级用户权限。 因此不推荐让你的应用直接监听这个端口。</p>
-<p>目前，如果你一定要让你的应用监听 80 端口的话，你可以有通过在 Node 应用的前方再增加一层反向代理 （例如 nginx）来实现，如下图所示。否则，建议你直接监听大于 1024 的端口。</p>
-</blockquote>
-<p>Reverse Proxy</p>
-<pre><code>方向代理指的是以代理服务器来接收Internet上的连接请求，然后将请求转发给内部网络上的服务器， 并且将服务器返回的结果发送给客户端。
-</code></pre><p>关于反向代理的更多内容，建议你阅读这篇文章。 关于如何利用 nginx 来为 node 配置方向代理的实践，可以参考这篇博文。</p>
-<p>解释：这个问题用于检查被面试者是否有实际运行 Node 应用的经验。<br>什么是事件循环</p>
-<p>Node 采用的是单线程的处理机制（所有的 I/O 请求都采用非阻塞的工作方式），至少从 Node.js 开发者的角度是这样的。 而在底层，Node.js 借助 libuv 来作为抽象封装层， 从而屏蔽不同操作系统的差异，Node 可以借助 livuv 来来实现多线程。下图表示了 Node 和 libuv 的关系。</p>
-<p>Libuv 库负责 Node API 的执行。它将不同的任务分配给不同的线程，形成一个事件循环， 以异步的方式将任务的执行结果返回给 V8 引擎。可以简单用下面这张图来表示。</p>
-<p>（图片来源于网络）</p>
-<p>每一个 I/O 都需要一个回调函数——一旦执行完便推到事件循环上用于执行。 如果你需要更多详细的解释，可以参考这个视频。 你也可以参考这篇文章。</p>
-<p>解释：这用于检查 Node.js 的底层知识，例如什么是 libuv，它的作用是什么。<br>哪些工具可以用来保证一致性的代码风格</p>
-<p>你可以选择如下的工具：</p>
-<pre><code>JSLint
-JSHint
-ESLint
-JSCS - 推荐
-</code></pre><p>在团队开发中，这些工具对于编写代码非常的有帮助，能够帮助团队开发者强制执行规定的风格指南， 还能够通过静态分析捕获常见的错误。</p>
-<p>解析：用于检查被面试者是否有大型项目开发经验。<br>运算错误与程序员错误的区别</p>
-<p>运算错误并不是 bug，这是和系统相关的问题，例如请求超时或者硬件故障。而程序员错误就是所谓的 bug。</p>
-<p>解析：这个题目和 Node 关系并不大，用于考察面试者的基础知识。<br>使用 NPM 有哪些好处？</p>
-<p>通过 NPM，你可以安装和管理项目的依赖，并且能够指明依赖项的具体版本号。 对于 Node 应用开发而言，你可以通过 package.json 文件来管理项目信息，配置脚本， 以及指明项目依赖的具体版本。</p>
-<p>关于 NPM 的更多信息，你可以参考官方文档。</p>
-<p>解析：它能考察面试者使用 npm 命令的基础知识和 Node.js 开发的实际经验。<br>什么是 Stub？举个使用场景</p>
-<p>Stub 是用于模拟一个组件或模块的函数或程序。在测试用例中， 简单的说，你可以用 Stub 去模拟一个方法，从而避免调用真实的方法， 使用 Stub 你还可以返回虚构的结果。你可以配合断言使用 Stub。</p>
-<p>举个例子，在一个读取文件的场景中，当你不想读取一个真正的文件时：</p>
-<p>var fs = require(‘fs’);</p>
-<p>var readFileStub = sinon.stub(fs, ‘readFile’, function (path, cb) {<br>return cb(null, ‘filecontent’);<br>});</p>
-<p>expect(readFileStub).to.be.called;<br>readFileStub.restore();</p>
-<pre><code>在单元测试中：Stub是完全模拟一个外部依赖，而Mock常用来判断测试通过还是失败。
-</code></pre><p>有关 Node.js 的单元测试小结，你可以参考这个链接。</p>
-<p>解析：用于测试被面试者是否有测试的经验。如果被面试者知道什么是 Stub， 那么可以继续问他是如何做单元测试的。<br>什么是测试金字塔？</p>
-<p>测试金字塔指的是： 当我们在编写测试用例时，底层的单元测试应该远比上层的端到端测试要多。</p>
-<p>当我们谈到 HTTP API 时，我们可能会涉及到：</p>
-<pre><code>有很多针对模型的底层单元测试
-但你需要测试模型间如何交互时，需要减少集成测试
-</code></pre><p>解析：本文主要考察被面试者的在测试方面的经验。<br>你最喜欢的 HTTP 框架以及原因</p>
-<p>这题没有唯一的答案。本题主要考察被面试者对于他所使用的 Node 框架的理解程度， 考察他是否能够给出选择该框架的理由，优缺点等。常用的 HTTP 框架你可以参考这个网站。</p>
-</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/06/19/jQuery%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%90%8E%E5%B1%85%E4%B8%AD%E6%98%BE%E7%A4%BA%E6%B6%88%E6%81%AF%E6%A1%86%E7%9A%84%E6%96%B9%E6%B3%95/">jQuery页面加载后居中显示消息框的方法</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-19</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">473</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">5分</span></span></div></header><div class="post-body"><div class="post-excerpt"><a id="more"></a>
 
-        <h2 id="效果图"   >
-          <a href="#效果图" class="heading-link"><i class="fas fa-link"></i></a><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2>
-      <p><img src="http://pp.52react.cn/Alert%E5%B1%85%E4%B8%AD.gif" alt="image"></p>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
 
-        <h2 id="代码"   >
-          <a href="#代码" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码" class="headerlink" title="代码"></a>代码</h2>
-      <figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">$(<span class="string">&#x27;.btn&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    $(<span class="string">&#x27;.mask&#x27;</span>).css(&#123;</span><br><span class="line">        <span class="string">&#x27;display&#x27;</span>: <span class="string">&#x27;block&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">    center($(<span class="string">&#x27;.mess&#x27;</span>));</span><br><span class="line">    check($(<span class="built_in">this</span>).parent(), $(<span class="string">&#x27;.btn1&#x27;</span>), $(<span class="string">&#x27;.btn2&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 居中</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">center</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> screenWidth = $(<span class="built_in">window</span>).width(),</span><br><span class="line">        screenHeight = $(<span class="built_in">window</span>).height(); <span class="comment">//当前浏览器窗口的 宽高</span></span><br><span class="line">    <span class="keyword">var</span> scrolltop = $(<span class="built_in">document</span>).scrollTop(); <span class="comment">//获取当前窗口距离页面顶部高度</span></span><br><span class="line">    <span class="keyword">var</span> objLeft = (screenWidth - obj.width()) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">var</span> objTop = (screenHeight - obj.height()) / <span class="number">2</span> + scrolltop;</span><br><span class="line">    <span class="built_in">console</span>.log(scrolltop);</span><br><span class="line">    obj.css(&#123;</span><br><span class="line">        left: objLeft + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">        top: objTop + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;display&#x27;</span>: <span class="string">&#x27;block&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//当窗口大小发生改变浏览器窗口大小改变时</span></span><br><span class="line">    $(<span class="built_in">window</span>).resize(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        screenWidth = $(<span class="built_in">window</span>).width();</span><br><span class="line">        screenHeight = $(<span class="built_in">window</span>).height();</span><br><span class="line">        scrolltop = $(<span class="built_in">document</span>).scrollTop();</span><br><span class="line">        objLeft = (screenWidth - obj.width()) / <span class="number">2</span>;</span><br><span class="line">        objTop = (screenHeight - obj.height()) / <span class="number">2</span> + scrolltop;</span><br><span class="line">        obj.css(&#123;</span><br><span class="line">            left: objLeft + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">            top: objTop + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;display&#x27;</span>: <span class="string">&#x27;block&#x27;</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//当浏览器有滚动条时的操作、</span></span><br><span class="line">    $(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        screenWidth = $(<span class="built_in">window</span>).width();</span><br><span class="line">        screenHeight = $(<span class="built_in">window</span>).height();</span><br><span class="line">        scrolltop = $(<span class="built_in">document</span>).scrollTop();</span><br><span class="line">        objLeft = (screenWidth - obj.width()) / <span class="number">2</span>;</span><br><span class="line">        objTop = (screenHeight - obj.height()) / <span class="number">2</span> + scrolltop;</span><br><span class="line">        obj.css(&#123;</span><br><span class="line">            left: objLeft + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">            top: objTop + <span class="string">&#x27;px&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;display&#x27;</span>: <span class="string">&#x27;block&#x27;</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//确定取消的操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params">obj, obj1, obj2</span>) </span>&#123;</span><br><span class="line">    obj1.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        obj.remove();</span><br><span class="line">        closed($(<span class="string">&#x27;.mask&#x27;</span>), $(<span class="string">&#x27;.mess&#x27;</span>));</span><br><span class="line">    &#125;);</span><br><span class="line">    obj2.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        closed($(<span class="string">&#x27;.mask&#x27;</span>), $(<span class="string">&#x27;.mess&#x27;</span>));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 隐藏 的操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">closed</span>(<span class="params">obj1, obj2</span>) </span>&#123;</span><br><span class="line">    obj1.hide();</span><br><span class="line">    obj2.hide();</span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></div></figure>
-<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">style</span>=<span class="string">&quot;height:2000px&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>jQuery页面加载后居中显示消息框的方法<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">value</span>=<span class="string">&quot;单击弹出消息框&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;mask&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;mess&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>确定要删除吗？<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;确定&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn1&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;取消&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn2&quot;</span> /&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
-<figure class="highlight css"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.mask</span> &#123;</span><br><span class="line"><span class="attribute">position</span>: fixed;</span><br><span class="line"><span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line"><span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line"><span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line"><span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line"><span class="attribute">background</span>: <span class="number">#000</span>;</span><br><span class="line"><span class="attribute">opacity</span>: <span class="number">0.5</span>;</span><br><span class="line"><span class="attribute">filter</span>: <span class="built_in">alpha</span>(opacity=<span class="number">50</span>);</span><br><span class="line"><span class="attribute">display</span>: none;</span><br><span class="line"><span class="attribute">z-index</span>: <span class="number">99</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.mess</span> &#123;</span><br><span class="line"><span class="attribute">position</span>: absolute;</span><br><span class="line"><span class="attribute">display</span>: none;</span><br><span class="line"><span class="attribute">width</span>: <span class="number">250px</span>;</span><br><span class="line"><span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line"><span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line"><span class="attribute">background</span>: <span class="number">#ececec</span>;</span><br><span class="line"><span class="attribute">text-align</span>: center;</span><br><span class="line"><span class="attribute">z-index</span>: <span class="number">101</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/06/16/%E8%B7%A8%E5%9F%9F%E4%B9%8B%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E6%A1%86/">跨域之百度搜索框</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-06-16</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">440</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">4分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p><img src="http://pp.52react.cn/javascript.jpg" alt="image"><br></div><div class="post-readmore"><a class="post-readmore__link" href="/2017/06/16/%E8%B7%A8%E5%9F%9F%E4%B9%8B%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E6%A1%86/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2017/05/24/ES6%EF%BC%88%E5%85%AD%EF%BC%89/">ES6（六）</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2017-05-24</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">730</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">6分</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>class的的继承</p>
-<figure class="highlight css"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#canvas</span> &#123;</span><br><span class="line">           <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<figure class="highlight html"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">1.897</span>;</span><br><span class="line"><span class="built_in">console</span>.log(~~num); <span class="comment">//1，去除小数点后面的数字</span></span><br><span class="line"><span class="comment">//下面是简单的解释：</span></span><br><span class="line"><span class="comment">// Math.random()函数返回的是0到1之间的随机数。（不包括0和1本身），用该函数乘以你设定的max值减去min值所得的差，即是按照自己指定的倍数放大这个random值。\</span></span><br><span class="line"><span class="comment">// 接着为了从min值开始，必须在Math.random()*(max - min)之后加上min值本身。（max值表示最大值，min值表示最小值）</span></span><br><span class="line"><span class="keyword">var</span> arrs = [<span class="number">1</span>, <span class="number">10</span>];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.max(...arrs));</span><br><span class="line"></span><br><span class="line"><span class="comment">//class继承</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * class 的继承等相关知识</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// extends、 static、 super</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> canvas = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#canvas&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> ctx = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> w = canvas.width = <span class="number">600</span>;</span><br><span class="line"><span class="keyword">const</span> h = canvas.height = <span class="number">400</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ball</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">x, y, r</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.x = x;</span><br><span class="line">        <span class="built_in">this</span>.y = y;</span><br><span class="line">        <span class="built_in">this</span>.r = r;</span><br><span class="line">        <span class="built_in">this</span>.color = <span class="string">`rgb(<span class="subst">$&#123;~~Ball.rpFn([<span class="number">55</span>, <span class="number">255</span>])&#125;</span>, <span class="subst">$&#123;~~Ball.rpFn([<span class="number">55</span>, <span class="number">255</span>])&#125;</span>, <span class="subst">$&#123;~~Ball.rpFn([<span class="number">55</span>, <span class="number">255</span>])&#125;</span>)`</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//渲染方法</span></span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params">ctx</span>)</span> &#123;</span><br><span class="line">        ctx.save();</span><br><span class="line">        ctx.translate(<span class="built_in">this</span>.x, <span class="built_in">this</span>.y); <span class="comment">//小球坐标</span></span><br><span class="line">        ctx.fillStyle = <span class="built_in">this</span>.color; <span class="comment">//指定颜色</span></span><br><span class="line">        ctx.beginPath(); <span class="comment">//起始路径</span></span><br><span class="line">        ctx.arc(<span class="number">0</span>, <span class="number">0</span>, <span class="built_in">this</span>.r, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI); <span class="comment">//绘制路径</span></span><br><span class="line">        ctx.fill(); <span class="comment">//填充颜色</span></span><br><span class="line">        ctx.restore(); <span class="comment">//恢复绘图环境</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 思忒可  关键字 生成静态方法 挂载到类当中的方法</span></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="title">rpFn</span>(<span class="params">arr</span>)</span> &#123; <span class="comment">// Ball.rpFn([1, 10])</span></span><br><span class="line">        <span class="keyword">let</span> max = <span class="built_in">Math</span>.max(...arr), <span class="comment">//扩展运算符</span></span><br><span class="line">            min = <span class="built_in">Math</span>.min(...arr);</span><br><span class="line">        <span class="comment">//随机数参数</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.random() * (max - min) + min;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// const ball1 = new Ball(100, 100, 30).render(ctx);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个新类   extend函数 去继承 ball类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuperBall</span> <span class="keyword">extends</span> <span class="title">Ball</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">x, y, r</span>)</span> &#123;</span><br><span class="line">        <span class="comment">// Ball.call(this, x, y, r);</span></span><br><span class="line">        <span class="comment">// this.color = &#x27;red&#x27;;</span></span><br><span class="line">        <span class="built_in">super</span>(x, y, r);</span><br><span class="line">        <span class="comment">//super 之前使用 this 将指定undefined</span></span><br><span class="line">        <span class="comment">//子类继承父类  在构造函数中当成一个函数去使用 调用</span></span><br><span class="line">        <span class="comment">//继承属性 及 方法</span></span><br><span class="line">        <span class="built_in">this</span>.vy = SuperBall.rpFn([<span class="number">2</span>, <span class="number">4</span>]);</span><br><span class="line">        <span class="built_in">this</span>.g = SuperBall.rpFn([<span class="number">0.2</span>, <span class="number">0.4</span>]); <span class="comment">//重力加速度</span></span><br><span class="line">        <span class="built_in">this</span>.a = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function"><span class="title">move</span>(<span class="params">ctx</span>)</span> &#123;</span><br><span class="line">        <span class="comment">// super();</span></span><br><span class="line">        <span class="comment">// 非构造函数中报错 只能在构造函数当使用，并且调用了super就相当于使用了父类的方法</span></span><br><span class="line">        <span class="built_in">this</span>.y += <span class="built_in">this</span>.vy; <span class="comment">//y轴坐标</span></span><br><span class="line">        <span class="built_in">this</span>.vy += <span class="built_in">this</span>.g;</span><br><span class="line">        <span class="comment">//============重力减速反弹方法=============</span></span><br><span class="line">        <span class="keyword">let</span> current = <span class="built_in">this</span>.vy * -<span class="number">0.75</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.y + <span class="built_in">this</span>.r &gt;= ctx.canvas.height) &#123;</span><br><span class="line">            <span class="built_in">this</span>.y = ctx.canvas.height - <span class="built_in">this</span>.r;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">Math</span>.abs(current - <span class="built_in">this</span>.a) &lt; <span class="number">0.05</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="comment">//============重力减速反弹方法=============</span></span><br><span class="line">            <span class="built_in">this</span>.a = <span class="built_in">this</span>.vy *= -<span class="number">0.75</span>;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, ctx.canvas.width, ctx.canvas.height);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">super</span>.render(ctx); <span class="comment">//现在的super是对象 而不是函数 指向父类的原型对象， 自动绑定子类的this</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// const ball1 = new SuperBall(100, 100, 30).render(ctx);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ball, timer;</span><br><span class="line"></span><br><span class="line">canvas.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> x = e.offsetX,</span><br><span class="line">        y = e.offsetY;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> r = ~~Ball.rpFn([<span class="number">15</span>, <span class="number">55</span>]); <span class="comment">//~~清除小数</span></span><br><span class="line">    <span class="comment">//每次点击之前清除之前的小球</span></span><br><span class="line">    ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, ctx.canvas.width, ctx.canvas.height);</span><br><span class="line">    ball = <span class="keyword">new</span> SuperBall(x, y, r).render(ctx);</span><br><span class="line"></span><br><span class="line">    ballMove(); <span class="comment">//调用反弹运动</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ballMove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    timer = <span class="built_in">window</span>.requestAnimationFrame(ballMove);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!ball.move(ctx)) &#123;</span><br><span class="line">        <span class="built_in">window</span>.cancelAnimationFrame(timer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<p>知识点：重力减速 ，extends、 static、 super的继承的三个方法</p>
-</div></div></article></section><nav class="paginator"><div class="paginator-inner"><a class="extend prev" rel="prev" href="/page/19/"><i class="fas fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/21/"><i class="fas fa-angle-right"></i></a></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
-  var isXML = true;
-  var search_path = 'search.xml';
+    
+</div>
 
-  if (!search_path) {
-    search_path = 'search.xml';
-  } else if (/json$/i.test(search_path)) {
-    isXML = false;
-  }
 
-  var path = '/' + search_path;
-  $.ajax({
-    url: path,
-    dataType: isXML ? 'xml' : 'json',
-    async: true,
-    success: function (res) {
-      var datas = isXML ? $('entry', res).map(function () {
-        // 将 XML 转为 JSON
-        return {
-          title: $('title', this).text(),
-          content: $('content', this).text(),
-          url: $('url', this).text()
-        };
-      }).get() : res;
-      var $input = $('.search-input input');
-      var $result = $('.search-results');
-      // 搜索对象（标题、内容）的权重，影响显示顺序
-      var WEIGHT = { title: 100, content: 1 };
-      var searchPost = function () {
-        var searchText = $input.val().toLowerCase().trim();
-        // 根据空白字符分隔关键字
-        var keywords = searchText.split(/[\s]+/);
-        // 搜索结果
-        var matchPosts = [];
+<main class="page-container">
 
-        // 有多个关键字时，将原文字整个保存下来
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        // 防止未输入字符时搜索
-        if (searchText.length > 0) {
-          datas.forEach(function (data) {
-            var isMatch  = false;
-            // 没有标题的文章使用预设的 i18n 变量代替
-            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
-            var titleLower = title && title.toLowerCase();
-            // 删除 HTML 标签 和 所有空白字符
-            var content = data.content && data.content.replace(/<[^>]+>/g, '');
-            var contentLower = content && content.toLowerCase();
-            // 删除重复的 /
-            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
-            // 标题中匹配到的关键词
-            var titleHitSlice = [];
-            // 内容中匹配到的关键词
-            var contentHitSlice = [];
+    
 
-            keywords.forEach(function (keyword) {
-              /**
-              * 获取匹配的关键词的索引
-              * @param {String} keyword 要匹配的关键字
-              * @param {String} text 原文字
-              * @param {Boolean} caseSensitive 是否区分大小写
-              * @param {Number} weight 匹配对象的权重。权重大的优先显示
-              * @return {Array}
-              */
-              function getIndexByword (word, text, caseSensitive, weight) {
-                if (!word || !text) {
-                  return [];
-                };
+    <div class="page-main-content">
 
-                var startIndex = 0; // 每次匹配的开始索引
-                var index = -1;     // 匹配到的索引值
-                var result = [];    // 匹配结果
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
 
-                if (!caseSensitive) {
-                  word = word.toLowerCase();
-                  text = text.toLowerCase();
-                }
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mario Blog
+            </a>
+        </div>
 
-                while((index = text.indexOf(word, startIndex)) !== -1) {
-                  var hasMatch = false;
-                  // 索引位置相同的关键词，保留长度较长的
-                  titleHitSlice.forEach(function (hit) {
-                    if (hit.index === index && hit.word.length < word.length) {
-                      hit.word = word;
-                      hasMatch = true;
-                    }
-                  });
-                  startIndex = index + word.length;
-                  !hasMatch && result.push({ index: index, word: word, weight: weight });
-                }
-                return result;
-              }
-              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
-              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
-            });
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="active"
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            var hitTitle = titleHitSlice.length;
-            var hitContent = contentHitSlice.length;
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active"
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+        </ul>
+    </div>
 
-            if (hitTitle > 0 || hitContent > 0) {
-              isMatch = true;
-            }
-            if (isMatch) {
-              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
-                // 按照匹配文字的索引的递增顺序排序
-                hit.sort(function (left, right) {
-                  return left.index - right.index;
-                });
-              });
-              /**
-              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
-              * @param {String} text 原文本
-              * @param {Array} hitSlice 匹配项的索引信息
-              * @param {Number} start 开始索引
-              * @param {Number} end 结束索引
-              * @return {String}
-              */
-              function highlightKeyword (text, hitSlice, start, end) {
-                if (!text || !hitSlice || !hitSlice.length) {
-                  return;
-                }
+    <div class="window-mask"></div>
 
-                var result = '';
-                var startIndex = start;
-                var endIndex = end;
-                hitSlice.forEach(function (hit) {
-                  if (hit.index < startIndex) {
-                    return;
-                  }
+</header>
 
-                  var hitWordEnd = hit.index + hit.word.length;
-                  result += text.slice(startIndex, hit.index);
-                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
-                  startIndex = hitWordEnd;
-                });
-                result += text.slice(startIndex, endIndex);
-                return result;
-              }
 
-              var postData = {};
-              // 文章总的搜索权重
-              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
-              // 标记匹配关键词后的标题
-              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
-              // 标记匹配关键词后的内容
-              var postContent;
-              // 显示内容的长度
-              var SHOW_WORD_LENGTH = 200;
-              // 命中关键词前的字符显示长度
-              var SHOW_WORD_FRONT_LENGTH = 20;
-              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+        </div>
 
-              // 截取匹配的第一个字符，前后共 200 个字符来显示
-              if (contentHitSlice.length > 0) {
-                var firstIndex = contentHitSlice[0].index;
-                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
-                var end = firstIndex + SHOW_WORD_END_LENGTH;
-                postContent = highlightKeyword(content, contentHitSlice, start, end);
-              } else { // 未匹配到内容，直接截取前 200 个字符来显示
-                postContent = content.slice(0, SHOW_WORD_LENGTH);
-              }
-              postData.title = postTitle;
-              postData.content = postContent;
-              postData.url = postURL;
-              postData.weight = postWeight;
-              matchPosts.push(postData);
-            }
-          });
-        }
+        <div class="page-main-content-middle">
 
-        var resultInnerHtml = '';
-        if (matchPosts.length) {
-          // 按权重递增的顺序排序，使权重大的优先显示
-          matchPosts.sort(function (left, right) {
-            return right.weight - left.weight;
-          });
-          resultInnerHtml += '<ul>';
-          matchPosts.forEach(function (post) {
-            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
-            resultInnerHtml += post.title;
-            resultInnerHtml += '</a><div class="search-results-content">';
-            resultInnerHtml += post.content;
-            resultInnerHtml += '</div></li>';
-          });
-          resultInnerHtml += '</ul>';
-        } else {
-          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
-        }
-        $result.html(resultInnerHtml);
-      };
-      $input.on('input', searchPost);
-      $input.on('keyup', function (e) {
-        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
-          searchPost();
-        }
-      });
-    }
-  });
-}
+            <div class="main-content">
 
-function closeSearch () {
-  $('body').css({ overflow: 'auto' });
-  $('.search-popup').css({ display: 'none' });
-  $('.search-mask').css({ display: 'none' });
-}
+                
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
 
-window.addEventListener('DOMContentLoaded', function () {
-  Stun.utils.pjaxReloadLocalSearch = function () {
-    $('.header-nav-search').on('click', function (e) {
-      e.stopPropagation();
-      $('body').css('overflow', 'hidden');
-      $('.search-popup')
-        .velocity('stop')
-        .velocity('transition.expandIn', {
-          duration: 300,
-          complete: function () {
-            $('.search-popup input').focus();
-          }
-        });
-      $('.search-mask')
-        .velocity('stop')
-        .velocity('transition.fadeIn', {
-          duration: 300
-        });
+                
 
-      initSearch();
-    });
-    $('.search-mask, .search-close').on('click', function () {
-      closeSearch();
-    });
-    $(document).on('keydown', function (e) {
-      // Escape <=> 27
-      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
-        closeSearch();
-      }
-    });
-  };
+                <h3 class="home-article-title">
+                    <a href="/2017/08/16/%E7%BB%84%E4%BB%B6%E7%B3%BB%E5%88%97_%E5%BC%B9%E7%AA%97/">
+                        组件系列_弹窗
+                    </a>
+                </h3>
 
-  Stun.utils.pjaxReloadLocalSearch();
-}, false);
+                <div class="home-article-content markdown-body">
+                    
+                        <p>我们在前端开发的过程中（其它开发也一样），总是会遇到这样一种情况：以前做的一个项目，里面有个组件，比如对话弹窗、登陆窗等等。<br>
+                    
+                </div>
 
-function safeOpenUrl(url) {
-  var newTab = window.open();
-  newTab.opener = null;
-  newTab.location = url;
-}
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Aug 16 2017 00:00:00 GMT+0800">2017-08-16</span></span>
+        
+        
+    </div>
 
-function extSearch(engine) {
-  var engines = {
-    google: 'https://www.google.com/search?q=',
-    bing: 'https://cn.bing.com/search?q=',
-    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
-  };
-  var host = window.location.host;
-  var query = $('.search-input input').val().toLowerCase().trim();
-  var uri = engines[engine] + query + ' site:' + host;
+    <a href="/2017/08/16/%E7%BB%84%E4%BB%B6%E7%B3%BB%E5%88%97_%E5%BC%B9%E7%AA%97/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
 
-  if (query) {
-    safeOpenUrl(uri);
-  } else {
-    Stun.utils.popAlert('warning', '请输入字符');
-  }
-}
+            </li>
+        
+            <li class="home-article-item">
 
-var assistSearchList = window.CONFIG.assistSearch;
+                
 
-if (Array.isArray(assistSearchList)) {
-  assistSearchList.forEach(function (name) {
-    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
-      extSearch(name);
-    }, false);
-  });
-}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
+                <h3 class="home-article-title">
+                    <a href="/2017/08/05/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%E7%9A%84%E4%BA%94%E7%A7%8D%E5%86%99%E6%B3%95/">
+                        三栏布局的五种写法
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>已知高度  左右距离固定 中间自适应三栏布局在html很常见，基础知识回顾<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Aug 05 2017 00:00:00 GMT+0800">2017-08-05</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/08/05/%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%E7%9A%84%E4%BA%94%E7%A7%8D%E5%86%99%E6%B3%95/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/08/03/Node.js%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+                        Node.js 的本质
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>下面是一条数据的旅程，这条数据我们叫他req。<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Aug 03 2017 00:00:00 GMT+0800">2017-08-03</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/08/03/Node.js%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/07/27/mongodb%E7%9A%84%E4%BA%8C%E7%A7%8D%E5%86%99%E5%85%A5%E6%96%B9%E5%BC%8F/">
+                        mongodb的二种写入方式
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>MongoDB 是一个跨平台的，面向文档的数据库，提供高性能，高可用性和可扩展性方便。 MongoDB 工作在收集和文件的概念。<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Jul 27 2017 00:00:00 GMT+0800">2017-07-27</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/07/27/mongodb%E7%9A%84%E4%BA%8C%E7%A7%8D%E5%86%99%E5%85%A5%E6%96%B9%E5%BC%8F/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/07/10/nodeJs%E6%A8%A1%E5%9D%97formidable%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%9B%BE%E4%B8%8A%E4%BC%A0/">
+                        nodeJs模块formidable实现多文件上传
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>在进行node web开发时，我们可能经常遇到上传文件的问题，这一块如果我们没有经验，可能会遇到很多坑，下面我将跟大家分享一下，实现文件上传的一些方式。<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Jul 10 2017 00:00:00 GMT+0800">2017-07-10</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/07/10/nodeJs%E6%A8%A1%E5%9D%97formidable%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%9B%BE%E4%B8%8A%E4%BC%A0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/07/09/Mac%E4%B8%8B%E5%AE%89%E8%A3%85MongoDB%20%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+                        Mac下安装MongoDB 及使用教程
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>MongoDB 是一个跨平台的，面向文档的数据库，提供高性能，高可用性和可扩展性方便。 MongoDB 工作在收集和文件的概念。<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 09 2017 00:00:00 GMT+0800">2017-07-09</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/07/09/Mac%E4%B8%8B%E5%AE%89%E8%A3%85MongoDB%20%E5%8F%8A%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/07/09/nodeJs%E6%A8%A1%E5%9D%97formidable%E5%AE%9E%E7%8E%B0%E5%8D%95%E5%9B%BE%E4%B8%8A%E4%BC%A0/">
+                        nodeJs模块formidable实现单文件上传
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>在进行node web开发时，我们可能经常遇到上传文件的问题，这一块如果我们没有经验，可能会遇到很多坑，下面我将跟大家分享一下，实现文件上传的一些方式。<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 09 2017 00:00:00 GMT+0800">2017-07-09</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/07/09/nodeJs%E6%A8%A1%E5%9D%97formidable%E5%AE%9E%E7%8E%B0%E5%8D%95%E5%9B%BE%E4%B8%8A%E4%BC%A0/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/07/04/nodejs%E7%9F%A5%E5%A4%9A%E5%B0%91/">
+                        nodejs知多少
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>经常遇到的问题总结<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Jul 04 2017 00:00:00 GMT+0800">2017-07-04</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/07/04/nodejs%E7%9F%A5%E5%A4%9A%E5%B0%91/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/07/03/NodeJs%E4%B9%8B%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/">
+                        NodeJs之博客（四）
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>用户注册及登录<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Jul 03 2017 00:00:00 GMT+0800">2017-07-03</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/07/03/NodeJs%E4%B9%8B%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2017/07/03/%E9%82%AE%E7%AE%B1%E6%8B%96%E6%8B%BD%E5%8F%8A%E5%88%A0%E9%99%A4/">
+                        邮箱拖拽及删除
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <p>练习邮箱拖拽，及元素删除<br>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Jul 03 2017 00:00:00 GMT+0800">2017-07-03</span></span>
+        
+        
+    </div>
+
+    <a href="/2017/07/03/%E9%82%AE%E7%AE%B1%E6%8B%96%E6%8B%BD%E5%8F%8A%E5%88%A0%E9%99%A4/">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/page/19/"
+        >上一页</a>
+    
+
+    
+        <a class="next btn"
+           href="/page/21/"
+        >下一页</a>
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Mariogogogo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

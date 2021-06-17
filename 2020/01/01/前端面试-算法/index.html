@@ -1,108 +1,256 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="想学好前端，先练好内功，只有内功深厚者，前端之路才会走得更远。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="前端面试-算法">
-<meta property="og:url" content="http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E7%AE%97%E6%B3%95/index.html">
-<meta property="og:site_name" content="Mario">
-<meta property="og:description" content="想学好前端，先练好内功，只有内功深厚者，前端之路才会走得更远。">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://book.52react.cn/uPic/2020%2004%2029%2011%2025%2044%201588130744.png">
-<meta property="og:image" content="http://book.52react.cn/uPic/2020%2004%2029%2023%2057%2004%201588175824.png">
-<meta property="og:image" content="http://book.52react.cn/uPic/2020%2004%2030%2009%2034%2009%201588210449.png">
-<meta property="og:image" content="http://book.52react.cn/uPic/2020%2004%2029%2011%2026%2050%201588130810.png">
-<meta property="article:published_time" content="2019-12-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-16T09:07:10.000Z">
-<meta property="article:author" content="Codding">
-<meta property="article:tag" content="面试，Javascript，基础">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://book.52react.cn/uPic/2020%2004%2029%2011%2025%2044%201588130744.png"><title>前端面试-算法 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E7%AE%97%E6%B3%95/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: ["google","bing","baidu"],
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":true},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="好前端才分对错，成年人只分利弊">
+    <meta name="author" content="Mariogogogo">
+    
+    <title>
+        
+            前端面试-算法 |
+        
+        Mario Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">前端面试-算法</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-01-01</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">24分</span></span></div></header><div class="post-body"><p><strong>想学好前端，先练好内功，只有内功深厚者，前端之路才会走得更远</strong>。<br><a id="more"></a></p>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mariogogogo.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"1240px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mario Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">前端面试-算法</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Mariogogogo</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-01-01 00:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E9%9D%A2%E8%AF%95%EF%BC%8CJavascript%EF%BC%8C%E5%9F%BA%E7%A1%80/">面试，Javascript，基础</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><strong>想学好前端，先练好内功，只有内功深厚者，前端之路才会走得更远</strong>。<br><a id="more"></a></p>
 <p><img src="http://book.52react.cn/uPic/2020%2004%2029%2011%2025%2044%201588130744.png" alt="202004262253311587912811"></p>
-
-        <h2 id="选择排序"   >
-          <a href="#选择排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2>
-      
-        <h3 id="基本思想"   >
-          <a href="#基本思想" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3>
-      <p>1.默认第一个元素是最小值，</p>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>1.默认第一个元素是最小值，</p>
 <p>2.内循环从第二个（i+1）元素开始遍历找到比第一个元素小的，调换位置</p>
 <p>3.继续循环</p>
 <p>特点就是最快找到最小值或最大值</p>
-
-        <h3 id="代码实现"   >
-          <a href="#代码实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断是否是数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">array</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkArray</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(array);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 位置交换</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">array</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">left</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">right</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">array, left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (left &gt; array.length - <span class="number">1</span> || right &gt; array.length - <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">  &#125;</span><br><span class="line">  [ array[left], array[right] ] = [ array[right], array[left] ];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 选择排序</span></span><br><span class="line"><span class="comment"> * 不断的从左边位置后找最小值</span></span><br><span class="line"><span class="comment"> * 特点第一轮排序就已经找到了最小值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selection</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!checkArray(arr)) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="comment">//初始最小值 最小值往左排，</span></span><br><span class="line">    <span class="keyword">let</span> miniIndex = i;</span><br><span class="line">    <span class="comment">// 每次排位一个 i+1位置继续排列</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">      minIndex = arr[j] &lt; arr[minIndex] ? j : minIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(arr, i, miniIndex);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(selection([ <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">2</span>, <span class="number">8</span> ]));</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="冒泡排序"   >
-          <a href="#冒泡排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2>
-      
-        <h3 id="基本思想-1"   >
-          <a href="#基本思想-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h3>
-      <p>1.依次比较左右相邻2个位置大小，</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断是否是数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">array</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkArray</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(array);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 位置交换</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">array</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">left</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">right</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>(<span class="params">array, left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (left &gt; array.length - <span class="number">1</span> || right &gt; array.length - <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">  &#125;</span><br><span class="line">  [ array[left], array[right] ] = [ array[right], array[left] ];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 选择排序</span></span><br><span class="line"><span class="comment"> * 不断的从左边位置后找最小值</span></span><br><span class="line"><span class="comment"> * 特点第一轮排序就已经找到了最小值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selection</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!checkArray(arr)) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="comment">//初始最小值 最小值往左排，</span></span><br><span class="line">    <span class="keyword">let</span> miniIndex = i;</span><br><span class="line">    <span class="comment">// 每次排位一个 i+1位置继续排列</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">      minIndex = arr[j] &lt; arr[minIndex] ? j : minIndex;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(arr, i, miniIndex);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(selection([ <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">2</span>, <span class="number">8</span> ]));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="基本思想-1"><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h3><p>1.依次比较左右相邻2个位置大小，</p>
 <p>2.如果大就换个位置继续比较。</p>
 <p>3.外循环比较i是数组长度 递减–，这样内循环每次就缩小比较范围</p>
 <blockquote>
 <p>能解决什么问题：1.查找数组间最大差值 2。奇偶排序 设置2个游标 分别指向奇 偶游标</p>
 </blockquote>
-
-        <h3 id="代码实现-1"   >
-          <a href="#代码实现-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 冒泡排序</span></span><br><span class="line"><span class="comment"> * 特点第一轮排序就能找到最右边的最大值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> a = [ <span class="number">5</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span> ];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubble</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!checkArray(arr)) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = arr.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="comment">// 下面的i是你下次要遍历的最大边界</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        swap(arr, j, j + <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubble(a));</span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="插入排序"   >
-          <a href="#插入排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2>
-      
-        <h3 id="基本思想-2"   >
-          <a href="#基本思想-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想-2" class="headerlink" title="基本思想"></a>基本思想</h3>
-      <p>1.排序默认从第二个开始遍历</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 冒泡排序</span></span><br><span class="line"><span class="comment"> * 特点第一轮排序就能找到最右边的最大值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> a = [ <span class="number">5</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span> ];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubble</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!checkArray(arr)) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = arr.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="comment">// 下面的i是你下次要遍历的最大边界</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        swap(arr, j, j + <span class="number">1</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(bubble(a));</span><br></pre></td></tr></table></figure>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="基本思想-2"><a href="#基本思想-2" class="headerlink" title="基本思想"></a>基本思想</h3><p>1.排序默认从第二个开始遍历</p>
 <p>2.每一次遍历序号之前的元素全部遍历一遍，比较大小，交换位置</p>
-
-        <h3 id="代码实现-2"   >
-          <a href="#代码实现-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 插入排序</span></span><br><span class="line"><span class="comment"> * 适合小型数组 算法比选择和冒泡性能好</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>array </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; length &#125; = array;</span><br><span class="line">  <span class="keyword">let</span> temp;</span><br><span class="line">  <span class="comment">//注意是从第二个位置开始</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> j = i;</span><br><span class="line">    temp = array[i]; <span class="comment">//储存一个临时变量</span></span><br><span class="line">    <span class="comment">//每一次都比较当前索引之前的序列全都比较一遍</span></span><br><span class="line">    <span class="comment">//比如【3，2，1，5】，当前1 要跟 2 3都比较一遍 下一次5 跟 3，2，1 都比较一遍</span></span><br><span class="line">    <span class="comment">//array[j - 1] 是前面一个数 temp后面一个数</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; array[j - <span class="number">1</span>] &gt; temp) &#123;</span><br><span class="line">      array[j] = array[j - <span class="number">1</span>];</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    array[j] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array = [ <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span> ];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(insertionSort(array));</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="堆排序"   >
-          <a href="#堆排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2>
-      
-        <h3 id="基本思想-3"   >
-          <a href="#基本思想-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想-3" class="headerlink" title="基本思想"></a>基本思想</h3>
-      <p>构造一个大顶堆，取堆顶也就是最大值</p>
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 插入排序</span></span><br><span class="line"><span class="comment"> * 适合小型数组 算法比选择和冒泡性能好</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>array </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; length &#125; = array;</span><br><span class="line">  <span class="keyword">let</span> temp;</span><br><span class="line">  <span class="comment">//注意是从第二个位置开始</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> j = i;</span><br><span class="line">    temp = array[i]; <span class="comment">//储存一个临时变量</span></span><br><span class="line">    <span class="comment">//每一次都比较当前索引之前的序列全都比较一遍</span></span><br><span class="line">    <span class="comment">//比如【3，2，1，5】，当前1 要跟 2 3都比较一遍 下一次5 跟 3，2，1 都比较一遍</span></span><br><span class="line">    <span class="comment">//array[j - 1] 是前面一个数 temp后面一个数</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; array[j - <span class="number">1</span>] &gt; temp) &#123;</span><br><span class="line">      array[j] = array[j - <span class="number">1</span>];</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    array[j] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array = [ <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span> ];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(insertionSort(array));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><h3 id="基本思想-3"><a href="#基本思想-3" class="headerlink" title="基本思想"></a>基本思想</h3><p>构造一个大顶堆，取堆顶也就是最大值</p>
 <p>再将剩下的数字构建一个大顶堆，取堆顶数字</p>
 <p>重复以上操作最终得到一个<code>从大到小</code>的数组</p>
 <p><img src="http://book.52react.cn/uPic/2020%2004%2029%2023%2057%2004%201588175824.png" alt="image-20200429235650713" style="zoom:40%;" /></p>
-
-        <h3 id="代码实现-3"   >
-          <a href="#代码实现-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = [<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">2</span>];</span><br><span class="line"><span class="comment">// 堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">heapSort</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.time(<span class="string">&#x27;堆排序耗时&#x27;</span>);</span><br><span class="line">	<span class="comment">// 初始化大顶堆，从第一个非叶子结点开始</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="built_in">Math</span>.floor(array.length / <span class="number">2</span> - <span class="number">1</span>); i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		heapify(array, i, array.length);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 排序，每一次 for 循环找出一个当前最大值，数组长度减一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="built_in">Math</span>.floor(array.length - <span class="number">1</span>); i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="comment">// 根节点与最后一个节点交换</span></span><br><span class="line">		swap(array, <span class="number">0</span>, i);</span><br><span class="line">		<span class="comment">// 从根节点开始调整，并且最后一个结点已经为当前最大值，不需要再参与比较，所以第三个参数为 i，即比较到最后一个结点前一个即可</span></span><br><span class="line">		heapify(array, <span class="number">0</span>, i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.timeEnd(<span class="string">&#x27;堆排序耗时&#x27;</span>);</span><br><span class="line">	<span class="keyword">return</span> array;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个大顶堆</span></span><br><span class="line"><span class="keyword">const</span> heapify = <span class="function">(<span class="params">array, i, length</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> temp = array[i]; <span class="comment">// 当前父节点</span></span><br><span class="line">	<span class="comment">// j &lt; length 的目的是对结点 i 以下的结点全部做顺序调整</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">2</span> * i + <span class="number">1</span>; j &lt; length; j = <span class="number">2</span> * j + <span class="number">1</span>) &#123;</span><br><span class="line">		temp = array[i]; <span class="comment">// 将 array[i] 取出，整个过程相当于找到 array[i] 应处于的位置</span></span><br><span class="line">		<span class="keyword">if</span> (j + <span class="number">1</span> &lt; length &amp;&amp; array[j] &lt; array[j + <span class="number">1</span>]) &#123;</span><br><span class="line">			j++; <span class="comment">// 找到两个孩子中较大的一个，再与父节点比较</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (temp &lt; array[j]) &#123;</span><br><span class="line">			swap(array, i, j); <span class="comment">// 如果父节点小于子节点:交换；否则跳出</span></span><br><span class="line">			i = j; <span class="comment">// 交换后，temp 的下标变为 j</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(heapSort(array));</span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="希尔排序"   >
-          <a href="#希尔排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2>
-      
-        <h3 id="基本思想-4"   >
-          <a href="#基本思想-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想-4" class="headerlink" title="基本思想"></a>基本思想</h3>
-      <blockquote>
+<h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = [<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">2</span>];</span><br><span class="line"><span class="comment">// 堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">heapSort</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.time(<span class="string">&#x27;堆排序耗时&#x27;</span>);</span><br><span class="line">	<span class="comment">// 初始化大顶堆，从第一个非叶子结点开始</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="built_in">Math</span>.floor(array.length / <span class="number">2</span> - <span class="number">1</span>); i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		heapify(array, i, array.length);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 排序，每一次 for 循环找出一个当前最大值，数组长度减一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="built_in">Math</span>.floor(array.length - <span class="number">1</span>); i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="comment">// 根节点与最后一个节点交换</span></span><br><span class="line">		swap(array, <span class="number">0</span>, i);</span><br><span class="line">		<span class="comment">// 从根节点开始调整，并且最后一个结点已经为当前最大值，不需要再参与比较，所以第三个参数为 i，即比较到最后一个结点前一个即可</span></span><br><span class="line">		heapify(array, <span class="number">0</span>, i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.timeEnd(<span class="string">&#x27;堆排序耗时&#x27;</span>);</span><br><span class="line">	<span class="keyword">return</span> array;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个大顶堆</span></span><br><span class="line"><span class="keyword">const</span> heapify = <span class="function">(<span class="params">array, i, length</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> temp = array[i]; <span class="comment">// 当前父节点</span></span><br><span class="line">	<span class="comment">// j &lt; length 的目的是对结点 i 以下的结点全部做顺序调整</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">2</span> * i + <span class="number">1</span>; j &lt; length; j = <span class="number">2</span> * j + <span class="number">1</span>) &#123;</span><br><span class="line">		temp = array[i]; <span class="comment">// 将 array[i] 取出，整个过程相当于找到 array[i] 应处于的位置</span></span><br><span class="line">		<span class="keyword">if</span> (j + <span class="number">1</span> &lt; length &amp;&amp; array[j] &lt; array[j + <span class="number">1</span>]) &#123;</span><br><span class="line">			j++; <span class="comment">// 找到两个孩子中较大的一个，再与父节点比较</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (temp &lt; array[j]) &#123;</span><br><span class="line">			swap(array, i, j); <span class="comment">// 如果父节点小于子节点:交换；否则跳出</span></span><br><span class="line">			i = j; <span class="comment">// 交换后，temp 的下标变为 j</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(heapSort(array));</span><br></pre></td></tr></table></figure>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><h3 id="基本思想-4"><a href="#基本思想-4" class="headerlink" title="基本思想"></a>基本思想</h3><blockquote>
 <p>希尔排序是对直接插入排序算法的优化和升级</p>
 </blockquote>
 <ul>
@@ -114,27 +262,9 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 <p><img src="http://book.52react.cn/uPic/2020%2004%2030%2009%2034%2009%201588210449.png" alt="image-20200430093356206" style="zoom:33%;" /></p>
 </li>
 </ul>
-
-        <h3 id="代码实现-4"   >
-          <a href="#代码实现-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [ <span class="number">98</span>, <span class="number">42</span>, <span class="number">25</span>, <span class="number">54</span>, <span class="number">15</span>, <span class="number">3</span>, <span class="number">25</span>, <span class="number">72</span>, <span class="number">41</span>, <span class="number">10</span>, <span class="number">121</span> ];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化步长 arr长度的一半</span></span><br><span class="line">  <span class="keyword">let</span> gap = <span class="built_in">Math</span>.floor(array.length / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span> &lt;= gap) &#123;</span><br><span class="line">    <span class="comment">// 把距离为 gap 的元素编为一个组，扫描所有组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = gap; i &lt; array.length; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> j = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">let</span> temp = array[i]; <span class="comment">//依次3, 25, 72, 41, 10, 121</span></span><br><span class="line">      <span class="comment">// 对距离为 gap 的元素组进行排序</span></span><br><span class="line">      <span class="keyword">for</span> (j = i - gap; j &gt;= <span class="number">0</span> &amp;&amp; temp &lt; array[j]; j -= gap) &#123;</span><br><span class="line">        <span class="comment">//如果右边比左边小则交换位置</span></span><br><span class="line">        swap(array, j, j + gap);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    gap = <span class="built_in">Math</span>.floor(gap / <span class="number">2</span>); <span class="comment">// 减小增量</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(shellSort(arr));</span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="归并排序"   >
-          <a href="#归并排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2>
-      
-        <h3 id="基本思想-5"   >
-          <a href="#基本思想-5" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想-5" class="headerlink" title="基本思想"></a>基本思想</h3>
-      
-        <h3 id="代码实现-5"   >
-          <a href="#代码实现-5" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现-5" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 归并排序</span></span><br><span class="line"><span class="comment"> * 思想将序列中带序号数字分成若干组，每个数字分一组</span></span><br><span class="line"><span class="comment"> * 将若干组22 合并 合并后保证有序</span></span><br><span class="line"><span class="comment"> * 重复第二步直到只剩一组 排序完成</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> arr = [ <span class="number">19</span>, <span class="number">97</span>, <span class="number">09</span>, <span class="number">17</span>, <span class="number">01</span>, <span class="number">08</span>, <span class="number">02</span> ];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 判断数组长度1 表示已经分组</span></span><br><span class="line">  <span class="keyword">if</span> (array.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; length &#125; = array;</span><br><span class="line">    <span class="comment">//找中间元素</span></span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(length / <span class="number">2</span>);</span><br><span class="line">    <span class="comment">//分左右二组</span></span><br><span class="line">    <span class="keyword">const</span> left = mergeSort(array.slice(<span class="number">0</span>, middle));</span><br><span class="line">    <span class="keyword">const</span> right = mergeSort(array.slice(middle, length));</span><br><span class="line">    array = merge(left, right);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line">  <span class="keyword">while</span> (i &lt; left.length &amp;&amp; j &lt; right.length) &#123;</span><br><span class="line">    <span class="comment">//判断每一个数组第一个元素左边大还是右边大 比如 [3,4,5] [1,2]</span></span><br><span class="line">    <span class="comment">//比较后把那个大的数组后面的数字也一同加入新数组中</span></span><br><span class="line">    result.push(left[i] &lt; right[j] ? left[i++] : right[j++]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result.concat(i &lt; left.length ? left.slice(i) : right.slice(j));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(mergeSort(arr));</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="快速排序"   >
-          <a href="#快速排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2>
-      
-        <h3 id="基本思想-6"   >
-          <a href="#基本思想-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想-6" class="headerlink" title="基本思想"></a>基本思想</h3>
-      <ol>
+<h3 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [ <span class="number">98</span>, <span class="number">42</span>, <span class="number">25</span>, <span class="number">54</span>, <span class="number">15</span>, <span class="number">3</span>, <span class="number">25</span>, <span class="number">72</span>, <span class="number">41</span>, <span class="number">10</span>, <span class="number">121</span> ];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化步长 arr长度的一半</span></span><br><span class="line">  <span class="keyword">let</span> gap = <span class="built_in">Math</span>.floor(array.length / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span> &lt;= gap) &#123;</span><br><span class="line">    <span class="comment">// 把距离为 gap 的元素编为一个组，扫描所有组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = gap; i &lt; array.length; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> j = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">let</span> temp = array[i]; <span class="comment">//依次3, 25, 72, 41, 10, 121</span></span><br><span class="line">      <span class="comment">// 对距离为 gap 的元素组进行排序</span></span><br><span class="line">      <span class="keyword">for</span> (j = i - gap; j &gt;= <span class="number">0</span> &amp;&amp; temp &lt; array[j]; j -= gap) &#123;</span><br><span class="line">        <span class="comment">//如果右边比左边小则交换位置</span></span><br><span class="line">        swap(array, j, j + gap);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    gap = <span class="built_in">Math</span>.floor(gap / <span class="number">2</span>); <span class="comment">// 减小增量</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(shellSort(arr));</span><br></pre></td></tr></table></figure>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h3 id="基本思想-5"><a href="#基本思想-5" class="headerlink" title="基本思想"></a>基本思想</h3><h3 id="代码实现-5"><a href="#代码实现-5" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 归并排序</span></span><br><span class="line"><span class="comment"> * 思想将序列中带序号数字分成若干组，每个数字分一组</span></span><br><span class="line"><span class="comment"> * 将若干组22 合并 合并后保证有序</span></span><br><span class="line"><span class="comment"> * 重复第二步直到只剩一组 排序完成</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> arr = [ <span class="number">19</span>, <span class="number">97</span>, <span class="number">09</span>, <span class="number">17</span>, <span class="number">01</span>, <span class="number">08</span>, <span class="number">02</span> ];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 判断数组长度1 表示已经分组</span></span><br><span class="line">  <span class="keyword">if</span> (array.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; length &#125; = array;</span><br><span class="line">    <span class="comment">//找中间元素</span></span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(length / <span class="number">2</span>);</span><br><span class="line">    <span class="comment">//分左右二组</span></span><br><span class="line">    <span class="keyword">const</span> left = mergeSort(array.slice(<span class="number">0</span>, middle));</span><br><span class="line">    <span class="keyword">const</span> right = mergeSort(array.slice(middle, length));</span><br><span class="line">    array = merge(left, right);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> j = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> result = [];</span><br><span class="line">  <span class="keyword">while</span> (i &lt; left.length &amp;&amp; j &lt; right.length) &#123;</span><br><span class="line">    <span class="comment">//判断每一个数组第一个元素左边大还是右边大 比如 [3,4,5] [1,2]</span></span><br><span class="line">    <span class="comment">//比较后把那个大的数组后面的数字也一同加入新数组中</span></span><br><span class="line">    result.push(left[i] &lt; right[j] ? left[i++] : right[j++]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result.concat(i &lt; left.length ? left.slice(i) : right.slice(j));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(mergeSort(arr));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><h3 id="基本思想-6"><a href="#基本思想-6" class="headerlink" title="基本思想"></a>基本思想</h3><ol>
 <li><p>从中间数组找一个值</p>
 </li>
 <li><p>设计2个双指针左右各一个</p>
@@ -142,27 +272,9 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 <li>左边找比中间值小的元素，右边找比它大的元素 交换他们</li>
 <li>左边超过右边则停止比较</li>
 </ol>
-
-        <h3 id="代码实现-6"   >
-          <a href="#代码实现-6" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现-6" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 快速排序</span></span><br><span class="line"><span class="comment"> * 从中间数组找一个值</span></span><br><span class="line"><span class="comment"> * 设计2个双指针左右各一个</span></span><br><span class="line"><span class="comment"> * 左边找比中间值小的元素，右边找比它大的元素 交换他们</span></span><br><span class="line"><span class="comment"> * 直到左超过了右边</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//传数组的下标</span></span><br><span class="line">  <span class="keyword">return</span> quick(array, <span class="number">0</span>, array.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quick</span>(<span class="params">array, left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> index;</span><br><span class="line">  <span class="keyword">if</span> (array.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    index = partition(array, left, right);</span><br><span class="line">    <span class="keyword">if</span> (left &lt; index - <span class="number">1</span>) &#123;</span><br><span class="line">      quick(array, left, index - <span class="number">1</span>); <span class="comment">//[3,5,1,2,4]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; right) &#123;</span><br><span class="line">      quick(array, index, right);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">array, left, right</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 找到中心轴的数字</span></span><br><span class="line">  <span class="keyword">const</span> pivot = array[<span class="built_in">Math</span>.floor((right + left) / <span class="number">2</span>)];</span><br><span class="line">  <span class="comment">// 双指针</span></span><br><span class="line">  <span class="keyword">let</span> i = left;</span><br><span class="line">  <span class="keyword">let</span> j = right;</span><br><span class="line">  <span class="comment">// 满足双指针重合就停止</span></span><br><span class="line">  <span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">    <span class="comment">// 找到比中心轴小的数字则放左边，继续++</span></span><br><span class="line">    <span class="keyword">while</span> (array[i] &lt; pivot) &#123;</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 找到比中心轴大的数字则放右边，继续--</span></span><br><span class="line">    <span class="keyword">while</span> (array[j] &gt; pivot) &#123;</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt;= j) &#123;</span><br><span class="line">      swap(array, i, j);</span><br><span class="line">      i++;</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(quickSort([ <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">2</span> ]));</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="桶排序"   >
-          <a href="#桶排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2>
-      
-        <h3 id="基本思想-7"   >
-          <a href="#基本思想-7" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想-7" class="headerlink" title="基本思想"></a>基本思想</h3>
-      
-        <h3 id="代码实现-7"   >
-          <a href="#代码实现-7" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现-7" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 桶排序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bucketSort</span>(<span class="params">array, bucketSize = <span class="number">5</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (array.length &lt; <span class="number">2</span>) <span class="keyword">return</span> array;</span><br><span class="line">  <span class="keyword">const</span> bucket = createBuckets(array, bucketSize);</span><br><span class="line">  <span class="keyword">return</span> sortBuckets(buckets);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createBuckets</span>(<span class="params">array, bucketSize</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化最大值最小值</span></span><br><span class="line">  <span class="keyword">let</span> miniValue = array[<span class="number">0</span>],</span><br><span class="line">    maxValue = array[<span class="number">0</span>];</span><br><span class="line">  <span class="comment">// 寻找最大值最小值;</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[i] &lt; miniValue) &#123;</span><br><span class="line">      miniValue = array[i];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[i] &gt; maxValue) &#123;</span><br><span class="line">      maxValue = array[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//分配每一个桶的容量大小</span></span><br><span class="line">  <span class="keyword">const</span> bucketCount = <span class="built_in">Math</span>.floor((maxValue - miniValue) / bucketSize + <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">const</span> buckets = [];</span><br><span class="line">  <span class="comment">//分配桶</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucketCount; i++) &#123;</span><br><span class="line">    buckets[i] = [];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 把数组中的值放入相应的桶中</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="comment">//计算将元素放到哪个桶中</span></span><br><span class="line">    <span class="keyword">const</span> bucketIndex = <span class="built_in">Math</span>.floor((array[i] - miniValue) / bucketSize);</span><br><span class="line">    buckets[bucketIndex].push(array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> buckets;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 每一个桶排序</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>buckets </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortBuckets</span>(<span class="params">buckets</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化一个新数组</span></span><br><span class="line">  <span class="keyword">const</span> sortedArray = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; buckets.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (buckets[i] != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="comment">//插入排序</span></span><br><span class="line">      insertionSort(buckets[i]);</span><br><span class="line">      <span class="comment">//加入新数组</span></span><br><span class="line">      sortedArray.push(...buckets[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sortedArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="计数排序"   >
-          <a href="#计数排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2>
-      
-        <h3 id="基本思想-8"   >
-          <a href="#基本思想-8" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想-8" class="headerlink" title="基本思想"></a>基本思想</h3>
-      <ol>
+<h3 id="代码实现-6"><a href="#代码实现-6" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 快速排序</span></span><br><span class="line"><span class="comment"> * 从中间数组找一个值</span></span><br><span class="line"><span class="comment"> * 设计2个双指针左右各一个</span></span><br><span class="line"><span class="comment"> * 左边找比中间值小的元素，右边找比它大的元素 交换他们</span></span><br><span class="line"><span class="comment"> * 直到左超过了右边</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//传数组的下标</span></span><br><span class="line">  <span class="keyword">return</span> quick(array, <span class="number">0</span>, array.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quick</span>(<span class="params">array, left, right</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> index;</span><br><span class="line">  <span class="keyword">if</span> (array.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    index = partition(array, left, right);</span><br><span class="line">    <span class="keyword">if</span> (left &lt; index - <span class="number">1</span>) &#123;</span><br><span class="line">      quick(array, left, index - <span class="number">1</span>); <span class="comment">//[3,5,1,2,4]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; right) &#123;</span><br><span class="line">      quick(array, index, right);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">array, left, right</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 找到中心轴的数字</span></span><br><span class="line">  <span class="keyword">const</span> pivot = array[<span class="built_in">Math</span>.floor((right + left) / <span class="number">2</span>)];</span><br><span class="line">  <span class="comment">// 双指针</span></span><br><span class="line">  <span class="keyword">let</span> i = left;</span><br><span class="line">  <span class="keyword">let</span> j = right;</span><br><span class="line">  <span class="comment">// 满足双指针重合就停止</span></span><br><span class="line">  <span class="keyword">while</span> (i &lt;= j) &#123;</span><br><span class="line">    <span class="comment">// 找到比中心轴小的数字则放左边，继续++</span></span><br><span class="line">    <span class="keyword">while</span> (array[i] &lt; pivot) &#123;</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 找到比中心轴大的数字则放右边，继续--</span></span><br><span class="line">    <span class="keyword">while</span> (array[j] &gt; pivot) &#123;</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt;= j) &#123;</span><br><span class="line">      swap(array, i, j);</span><br><span class="line">      i++;</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(quickSort([ <span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">2</span> ]));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><h3 id="基本思想-7"><a href="#基本思想-7" class="headerlink" title="基本思想"></a>基本思想</h3><h3 id="代码实现-7"><a href="#代码实现-7" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 桶排序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bucketSort</span>(<span class="params">array, bucketSize = <span class="number">5</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (array.length &lt; <span class="number">2</span>) <span class="keyword">return</span> array;</span><br><span class="line">  <span class="keyword">const</span> bucket = createBuckets(array, bucketSize);</span><br><span class="line">  <span class="keyword">return</span> sortBuckets(buckets);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createBuckets</span>(<span class="params">array, bucketSize</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化最大值最小值</span></span><br><span class="line">  <span class="keyword">let</span> miniValue = array[<span class="number">0</span>],</span><br><span class="line">    maxValue = array[<span class="number">0</span>];</span><br><span class="line">  <span class="comment">// 寻找最大值最小值;</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[i] &lt; miniValue) &#123;</span><br><span class="line">      miniValue = array[i];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[i] &gt; maxValue) &#123;</span><br><span class="line">      maxValue = array[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//分配每一个桶的容量大小</span></span><br><span class="line">  <span class="keyword">const</span> bucketCount = <span class="built_in">Math</span>.floor((maxValue - miniValue) / bucketSize + <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">const</span> buckets = [];</span><br><span class="line">  <span class="comment">//分配桶</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucketCount; i++) &#123;</span><br><span class="line">    buckets[i] = [];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 把数组中的值放入相应的桶中</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="comment">//计算将元素放到哪个桶中</span></span><br><span class="line">    <span class="keyword">const</span> bucketIndex = <span class="built_in">Math</span>.floor((array[i] - miniValue) / bucketSize);</span><br><span class="line">    buckets[bucketIndex].push(array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> buckets;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 每一个桶排序</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>buckets </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortBuckets</span>(<span class="params">buckets</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//初始化一个新数组</span></span><br><span class="line">  <span class="keyword">const</span> sortedArray = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; buckets.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (buckets[i] != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="comment">//插入排序</span></span><br><span class="line">      insertionSort(buckets[i]);</span><br><span class="line">      <span class="comment">//加入新数组</span></span><br><span class="line">      sortedArray.push(...buckets[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sortedArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><h3 id="基本思想-8"><a href="#基本思想-8" class="headerlink" title="基本思想"></a>基本思想</h3><ol>
 <li><p>求最大值就知道需要的数组有多长（非常消耗内存，开辟数组在内存空间大小）</p>
 </li>
 <li><p>把每一个值作为<code>下标</code>放入对应counts数组中，出现的次数作为<code>值</code>,次数越多值越大</p>
@@ -170,361 +282,240 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 <li><p>循环counts把下标把值都放入array数组中，返回array就是排好序的数组</p>
 </li>
 </ol>
-
-        <h3 id="代码实现-8"   >
-          <a href="#代码实现-8" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现-8" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计数排序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMaxValue</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max = array[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[i] &gt; max) &#123;</span><br><span class="line">      max = array[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countingSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (array.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> maxValue = findMaxValue(array);</span><br><span class="line">  <span class="comment">//创建计数数组 数组从0开始 所以要+1</span></span><br><span class="line">  <span class="keyword">const</span> counts = <span class="keyword">new</span> <span class="built_in">Array</span>(maxValue + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  array.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//item是下标值，如果不存在则初始为0</span></span><br><span class="line">    <span class="keyword">if</span> (!counts[item]) &#123;</span><br><span class="line">      counts[item] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//接着+1 次</span></span><br><span class="line">    counts[item]++;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 索引</span></span><br><span class="line">  <span class="keyword">let</span> sortedIndex = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  counts.forEach(<span class="function">(<span class="params">item, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//item是出现的次数直到剪到0次 如【1，2，2】</span></span><br><span class="line">    <span class="keyword">while</span> (item &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      array[sortedIndex++] = i;</span><br><span class="line">      item--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(countingSort([ <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span> ]));</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="基数排序"   >
-          <a href="#基数排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2>
-      
-        <h3 id="基本思想-9"   >
-          <a href="#基本思想-9" class="heading-link"><i class="fas fa-link"></i></a><a href="#基本思想-9" class="headerlink" title="基本思想"></a>基本思想</h3>
-      <p>其实就是桶思想的一种</p>
+<h3 id="代码实现-8"><a href="#代码实现-8" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 计数排序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMaxValue</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max = array[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[i] &gt; max) &#123;</span><br><span class="line">      max = array[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countingSort</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (array.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> maxValue = findMaxValue(array);</span><br><span class="line">  <span class="comment">//创建计数数组 数组从0开始 所以要+1</span></span><br><span class="line">  <span class="keyword">const</span> counts = <span class="keyword">new</span> <span class="built_in">Array</span>(maxValue + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  array.forEach(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//item是下标值，如果不存在则初始为0</span></span><br><span class="line">    <span class="keyword">if</span> (!counts[item]) &#123;</span><br><span class="line">      counts[item] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//接着+1 次</span></span><br><span class="line">    counts[item]++;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 索引</span></span><br><span class="line">  <span class="keyword">let</span> sortedIndex = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  counts.forEach(<span class="function">(<span class="params">item, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//item是出现的次数直到剪到0次 如【1，2，2】</span></span><br><span class="line">    <span class="keyword">while</span> (item &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      array[sortedIndex++] = i;</span><br><span class="line">      item--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(countingSort([ <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span> ]));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><h3 id="基本思想-9"><a href="#基本思想-9" class="headerlink" title="基本思想"></a>基本思想</h3><p>其实就是桶思想的一种</p>
 <p>先排个位数，十位数  百位数 千位数。。放入桶里</p>
 <p><img src="http://book.52react.cn/uPic/2020%2004%2029%2011%2026%2050%201588130810.png" alt="202004271241311587962491"></p>
 <p>如何去判断个位数 十位数 百位数</p>
 <p>比如 421 个位数是1 ，那我们是不是取模， 421 /1 = 42 余数就是1，十位数 421 /10 余数是 2  百位数 421 /100 余数是4</p>
-
-        <h3 id="代码实现-9"   >
-          <a href="#代码实现-9" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码实现-9" class="headerlink" title="代码实现"></a>代码实现</h3>
-      <figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = [ <span class="number">19</span>, <span class="number">240</span>, <span class="number">100</span>, <span class="number">532</span>, <span class="number">305</span>, <span class="number">430</span>, <span class="number">124</span> ];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMinValue</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMaxValue</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 分布式排序算法</span></span><br><span class="line"><span class="comment"> * 根据进制去选择  </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;&#x27;*&#x27;&#125;</span> </span>array </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>radixBase 10进制 就参数10 8进制就选8</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">radixSort</span>(<span class="params">array, radixBase = <span class="number">10</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (array.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> minValue = findMinValue(array);</span><br><span class="line">  <span class="keyword">const</span> maxValue = findMaxValue(array);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//从最后一位开始排序所有数</span></span><br><span class="line">  <span class="keyword">let</span> significantDigit = <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// 后续进行第二个有效位数排序 第三个有效位数排序 直到没有待排序的有效位</span></span><br><span class="line">  <span class="comment">// 比如 （999 - 900） /1 /10 /100 （99-19） /1 /10 但是/100就不行了</span></span><br><span class="line">  <span class="keyword">while</span> ((maxValue - minValue) / significantDigit &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">//获取每一次有效位后排好的数组，直到最后没有有效位</span></span><br><span class="line">    array = countingSortForRadix(array, radixBase, significantDigit, minValue);</span><br><span class="line">    significantDigit *= radixBase;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countingSortForRadix</span>(<span class="params">array, radixBase, significantDigit, minValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> bucketsIndex;</span><br><span class="line">  <span class="comment">// 基数初始化桶</span></span><br><span class="line">  <span class="keyword">const</span> buckets = [];</span><br><span class="line">  <span class="comment">// 创建临时数组 作用：帮助后面移值到原始数组中</span></span><br><span class="line">  <span class="keyword">const</span> tmp = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; radixBase; i++) &#123;</span><br><span class="line">    buckets[i] = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//[ 421, 240, 100, 532, 305, 430, 124 ]</span></span><br><span class="line">  <span class="comment">//第二次 【240,100,430,421,532,124,305】</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="comment">//计算有效位进行计数排序</span></span><br><span class="line">    bucketsIndex = <span class="built_in">Math</span>.floor(((array[i] - minValue) / significantDigit) % radixBase);</span><br><span class="line">    <span class="comment">//累计出现的次数</span></span><br><span class="line">    buckets[bucketsIndex]++;</span><br><span class="line">    <span class="comment">// ==== 0   1   2  3 4 5....</span></span><br><span class="line">    <span class="comment">//      1次 2次  0次。。。</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//  第一次循环个位数出现的次数</span></span><br><span class="line">  <span class="comment">// 0:3</span></span><br><span class="line">  <span class="comment">// 1:1</span></span><br><span class="line">  <span class="comment">// 2:1</span></span><br><span class="line">  <span class="comment">// 3:0</span></span><br><span class="line">  <span class="comment">// 4:1</span></span><br><span class="line">  <span class="comment">// 5:1</span></span><br><span class="line">  <span class="comment">// 6:0</span></span><br><span class="line">  <span class="comment">// 7:0</span></span><br><span class="line">  <span class="comment">// 8:0</span></span><br><span class="line">  <span class="comment">// 9:0</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 累积结果得到计数值</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; radixBase; i++) &#123;</span><br><span class="line">    buckets[i] += buckets[i - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;累积结果得到计数值&#x27;</span>, buckets);</span><br><span class="line">  <span class="comment">// 倒叙重新放入临时数组;</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = array.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="comment">//计算有效位进行计数排序</span></span><br><span class="line">    bucketsIndex = <span class="built_in">Math</span>.floor(((array[i] - minValue) / significantDigit) % radixBase);</span><br><span class="line">    <span class="comment">//找buckets中有效位对应的下标</span></span><br><span class="line">    tmp[--buckets[bucketsIndex]] = array[i];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 把临时数组新排好给array</span></span><br><span class="line">  <span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(radixSort(array));</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="参考"   >
-          <a href="#参考" class="heading-link"><i class="fas fa-link"></i></a><a href="#参考" class="headerlink" title="参考"></a>参考</h2>
-      <p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://juejin.im/post/5d371aa6e51d455d850d3bbe#heading-3" >算法之美</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<h3 id="代码实现-9"><a href="#代码实现-9" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = [ <span class="number">19</span>, <span class="number">240</span>, <span class="number">100</span>, <span class="number">532</span>, <span class="number">305</span>, <span class="number">430</span>, <span class="number">124</span> ];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMinValue</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMaxValue</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 分布式排序算法</span></span><br><span class="line"><span class="comment"> * 根据进制去选择  </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;&#x27;*&#x27;&#125;</span> </span>array </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>radixBase 10进制 就参数10 8进制就选8</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">radixSort</span>(<span class="params">array, radixBase = <span class="number">10</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (array.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> minValue = findMinValue(array);</span><br><span class="line">  <span class="keyword">const</span> maxValue = findMaxValue(array);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//从最后一位开始排序所有数</span></span><br><span class="line">  <span class="keyword">let</span> significantDigit = <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// 后续进行第二个有效位数排序 第三个有效位数排序 直到没有待排序的有效位</span></span><br><span class="line">  <span class="comment">// 比如 （999 - 900） /1 /10 /100 （99-19） /1 /10 但是/100就不行了</span></span><br><span class="line">  <span class="keyword">while</span> ((maxValue - minValue) / significantDigit &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">//获取每一次有效位后排好的数组，直到最后没有有效位</span></span><br><span class="line">    array = countingSortForRadix(array, radixBase, significantDigit, minValue);</span><br><span class="line">    significantDigit *= radixBase;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countingSortForRadix</span>(<span class="params">array, radixBase, significantDigit, minValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> bucketsIndex;</span><br><span class="line">  <span class="comment">// 基数初始化桶</span></span><br><span class="line">  <span class="keyword">const</span> buckets = [];</span><br><span class="line">  <span class="comment">// 创建临时数组 作用：帮助后面移值到原始数组中</span></span><br><span class="line">  <span class="keyword">const</span> tmp = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; radixBase; i++) &#123;</span><br><span class="line">    buckets[i] = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//[ 421, 240, 100, 532, 305, 430, 124 ]</span></span><br><span class="line">  <span class="comment">//第二次 【240,100,430,421,532,124,305】</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i++) &#123;</span><br><span class="line">    <span class="comment">//计算有效位进行计数排序</span></span><br><span class="line">    bucketsIndex = <span class="built_in">Math</span>.floor(((array[i] - minValue) / significantDigit) % radixBase);</span><br><span class="line">    <span class="comment">//累计出现的次数</span></span><br><span class="line">    buckets[bucketsIndex]++;</span><br><span class="line">    <span class="comment">// ==== 0   1   2  3 4 5....</span></span><br><span class="line">    <span class="comment">//      1次 2次  0次。。。</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//  第一次循环个位数出现的次数</span></span><br><span class="line">  <span class="comment">// 0:3</span></span><br><span class="line">  <span class="comment">// 1:1</span></span><br><span class="line">  <span class="comment">// 2:1</span></span><br><span class="line">  <span class="comment">// 3:0</span></span><br><span class="line">  <span class="comment">// 4:1</span></span><br><span class="line">  <span class="comment">// 5:1</span></span><br><span class="line">  <span class="comment">// 6:0</span></span><br><span class="line">  <span class="comment">// 7:0</span></span><br><span class="line">  <span class="comment">// 8:0</span></span><br><span class="line">  <span class="comment">// 9:0</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 累积结果得到计数值</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; radixBase; i++) &#123;</span><br><span class="line">    buckets[i] += buckets[i - <span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;累积结果得到计数值&#x27;</span>, buckets);</span><br><span class="line">  <span class="comment">// 倒叙重新放入临时数组;</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = array.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="comment">//计算有效位进行计数排序</span></span><br><span class="line">    bucketsIndex = <span class="built_in">Math</span>.floor(((array[i] - minValue) / significantDigit) % radixBase);</span><br><span class="line">    <span class="comment">//找buckets中有效位对应的下标</span></span><br><span class="line">    tmp[--buckets[bucketsIndex]] = array[i];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 把临时数组新排好给array</span></span><br><span class="line">  <span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(radixSort(array));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a class="link"   target="_blank" rel="noopener" href="https://juejin.im/post/5d371aa6e51d455d850d3bbe#heading-3" >算法之美<i class="fas fa-external-link-alt"></i></a></p>
 <p><a href="">JavaScript 数据结构与算法第三版</a></p>
 <p><a href="">bilibili网上教程</a></p>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E7%AE%97%E6%B3%95/">http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E7%AE%97%E6%B3%95/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E9%9D%A2%E8%AF%95%EF%BC%8CJavascript%EF%BC%8C%E5%9F%BA%E7%A1%80/">面试，Javascript，基础</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">前端面试-JS 事件循环 EventLoop</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-CSS%E7%9B%B8%E5%85%B3/"><span class="paginator-prev__text">前端面试-CSS 相关</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">
-          选择排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="toc-number">1.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">2.</span> <span class="toc-text">
-          冒泡排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-1"><span class="toc-number">2.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="toc-number">2.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">
-          插入排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-2"><span class="toc-number">3.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="toc-number">3.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">
-          堆排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-3"><span class="toc-number">4.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-3"><span class="toc-number">4.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">
-          希尔排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-4"><span class="toc-number">5.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-4"><span class="toc-number">5.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">6.</span> <span class="toc-text">
-          归并排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-5"><span class="toc-number">6.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-5"><span class="toc-number">6.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-number">7.</span> <span class="toc-text">
-          快速排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-6"><span class="toc-number">7.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-6"><span class="toc-number">7.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">8.</span> <span class="toc-text">
-          桶排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-7"><span class="toc-number">8.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-7"><span class="toc-number">8.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-number">9.</span> <span class="toc-text">
-          计数排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-8"><span class="toc-number">9.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-8"><span class="toc-number">9.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-number">10.</span> <span class="toc-text">
-          基数排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-9"><span class="toc-number">10.1.</span> <span class="toc-text">
-          基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-9"><span class="toc-number">10.2.</span> <span class="toc-text">
-          代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">11.</span> <span class="toc-text">
-          参考</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
-  var isXML = true;
-  var search_path = 'search.xml';
 
-  if (!search_path) {
-    search_path = 'search.xml';
-  } else if (/json$/i.test(search_path)) {
-    isXML = false;
-  }
+        </div>
 
-  var path = '/' + search_path;
-  $.ajax({
-    url: path,
-    dataType: isXML ? 'xml' : 'json',
-    async: true,
-    success: function (res) {
-      var datas = isXML ? $('entry', res).map(function () {
-        // 将 XML 转为 JSON
-        return {
-          title: $('title', this).text(),
-          content: $('content', this).text(),
-          url: $('url', this).text()
-        };
-      }).get() : res;
-      var $input = $('.search-input input');
-      var $result = $('.search-results');
-      // 搜索对象（标题、内容）的权重，影响显示顺序
-      var WEIGHT = { title: 100, content: 1 };
-      var searchPost = function () {
-        var searchText = $input.val().toLowerCase().trim();
-        // 根据空白字符分隔关键字
-        var keywords = searchText.split(/[\s]+/);
-        // 搜索结果
-        var matchPosts = [];
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：前端面试-算法</li>
+        <li>本文作者：Mariogogogo</li>
+        <li>创建时间：2020-01-01 00:00:00</li>
+        <li>
+            本文链接：http://www.h5web.cc/2020/01/01/前端面试-算法/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
 
-        // 有多个关键字时，将原文字整个保存下来
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        // 防止未输入字符时搜索
-        if (searchText.length > 0) {
-          datas.forEach(function (data) {
-            var isMatch  = false;
-            // 没有标题的文章使用预设的 i18n 变量代替
-            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
-            var titleLower = title && title.toLowerCase();
-            // 删除 HTML 标签 和 所有空白字符
-            var content = data.content && data.content.replace(/<[^>]+>/g, '');
-            var contentLower = content && content.toLowerCase();
-            // 删除重复的 /
-            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
-            // 标题中匹配到的关键词
-            var titleHitSlice = [];
-            // 内容中匹配到的关键词
-            var contentHitSlice = [];
+            </div>
+        
 
-            keywords.forEach(function (keyword) {
-              /**
-              * 获取匹配的关键词的索引
-              * @param {String} keyword 要匹配的关键字
-              * @param {String} text 原文字
-              * @param {Boolean} caseSensitive 是否区分大小写
-              * @param {Number} weight 匹配对象的权重。权重大的优先显示
-              * @return {Array}
-              */
-              function getIndexByword (word, text, caseSensitive, weight) {
-                if (!word || !text) {
-                  return [];
-                };
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">前端面试-JS 事件循环 EventLoop</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-CSS%E7%9B%B8%E5%85%B3/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">前端面试-CSS 相关</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-                var startIndex = 0; // 每次匹配的开始索引
-                var index = -1;     // 匹配到的索引值
-                var result = [];    // 匹配结果
+        
+    </div>
+</div>
 
-                if (!caseSensitive) {
-                  word = word.toLowerCase();
-                  text = text.toLowerCase();
-                }
 
-                while((index = text.indexOf(word, startIndex)) !== -1) {
-                  var hasMatch = false;
-                  // 索引位置相同的关键词，保留长度较长的
-                  titleHitSlice.forEach(function (hit) {
-                    if (hit.index === index && hit.word.length < word.length) {
-                      hit.word = word;
-                      hasMatch = true;
-                    }
-                  });
-                  startIndex = index + word.length;
-                  !hasMatch && result.push({ index: index, word: word, weight: weight });
-                }
-                return result;
-              }
-              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
-              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
-            });
+                
+            </div>
 
-            var hitTitle = titleHitSlice.length;
-            var hitContent = contentHitSlice.length;
+        </div>
 
-            if (hitTitle > 0 || hitContent > 0) {
-              isMatch = true;
-            }
-            if (isMatch) {
-              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
-                // 按照匹配文字的索引的递增顺序排序
-                hit.sort(function (left, right) {
-                  return left.index - right.index;
-                });
-              });
-              /**
-              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
-              * @param {String} text 原文本
-              * @param {Array} hitSlice 匹配项的索引信息
-              * @param {Number} start 开始索引
-              * @param {Number} end 结束索引
-              * @return {String}
-              */
-              function highlightKeyword (text, hitSlice, start, end) {
-                if (!text || !hitSlice || !hitSlice.length) {
-                  return;
-                }
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Mariogogogo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
 
-                var result = '';
-                var startIndex = start;
-                var endIndex = end;
-                hitSlice.forEach(function (hit) {
-                  if (hit.index < startIndex) {
-                    return;
-                  }
+        </div>
+    </div>
 
-                  var hitWordEnd = hit.index + hit.word.length;
-                  result += text.slice(startIndex, hit.index);
-                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
-                  startIndex = hitWordEnd;
-                });
-                result += text.slice(startIndex, endIndex);
-                return result;
-              }
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
 
-              var postData = {};
-              // 文章总的搜索权重
-              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
-              // 标记匹配关键词后的标题
-              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
-              // 标记匹配关键词后的内容
-              var postContent;
-              // 显示内容的长度
-              var SHOW_WORD_LENGTH = 200;
-              // 命中关键词前的字符显示长度
-              var SHOW_WORD_FRONT_LENGTH = 20;
-              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+        <!-- go comment -->
+        
+    </ul>
+</div>
 
-              // 截取匹配的第一个字符，前后共 200 个字符来显示
-              if (contentHitSlice.length > 0) {
-                var firstIndex = contentHitSlice[0].index;
-                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
-                var end = firstIndex + SHOW_WORD_END_LENGTH;
-                postContent = highlightKeyword(content, contentHitSlice, start, end);
-              } else { // 未匹配到内容，直接截取前 200 个字符来显示
-                postContent = content.slice(0, SHOW_WORD_LENGTH);
-              }
-              postData.title = postTitle;
-              postData.content = postContent;
-              postData.url = postURL;
-              postData.weight = postWeight;
-              matchPosts.push(postData);
-            }
-          });
-        }
+        </div>
+    
 
-        var resultInnerHtml = '';
-        if (matchPosts.length) {
-          // 按权重递增的顺序排序，使权重大的优先显示
-          matchPosts.sort(function (left, right) {
-            return right.weight - left.weight;
-          });
-          resultInnerHtml += '<ul>';
-          matchPosts.forEach(function (post) {
-            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
-            resultInnerHtml += post.title;
-            resultInnerHtml += '</a><div class="search-results-content">';
-            resultInnerHtml += post.content;
-            resultInnerHtml += '</div></li>';
-          });
-          resultInnerHtml += '</ul>';
-        } else {
-          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
-        }
-        $result.html(resultInnerHtml);
-      };
-      $input.on('input', searchPost);
-      $input.on('keyup', function (e) {
-        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
-          searchPost();
-        }
-      });
-    }
-  });
-}
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-function closeSearch () {
-  $('body').css({ overflow: 'auto' });
-  $('.search-popup').css({ display: 'none' });
-  $('.search-mask').css({ display: 'none' });
-}
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-window.addEventListener('DOMContentLoaded', function () {
-  Stun.utils.pjaxReloadLocalSearch = function () {
-    $('.header-nav-search').on('click', function (e) {
-      e.stopPropagation();
-      $('body').css('overflow', 'hidden');
-      $('.search-popup')
-        .velocity('stop')
-        .velocity('transition.expandIn', {
-          duration: 300,
-          complete: function () {
-            $('.search-popup input').focus();
-          }
-        });
-      $('.search-mask')
-        .velocity('stop')
-        .velocity('transition.fadeIn', {
-          duration: 300
-        });
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-      initSearch();
-    });
-    $('.search-mask, .search-close').on('click', function () {
-      closeSearch();
-    });
-    $(document).on('keydown', function (e) {
-      // Escape <=> 27
-      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
-        closeSearch();
-      }
-    });
-  };
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
 
-  Stun.utils.pjaxReloadLocalSearch();
-}, false);
+        <!-- rss -->
+        
 
-function safeOpenUrl(url) {
-  var newTab = window.open();
-  newTab.opener = null;
-  newTab.location = url;
-}
+        
 
-function extSearch(engine) {
-  var engines = {
-    google: 'https://www.google.com/search?q=',
-    bing: 'https://cn.bing.com/search?q=',
-    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
-  };
-  var host = window.location.host;
-  var query = $('.search-input input').val().toLowerCase().trim();
-  var uri = engines[engine] + query + ' site:' + host;
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
 
-  if (query) {
-    safeOpenUrl(uri);
-  } else {
-    Stun.utils.popAlert('warning', '请输入字符');
-  }
-}
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
-var assistSearchList = window.CONFIG.assistSearch;
+    </div>
 
-if (Array.isArray(assistSearchList)) {
-  assistSearchList.forEach(function (name) {
-    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
-      extSearch(name);
-    }, false);
-  });
-}</script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = 'nick,mail,link';
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">1.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">冒泡排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-1"><span class="nav-number">2.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">2.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-2"><span class="nav-number">3.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">3.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">堆排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-3"><span class="nav-number">4.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-3"><span class="nav-number">4.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">希尔排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-4"><span class="nav-number">5.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-4"><span class="nav-number">5.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">6.</span> <span class="nav-text">归并排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-5"><span class="nav-number">6.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-5"><span class="nav-number">6.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">7.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-6"><span class="nav-number">7.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-6"><span class="nav-number">7.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">8.</span> <span class="nav-text">桶排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-7"><span class="nav-number">8.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-7"><span class="nav-number">8.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">9.</span> <span class="nav-text">计数排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-8"><span class="nav-number">9.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-8"><span class="nav-number">9.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-number">10.</span> <span class="nav-text">基数排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-9"><span class="nav-number">10.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-9"><span class="nav-number">10.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">11.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
 
-  guest_info = guest_info.split(',').filter(function(item) {
-    return GUEST_INFO.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#valine-container',
-    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
-    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
-    notify: true,
-    verify: true,
-    placeholder: '快去评论下吧',
-    avatar: 'mp',
-    meta: guest_info,
-    pageSize: '10' || 10,
-    visitor: false,
-    recordIP: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: window.location.pathname
-  });
-}
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
-if (false) {
-  loadValine();
-} else {
-  window.addEventListener('DOMContentLoaded', loadValine, false);
-}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

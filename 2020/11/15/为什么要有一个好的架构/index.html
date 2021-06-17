@@ -1,49 +1,234 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="1、为什么要有一个好的架构        首先明确一点，架构是为需求服务的。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="为什么要有一个好的架构">
-<meta property="og:url" content="http://mariogogogo.github.io/2020/11/15/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%9E%B6%E6%9E%84/index.html">
-<meta property="og:site_name" content="Mario">
-<meta property="og:description" content="1、为什么要有一个好的架构        首先明确一点，架构是为需求服务的。">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/image-202011302242444772020113022.png">
-<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/image-202011302243019392020113022.png">
-<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/image-202011302243206212020113022.png">
-<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/image-202011302243474002020113022.png">
-<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/image-202011302244049912020113022.png">
-<meta property="og:image" content="http://typora.pp.52react.cn/fuckb/SouthEast2020113022.png">
-<meta property="article:published_time" content="2020-11-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-09T05:37:59.000Z">
-<meta property="article:author" content="Codding">
-<meta property="article:tag" content="Vue">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://typora.pp.52react.cn/fuckb/image-202011302242444772020113022.png"><title>为什么要有一个好的架构 | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2020/11/15/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%9E%B6%E6%9E%84/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: ["google","bing","baidu"],
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":true},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="好前端才分对错，成年人只分利弊">
+    <meta name="author" content="Mariogogogo">
+    
+    <title>
+        
+            为什么要有一个好的架构 |
+        
+        Mario Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">为什么要有一个好的架构</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-11-15</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">3.6k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">19分</span></span></div></header><div class="post-body">
-        <h2 id="1、为什么要有一个好的架构"   >
-          <a href="#1、为什么要有一个好的架构" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、为什么要有一个好的架构" class="headerlink" title="1、为什么要有一个好的架构"></a>1、为什么要有一个好的架构</h2>
-      <p> 首先明确一点，<code>架构是为需求服务的</code>。</p>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mariogogogo.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"1240px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mario Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">为什么要有一个好的架构</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Mariogogogo</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-11-15 00:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Vue/">Vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Vue/">Vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.6k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="1、为什么要有一个好的架构"><a href="#1、为什么要有一个好的架构" class="headerlink" title="1、为什么要有一个好的架构"></a>1、为什么要有一个好的架构</h2><p> 首先明确一点，<code>架构是为需求服务的</code>。</p>
 <a id="more"></a>
 <p> 前端架构存在的目的，就我个人理解来说，有以下几点：</p>
 <p>  1、提高代码的可读性。一个好的架构，代码的可读性一定是很强的。简单来说，假如有一个新人加入团队，那么他接手这个项目，一定是容易上手的，能简单轻松的了解整个前端部分的相互关系，从而找到自己需要重点关注的点。而不是需要花很多时间去熟悉这个项目的很多细节，才能开始上手做东西。就文件来说，可以从文件名上，分清哪些是页面、哪些是逻辑、哪些是样式、哪些是可以复用的组件、哪些是图标组、又有哪些是移动端或是PC端专享的样式/逻辑等。就代码来说，包括统一的命名风格，封装在同一个文件里的代码的相关性足够强等。</p>
@@ -57,25 +242,13 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 <p>  4、便于协同。包括前端和后端的协同，前端和前端之间的协同。具体来说，前后端的协同通常是以ajax为交互，那么应至少有一个用于专门封装了所有ajax请求的文件，所有ajax请求都封装在这里。在开发时，这里封装的方法应该可以模拟发送和接收约定好的交互内容，方便开发联调。而前端和前端的协同，主要体现在同时在更改代码时，不会影响对方代码的正常运行。因此要求封装、解耦以及低干扰度是必须的。</p>
 <p>  5、自动化自动打包，压缩，混淆，如果有必要，再加上自动单元测试。</p>
 <p>  总结：总结来说，一个好的架构的目的是，让前端写代码写的舒服，让后端联调的舒服，让产品经理改需求改的舒服。</p>
-
-        <h2 id="2、我如何设计架构"   >
-          <a href="#2、我如何设计架构" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、我如何设计架构" class="headerlink" title="2、我如何设计架构"></a>2、我如何设计架构</h2>
-      <p> 我不敢说自己的架构是好的架构（显然不是啦），只能分享自己最近做的一个项目，它的架构的如何做的。</p>
-
-        <h3 id="首先，确定需求："   >
-          <a href="#首先，确定需求：" class="heading-link"><i class="fas fa-link"></i></a><a href="#首先，确定需求：" class="headerlink" title="首先，确定需求："></a><strong>首先，确定需求：</strong></h3>
-      <p>  1、一个中小型网站，同时面向移动端和PC端（单端大概15个页面，算上弹窗大约20个）。2、预算有限（给的钱少），开发时间有限（一个月）。3、可能存在一定程度上的需求变更（比如增加页面或修改某些页面内容）。4、客户可能不太在乎优化（但是我自己在乎啊！）5、要求兼容IE9以上。</p>
-
-        <h3 id="其次开始决定："   >
-          <a href="#其次开始决定：" class="heading-link"><i class="fas fa-link"></i></a><a href="#其次开始决定：" class="headerlink" title="其次开始决定："></a><strong>其次开始决定：</strong></h3>
-      <p>  1、兼容IE9以上说明可以使用主流框架，而无需必须使用jquery。因此我采用了vue，版本是2.0；2、预算有限，时间有限，因此PC端和移动端共html和js，独立css。3、页面有限，因此无需将架构层级划分的比较细，只需要按其类型划分即可；4、根据原型图来看，页面复杂程度有限，复用部分不是很多，因此可以确定哪些东西需要封装复用，哪些比较复杂需要独立封装，哪些比较简单为了简化开发难度可以直接耦合。5、自己比较熟练单页面网站，因此采用以单页面为主，异步加载其他页面的形式。</p>
+<h2 id="2、我如何设计架构"><a href="#2、我如何设计架构" class="headerlink" title="2、我如何设计架构"></a>2、我如何设计架构</h2><p> 我不敢说自己的架构是好的架构（显然不是啦），只能分享自己最近做的一个项目，它的架构的如何做的。</p>
+<h3 id="首先，确定需求："><a href="#首先，确定需求：" class="headerlink" title="首先，确定需求："></a><strong>首先，确定需求：</strong></h3><p>  1、一个中小型网站，同时面向移动端和PC端（单端大概15个页面，算上弹窗大约20个）。2、预算有限（给的钱少），开发时间有限（一个月）。3、可能存在一定程度上的需求变更（比如增加页面或修改某些页面内容）。4、客户可能不太在乎优化（但是我自己在乎啊！）5、要求兼容IE9以上。</p>
+<h3 id="其次开始决定："><a href="#其次开始决定：" class="headerlink" title="其次开始决定："></a><strong>其次开始决定：</strong></h3><p>  1、兼容IE9以上说明可以使用主流框架，而无需必须使用jquery。因此我采用了vue，版本是2.0；2、预算有限，时间有限，因此PC端和移动端共html和js，独立css。3、页面有限，因此无需将架构层级划分的比较细，只需要按其类型划分即可；4、根据原型图来看，页面复杂程度有限，复用部分不是很多，因此可以确定哪些东西需要封装复用，哪些比较复杂需要独立封装，哪些比较简单为了简化开发难度可以直接耦合。5、自己比较熟练单页面网站，因此采用以单页面为主，异步加载其他页面的形式。</p>
 <p> 于是使用相关配套的东西，比如webpack，vue-router等，另外为了开发和生产的方便性，采用以下模式进行开发。</p>
 <p> <img src="http://typora.pp.52react.cn/fuckb/image-202011302243206212020113022.png" alt="image-20201130224320621"></p>
 <hr>
-
-        <h3 id="第三，划分功能。"   >
-          <a href="#第三，划分功能。" class="heading-link"><i class="fas fa-link"></i></a><a href="#第三，划分功能。" class="headerlink" title="第三，划分功能。"></a><strong>第三，划分功能。</strong></h3>
-      <p> 首先有一个根html，用户需要通过访问它来加载我们的js逻辑，因此js逻辑的代码被写在main.js之中。</p>
+<h3 id="第三，划分功能。"><a href="#第三，划分功能。" class="headerlink" title="第三，划分功能。"></a><strong>第三，划分功能。</strong></h3><p> 首先有一个根html，用户需要通过访问它来加载我们的js逻辑，因此js逻辑的代码被写在main.js之中。</p>
 <p> 在main.js之下，我们的前端代码可以被划分为三部分：</p>
 <ol>
 <li>组件树；</li>
@@ -88,417 +261,261 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 </li>
 </ol>
 <hr>
-
-        <h3 id="第四、细化功能模块"   >
-          <a href="#第四、细化功能模块" class="heading-link"><i class="fas fa-link"></i></a><a href="#第四、细化功能模块" class="headerlink" title="第四、细化功能模块"></a><strong>第四、细化功能模块</strong></h3>
-      <p> 功能、组件树以及资源，我们已经明确了有哪些东西，那么接下来，我们要明确这些东西该如何以文件的形式来划分。</p>
+<h3 id="第四、细化功能模块"><a href="#第四、细化功能模块" class="headerlink" title="第四、细化功能模块"></a><strong>第四、细化功能模块</strong></h3><p> 功能、组件树以及资源，我们已经明确了有哪些东西，那么接下来，我们要明确这些东西该如何以文件的形式来划分。</p>
 <p> 如下图：</p>
 <p> <img src="http://typora.pp.52react.cn/fuckb/image-202011302244049912020113022.png" alt="image-20201130224404991"></p>
-
-        <h3 id="1、项目构建相关"   >
-          <a href="#1、项目构建相关" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、项目构建相关" class="headerlink" title="1、项目构建相关"></a><strong>1、项目构建相关</strong></h3>
-      <p> 因为要使用vue.js，也要使用es6语法，因此<strong>babel</strong>是必须的；又因为要自动化混淆打包，因此<strong>webpack</strong>也是必须的；最后因为要方便多人协同，因此npm的<strong>package.json</strong>的配置，方便不同人可以快速自动化通过npm install来安装依赖，也是必须的；</p>
-
-        <h3 id="2、CDN相关"   >
-          <a href="#2、CDN相关" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、CDN相关" class="headerlink" title="2、CDN相关"></a><strong>2、CDN相关</strong></h3>
-      <p> 而又因为我们要采用外部字体（需求要求引入非常见字体），因此<strong>CDN加速</strong>是必须的，该字体文件放在html中来配置引用即可；</p>
-
-        <h3 id="3、配置和插件"   >
-          <a href="#3、配置和插件" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、配置和插件" class="headerlink" title="3、配置和插件"></a><strong>3、配置和插件</strong></h3>
-      <p> 我们需要直接引入一些插件和配置文件；为了使用vue，我们需要一个根组件，那么就是<strong>App.vue</strong>；使用vue-router，我们需要配置路由文件，因此<strong>router-config.js</strong>这个路由配置也是必须的；然后我们还需要以插件形式引入一些功能和服务，因此有了<strong>Plugin-开头的若干个vue插件</strong>，这些都是根据需要封装好的低耦合高内聚方法；</p>
-
-        <h3 id="4、需要的npm依赖"   >
-          <a href="#4、需要的npm依赖" class="heading-link"><i class="fas fa-link"></i></a><a href="#4、需要的npm依赖" class="headerlink" title="4、需要的npm依赖"></a><strong>4、需要的npm依赖</strong></h3>
-      <p> 当然，要使用vue肯定要引入<strong>vue.js</strong>；类似的还有<strong>vue-router.js</strong>和各种兼容性<strong>polyfill</strong>和全局插件；</p>
-
-        <h3 id="5、抽离出的功能模块"   >
-          <a href="#5、抽离出的功能模块" class="heading-link"><i class="fas fa-link"></i></a><a href="#5、抽离出的功能模块" class="headerlink" title="5、抽离出的功能模块"></a><strong>5、抽离出的功能模块</strong></h3>
-      <p> 除了直接引用的这些插件，我们还有一些和项目高度耦合的功能服务，我认为不能作为插件，但依然需要抽离出来封装好，方便使用和修改；如封装ajax请求的<strong>ajax.js</strong>，所有的ajax请求都放置其中，只对外暴露接口，方便管理和使用；又如实时国际化功能的组件<strong>LanguageManager.js</strong>，他需要引入国际化资源和管理国际化资源的加载；又例如实现跨组件通信的<strong>event-bus.js</strong>又比如管理用户信息的<strong>user.js</strong></p>
-
-        <h3 id="6、总结"   >
-          <a href="#6、总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#6、总结" class="headerlink" title="6、总结"></a><strong>6、总结</strong></h3>
-      <p> 而这些划分，都体现在上图之中。这就是<strong>src目录下的功能模块文件</strong>，我们需要的绝大多数功能都可以包括在其中，我们只需要按照实际开发中的需要，将对应的功能写入在这些文件中并引用即可；</p>
-
-        <h3 id="第五、组件树"   >
-          <a href="#第五、组件树" class="heading-link"><i class="fas fa-link"></i></a><a href="#第五、组件树" class="headerlink" title="第五、组件树"></a><strong>第五、组件树</strong></h3>
-      <p> 之前谈了功能模块的划分，接下来是组件树；</p>
+<h3 id="1、项目构建相关"><a href="#1、项目构建相关" class="headerlink" title="1、项目构建相关"></a><strong>1、项目构建相关</strong></h3><p> 因为要使用vue.js，也要使用es6语法，因此<strong>babel</strong>是必须的；又因为要自动化混淆打包，因此<strong>webpack</strong>也是必须的；最后因为要方便多人协同，因此npm的<strong>package.json</strong>的配置，方便不同人可以快速自动化通过npm install来安装依赖，也是必须的；</p>
+<h3 id="2、CDN相关"><a href="#2、CDN相关" class="headerlink" title="2、CDN相关"></a><strong>2、CDN相关</strong></h3><p> 而又因为我们要采用外部字体（需求要求引入非常见字体），因此<strong>CDN加速</strong>是必须的，该字体文件放在html中来配置引用即可；</p>
+<h3 id="3、配置和插件"><a href="#3、配置和插件" class="headerlink" title="3、配置和插件"></a><strong>3、配置和插件</strong></h3><p> 我们需要直接引入一些插件和配置文件；为了使用vue，我们需要一个根组件，那么就是<strong>App.vue</strong>；使用vue-router，我们需要配置路由文件，因此<strong>router-config.js</strong>这个路由配置也是必须的；然后我们还需要以插件形式引入一些功能和服务，因此有了<strong>Plugin-开头的若干个vue插件</strong>，这些都是根据需要封装好的低耦合高内聚方法；</p>
+<h3 id="4、需要的npm依赖"><a href="#4、需要的npm依赖" class="headerlink" title="4、需要的npm依赖"></a><strong>4、需要的npm依赖</strong></h3><p> 当然，要使用vue肯定要引入<strong>vue.js</strong>；类似的还有<strong>vue-router.js</strong>和各种兼容性<strong>polyfill</strong>和全局插件；</p>
+<h3 id="5、抽离出的功能模块"><a href="#5、抽离出的功能模块" class="headerlink" title="5、抽离出的功能模块"></a><strong>5、抽离出的功能模块</strong></h3><p> 除了直接引用的这些插件，我们还有一些和项目高度耦合的功能服务，我认为不能作为插件，但依然需要抽离出来封装好，方便使用和修改；如封装ajax请求的<strong>ajax.js</strong>，所有的ajax请求都放置其中，只对外暴露接口，方便管理和使用；又如实时国际化功能的组件<strong>LanguageManager.js</strong>，他需要引入国际化资源和管理国际化资源的加载；又例如实现跨组件通信的<strong>event-bus.js</strong>又比如管理用户信息的<strong>user.js</strong></p>
+<h3 id="6、总结"><a href="#6、总结" class="headerlink" title="6、总结"></a><strong>6、总结</strong></h3><p> 而这些划分，都体现在上图之中。这就是<strong>src目录下的功能模块文件</strong>，我们需要的绝大多数功能都可以包括在其中，我们只需要按照实际开发中的需要，将对应的功能写入在这些文件中并引用即可；</p>
+<h3 id="第五、组件树"><a href="#第五、组件树" class="headerlink" title="第五、组件树"></a><strong>第五、组件树</strong></h3><p> 之前谈了功能模块的划分，接下来是组件树；</p>
 <p> 因此是中小型页面，因此组件树的层级无需太深，但该抽离出来的依然还是要抽离，尽量保证抽离出来的组件解耦以及一个页面组件的逻辑不要太多；</p>
 <p> 如下图：</p>
 <p> <img src="http://typora.pp.52react.cn/fuckb/SouthEast2020113022.png" alt="img"></p>
-
-        <h3 id="0、根组件"   >
-          <a href="#0、根组件" class="heading-link"><i class="fas fa-link"></i></a><a href="#0、根组件" class="headerlink" title="0、根组件"></a><strong>0、根组件</strong></h3>
-      <p> 所有组件最终往上找，都会找到共同的根组件App.vue，根组件只负责管理他的直接子组件；每个组件都只负责管理自己的直接子组件，不跨级管理，并且不依赖于自己的子组件（否则可能因为子组件的未加载或错误而导致父组件错误），做到解耦和内聚；</p>
-
-        <h3 id="1、弹窗dialog和弹窗tips"   >
-          <a href="#1、弹窗dialog和弹窗tips" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、弹窗dialog和弹窗tips" class="headerlink" title="1、弹窗dialog和弹窗tips"></a><strong>1、弹窗dialog和弹窗tips</strong></h3>
-      <p> 因为弹窗dialog和弹窗提示tips可能同时存在，因此将其划分为2个组件，方便管理；</p>
-
-        <h3 id="2、未登录页面和登录页面"   >
-          <a href="#2、未登录页面和登录页面" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、未登录页面和登录页面" class="headerlink" title="2、未登录页面和登录页面"></a><strong>2、未登录页面和登录页面</strong></h3>
-      <p> 因为页面存在登录和未登录状态，而为了加载速度考虑，当未登录时，不加载已登录页面，因此需要划分出来，并进行异步加载处理；</p>
-
-        <h3 id="3、未登录页面"   >
-          <a href="#3、未登录页面" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、未登录页面" class="headerlink" title="3、未登录页面"></a><strong>3、未登录页面</strong></h3>
-      <p> 未登录页面又分为三种情况：1、初始页面：毫无疑问要直接加载2、登录弹窗：点击登录时加载（异步）3、注册弹窗：点击注册时加载（异步）之所以分拆开，是因为根据需求，已登录用户刷新页面，可以直接进入登录后页面，因此无需登录和注册，这种处理可以减少流量消耗，提升加载页面加载速度（特别是注册弹窗需要加载的内容还比较多）；</p>
-
-        <h3 id="4、已登录页面"   >
-          <a href="#4、已登录页面" class="heading-link"><i class="fas fa-link"></i></a><a href="#4、已登录页面" class="headerlink" title="4、已登录页面"></a><strong>4、已登录页面</strong></h3>
-      <p> 已登录页面有较多页面，采用默认加载初始页，然后异步加载其他页面（访问时）；</p>
-
-        <h3 id="5、弹窗dialog"   >
-          <a href="#5、弹窗dialog" class="heading-link"><i class="fas fa-link"></i></a><a href="#5、弹窗dialog" class="headerlink" title="5、弹窗dialog"></a><strong>5、弹窗dialog</strong></h3>
-      <p> 由于逻辑较少，代码量不多，因此为了方便管理，统一将其合并在一个vue文件中，共同相同的打开逻辑，根据传递的key决定打开哪一个。这样在新增弹窗时，无需再去写弹窗的打开、关闭逻辑。假如有较复杂的弹窗，可以以子组件的形式引入到当前vue文件中，如此也方便管理；</p>
-
-        <h3 id="6、国际化管理"   >
-          <a href="#6、国际化管理" class="heading-link"><i class="fas fa-link"></i></a><a href="#6、国际化管理" class="headerlink" title="6、国际化管理"></a><strong>6、国际化管理</strong></h3>
-      <p> 和页面高耦合，负责加载对应的国际化资源，并进行切换管理；</p>
-
-        <h3 id="7、页面组件"   >
-          <a href="#7、页面组件" class="heading-link"><i class="fas fa-link"></i></a><a href="#7、页面组件" class="headerlink" title="7、页面组件"></a><strong>7、页面组件</strong></h3>
-      <p> 可能有子页面和复用的组件，按照正常方式引用即可。</p>
-
-        <h3 id="8、样式文件"   >
-          <a href="#8、样式文件" class="heading-link"><i class="fas fa-link"></i></a><a href="#8、样式文件" class="headerlink" title="8、样式文件"></a><strong>8、样式文件</strong></h3>
-      <p> 可以独立写为.css文件，但因为我的公共样式文件比较少，因此我还是将其放在一个.vue文件中，并在App.vue里来引用</p>
-
-        <h3 id="8、页面组件起名"   >
-          <a href="#8、页面组件起名" class="heading-link"><i class="fas fa-link"></i></a><a href="#8、页面组件起名" class="headerlink" title="8、页面组件起名"></a><strong>8、页面组件起名</strong></h3>
-      <p> 通常以.vue为结尾，除了国际化LanguageManager.js因为高耦合度，因此以.js结尾并是一个单独的vue实例，表示他更像是一个功能模块，而不是一个vue的页面组件；</p>
+<h3 id="0、根组件"><a href="#0、根组件" class="headerlink" title="0、根组件"></a><strong>0、根组件</strong></h3><p> 所有组件最终往上找，都会找到共同的根组件App.vue，根组件只负责管理他的直接子组件；每个组件都只负责管理自己的直接子组件，不跨级管理，并且不依赖于自己的子组件（否则可能因为子组件的未加载或错误而导致父组件错误），做到解耦和内聚；</p>
+<h3 id="1、弹窗dialog和弹窗tips"><a href="#1、弹窗dialog和弹窗tips" class="headerlink" title="1、弹窗dialog和弹窗tips"></a><strong>1、弹窗dialog和弹窗tips</strong></h3><p> 因为弹窗dialog和弹窗提示tips可能同时存在，因此将其划分为2个组件，方便管理；</p>
+<h3 id="2、未登录页面和登录页面"><a href="#2、未登录页面和登录页面" class="headerlink" title="2、未登录页面和登录页面"></a><strong>2、未登录页面和登录页面</strong></h3><p> 因为页面存在登录和未登录状态，而为了加载速度考虑，当未登录时，不加载已登录页面，因此需要划分出来，并进行异步加载处理；</p>
+<h3 id="3、未登录页面"><a href="#3、未登录页面" class="headerlink" title="3、未登录页面"></a><strong>3、未登录页面</strong></h3><p> 未登录页面又分为三种情况：1、初始页面：毫无疑问要直接加载2、登录弹窗：点击登录时加载（异步）3、注册弹窗：点击注册时加载（异步）之所以分拆开，是因为根据需求，已登录用户刷新页面，可以直接进入登录后页面，因此无需登录和注册，这种处理可以减少流量消耗，提升加载页面加载速度（特别是注册弹窗需要加载的内容还比较多）；</p>
+<h3 id="4、已登录页面"><a href="#4、已登录页面" class="headerlink" title="4、已登录页面"></a><strong>4、已登录页面</strong></h3><p> 已登录页面有较多页面，采用默认加载初始页，然后异步加载其他页面（访问时）；</p>
+<h3 id="5、弹窗dialog"><a href="#5、弹窗dialog" class="headerlink" title="5、弹窗dialog"></a><strong>5、弹窗dialog</strong></h3><p> 由于逻辑较少，代码量不多，因此为了方便管理，统一将其合并在一个vue文件中，共同相同的打开逻辑，根据传递的key决定打开哪一个。这样在新增弹窗时，无需再去写弹窗的打开、关闭逻辑。假如有较复杂的弹窗，可以以子组件的形式引入到当前vue文件中，如此也方便管理；</p>
+<h3 id="6、国际化管理"><a href="#6、国际化管理" class="headerlink" title="6、国际化管理"></a><strong>6、国际化管理</strong></h3><p> 和页面高耦合，负责加载对应的国际化资源，并进行切换管理；</p>
+<h3 id="7、页面组件"><a href="#7、页面组件" class="headerlink" title="7、页面组件"></a><strong>7、页面组件</strong></h3><p> 可能有子页面和复用的组件，按照正常方式引用即可。</p>
+<h3 id="8、样式文件"><a href="#8、样式文件" class="headerlink" title="8、样式文件"></a><strong>8、样式文件</strong></h3><p> 可以独立写为.css文件，但因为我的公共样式文件比较少，因此我还是将其放在一个.vue文件中，并在App.vue里来引用</p>
+<h3 id="8、页面组件起名"><a href="#8、页面组件起名" class="headerlink" title="8、页面组件起名"></a><strong>8、页面组件起名</strong></h3><p> 通常以.vue为结尾，除了国际化LanguageManager.js因为高耦合度，因此以.js结尾并是一个单独的vue实例，表示他更像是一个功能模块，而不是一个vue的页面组件；</p>
 <p> 基础页面，如登录和未登录页面，<code>公共组件（并且是header和footer这种），以**base-**开头；弹窗统一以**box-**为开头;可复用的组件以**extend-**开头；引入的外部组件以**import-**开头</code>；<code>普通页面组件以**page-**开头</code>（这些页面往往是一个独立的页面，并且挂靠在登录或未登录页面下）；注册弹窗因为逻辑比较复杂，并且同类较多，因此以<strong>register-</strong>为开头；</p>
 <p> 通过以文件名来划分，不同的页面组件之间的区分可以说是一目了然，同时也方便管理；</p>
 <hr>
-
-        <h1 id="3、还没有谈到的内容"   >
-          <a href="#3、还没有谈到的内容" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、还没有谈到的内容" class="headerlink" title="3、还没有谈到的内容"></a><strong>3、还没有谈到的内容</strong></h1>
-      <p> 想了想，目前还没有谈到的内容有以下几点：</p>
+<h1 id="3、还没有谈到的内容"><a href="#3、还没有谈到的内容" class="headerlink" title="3、还没有谈到的内容"></a><strong>3、还没有谈到的内容</strong></h1><p> 想了想，目前还没有谈到的内容有以下几点：</p>
 <p>  1、路由：以路由为驱动来写页面，似乎是一种不错的选择；好处是只需要通过查看路由的配置文件router-config.js，就可以了解页面组件的架构；不过我自己关于vue-router的实践经验比较少，因此就略过不谈了；</p>
 <p>  2、单元测试：按道理说，单元测试是非常有必要的，因此在进行架构设计时，必须考虑到这一点；不过作者我目前在的公司关于前端方面都不太正规，实在没这方面的经验，又因为作者我本人转行做前端的时间也比较短，虽然周周9.12.7，但也没来得及学习这方面的知识（没有需求驱动，这方面动力不足哈哈）</p>
 <p>  3、自动化配置：关于webpack的自动化，是前端架构的重要组成部分，因此配置也是蛮重要的；不过一是这方面需要很多笔墨的，二是网上也有一些别人分享的文章（肯定比我的好），所以我这里就不细说了；</p>
 <p>  4、一些自动化工具：依然尴尬，没有大厂经验，路子比较野，所以大厂专有的一些工具是木有的，而自己找的话又嫌麻烦，所以没有优化到极致，只做到了基本满足目前项目需求的程度，见谅见谅；等以后有这方面经验的话我再写博客来分享吧~</p>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2020/11/15/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%9E%B6%E6%9E%84/">http://mariogogogo.github.io/2020/11/15/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%9E%B6%E6%9E%84/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/Vue/">Vue</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/12/01/Vue-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8E%9F%E7%90%86/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Vue-初始化原理</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/09/16/%E6%95%B0%E6%8D%AEMoogose%E8%A2%AB%E9%BB%91/"><span class="paginator-prev__text">记一次服务器数据被黑 😂</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">
-          1、为什么要有一个好的架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%88%91%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">
-          2、我如何设计架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%EF%BC%8C%E7%A1%AE%E5%AE%9A%E9%9C%80%E6%B1%82%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">
-          首先，确定需求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E6%AC%A1%E5%BC%80%E5%A7%8B%E5%86%B3%E5%AE%9A%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">
-          其次开始决定：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%EF%BC%8C%E5%88%92%E5%88%86%E5%8A%9F%E8%83%BD%E3%80%82"><span class="toc-number">2.3.</span> <span class="toc-text">
-          第三，划分功能。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E3%80%81%E7%BB%86%E5%8C%96%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="toc-number">2.4.</span> <span class="toc-text">
-          第四、细化功能模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E7%9B%B8%E5%85%B3"><span class="toc-number">2.5.</span> <span class="toc-text">
-          1、项目构建相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81CDN%E7%9B%B8%E5%85%B3"><span class="toc-number">2.6.</span> <span class="toc-text">
-          2、CDN相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE%E5%92%8C%E6%8F%92%E4%BB%B6"><span class="toc-number">2.7.</span> <span class="toc-text">
-          3、配置和插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E9%9C%80%E8%A6%81%E7%9A%84npm%E4%BE%9D%E8%B5%96"><span class="toc-number">2.8.</span> <span class="toc-text">
-          4、需要的npm依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E6%8A%BD%E7%A6%BB%E5%87%BA%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="toc-number">2.9.</span> <span class="toc-text">
-          5、抽离出的功能模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">2.10.</span> <span class="toc-text">
-          6、总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E3%80%81%E7%BB%84%E4%BB%B6%E6%A0%91"><span class="toc-number">2.11.</span> <span class="toc-text">
-          第五、组件树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0%E3%80%81%E6%A0%B9%E7%BB%84%E4%BB%B6"><span class="toc-number">2.12.</span> <span class="toc-text">
-          0、根组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BC%B9%E7%AA%97dialog%E5%92%8C%E5%BC%B9%E7%AA%97tips"><span class="toc-number">2.13.</span> <span class="toc-text">
-          1、弹窗dialog和弹窗tips</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%92%8C%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.14.</span> <span class="toc-text">
-          2、未登录页面和登录页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.15.</span> <span class="toc-text">
-          3、未登录页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%B7%B2%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.16.</span> <span class="toc-text">
-          4、已登录页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%BC%B9%E7%AA%97dialog"><span class="toc-number">2.17.</span> <span class="toc-text">
-          5、弹窗dialog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%9B%BD%E9%99%85%E5%8C%96%E7%AE%A1%E7%90%86"><span class="toc-number">2.18.</span> <span class="toc-text">
-          6、国际化管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BB%84%E4%BB%B6"><span class="toc-number">2.19.</span> <span class="toc-text">
-          7、页面组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="toc-number">2.20.</span> <span class="toc-text">
-          8、样式文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BB%84%E4%BB%B6%E8%B5%B7%E5%90%8D"><span class="toc-number">2.21.</span> <span class="toc-text">
-          8、页面组件起名</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E8%BF%98%E6%B2%A1%E6%9C%89%E8%B0%88%E5%88%B0%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number"></span> <span class="toc-text">
-          3、还没有谈到的内容</span></a></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
-  var isXML = true;
-  var search_path = 'search.xml';
 
-  if (!search_path) {
-    search_path = 'search.xml';
-  } else if (/json$/i.test(search_path)) {
-    isXML = false;
-  }
+        </div>
 
-  var path = '/' + search_path;
-  $.ajax({
-    url: path,
-    dataType: isXML ? 'xml' : 'json',
-    async: true,
-    success: function (res) {
-      var datas = isXML ? $('entry', res).map(function () {
-        // 将 XML 转为 JSON
-        return {
-          title: $('title', this).text(),
-          content: $('content', this).text(),
-          url: $('url', this).text()
-        };
-      }).get() : res;
-      var $input = $('.search-input input');
-      var $result = $('.search-results');
-      // 搜索对象（标题、内容）的权重，影响显示顺序
-      var WEIGHT = { title: 100, content: 1 };
-      var searchPost = function () {
-        var searchText = $input.val().toLowerCase().trim();
-        // 根据空白字符分隔关键字
-        var keywords = searchText.split(/[\s]+/);
-        // 搜索结果
-        var matchPosts = [];
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：为什么要有一个好的架构</li>
+        <li>本文作者：Mariogogogo</li>
+        <li>创建时间：2020-11-15 00:00:00</li>
+        <li>
+            本文链接：http://www.h5web.cc/2020/11/15/为什么要有一个好的架构/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
 
-        // 有多个关键字时，将原文字整个保存下来
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        // 防止未输入字符时搜索
-        if (searchText.length > 0) {
-          datas.forEach(function (data) {
-            var isMatch  = false;
-            // 没有标题的文章使用预设的 i18n 变量代替
-            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
-            var titleLower = title && title.toLowerCase();
-            // 删除 HTML 标签 和 所有空白字符
-            var content = data.content && data.content.replace(/<[^>]+>/g, '');
-            var contentLower = content && content.toLowerCase();
-            // 删除重复的 /
-            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
-            // 标题中匹配到的关键词
-            var titleHitSlice = [];
-            // 内容中匹配到的关键词
-            var contentHitSlice = [];
+            </div>
+        
 
-            keywords.forEach(function (keyword) {
-              /**
-              * 获取匹配的关键词的索引
-              * @param {String} keyword 要匹配的关键字
-              * @param {String} text 原文字
-              * @param {Boolean} caseSensitive 是否区分大小写
-              * @param {Number} weight 匹配对象的权重。权重大的优先显示
-              * @return {Array}
-              */
-              function getIndexByword (word, text, caseSensitive, weight) {
-                if (!word || !text) {
-                  return [];
-                };
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/12/01/Vue-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8E%9F%E7%90%86/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Vue-初始化原理</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/09/16/%E6%95%B0%E6%8D%AEMoogose%E8%A2%AB%E9%BB%91/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">记一次服务器数据被黑 😂</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-                var startIndex = 0; // 每次匹配的开始索引
-                var index = -1;     // 匹配到的索引值
-                var result = [];    // 匹配结果
+        
+    </div>
+</div>
 
-                if (!caseSensitive) {
-                  word = word.toLowerCase();
-                  text = text.toLowerCase();
-                }
 
-                while((index = text.indexOf(word, startIndex)) !== -1) {
-                  var hasMatch = false;
-                  // 索引位置相同的关键词，保留长度较长的
-                  titleHitSlice.forEach(function (hit) {
-                    if (hit.index === index && hit.word.length < word.length) {
-                      hit.word = word;
-                      hasMatch = true;
-                    }
-                  });
-                  startIndex = index + word.length;
-                  !hasMatch && result.push({ index: index, word: word, weight: weight });
-                }
-                return result;
-              }
-              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
-              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
-            });
+                
+            </div>
 
-            var hitTitle = titleHitSlice.length;
-            var hitContent = contentHitSlice.length;
+        </div>
 
-            if (hitTitle > 0 || hitContent > 0) {
-              isMatch = true;
-            }
-            if (isMatch) {
-              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
-                // 按照匹配文字的索引的递增顺序排序
-                hit.sort(function (left, right) {
-                  return left.index - right.index;
-                });
-              });
-              /**
-              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
-              * @param {String} text 原文本
-              * @param {Array} hitSlice 匹配项的索引信息
-              * @param {Number} start 开始索引
-              * @param {Number} end 结束索引
-              * @return {String}
-              */
-              function highlightKeyword (text, hitSlice, start, end) {
-                if (!text || !hitSlice || !hitSlice.length) {
-                  return;
-                }
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Mariogogogo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
 
-                var result = '';
-                var startIndex = start;
-                var endIndex = end;
-                hitSlice.forEach(function (hit) {
-                  if (hit.index < startIndex) {
-                    return;
-                  }
+        </div>
+    </div>
 
-                  var hitWordEnd = hit.index + hit.word.length;
-                  result += text.slice(startIndex, hit.index);
-                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
-                  startIndex = hitWordEnd;
-                });
-                result += text.slice(startIndex, endIndex);
-                return result;
-              }
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
 
-              var postData = {};
-              // 文章总的搜索权重
-              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
-              // 标记匹配关键词后的标题
-              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
-              // 标记匹配关键词后的内容
-              var postContent;
-              // 显示内容的长度
-              var SHOW_WORD_LENGTH = 200;
-              // 命中关键词前的字符显示长度
-              var SHOW_WORD_FRONT_LENGTH = 20;
-              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+        <!-- go comment -->
+        
+    </ul>
+</div>
 
-              // 截取匹配的第一个字符，前后共 200 个字符来显示
-              if (contentHitSlice.length > 0) {
-                var firstIndex = contentHitSlice[0].index;
-                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
-                var end = firstIndex + SHOW_WORD_END_LENGTH;
-                postContent = highlightKeyword(content, contentHitSlice, start, end);
-              } else { // 未匹配到内容，直接截取前 200 个字符来显示
-                postContent = content.slice(0, SHOW_WORD_LENGTH);
-              }
-              postData.title = postTitle;
-              postData.content = postContent;
-              postData.url = postURL;
-              postData.weight = postWeight;
-              matchPosts.push(postData);
-            }
-          });
-        }
+        </div>
+    
 
-        var resultInnerHtml = '';
-        if (matchPosts.length) {
-          // 按权重递增的顺序排序，使权重大的优先显示
-          matchPosts.sort(function (left, right) {
-            return right.weight - left.weight;
-          });
-          resultInnerHtml += '<ul>';
-          matchPosts.forEach(function (post) {
-            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
-            resultInnerHtml += post.title;
-            resultInnerHtml += '</a><div class="search-results-content">';
-            resultInnerHtml += post.content;
-            resultInnerHtml += '</div></li>';
-          });
-          resultInnerHtml += '</ul>';
-        } else {
-          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
-        }
-        $result.html(resultInnerHtml);
-      };
-      $input.on('input', searchPost);
-      $input.on('keyup', function (e) {
-        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
-          searchPost();
-        }
-      });
-    }
-  });
-}
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-function closeSearch () {
-  $('body').css({ overflow: 'auto' });
-  $('.search-popup').css({ display: 'none' });
-  $('.search-mask').css({ display: 'none' });
-}
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-window.addEventListener('DOMContentLoaded', function () {
-  Stun.utils.pjaxReloadLocalSearch = function () {
-    $('.header-nav-search').on('click', function (e) {
-      e.stopPropagation();
-      $('body').css('overflow', 'hidden');
-      $('.search-popup')
-        .velocity('stop')
-        .velocity('transition.expandIn', {
-          duration: 300,
-          complete: function () {
-            $('.search-popup input').focus();
-          }
-        });
-      $('.search-mask')
-        .velocity('stop')
-        .velocity('transition.fadeIn', {
-          duration: 300
-        });
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-      initSearch();
-    });
-    $('.search-mask, .search-close').on('click', function () {
-      closeSearch();
-    });
-    $(document).on('keydown', function (e) {
-      // Escape <=> 27
-      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
-        closeSearch();
-      }
-    });
-  };
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
 
-  Stun.utils.pjaxReloadLocalSearch();
-}, false);
+        <!-- rss -->
+        
 
-function safeOpenUrl(url) {
-  var newTab = window.open();
-  newTab.opener = null;
-  newTab.location = url;
-}
+        
 
-function extSearch(engine) {
-  var engines = {
-    google: 'https://www.google.com/search?q=',
-    bing: 'https://cn.bing.com/search?q=',
-    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
-  };
-  var host = window.location.host;
-  var query = $('.search-input input').val().toLowerCase().trim();
-  var uri = engines[engine] + query + ' site:' + host;
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
 
-  if (query) {
-    safeOpenUrl(uri);
-  } else {
-    Stun.utils.popAlert('warning', '请输入字符');
-  }
-}
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
-var assistSearchList = window.CONFIG.assistSearch;
+    </div>
 
-if (Array.isArray(assistSearchList)) {
-  assistSearchList.forEach(function (name) {
-    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
-      extSearch(name);
-    }, false);
-  });
-}</script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = 'nick,mail,link';
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">1、为什么要有一个好的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%88%91%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">2、我如何设计架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%96%E5%85%88%EF%BC%8C%E7%A1%AE%E5%AE%9A%E9%9C%80%E6%B1%82%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">首先，确定需求：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E6%AC%A1%E5%BC%80%E5%A7%8B%E5%86%B3%E5%AE%9A%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">其次开始决定：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%EF%BC%8C%E5%88%92%E5%88%86%E5%8A%9F%E8%83%BD%E3%80%82"><span class="nav-number">2.3.</span> <span class="nav-text">第三，划分功能。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E3%80%81%E7%BB%86%E5%8C%96%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="nav-number">2.4.</span> <span class="nav-text">第四、细化功能模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E7%9B%B8%E5%85%B3"><span class="nav-number">2.5.</span> <span class="nav-text">1、项目构建相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81CDN%E7%9B%B8%E5%85%B3"><span class="nav-number">2.6.</span> <span class="nav-text">2、CDN相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE%E5%92%8C%E6%8F%92%E4%BB%B6"><span class="nav-number">2.7.</span> <span class="nav-text">3、配置和插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E9%9C%80%E8%A6%81%E7%9A%84npm%E4%BE%9D%E8%B5%96"><span class="nav-number">2.8.</span> <span class="nav-text">4、需要的npm依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E6%8A%BD%E7%A6%BB%E5%87%BA%E7%9A%84%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="nav-number">2.9.</span> <span class="nav-text">5、抽离出的功能模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">2.10.</span> <span class="nav-text">6、总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E3%80%81%E7%BB%84%E4%BB%B6%E6%A0%91"><span class="nav-number">2.11.</span> <span class="nav-text">第五、组件树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0%E3%80%81%E6%A0%B9%E7%BB%84%E4%BB%B6"><span class="nav-number">2.12.</span> <span class="nav-text">0、根组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%BC%B9%E7%AA%97dialog%E5%92%8C%E5%BC%B9%E7%AA%97tips"><span class="nav-number">2.13.</span> <span class="nav-text">1、弹窗dialog和弹窗tips</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%92%8C%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.14.</span> <span class="nav-text">2、未登录页面和登录页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%9C%AA%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.15.</span> <span class="nav-text">3、未登录页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%B7%B2%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.16.</span> <span class="nav-text">4、已登录页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E5%BC%B9%E7%AA%97dialog"><span class="nav-number">2.17.</span> <span class="nav-text">5、弹窗dialog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E5%9B%BD%E9%99%85%E5%8C%96%E7%AE%A1%E7%90%86"><span class="nav-number">2.18.</span> <span class="nav-text">6、国际化管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BB%84%E4%BB%B6"><span class="nav-number">2.19.</span> <span class="nav-text">7、页面组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8%E3%80%81%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="nav-number">2.20.</span> <span class="nav-text">8、样式文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BB%84%E4%BB%B6%E8%B5%B7%E5%90%8D"><span class="nav-number">2.21.</span> <span class="nav-text">8、页面组件起名</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%E3%80%81%E8%BF%98%E6%B2%A1%E6%9C%89%E8%B0%88%E5%88%B0%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number"></span> <span class="nav-text">3、还没有谈到的内容</span></a>
+    </div>
+</div>
+        </aside>
+    
 
-  guest_info = guest_info.split(',').filter(function(item) {
-    return GUEST_INFO.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#valine-container',
-    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
-    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
-    notify: true,
-    verify: true,
-    placeholder: '快去评论下吧',
-    avatar: 'mp',
-    meta: guest_info,
-    pageSize: '10' || 10,
-    visitor: false,
-    recordIP: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: window.location.pathname
-  });
-}
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
-if (false) {
-  loadValine();
-} else {
-  window.addEventListener('DOMContentLoaded', loadValine, false);
-}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

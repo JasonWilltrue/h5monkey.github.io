@@ -1,83 +1,250 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="能力遇到瓶颈，2020 想跳槽一下，相关面试系列文章梳理">
-<meta property="og:type" content="article">
-<meta property="og:title" content="前端面试-React">
-<meta property="og:url" content="http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-React/index.html">
-<meta property="og:site_name" content="Mario">
-<meta property="og:description" content="能力遇到瓶颈，2020 想跳槽一下，相关面试系列文章梳理">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://book.52react.cn/uPic/2020%2004%2029%2013%2004%2058%201588136698.png">
-<meta property="og:image" content="http://book.52react.cn/uPic/2020%2004%2029%2013%2006%2043%201588136803.png">
-<meta property="og:image" content="http://book.52react.cn/uPic/2020%2004%2029%2012%2042%2019%201588135339.png">
-<meta property="article:published_time" content="2019-12-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-16T09:07:10.000Z">
-<meta property="article:author" content="Codding">
-<meta property="article:tag" content="面试，Javascript，基础">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://book.52react.cn/uPic/2020%2004%2029%2013%2004%2058%201588136698.png"><title>前端面试-React | Mario</title><link ref="canonical" href="http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-React/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: ["google","bing","baidu"],
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":true},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="好前端才分对错，成年人只分利弊">
+    <meta name="author" content="Mariogogogo">
+    
+    <title>
+        
+            前端面试-React |
+        
+        Mario Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/面试/"><span class="header-nav-menu-item__icon"><i class="fa fa-code"></i></span><span class="header-nav-menu-item__text">面试</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/算法/"><span class="header-nav-menu-item__icon"><i class="fa fa-tree"></i></span><span class="header-nav-menu-item__text">算法</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fa(s|r|l|d|b) fa fa-list"></i></span><span class="header-nav-menu-item__text">更多</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fa fa-hourglass-start"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/about/"><span class="header-nav-submenu-item__icon"><i class="fa fa-user-circle"></i></span><span class="header-nav-submenu-item__text">关于</span></a></div></div></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">前端面试-React</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-01-01</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.6k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">9分</span></span></div></header><div class="post-body"><p>能力遇到瓶颈，2020 想跳槽一下，相关面试系列文章梳理<br><a id="more"></a></p>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"mariogogogo.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"1240px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
-        <h3 id="Vdom"   >
-          <a href="#Vdom" class="heading-link"><i class="fas fa-link"></i></a><a href="#Vdom" class="headerlink" title="Vdom"></a>Vdom</h3>
-      
-        <h3 id="Jsx的本质是什么"   >
-          <a href="#Jsx的本质是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#Jsx的本质是什么" class="headerlink" title="Jsx的本质是什么"></a>Jsx的本质是什么</h3>
-      <p>React.createElement 即是h函数，返回vnode</p>
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Mario Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">前端面试-React</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Mariogogogo</span>
+                        
+                            <span class="author-label">Lv6</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-01-01 00:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E9%9D%A2%E8%AF%95%EF%BC%8CJavascript%EF%BC%8C%E5%9F%BA%E7%A1%80/">面试，Javascript，基础</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.6k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>能力遇到瓶颈，2020 想跳槽一下，相关面试系列文章梳理<br><a id="more"></a></p>
+<h3 id="Vdom"><a href="#Vdom" class="headerlink" title="Vdom"></a>Vdom</h3><h3 id="Jsx的本质是什么"><a href="#Jsx的本质是什么" class="headerlink" title="Jsx的本质是什么"></a>Jsx的本质是什么</h3><p>React.createElement 即是h函数，返回vnode</p>
 <p>patch(el,vnode) 和 patch(vnode,newvnode)更新</p>
 <p>第一个参数可能是组件，也可能是html tag</p>
-
-        <h4 id="React生命周期有哪些，16版本生命周期发生了哪些变化？"   >
-          <a href="#React生命周期有哪些，16版本生命周期发生了哪些变化？" class="heading-link"><i class="fas fa-link"></i></a><a href="#React生命周期有哪些，16版本生命周期发生了哪些变化？" class="headerlink" title="React生命周期有哪些，16版本生命周期发生了哪些变化？"></a>React生命周期有哪些，16版本生命周期发生了哪些变化？</h4>
-      
-        <h4 id="setState是同步的还是异步的？"   >
-          <a href="#setState是同步的还是异步的？" class="heading-link"><i class="fas fa-link"></i></a><a href="#setState是同步的还是异步的？" class="headerlink" title="setState是同步的还是异步的？"></a>setState是同步的还是异步的？</h4>
-      <p>有时异步（普通使用） 有时同步（settimeout  自己定义的Dom事件）</p>
+<h4 id="React生命周期有哪些，16版本生命周期发生了哪些变化？"><a href="#React生命周期有哪些，16版本生命周期发生了哪些变化？" class="headerlink" title="React生命周期有哪些，16版本生命周期发生了哪些变化？"></a>React生命周期有哪些，16版本生命周期发生了哪些变化？</h4><h4 id="setState是同步的还是异步的？"><a href="#setState是同步的还是异步的？" class="headerlink" title="setState是同步的还是异步的？"></a>setState是同步的还是异步的？</h4><p>有时异步（普通使用） 有时同步（settimeout  自己定义的Dom事件）</p>
 <p>有时合并（对象形式） 有时不合并（函数形式）</p>
 <p>后者比较好理解（像object.assign) </p>
-
-        <h5 id="setState主流程"   >
-          <a href="#setState主流程" class="heading-link"><i class="fas fa-link"></i></a><a href="#setState主流程" class="headerlink" title="setState主流程"></a>setState主流程</h5>
-      <p><img src="http://book.52react.cn/uPic/2020%2004%2029%2013%2004%2058%201588136698.png" alt="image-20200429130431692" style="zoom:40%;" /></p>
+<h5 id="setState主流程"><a href="#setState主流程" class="headerlink" title="setState主流程"></a>setState主流程</h5><p><img src="http://book.52react.cn/uPic/2020%2004%2029%2013%2004%2058%201588136698.png" alt="image-20200429130431692" style="zoom:40%;" /></p>
 <p> 比如对比下<code>同步</code>和<code>异步</code></p>
 <p><img src="http://book.52react.cn/uPic/2020%2004%2029%2013%2006%2043%201588136803.png" alt="image-20200429130631548" style="zoom:40%;" /></p>
 <p>函数执行的时候会初始一个<code>isBatchingUpdate</code>这个值为true，这个函数执行完设置false，settimeout和自定义事件执行后在触发setState函数的时候已经是false了，所以走右边的路线</p>
-
-        <h4 id="batchUpdate机制"   >
-          <a href="#batchUpdate机制" class="heading-link"><i class="fas fa-link"></i></a><a href="#batchUpdate机制" class="headerlink" title="batchUpdate机制"></a>batchUpdate机制</h4>
-      <ul>
+<h4 id="batchUpdate机制"><a href="#batchUpdate机制" class="headerlink" title="batchUpdate机制"></a>batchUpdate机制</h4><ul>
 <li>生命周期和它调用的函数</li>
 <li>React注册的事件</li>
 <li><strong>React可以管理的入口</strong></li>
 </ul>
-
-        <h4 id="为什么有时连续多次-setState只有一次生效？"   >
-          <a href="#为什么有时连续多次-setState只有一次生效？" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么有时连续多次-setState只有一次生效？" class="headerlink" title="为什么有时连续多次 setState只有一次生效？"></a>为什么有时连续多次 setState只有一次生效？</h4>
-      
-        <h4 id="React如何实现自己的事件机制？"   >
-          <a href="#React如何实现自己的事件机制？" class="heading-link"><i class="fas fa-link"></i></a><a href="#React如何实现自己的事件机制？" class="headerlink" title="React如何实现自己的事件机制？"></a>React如何实现自己的事件机制？</h4>
-      <p>合成机制</p>
+<h4 id="为什么有时连续多次-setState只有一次生效？"><a href="#为什么有时连续多次-setState只有一次生效？" class="headerlink" title="为什么有时连续多次 setState只有一次生效？"></a>为什么有时连续多次 setState只有一次生效？</h4><h4 id="React如何实现自己的事件机制？"><a href="#React如何实现自己的事件机制？" class="headerlink" title="React如何实现自己的事件机制？"></a>React如何实现自己的事件机制？</h4><p>合成机制</p>
 <ol>
 <li>event是SyntheticEvent （生散题k-evnt）模拟dom原生事件</li>
 <li>event.nativeEvent是原生事件对象</li>
@@ -87,44 +254,26 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 <p><img src="http://book.52react.cn/uPic/2020%2004%2029%2012%2042%2019%201588135339.png" alt="image-20200429124142293" style="zoom:40%;" /></p>
 <p>通过合成事件去派发事件（通过event.target知道那个原生触发的，找到对应组件，组件中那个触发onclik事件）</p>
 <p>把event传给对应触发的事件函数</p>
-
-        <h4 id="为什么要用合成事件机制？"   >
-          <a href="#为什么要用合成事件机制？" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么要用合成事件机制？" class="headerlink" title="为什么要用合成事件机制？"></a>为什么要用合成事件机制？</h4>
-      <p>更好的兼容性和跨平台。（摆脱dom事件逻辑）</p>
+<h4 id="为什么要用合成事件机制？"><a href="#为什么要用合成事件机制？" class="headerlink" title="为什么要用合成事件机制？"></a>为什么要用合成事件机制？</h4><p>更好的兼容性和跨平台。（摆脱dom事件逻辑）</p>
 <p>挂载到document，减少内存消耗，避免频繁解绑，（滚动或者瀑布流事件，挂载到最外层，当组件销毁时候就不需要去解绑dom事件）</p>
 <p>方便事件的统一管理<strong>（事务机制）</strong></p>
-
-        <h4 id="为何-React事件要自己绑定-this？"   >
-          <a href="#为何-React事件要自己绑定-this？" class="heading-link"><i class="fas fa-link"></i></a><a href="#为何-React事件要自己绑定-this？" class="headerlink" title="为何 React事件要自己绑定 this？"></a>为何 React事件要自己绑定 this？</h4>
-      <p>在上面提到的事件处理流程中， <code>React</code>在 <code>document</code>上进行统一的事件分发， <code>dispatchEvent</code>通过循环调用所有层级的事件来模拟事件冒泡和捕获。</p>
+<h4 id="为何-React事件要自己绑定-this？"><a href="#为何-React事件要自己绑定-this？" class="headerlink" title="为何 React事件要自己绑定 this？"></a>为何 React事件要自己绑定 this？</h4><p>在上面提到的事件处理流程中， <code>React</code>在 <code>document</code>上进行统一的事件分发， <code>dispatchEvent</code>通过循环调用所有层级的事件来模拟事件冒泡和捕获。</p>
 <p>在 <code>React</code>源码中，当具体到某一事件处理函数将要调用时，将调用 <code>invokeGuardedCallback</code>方法。</p>
 <p>可见，事件处理函数是直接调用的，并没有指定调用的组件，所以不进行手动绑定的情况下直接获取到的 <code>this</code>是不准确的，所以我们需要手动将当前组件绑定到 <code>this</code>上。</p>
-
-        <h4 id="原生事件和-React事件的区别？"   >
-          <a href="#原生事件和-React事件的区别？" class="heading-link"><i class="fas fa-link"></i></a><a href="#原生事件和-React事件的区别？" class="headerlink" title="原生事件和 React事件的区别？"></a>原生事件和 React事件的区别？</h4>
-      <ul>
+<h4 id="原生事件和-React事件的区别？"><a href="#原生事件和-React事件的区别？" class="headerlink" title="原生事件和 React事件的区别？"></a>原生事件和 React事件的区别？</h4><ul>
 <li><code>React</code> 事件使用驼峰命名，而不是全部小写。</li>
 <li>通过 <code>JSX</code> , 你传递一个函数作为事件处理程序，而不是一个字符串。</li>
 <li>在 <code>React</code> 中你不能通过返回 <code>false</code> 来阻止默认行为。必须明确调用 <code>preventDefault</code>。</li>
 </ul>
-
-        <h4 id="React和原生事件的执行顺序是什么？可以混用吗？"   >
-          <a href="#React和原生事件的执行顺序是什么？可以混用吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#React和原生事件的执行顺序是什么？可以混用吗？" class="headerlink" title="React和原生事件的执行顺序是什么？可以混用吗？"></a>React和原生事件的执行顺序是什么？可以混用吗？</h4>
-      <p><code>React</code>的所有事件都通过 <code>document</code>进行统一分发。当真实 <code>Dom</code>触发事件后冒泡到 <code>document</code>后才会对 <code>React</code>事件进行处理。</p>
+<h4 id="React和原生事件的执行顺序是什么？可以混用吗？"><a href="#React和原生事件的执行顺序是什么？可以混用吗？" class="headerlink" title="React和原生事件的执行顺序是什么？可以混用吗？"></a>React和原生事件的执行顺序是什么？可以混用吗？</h4><p><code>React</code>的所有事件都通过 <code>document</code>进行统一分发。当真实 <code>Dom</code>触发事件后冒泡到 <code>document</code>后才会对 <code>React</code>事件进行处理。</p>
 <p>所以原生的事件会先执行，然后执行 <code>React</code>合成事件，最后执行真正在 <code>document</code>上挂载的事件</p>
 <p><code>React</code>事件和原生事件最好不要混用。原生事件中如果执行了 <code>stopPropagation</code>方法，则会导致其他 <code>React</code>事件失效。因为所有元素的事件将无法冒泡到 <code>document</code>上，导致所有的 <code>React</code>事件都将无法被触发。。</p>
-
-        <h4 id="React组件的渲染流程是什么？"   >
-          <a href="#React组件的渲染流程是什么？" class="heading-link"><i class="fas fa-link"></i></a><a href="#React组件的渲染流程是什么？" class="headerlink" title="React组件的渲染流程是什么？"></a>React组件的渲染流程是什么？</h4>
-      <ol>
+<h4 id="React组件的渲染流程是什么？"><a href="#React组件的渲染流程是什么？" class="headerlink" title="React组件的渲染流程是什么？"></a>React组件的渲染流程是什么？</h4><ol>
 <li>使用 <code>React.createElement</code>或 <code>JSX</code>编写 <code>React</code>组件，实际上所有的 <code>JSX</code>代码最后都会转换成 <code>React.createElement(...)</code>， <code>Babel</code>帮助我们完成了这个转换的过程。</li>
 <li><code>createElement</code>函数对 <code>key</code>和 <code>ref</code>等特殊的 <code>props</code>进行处理，并获取 <code>defaultProps</code>对默认 <code>props</code>进行赋值，并且对传入的孩子节点进行处理，最终构造成一个 <code>ReactElement</code>对象（所谓的虚拟 <code>DOM</code>）。</li>
 <li>ReactDOM.render<code>将生成好的虚拟</code>DOM<code>渲染到指定容器上，其中采用了批处理、事务等机制并且对特定浏览器进行了性能优化，最终转换为真实</code>DOM`。</li>
 </ol>
-
-        <h4 id="React更新过程怎么样"   >
-          <a href="#React更新过程怎么样" class="heading-link"><i class="fas fa-link"></i></a><a href="#React更新过程怎么样" class="headerlink" title="React更新过程怎么样"></a>React更新过程怎么样</h4>
-      <p>首先props state更新 —&gt; dirComponents(可能是子组件)</p>
+<h4 id="React更新过程怎么样"><a href="#React更新过程怎么样" class="headerlink" title="React更新过程怎么样"></a>React更新过程怎么样</h4><p>首先props state更新 —&gt; dirComponents(可能是子组件)</p>
 <p>render()生成newvnode</p>
 <p>patch(el,vnode)</p>
 <p>更新分2个节点 ： reconciliation（和解）阶段（执行diff js计算） 和 commit阶段</p>
@@ -132,354 +281,245 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.3.0"></he
 <p>解决方案fiber</p>
 <p>将reconciliation阶段进行任务拆分（commit无法拆分）</p>
 <p>浏览器需要支持<code>requestIdleCallback</code>。</p>
-
-        <h4 id="虚拟Dom是什么？"   >
-          <a href="#虚拟Dom是什么？" class="heading-link"><i class="fas fa-link"></i></a><a href="#虚拟Dom是什么？" class="headerlink" title="虚拟Dom是什么？"></a>虚拟Dom是什么？</h4>
-      <p>而 <code>React</code>会先将你的jsx代码转换成一个 <code>JavaScript</code>对象，然后这个 <code>JavaScript</code>对象再转换成真实 <code>DOM</code>。这个 <code>JavaScript</code>对象就是所谓的虚拟 <code>DOM</code></p>
-
-        <h4 id="虚拟Dom比-普通Dom更快吗？"   >
-          <a href="#虚拟Dom比-普通Dom更快吗？" class="heading-link"><i class="fas fa-link"></i></a><a href="#虚拟Dom比-普通Dom更快吗？" class="headerlink" title="虚拟Dom比 普通Dom更快吗？"></a>虚拟Dom比 普通Dom更快吗？</h4>
-      <p>首次渲染， <code>VitrualDom</code>不具有任何优势，甚至它要进行更多的计算，消耗更多的内存。</p>
+<h4 id="虚拟Dom是什么？"><a href="#虚拟Dom是什么？" class="headerlink" title="虚拟Dom是什么？"></a>虚拟Dom是什么？</h4><p>而 <code>React</code>会先将你的jsx代码转换成一个 <code>JavaScript</code>对象，然后这个 <code>JavaScript</code>对象再转换成真实 <code>DOM</code>。这个 <code>JavaScript</code>对象就是所谓的虚拟 <code>DOM</code></p>
+<h4 id="虚拟Dom比-普通Dom更快吗？"><a href="#虚拟Dom比-普通Dom更快吗？" class="headerlink" title="虚拟Dom比 普通Dom更快吗？"></a>虚拟Dom比 普通Dom更快吗？</h4><p>首次渲染， <code>VitrualDom</code>不具有任何优势，甚至它要进行更多的计算，消耗更多的内存。</p>
 <p><code>VitrualDom</code>的优势在于 <code>React</code>的 <code>Diff</code>算法和批处理策略， <code>React</code>在页面更新之前，提前计算好了如何进行更新和渲染 <code>DOM</code>。实际上，这个计算过程我们在直接操作 <code>DOM</code>时，也是可以自己判断和实现的，但是一定会耗费非常多的精力和时间，而且往往我们自己做的是不如 <code>React</code>好的。所以，在这个过程中 <code>React</code>帮助我们”提升了性能”。</p>
 <p><code>虚拟Dom</code>中的 <code>$$typeof</code>属性的作用是什么？</p>
-
-        <h4 id="为什么代码中一定要引入-React？"   >
-          <a href="#为什么代码中一定要引入-React？" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么代码中一定要引入-React？" class="headerlink" title="为什么代码中一定要引入 React？"></a>为什么代码中一定要引入 React？</h4>
-      <p><code>JSX</code>只是为 <code>React.createElement(component,props,...children)</code>方法提供的语法糖。</p>
+<h4 id="为什么代码中一定要引入-React？"><a href="#为什么代码中一定要引入-React？" class="headerlink" title="为什么代码中一定要引入 React？"></a>为什么代码中一定要引入 React？</h4><p><code>JSX</code>只是为 <code>React.createElement(component,props,...children)</code>方法提供的语法糖。</p>
 <p>所有的 <code>JSX</code>代码最后都会转换成 <code>React.createElement(...)</code>， <code>Babel</code>帮助我们完成了这个转换的过程。</p>
 <p>所以使用了 <code>JSX</code>的代码都必须引入 <code>React</code>。</p>
-
-        <h4 id="为什么-React组件首字母必须大写？"   >
-          <a href="#为什么-React组件首字母必须大写？" class="heading-link"><i class="fas fa-link"></i></a><a href="#为什么-React组件首字母必须大写？" class="headerlink" title="为什么 React组件首字母必须大写？"></a>为什么 React组件首字母必须大写？</h4>
-      <p><code>babel</code>在编译时会判断 <code>JSX</code>中组件的<code>首字母</code>，当首字母为小写时，其被认定为原生 <code>DOM</code>标签， <code>createElement</code>的第一个变量被编译为字符串；当首字母为大写时，其被认定为自定义组件， <code>createElement</code>的第一个变量被编译为对象；</p>
+<h4 id="为什么-React组件首字母必须大写？"><a href="#为什么-React组件首字母必须大写？" class="headerlink" title="为什么 React组件首字母必须大写？"></a>为什么 React组件首字母必须大写？</h4><p><code>babel</code>在编译时会判断 <code>JSX</code>中组件的<code>首字母</code>，当首字母为小写时，其被认定为原生 <code>DOM</code>标签， <code>createElement</code>的第一个变量被编译为字符串；当首字母为大写时，其被认定为自定义组件， <code>createElement</code>的第一个变量被编译为对象；</p>
 <p><code>React</code>在渲染 <code>真实Dom</code>时做了哪些性能优化？</p>
 <p>什么是高阶组件？如何实现？</p>
 <p><code>HOC</code>在业务场景中有哪些实际应用场景？</p>
 <p>高阶组件( <code>HOC</code>)和 <code>Mixin</code>的异同点是什么？</p>
 <p><code>Hook</code>有哪些优势？</p>
-
-        <h3 id="异步组件"   >
-          <a href="#异步组件" class="heading-link"><i class="fas fa-link"></i></a><a href="#异步组件" class="headerlink" title="异步组件"></a>异步组件</h3>
-      <p>按需加载 </p>
+<h3 id="异步组件"><a href="#异步组件" class="headerlink" title="异步组件"></a>异步组件</h3><p>按需加载 </p>
 <p> Reloadable库  （import ‘xx.page’).then</p>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://mariogogogo.github.io">Codding</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-React/">http://mariogogogo.github.io/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-React/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://mariogogogo.github.io/tags/%E9%9D%A2%E8%AF%95%EF%BC%8CJavascript%EF%BC%8C%E5%9F%BA%E7%A1%80/">面试，Javascript，基础</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/01/02/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">前端面试-原型及原型链</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"><span class="paginator-prev__text">前端面试-JS 事件循环 EventLoop</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vdom"><span class="toc-number">1.</span> <span class="toc-text">
-          Vdom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jsx%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">
-          Jsx的本质是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%8C16%E7%89%88%E6%9C%AC%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%91%E7%94%9F%E4%BA%86%E5%93%AA%E4%BA%9B%E5%8F%98%E5%8C%96%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">
-          React生命周期有哪些，16版本生命周期发生了哪些变化？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setState%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">
-          setState是同步的还是异步的？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#setState%E4%B8%BB%E6%B5%81%E7%A8%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">
-          setState主流程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#batchUpdate%E6%9C%BA%E5%88%B6"><span class="toc-number">2.3.</span> <span class="toc-text">
-          batchUpdate机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E6%97%B6%E8%BF%9E%E7%BB%AD%E5%A4%9A%E6%AC%A1-setState%E5%8F%AA%E6%9C%89%E4%B8%80%E6%AC%A1%E7%94%9F%E6%95%88%EF%BC%9F"><span class="toc-number">2.4.</span> <span class="toc-text">
-          为什么有时连续多次 setState只有一次生效？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">2.5.</span> <span class="toc-text">
-          React如何实现自己的事件机制？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="toc-number">2.6.</span> <span class="toc-text">
-          为什么要用合成事件机制？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BD%95-React%E4%BA%8B%E4%BB%B6%E8%A6%81%E8%87%AA%E5%B7%B1%E7%BB%91%E5%AE%9A-this%EF%BC%9F"><span class="toc-number">2.7.</span> <span class="toc-text">
-          为何 React事件要自己绑定 this？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E5%92%8C-React%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">2.8.</span> <span class="toc-text">
-          原生事件和 React事件的区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React%E5%92%8C%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%8F%AF%E4%BB%A5%E6%B7%B7%E7%94%A8%E5%90%97%EF%BC%9F"><span class="toc-number">2.9.</span> <span class="toc-text">
-          React和原生事件的执行顺序是什么？可以混用吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.10.</span> <span class="toc-text">
-          React组件的渲染流程是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#React%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B%E6%80%8E%E4%B9%88%E6%A0%B7"><span class="toc-number">2.11.</span> <span class="toc-text">
-          React更新过程怎么样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%99%9A%E6%8B%9FDom%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.12.</span> <span class="toc-text">
-          虚拟Dom是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%99%9A%E6%8B%9FDom%E6%AF%94-%E6%99%AE%E9%80%9ADom%E6%9B%B4%E5%BF%AB%E5%90%97%EF%BC%9F"><span class="toc-number">2.13.</span> <span class="toc-text">
-          虚拟Dom比 普通Dom更快吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%B8%80%E5%AE%9A%E8%A6%81%E5%BC%95%E5%85%A5-React%EF%BC%9F"><span class="toc-number">2.14.</span> <span class="toc-text">
-          为什么代码中一定要引入 React？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-React%E7%BB%84%E4%BB%B6%E9%A6%96%E5%AD%97%E6%AF%8D%E5%BF%85%E9%A1%BB%E5%A4%A7%E5%86%99%EF%BC%9F"><span class="toc-number">2.15.</span> <span class="toc-text">
-          为什么 React组件首字母必须大写？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">
-          异步组件</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1610542142,718703573&amp;fm=26&amp;gp=0.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">热爱生活，热爱代码</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Codding</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.3.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
-  var isXML = true;
-  var search_path = 'search.xml';
 
-  if (!search_path) {
-    search_path = 'search.xml';
-  } else if (/json$/i.test(search_path)) {
-    isXML = false;
-  }
+        </div>
 
-  var path = '/' + search_path;
-  $.ajax({
-    url: path,
-    dataType: isXML ? 'xml' : 'json',
-    async: true,
-    success: function (res) {
-      var datas = isXML ? $('entry', res).map(function () {
-        // 将 XML 转为 JSON
-        return {
-          title: $('title', this).text(),
-          content: $('content', this).text(),
-          url: $('url', this).text()
-        };
-      }).get() : res;
-      var $input = $('.search-input input');
-      var $result = $('.search-results');
-      // 搜索对象（标题、内容）的权重，影响显示顺序
-      var WEIGHT = { title: 100, content: 1 };
-      var searchPost = function () {
-        var searchText = $input.val().toLowerCase().trim();
-        // 根据空白字符分隔关键字
-        var keywords = searchText.split(/[\s]+/);
-        // 搜索结果
-        var matchPosts = [];
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：前端面试-React</li>
+        <li>本文作者：Mariogogogo</li>
+        <li>创建时间：2020-01-01 00:00:00</li>
+        <li>
+            本文链接：http://www.h5web.cc/2020/01/01/前端面试-React/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
 
-        // 有多个关键字时，将原文字整个保存下来
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        // 防止未输入字符时搜索
-        if (searchText.length > 0) {
-          datas.forEach(function (data) {
-            var isMatch  = false;
-            // 没有标题的文章使用预设的 i18n 变量代替
-            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
-            var titleLower = title && title.toLowerCase();
-            // 删除 HTML 标签 和 所有空白字符
-            var content = data.content && data.content.replace(/<[^>]+>/g, '');
-            var contentLower = content && content.toLowerCase();
-            // 删除重复的 /
-            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
-            // 标题中匹配到的关键词
-            var titleHitSlice = [];
-            // 内容中匹配到的关键词
-            var contentHitSlice = [];
+            </div>
+        
 
-            keywords.forEach(function (keyword) {
-              /**
-              * 获取匹配的关键词的索引
-              * @param {String} keyword 要匹配的关键字
-              * @param {String} text 原文字
-              * @param {Boolean} caseSensitive 是否区分大小写
-              * @param {Number} weight 匹配对象的权重。权重大的优先显示
-              * @return {Array}
-              */
-              function getIndexByword (word, text, caseSensitive, weight) {
-                if (!word || !text) {
-                  return [];
-                };
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/01/02/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E5%8E%9F%E5%9E%8B%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">前端面试-原型及原型链</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/01/01/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">前端面试-JS 事件循环 EventLoop</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
 
-                var startIndex = 0; // 每次匹配的开始索引
-                var index = -1;     // 匹配到的索引值
-                var result = [];    // 匹配结果
+        
+    </div>
+</div>
 
-                if (!caseSensitive) {
-                  word = word.toLowerCase();
-                  text = text.toLowerCase();
-                }
 
-                while((index = text.indexOf(word, startIndex)) !== -1) {
-                  var hasMatch = false;
-                  // 索引位置相同的关键词，保留长度较长的
-                  titleHitSlice.forEach(function (hit) {
-                    if (hit.index === index && hit.word.length < word.length) {
-                      hit.word = word;
-                      hasMatch = true;
-                    }
-                  });
-                  startIndex = index + word.length;
-                  !hasMatch && result.push({ index: index, word: word, weight: weight });
-                }
-                return result;
-              }
-              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
-              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
-            });
+                
+            </div>
 
-            var hitTitle = titleHitSlice.length;
-            var hitContent = contentHitSlice.length;
+        </div>
 
-            if (hitTitle > 0 || hitContent > 0) {
-              isMatch = true;
-            }
-            if (isMatch) {
-              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
-                // 按照匹配文字的索引的递增顺序排序
-                hit.sort(function (left, right) {
-                  return left.index - right.index;
-                });
-              });
-              /**
-              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
-              * @param {String} text 原文本
-              * @param {Array} hitSlice 匹配项的索引信息
-              * @param {Number} start 开始索引
-              * @param {Number} end 结束索引
-              * @return {String}
-              */
-              function highlightKeyword (text, hitSlice, start, end) {
-                if (!text || !hitSlice || !hitSlice.length) {
-                  return;
-                }
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Mariogogogo</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
 
-                var result = '';
-                var startIndex = start;
-                var endIndex = end;
-                hitSlice.forEach(function (hit) {
-                  if (hit.index < startIndex) {
-                    return;
-                  }
+        </div>
+    </div>
 
-                  var hitWordEnd = hit.index + hit.word.length;
-                  result += text.slice(startIndex, hit.index);
-                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
-                  startIndex = hitWordEnd;
-                });
-                result += text.slice(startIndex, endIndex);
-                return result;
-              }
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
 
-              var postData = {};
-              // 文章总的搜索权重
-              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
-              // 标记匹配关键词后的标题
-              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
-              // 标记匹配关键词后的内容
-              var postContent;
-              // 显示内容的长度
-              var SHOW_WORD_LENGTH = 200;
-              // 命中关键词前的字符显示长度
-              var SHOW_WORD_FRONT_LENGTH = 20;
-              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+        <!-- go comment -->
+        
+    </ul>
+</div>
 
-              // 截取匹配的第一个字符，前后共 200 个字符来显示
-              if (contentHitSlice.length > 0) {
-                var firstIndex = contentHitSlice[0].index;
-                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
-                var end = firstIndex + SHOW_WORD_END_LENGTH;
-                postContent = highlightKeyword(content, contentHitSlice, start, end);
-              } else { // 未匹配到内容，直接截取前 200 个字符来显示
-                postContent = content.slice(0, SHOW_WORD_LENGTH);
-              }
-              postData.title = postTitle;
-              postData.content = postContent;
-              postData.url = postURL;
-              postData.weight = postWeight;
-              matchPosts.push(postData);
-            }
-          });
-        }
+        </div>
+    
 
-        var resultInnerHtml = '';
-        if (matchPosts.length) {
-          // 按权重递增的顺序排序，使权重大的优先显示
-          matchPosts.sort(function (left, right) {
-            return right.weight - left.weight;
-          });
-          resultInnerHtml += '<ul>';
-          matchPosts.forEach(function (post) {
-            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
-            resultInnerHtml += post.title;
-            resultInnerHtml += '</a><div class="search-results-content">';
-            resultInnerHtml += post.content;
-            resultInnerHtml += '</div></li>';
-          });
-          resultInnerHtml += '</ul>';
-        } else {
-          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
-        }
-        $result.html(resultInnerHtml);
-      };
-      $input.on('input', searchPost);
-      $input.on('keyup', function (e) {
-        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
-          searchPost();
-        }
-      });
-    }
-  });
-}
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
 
-function closeSearch () {
-  $('body').css({ overflow: 'auto' });
-  $('.search-popup').css({ display: 'none' });
-  $('.search-mask').css({ display: 'none' });
-}
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
 
-window.addEventListener('DOMContentLoaded', function () {
-  Stun.utils.pjaxReloadLocalSearch = function () {
-    $('.header-nav-search').on('click', function (e) {
-      e.stopPropagation();
-      $('body').css('overflow', 'hidden');
-      $('.search-popup')
-        .velocity('stop')
-        .velocity('transition.expandIn', {
-          duration: 300,
-          complete: function () {
-            $('.search-popup input').focus();
-          }
-        });
-      $('.search-mask')
-        .velocity('stop')
-        .velocity('transition.fadeIn', {
-          duration: 300
-        });
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
 
-      initSearch();
-    });
-    $('.search-mask, .search-close').on('click', function () {
-      closeSearch();
-    });
-    $(document).on('keydown', function (e) {
-      // Escape <=> 27
-      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
-        closeSearch();
-      }
-    });
-  };
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
 
-  Stun.utils.pjaxReloadLocalSearch();
-}, false);
+        <!-- rss -->
+        
 
-function safeOpenUrl(url) {
-  var newTab = window.open();
-  newTab.opener = null;
-  newTab.location = url;
-}
+        
 
-function extSearch(engine) {
-  var engines = {
-    google: 'https://www.google.com/search?q=',
-    bing: 'https://cn.bing.com/search?q=',
-    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
-  };
-  var host = window.location.host;
-  var query = $('.search-input input').val().toLowerCase().trim();
-  var uri = engines[engine] + query + ' site:' + host;
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
 
-  if (query) {
-    safeOpenUrl(uri);
-  } else {
-    Stun.utils.popAlert('warning', '请输入字符');
-  }
-}
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
 
-var assistSearchList = window.CONFIG.assistSearch;
+    </div>
 
-if (Array.isArray(assistSearchList)) {
-  assistSearchList.forEach(function (name) {
-    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
-      extSearch(name);
-    }, false);
-  });
-}</script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function loadValine () {
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = 'nick,mail,link';
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vdom"><span class="nav-number">1.</span> <span class="nav-text">Vdom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jsx%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.</span> <span class="nav-text">Jsx的本质是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%8C16%E7%89%88%E6%9C%AC%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%91%E7%94%9F%E4%BA%86%E5%93%AA%E4%BA%9B%E5%8F%98%E5%8C%96%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">React生命周期有哪些，16版本生命周期发生了哪些变化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setState%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84%EF%BC%9F"><span class="nav-number">2.2.</span> <span class="nav-text">setState是同步的还是异步的？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#setState%E4%B8%BB%E6%B5%81%E7%A8%8B"><span class="nav-number">2.2.1.</span> <span class="nav-text">setState主流程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#batchUpdate%E6%9C%BA%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text">batchUpdate机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E6%97%B6%E8%BF%9E%E7%BB%AD%E5%A4%9A%E6%AC%A1-setState%E5%8F%AA%E6%9C%89%E4%B8%80%E6%AC%A1%E7%94%9F%E6%95%88%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">为什么有时连续多次 setState只有一次生效？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">2.5.</span> <span class="nav-text">React如何实现自己的事件机制？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">2.6.</span> <span class="nav-text">为什么要用合成事件机制？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BD%95-React%E4%BA%8B%E4%BB%B6%E8%A6%81%E8%87%AA%E5%B7%B1%E7%BB%91%E5%AE%9A-this%EF%BC%9F"><span class="nav-number">2.7.</span> <span class="nav-text">为何 React事件要自己绑定 this？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E5%92%8C-React%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">2.8.</span> <span class="nav-text">原生事件和 React事件的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React%E5%92%8C%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%8F%AF%E4%BB%A5%E6%B7%B7%E7%94%A8%E5%90%97%EF%BC%9F"><span class="nav-number">2.9.</span> <span class="nav-text">React和原生事件的执行顺序是什么？可以混用吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.10.</span> <span class="nav-text">React组件的渲染流程是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React%E6%9B%B4%E6%96%B0%E8%BF%87%E7%A8%8B%E6%80%8E%E4%B9%88%E6%A0%B7"><span class="nav-number">2.11.</span> <span class="nav-text">React更新过程怎么样</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E6%8B%9FDom%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.12.</span> <span class="nav-text">虚拟Dom是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E6%8B%9FDom%E6%AF%94-%E6%99%AE%E9%80%9ADom%E6%9B%B4%E5%BF%AB%E5%90%97%EF%BC%9F"><span class="nav-number">2.13.</span> <span class="nav-text">虚拟Dom比 普通Dom更快吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%B8%80%E5%AE%9A%E8%A6%81%E5%BC%95%E5%85%A5-React%EF%BC%9F"><span class="nav-number">2.14.</span> <span class="nav-text">为什么代码中一定要引入 React？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-React%E7%BB%84%E4%BB%B6%E9%A6%96%E5%AD%97%E6%AF%8D%E5%BF%85%E9%A1%BB%E5%A4%A7%E5%86%99%EF%BC%9F"><span class="nav-number">2.15.</span> <span class="nav-text">为什么 React组件首字母必须大写？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">异步组件</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
 
-  guest_info = guest_info.split(',').filter(function(item) {
-    return GUEST_INFO.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#valine-container',
-    appId: 'fGSHbxc61eXC9MgR32tTRLKD-gzGzoHsz',
-    appKey: 'ylVHOgsBL6HOffDYf4H7qzDs',
-    notify: true,
-    verify: true,
-    placeholder: '快去评论下吧',
-    avatar: 'mp',
-    meta: guest_info,
-    pageSize: '10' || 10,
-    visitor: false,
-    recordIP: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: window.location.pathname
-  });
-}
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
-if (false) {
-  loadValine();
-} else {
-  window.addEventListener('DOMContentLoaded', loadValine, false);
-}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
