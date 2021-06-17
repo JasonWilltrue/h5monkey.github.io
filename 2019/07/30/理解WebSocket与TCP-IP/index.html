@@ -229,8 +229,18 @@
 
         <div class="article-content markdown-body">
             <h2 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h2><p>首先介绍下Mac下抓取端口包的工具角<code>tcpdump</code><br>命令：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tcpdump  port <span class="number">8080</span> -n</span><br></pre></td></tr></table></figure><br><a id="more"></a></p>
-<h3 id="一个完整的http链接"><a href="#一个完整的http链接" class="headerlink" title="一个完整的http链接"></a>一个完整的http链接</h3><p>我们先来看下抓到包的数据分析<br><img src="http://book.52react.cn/http关系.png" alt=""></p>
-<h4 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h4><p><img src="http://book.52react.cn/20190731225039.png" alt=""></p>
+<h3 id="一个完整的http链接"><a href="#一个完整的http链接" class="headerlink" title="一个完整的http链接"></a>一个完整的http链接</h3><p>我们先来看下抓到包的数据分析<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/http关系.png"
+                      alt=""
+                ></p>
+<h4 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190731225039.png"
+                      alt=""
+                ></p>
 <ol>
 <li>手机端–&gt;服务器发送了一个tcp包，带上了<code>SYN</code>标志位，表示建立连接，并指名包开始序列号<code>seq</code>（单位字节）</li>
 <li>服务器–&gt;手机端进行回复，发送了一个<code>SYN+ACK</code>的报文段，表示同意建立连接</li>
@@ -242,8 +252,18 @@
 </blockquote>
 <h4 id="什么是接收窗口呢？"><a href="#什么是接收窗口呢？" class="headerlink" title="什么是接收窗口呢？"></a>什么是接收窗口呢？</h4><p>tcp报文头，窗口大小只有2个字节16位，最大只能2^16-1 = 64kb大小，当初设计tcp的人没有想到现代网速那么快，所以可选项加了一个<code>wscale</code>指数字段，最大为14，最大窗口大小为1G</p>
 <h4 id="接受窗口用来做什么呢？"><a href="#接受窗口用来做什么呢？" class="headerlink" title="接受窗口用来做什么呢？"></a>接受窗口用来做什么呢？</h4><p>它根据自身网络情况设置不同大小的值用来控制对方发送速度，避免对方发送太快，导致网络<code>拥塞</code></p>
-<h3 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h3><p>建立好tcp之后 手机端–&gt;服务端发送一个http请求，带上<code>PUSH</code>标志位：表示一个比较紧急的报文，告诉服务器立即把数据从缓存里发送给程序，不能再继续缓存了<br><img src="http://book.52react.cn/20190731224641.png" alt=""></p>
-<h4 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h4><p><img src="http://book.52react.cn/20190731225127.png" alt=""><br>为什么要挥手四次？<br>前二次挥手让连接处于半关闭状态，此时手机端<code>不可</code>向服务端发送数据，而服务器<code>可以继续</code>向手机端发送数据，所以四次的原因是<code>可以有一个处于半关闭的状态</code></p>
+<h3 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h3><p>建立好tcp之后 手机端–&gt;服务端发送一个http请求，带上<code>PUSH</code>标志位：表示一个比较紧急的报文，告诉服务器立即把数据从缓存里发送给程序，不能再继续缓存了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190731224641.png"
+                      alt=""
+                ></p>
+<h4 id="TCP的四次挥手"><a href="#TCP的四次挥手" class="headerlink" title="TCP的四次挥手"></a>TCP的四次挥手</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190731225127.png"
+                      alt=""
+                ><br>为什么要挥手四次？<br>前二次挥手让连接处于半关闭状态，此时手机端<code>不可</code>向服务端发送数据，而服务器<code>可以继续</code>向手机端发送数据，所以四次的原因是<code>可以有一个处于半关闭的状态</code></p>
 <ol>
 <li>手机端–&gt;服务端 发送一个<code>FIN</code>，要等30s才能关闭，为什么要等30秒?因为这个是由<code>keep-alive</code>字段影响，同一个域可能要请求多个资源，不能一个请求完了就马上关闭</li>
 <li>服务端–&gt;手机端 发送<code>ACK</code> 这个时候连接处于<code>半关闭状态</code>，手机端不能再发送数据给服务端，但服务端可以向手机端发送</li>
@@ -256,7 +276,12 @@
 <h4 id="发送窗口是怎么算的"><a href="#发送窗口是怎么算的" class="headerlink" title="发送窗口是怎么算的?"></a>发送窗口是怎么算的?</h4><blockquote>
 <p>wscale是一个二进制指数，wscale=5 表示左移5位 === 2的5次幂</p>
 </blockquote>
-<h3 id="四层网络协议"><a href="#四层网络协议" class="headerlink" title="四层网络协议"></a>四层网络协议</h3><p><img src="http://book.52react.cn/20190731225646.png" alt=""></p>
+<h3 id="四层网络协议"><a href="#四层网络协议" class="headerlink" title="四层网络协议"></a>四层网络协议</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190731225646.png"
+                      alt=""
+                ></p>
 <h2 id="假如要发送一个http文本，最后会被包装成"><a href="#假如要发送一个http文本，最后会被包装成" class="headerlink" title="假如要发送一个http文本，最后会被包装成"></a>假如要发送一个http文本，最后会被包装成</h2><h2 id="物理帧头-IP报头文-TCP报头文-HTTP报头文-文本数据"><a href="#物理帧头-IP报头文-TCP报头文-HTTP报头文-文本数据" class="headerlink" title="物理帧头 | IP报头文 | TCP报头文 | HTTP报头文 | 文本数据"></a>物理帧头 | IP报头文 | TCP报头文 | HTTP报头文 | 文本数据</h2><p>1.物理地址<br>每个网卡都有一个全球唯一的物理地址。路由器向局域网所有主机发送数据，网卡会比较物理地址是否与自己地址一致，如果一致就接受，否则丢弃。</p>
 <p>2.网际层ARP<br>ARP是一个地址解析协议，当我访问10.2.200.140的时候我需要知道它的物理路径地址，如果是个局域网我就局域网广播一个ARP请求，然后就会告诉我，物理地址</p>
 <p>3.网际层traceroute<br>可以追踪路由路径，原理是向目标主机发送ICMP报文，发送第一个报文时，设置TTL=0 报文生存时间为0，下一个路由器收到这个报文后，不会继续转发了，会给原主机发送出错的报文。就可知道第一个路由的ip地址，同里TTL为1 就可以知道第二个路由的IP地址</p>

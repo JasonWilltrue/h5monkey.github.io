@@ -238,17 +238,42 @@
         <div class="article-content markdown-body">
             <p>每种数据类型的内存分配</p>
 <a id="more"></a>
-<h3 id="值类型内存分配"><a href="#值类型内存分配" class="headerlink" title="值类型内存分配"></a>值类型内存分配</h3><p><img src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B2%20%281%29.png" alt="image"></p>
+<h3 id="值类型内存分配"><a href="#值类型内存分配" class="headerlink" title="值类型内存分配"></a>值类型内存分配</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B2%20%281%29.png"
+                      alt="image"
+                ></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">chainStore</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> store1 = <span class="string">&quot;Nike China&quot;</span>;</span><br><span class="line">  <span class="keyword">var</span> store2 = store1;</span><br><span class="line">  store1 = <span class="string">&quot;Nike U.S.A.&quot;</span>;</span><br><span class="line">  alert(store2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str1; <span class="comment">//这个时候不进行内存分配</span></span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">&quot;传智播客&quot;</span>; <span class="comment">//分配内存</span></span><br><span class="line"><span class="keyword">var</span> str3 = str2;</span><br><span class="line"><span class="built_in">console</span>.log(str1);</span><br><span class="line"><span class="built_in">console</span>.log(str2 == str3); <span class="comment">//比较的是指针指向的内存空间中存储的值</span></span><br><span class="line"><span class="built_in">console</span>.log(str2 === str3); <span class="comment">//比较的是地址和地址中存储的值</span></span><br></pre></td></tr></table></figure>
-<p><img src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B2%20%282%29.png" alt="image"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B2%20%282%29.png"
+                      alt="image"
+                ></p>
 <blockquote>
 <p>把一个值类型（也可以叫基本类型）store2 传递给另一个变量（赋值）时，其实是分配了一块新的内存空间，因此改变 store1 的值对 store2 没有任何影响，因为它不像引用类型，变量的交换其实是交换了指像同一个内容的地址。</p>
 </blockquote>
-<h3 id="引用类型内存分配型"><a href="#引用类型内存分配型" class="headerlink" title="引用类型内存分配型"></a>引用类型内存分配型</h3><p><img src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B3.png" alt="image"></p>
+<h3 id="引用类型内存分配型"><a href="#引用类型内存分配型" class="headerlink" title="引用类型内存分配型"></a>引用类型内存分配型</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B3.png"
+                      alt="image"
+                ></p>
 <p>对象是引用类型，赋值只是生成一个内存保存地址而已<br>var y = x;<br>如果变量 x 表示一个对象.<br>则通过赋值后,y 生成一个变量,变量包含一个地址,地址指向对象 x.<br>所以从本质上而言,不会生成新的变量, x,y 指向内存中的同一位置<br>当你通过 y 改变对象的值，这种变化也会反映到 x 上。</p>
-<p><img src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B4.png" alt="image"></p>
-<p><img src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B5.png" alt="image"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B4.png"
+                      alt="image"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B5.png"
+                      alt="image"
+                ></p>
 <blockquote>
 <p>在上面的代码中，store2 只进行了一次赋值，理论上它的值已定，但后面通过改写 store1 的值，发现 store2 的值也发生了改变，这正是引用类型的特征，也是我们要注意的地方。</p>
 </blockquote>
@@ -264,7 +289,12 @@
 <li>值类型赋值，会重新分配内存</li>
 <li>引用类型赋值其实赋的是指针</li>
 </ol>
-<p><img src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B6.png" alt="image"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B6.png"
+                      alt="image"
+                ></p>
 
         </div>
 

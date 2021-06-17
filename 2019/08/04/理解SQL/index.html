@@ -275,11 +275,26 @@
 <h3 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h3><p>为什么要叫IndexedDB或者索引数据库呢？<br>因为它主页通过创建索引惊喜查询</p>
 <p>IndexedDB可以支持插入<code>JSON格式</code>的不一样的数据</p>
 <h3 id="非关系型数据库的横向扩展"><a href="#非关系型数据库的横向扩展" class="headerlink" title="非关系型数据库的横向扩展"></a>非关系型数据库的横向扩展</h3><p>因为可以每个数据的类型不一样，所以不存在添加字段的问题，而相同的类型可以创建索引，提高搜索效率；但是也又小问题，NoSql<code>做不了</code>复杂查询，如果要比如按照city/日期归类，那么需要开一个<code>游标循环</code>处理。时间和性能开销很大；</p>
-<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p><img src="http://book.52react.cn/20190810224204.png" alt=""></p>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190810224204.png"
+                      alt=""
+                ></p>
 <h2 id="数据库与Promise"><a href="#数据库与Promise" class="headerlink" title="数据库与Promise"></a>数据库与Promise</h2><p>我们都知道数据库是异步操作；如果我们先发一个请求获取数据，然后插入数据，重复N次后，再查询数据。如何保证每次都成功写入数据库呢？</p>
 <p>我们可以使用Promise来解决</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promises = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span> ; i&lt;orders.length;i++)&#123;</span><br><span class="line">  <span class="keyword">var</span> order = orders[i]</span><br><span class="line">  <span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">     dataProcess.executeSql(<span class="string">&#x27;插入sql语句&#x27;</span>,<span class="function">(<span class="params">tx,results</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//数据库返回</span></span><br><span class="line">        <span class="keyword">if</span>(results.rows.length）&#123;</span><br><span class="line">          resolve()</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果不存在，则向服务器继续请求查询</span></span><br><span class="line">        <span class="keyword">var</span> order = orders[i]</span><br><span class="line">        dataProcess.queryAdderss(order)</span><br><span class="line">     &#125;）</span><br><span class="line">  </span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">//添加进数组</span></span><br><span class="line">  promise.push(promise)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//所有的Prmise都返回了则调用finished函数</span></span><br><span class="line">Prmise.all(promises).then(dataPromcess.finished)</span><br></pre></td></tr></table></figure>
-<h2 id="SQL注入攻击"><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h2><p>比如网页链接存在参数传递，后台并没有对用户的输入进行过滤，导致用户的输入直接被SQL解释器执行。SQL注入的产生条件：<br>输入一段sql片段  最终拼接成一段攻击代码<br> <img src="http://book.52react.cn/20190810230252.png" alt=""><br> <img src="http://book.52react.cn/20190810230323.png" alt=""></p>
+<h2 id="SQL注入攻击"><a href="#SQL注入攻击" class="headerlink" title="SQL注入攻击"></a>SQL注入攻击</h2><p>比如网页链接存在参数传递，后台并没有对用户的输入进行过滤，导致用户的输入直接被SQL解释器执行。SQL注入的产生条件：<br>输入一段sql片段  最终拼接成一段攻击代码<br> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190810230252.png"
+                      alt=""
+                ><br> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190810230323.png"
+                      alt=""
+                ></p>
 <h3 id="防御SQL注入"><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h3><p>归根到底，需要对用户的输入进行过滤，因为在Web攻防中，我们永远不要相信用户的输入 1。<br>1.使用预编译语句，绑定变量。<br>2.使用安全的存储过程对抗SQL注入。<br>3.检查数据类型。<br>4.使用安全函数。</p>
 <h2 id="分布式数据库"><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h2><p>简单介绍下：如果一个网站越来越火🔥，一个数据库服务很可能会扛不住，需要多搞几台服务器缓解压力，这时候需要几个数据库<code>一致性</code>，解决方案很多，最简单的是Mysql的<code>replication</code>；</p>
 <h3 id="主要工作原理"><a href="#主要工作原理" class="headerlink" title="主要工作原理"></a>主要工作原理</h3><p>假如有三台服务器，三个数据库，用户一个操作写到了其中一个<code>主</code>服务器，这个库叫master，其他二个库叫<code>slave</code>，主库会把数据库远程复制到另外二个库。</p>

@@ -236,18 +236,33 @@
 <li>错误处理 errorHanding（只发生在 render 阶段）<a id="more"></a>
 </li>
 </ol>
-<p><img src="http://book.52react.cn/20181214134520.png" alt="生命周期图"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20181214134520.png"
+                      alt="生命周期图"
+                ></p>
 <h3 id="先来看下装载过程"><a href="#先来看下装载过程" class="headerlink" title="先来看下装载过程"></a>先来看下装载过程</h3><ol>
 <li>constructor</li>
 <li>componentWillMont</li>
 <li>render</li>
 <li>componentDidMont</li>
 </ol>
-<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p><img src="http://book.52react.cn/20190331172732.png" alt=""></p>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190331172732.png"
+                      alt=""
+                ></p>
 <p>render 调用后，componentDidMont 函数不会马上被调用，render 函数返回的东西(jsx 表示的对象)已经在渲染，组件已经被装载到了 Dom 树上</p>
 <p>如果有三个组件 A,B,C 要三个组件全部 render 以后才能调用 componentDidMont 方法，因为 react 肯定要把所有组件全部返回结果综合起来才知道如何渲染</p>
 <p>cwm 与 cdm 还有一个区别：cwm 可以在服务端或浏览器端调用，componentDidMont 只能在浏览器端调用；</p>
-<h3 id="更新过期"><a href="#更新过期" class="headerlink" title="更新过期"></a>更新过期</h3><p><img src="http://book.52react.cn/20190331172907.png" alt=""></p>
+<h3 id="更新过期"><a href="#更新过期" class="headerlink" title="更新过期"></a>更新过期</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190331172907.png"
+                      alt=""
+                ></p>
 <ol>
 <li>componentWillReceiveProps</li>
 <li>shouldComponentUpdate</li>
@@ -257,7 +272,12 @@
 </ol>
 <p>如果</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate () &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">&#x27;List+shouldComponentUpdate&#x27;</span>);</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://book.52react.cn/20190331173419.png" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190331173419.png"
+                      alt=""
+                ></p>
 <h4 id="componentWillReceiveProps"><a href="#componentWillReceiveProps" class="headerlink" title="componentWillReceiveProps"></a>componentWillReceiveProps</h4><p>表示这个只在 props 引起的组件更新过程中，才会被调用，state 的更新不会被触发，参数 nextProps 是父组件传递到当前组件的新 props，需要比较 nextprops 与当前 props 是否相等，才决定是否执行 props 变化后的逻辑，比如更新新的 props 调用 this.setState 触发组件重新渲染</p>
 <blockquote>
 <p>注意：在此方法中调用 render，只有在组件 render 及其后的方法中，this.state 才指向更新后的 state，在 render 之前的方法 shouldComponentUpdate，componentWillUpdate 中，this.state 依然指向的更新前的 state</p>
@@ -352,10 +372,20 @@
 <ul>
 <li>执行次数：多次</li>
 <li>触发条件：组件实例化及接收新 props 后调用</li>
-<li>替代：替代原来的 componentWillReceiveProps，并且加载第一次时也调用<br>初始化的时候<br><img src="http://book.52react.cn/20190331233644.png" alt=""></li>
+<li>替代：替代原来的 componentWillReceiveProps，并且加载第一次时也调用<br>初始化的时候<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190331233644.png"
+                      alt=""
+                ></li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">todoList</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	 <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">		 <span class="built_in">console</span>.log(<span class="string">&#x27;constructor&#x27;</span>);</span><br><span class="line">		 <span class="built_in">super</span>(props)</span><br><span class="line">		 <span class="built_in">this</span>.state=&#123;&#125;</span><br><span class="line">	 &#125;</span><br><span class="line">	<span class="keyword">static</span> getDerivedStateFromProps (props, state)&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">&#x27;getDerivedStateFromProps&#x27;</span>);</span><br><span class="line">		<span class="built_in">console</span>.log(props);</span><br><span class="line">		<span class="built_in">console</span>.log(state);</span><br><span class="line">		 <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://book.52react.cn/20190331233453.png" alt="更新可能带来的性能问题"><br>为什么要用<code>static</code>？<br><code>static</code> 是 ES6 的写法，当我们定义一个函数为 static 时，就意味着无法通过 this 调用我们在类中定义的方法（原理和 js 中原型链继承相关，具体我就不说了，可自行搜索）。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190331233453.png"
+                      alt="更新可能带来的性能问题"
+                ><br>为什么要用<code>static</code>？<br><code>static</code> 是 ES6 的写法，当我们定义一个函数为 static 时，就意味着无法通过 this 调用我们在类中定义的方法（原理和 js 中原型链继承相关，具体我就不说了，可自行搜索）。</p>
 <p>不足之处：<br>在<code>getDerivedStateFromProps</code>中，在条件限制下(if/else)调用 setState。如果不设任何条件 setState，这个函数超高的调用频率，不停的 setState，会导致频繁的重绘，既有可能产生性能问题，同时也容易产生 bug。</p>
 <p>getSnapshotBeforeUpdate(nextProps, prevState)：从 props 派生出 state</p>
 <ul>
@@ -365,9 +395,19 @@
 <li>替代：替代原来的 componentWillupdate</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getSnapshotBeforeUpdate (prevProps, prevState) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;getSnapshotBeforeUpdate&#x27;</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(prevProps);</span><br><span class="line">    <span class="built_in">console</span>.log(prevState);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p><code>getSnapshotBeforeUpdate</code> 是在 render 之后触发，它的要点在于触发时，Dom 还没有更新，开发者可以做一些事情，返回值会作为第三个参数传递给接下来将要触发的 componentDidUpdate。<br><img src="http://book.52react.cn/20190331234539.png" alt=""></p>
+<p><code>getSnapshotBeforeUpdate</code> 是在 render 之后触发，它的要点在于触发时，Dom 还没有更新，开发者可以做一些事情，返回值会作为第三个参数传递给接下来将要触发的 componentDidUpdate。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190331234539.png"
+                      alt=""
+                ></p>
 <p>作为一个不常用的生命周期，getSnapshotBeforeUpdate React 16 给的建议当然还是：<code>能不用就尽量不要用</code>。 - - ！！！</p>
-<p><img src="http://book.52react.cn/20181214134457.png" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20181214134457.png"
+                      alt=""
+                ></p>
 <h2 id="最后小结："><a href="#最后小结：" class="headerlink" title="最后小结："></a>最后小结：</h2><p>到目前为止(React 16.4)，React 的渲染机制遵循同步渲染:</p>
 <ol>
 <li>首次渲染: willMount &gt; render &gt; didMount，</li>

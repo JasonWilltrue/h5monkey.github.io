@@ -245,7 +245,12 @@
 <h3 id="虚拟-DOM-转化为真实-DOM"><a href="#虚拟-DOM-转化为真实-DOM" class="headerlink" title="虚拟 DOM 转化为真实 DOM"></a>虚拟 DOM 转化为真实 DOM</h3><p>将虚拟 DOM 转化为真实 DOM 是使用 ReactDOM.render 实现的</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line">  element, <span class="comment">// 上文的 element，即虚拟 dom</span></span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">&#x27;root&#x27;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>总结<br>JSX 经过 babel 编译为 React.createElement() 的形式，其返回结果就是 Virtual DOM，最后通过 ReactDOM.render() 将 Virtual DOM 转化为真实的 DOM 展现在界面上。流程图如下：</p>
-<p><img src="http://book.52react.cn/blog/20181121/100718809.png" alt="mark"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/blog/20181121/100718809.png"
+                      alt="mark"
+                ></p>
 <p>…..暂时想到这几点不全面,还会不断补充</p>
 
         </div>

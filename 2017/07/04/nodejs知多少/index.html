@@ -248,7 +248,12 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i express --save --save-exact (安装 express，同时将 <span class="string">&quot;express&quot;</span>: <span class="string">&quot;4.14.0&quot;</span> 写入 dependencies )</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>在开发过程中，每次修改代码保存后，我们都需要手动重启程序，才能查看改动的效果。使用 supervisor 可以解决这个繁琐的问题，全局安装 supervisor：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g supervisor</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>运行 supervisor –harmony index 启动程序，如下所示：<br><img src="https://maninboat.gitbooks.io/n-blog/content/book/img/3.1.2.png" alt="image"></p>
+<p>运行 supervisor –harmony index 启动程序，如下所示：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://maninboat.gitbooks.io/n-blog/content/book/img/3.1.2.png"
+                      alt="image"
+                ></p>
 <p>supervisor 会监听当前目录下 node 和 js 后缀的文件，当这些文件发生改动时，supervisor 会自动重启程序。</p>
 
         </div>

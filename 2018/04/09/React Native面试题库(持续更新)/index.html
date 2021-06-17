@@ -234,7 +234,12 @@
         <div class="article-content markdown-body">
             <p><em>本文原创首发于公众号：ReactNative开发圈，转载需注明出处。</em></p>
 <h2 id="1-React-Native相对于原生的ios和Android有哪些优势？"><a href="#1-React-Native相对于原生的ios和Android有哪些优势？" class="headerlink" title="1.React Native相对于原生的ios和Android有哪些优势？"></a>1.React Native相对于原生的ios和Android有哪些优势？</h2><p>1.性能媲美原生APP<br>2.使用JavaScript编码，只要学习这一种语言<br>3.绝大部分代码安卓和IOS都能共用<br>4.组件式开发，代码重用性很高<br>5.跟编写网页一般，修改代码后即可自动刷新，不需要慢慢编译，节省很多编译等待时间<br>6.支持APP热更新，更新无需重新安装APP<br><a id="more"></a><br>缺点：<br>内存占用相对较高<br>版本还不稳定，一直在更新，现在还没有推出稳定的1.0版本</p>
-<h2 id="2-React-Native组件的生命周期"><a href="#2-React-Native组件的生命周期" class="headerlink" title="2.React Native组件的生命周期"></a>2.React Native组件的生命周期</h2><p><img src="http://pic.yupoo.com/forrest071/dede824f/a0e072f5.jpg" alt=""></p>
+<h2 id="2-React-Native组件的生命周期"><a href="#2-React-Native组件的生命周期" class="headerlink" title="2.React Native组件的生命周期"></a>2.React Native组件的生命周期</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pic.yupoo.com/forrest071/dede824f/a0e072f5.jpg"
+                      alt=""
+                ></p>
 <p>生命周期    调用次数    能否使用 setSate()</p>
 <table>
 <thead>
@@ -294,9 +299,19 @@
 <p>3.对子组件：props是一个父组件传递给子组件的数据流，这个数据流可以一直传递到子孙组件；state代表的是一个组件内部自身的状态，只能在自身组件中存在。</p>
 <h2 id="5-shouldComponentUpdate-应该做什么"><a href="#5-shouldComponentUpdate-应该做什么" class="headerlink" title="5.shouldComponentUpdate 应该做什么"></a>5.shouldComponentUpdate 应该做什么</h2><p>其实这个问题也是跟reconciliation有关系。<br>“和解（ reconciliation ）的最终目标是以最有效的方式，根据新的状态更新用户界面”。<br>如果我们知道我们的用户界面（UI）的某一部分不会改变，<br>那么没有理由让 React 很麻烦地试图去弄清楚它是否应该渲染。<br>通过从 shouldComponentUpdate 返回 false，<br>React 将假定当前组件及其所有子组件将保持与当前组件相同</p>
 <h2 id="6-reactJS的props-children-map函数来遍历会收到异常提示，为什么？应该如何遍历？"><a href="#6-reactJS的props-children-map函数来遍历会收到异常提示，为什么？应该如何遍历？" class="headerlink" title="6.reactJS的props.children.map函数来遍历会收到异常提示，为什么？应该如何遍历？"></a>6.reactJS的props.children.map函数来遍历会收到异常提示，为什么？应该如何遍历？</h2><p>this.props.children 的值有三种可能：<br>    1.当前组件没有子节点，它就是 undefined;<br>    2.有一个子节点，数据类型是 object ；<br>    3.有多个子节点，数据类型就是 array 。<br>系统提供React.Children.map()方法安全的遍历子节点对象</p>
-<h2 id="7-redux状态管理的流程"><a href="#7-redux状态管理的流程" class="headerlink" title="7.redux状态管理的流程"></a>7.redux状态管理的流程</h2><p><img src="http://pic.yupoo.com/forrest071/0f711f99/33431f36.png" alt=""><br>action是用户触发或程序触发的一个普通对象。<br>reducer是根据action操作来做出不同的数据响应，返回一个新的state。<br>store的最终值就是由reducer的值来确定的。（一个store是一个对象, reducer会改变store中的某些值）<br>action -&gt; reducer -&gt; 新store -&gt; 反馈到UI上有所改变。</p>
+<h2 id="7-redux状态管理的流程"><a href="#7-redux状态管理的流程" class="headerlink" title="7.redux状态管理的流程"></a>7.redux状态管理的流程</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pic.yupoo.com/forrest071/0f711f99/33431f36.png"
+                      alt=""
+                ><br>action是用户触发或程序触发的一个普通对象。<br>reducer是根据action操作来做出不同的数据响应，返回一个新的state。<br>store的最终值就是由reducer的值来确定的。（一个store是一个对象, reducer会改变store中的某些值）<br>action -&gt; reducer -&gt; 新store -&gt; 反馈到UI上有所改变。</p>
 <h2 id="8-加载bundle的机制"><a href="#8-加载bundle的机制" class="headerlink" title="8.加载bundle的机制"></a>8.加载bundle的机制</h2><p>要实现RN的脚本热更新，我们要搞明白RN是如何去加载脚本的。 在编写业务逻辑的时候，我们会有许多个js文件，打包的时候RN会将这些个js文件打包成一个叫index.android.bundle(ios的是index.ios.bundle)的文件，所有的js代码(包括rn源代码、第三方库、业务逻辑的代码)都在这一个文件里，启动App时会第一时间加载bundle文件，所以脚本热更新要做的事情就是替换掉这个bundle文件。</p>
-<h2 id="9-Flex布局"><a href="#9-Flex布局" class="headerlink" title="9.Flex布局"></a>9.Flex布局</h2><p>采用Flex布局的元素，称为Flex容器（flex Container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。<br><img src="http://pic.yupoo.com/forrest071/bd1d492f/2c0075a1.png" alt=""></p>
+<h2 id="9-Flex布局"><a href="#9-Flex布局" class="headerlink" title="9.Flex布局"></a>9.Flex布局</h2><p>采用Flex布局的元素，称为Flex容器（flex Container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pic.yupoo.com/forrest071/bd1d492f/2c0075a1.png"
+                      alt=""
+                ></p>
 <p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。</p>
 <p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p>
 <p>容器的属性<br>以下6个属性设置在容器上。<br>flex-direction  属性决定主轴的方向（即项目的排列方向)。<br>flex-wrap   属性定义，如果一条轴线排不下，如何换行。<br>flex-flow   flex-flow属性是flex-direction属性和flex-wrap属性的简写形式。<br>justify-content   定义了项目在主轴上的对齐方式。<br>align-items  属性定义项目在交叉轴上如何对齐。<br>align-content  align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>

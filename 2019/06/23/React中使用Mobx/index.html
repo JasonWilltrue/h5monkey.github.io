@@ -240,7 +240,12 @@
 <h3 id="安装安装-decorators"><a href="#安装安装-decorators" class="headerlink" title="安装安装 decorators"></a>安装安装 decorators</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/plugin-proposal-decorators</span><br></pre></td></tr></table></figure>
 <h3 id="修改package-json中的babel配置"><a href="#修改package-json中的babel配置" class="headerlink" title="修改package.json中的babel配置"></a>修改package.json中的babel配置</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;babel&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;presets&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;react-app&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&quot;plugins&quot;</span>: [</span><br><span class="line">      [</span><br><span class="line">        <span class="string">&quot;@babel/plugin-proposal-decorators&quot;</span>,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="string">&quot;legacy&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    ]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p><strong>完成后, 就可以使用装饰器语法了.</strong></p>
-<p><img src="http://book.52react.cn/20190623003438.png" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190623003438.png"
+                      alt=""
+                ></p>
 <h2 id="在React如何使用呢"><a href="#在React如何使用呢" class="headerlink" title="在React如何使用呢"></a>在React如何使用呢</h2><ul>
 <li>Provider<br>—-Provider的作用与react-redux提供的Provider组件是相同的</li>
 <li>inject</li>

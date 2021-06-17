@@ -228,7 +228,12 @@
         
 
         <div class="article-content markdown-body">
-            <p>高阶组件就是一个组件作为参数并返回一个新组件的函数<br>高阶组件是一个函数，并不是一个组件<br><a id="more"></a><br>看一张图：<br><img src="http://book.52react.cn/20181213001205.png" alt=""></p>
+            <p>高阶组件就是一个组件作为参数并返回一个新组件的函数<br>高阶组件是一个函数，并不是一个组件<br><a id="more"></a><br>看一张图：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20181213001205.png"
+                      alt=""
+                ></p>
 <h2 id="为什么需要高阶组件？"><a href="#为什么需要高阶组件？" class="headerlink" title="为什么需要高阶组件？"></a>为什么需要高阶组件？</h2><p>多个组件都需要某个相同的功能，使用高阶组件可以减少重复的实现</p>
 <h2 id="高阶组件的应用"><a href="#高阶组件的应用" class="headerlink" title="高阶组件的应用"></a>高阶组件的应用</h2><h3 id="代理方式的高阶组件"><a href="#代理方式的高阶组件" class="headerlink" title="代理方式的高阶组件"></a>代理方式的高阶组件</h3><blockquote>
 <p>返回的新组件类直接继承自React.Component类,新组件扮演的角色传入参，数组件的一个代理,在新组件的render函数中,将被包裹组件渲染出来,除了高阶组件自己要做得工作,其余功能全都转手给了被包裹的组件</p>

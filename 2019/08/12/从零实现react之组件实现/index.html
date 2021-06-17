@@ -243,7 +243,17 @@
 <blockquote>
 <p>react 是如何区分如何区分一个<code>类组件</code>与<code>函数组件</code></p>
 </blockquote>
-<p>首先函数组件可以直接 new 函数组件.<br><img src="http://book.52react.cn/20200212161546.png" alt=""><br>那么类组件如何判断?<br><img src="http://book.52react.cn/20200212161341.png" alt=""></p>
+<p>首先函数组件可以直接 new 函数组件.<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20200212161546.png"
+                      alt=""
+                ><br>那么类组件如何判断?<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20200212161341.png"
+                      alt=""
+                ></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">home.prototype &amp;&amp; home.prototype.render;</span><br></pre></td></tr></table></figure>
 <h5 id="render-1"><a href="#render-1" class="headerlink" title="_render"></a>_render</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_render</span>(<span class="params">vnode</span>) </span>&#123;</span><br><span class="line">  ....</span><br><span class="line">  <span class="comment">//判断组件是函数</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> vnode.tag === <span class="string">&quot;function&quot;</span>) &#123;</span><br><span class="line">    <span class="comment">//创建组件</span></span><br><span class="line">     <span class="keyword">const</span> comp = createComponent(vnode.tag,vnode.attrs)</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">&#x27;函数组件&#x27;</span>,comp);</span><br><span class="line">    <span class="comment">//设置组件属性</span></span><br><span class="line">    setComponentProps(comp,vnode.attrs)</span><br><span class="line">    <span class="comment">//组件渲染节点 返回对象</span></span><br><span class="line">    <span class="keyword">return</span> comp.base</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//  将虚拟dom转化成真实dom打印到页面中</span></span><br><span class="line">  vnode.childrens.forEach(<span class="function"><span class="params">child</span> =&gt;</span> &#123;</span><br><span class="line">    render(child, dom);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> dom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="组件的渲染"><a href="#组件的渲染" class="headerlink" title="组件的渲染"></a>组件的渲染</h3><p>用到了<code>createComponent</code>和<code>setComponentProps</code>两个方法.我们来分析下</p>
@@ -252,9 +262,19 @@
 <h4 id="setComponentProps"><a href="#setComponentProps" class="headerlink" title="setComponentProps"></a>setComponentProps</h4><p>setComponentProps 方法用来更新<code>props</code>，在其中可以实现<code>componentWillMount</code>，<code>componentWillReceiveProps</code>两个生命周期方法(生命周期我们下次再说)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setComponentProps</span>(<span class="params">comp, props</span>) </span>&#123;</span><br><span class="line">  comp.props = props;</span><br><span class="line">  <span class="comment">//  渲染组件</span></span><br><span class="line">  renderComponent(comp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="renderComponent"><a href="#renderComponent" class="headerlink" title="renderComponent"></a>renderComponent</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderComponent</span>(<span class="params">comp</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> base; <span class="comment">//初始化一个属性用于存放节点对象</span></span><br><span class="line">  <span class="keyword">const</span> render = comp.render(); <span class="comment">//返回jsx对象</span></span><br><span class="line">  base = _render(render); <span class="comment">//返回js节点对象</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;js节点对象&quot;</span>, base);</span><br><span class="line">  comp.base = base;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;comp&quot;</span>, comp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://book.52react.cn/20200212162504.png" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20200212162504.png"
+                      alt=""
+                ></p>
 <p>现在大部分工作已经完成，我们可以用它来渲染组件了。</p>
-<p><img src="http://book.52react.cn/20200212162717.png" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20200212162717.png"
+                      alt=""
+                ></p>
 
         </div>
 

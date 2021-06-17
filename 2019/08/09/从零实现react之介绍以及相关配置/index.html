@@ -238,7 +238,12 @@
 <p>注意一下 babel 的配置 <code>.babelrc</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;presets&quot;</span>: [<span class="string">&quot;env&quot;</span>],</span><br><span class="line">    <span class="string">&quot;plugins&quot;</span>: [</span><br><span class="line">        [<span class="string">&quot;transform-react-jsx&quot;</span>, &#123;</span><br><span class="line">            <span class="string">&quot;pragma&quot;</span>: <span class="string">&quot;React.createElement&quot;</span></span><br><span class="line">        &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个<code>transform-react-jsx</code>就是将<code>jsx转换成js</code>的 babel 插件，它有一个 pragma 项，可以定义 jsx 转换方法的名称，你也可以将它改成 h（这是很多类 React 框架使用的名称)</p>
-<p>准备工作完成后，我们可以用命令 parcel index.html 将它跑起来了，当然，现在它还什么都没有。<br><img src="http://book.52react.cn/20200212094747.png" alt=""></p>
+<p>准备工作完成后，我们可以用命令 parcel index.html 将它跑起来了，当然，现在它还什么都没有。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20200212094747.png"
+                      alt=""
+                ></p>
 <p>我们再下一次介绍如何解析 jsx</p>
 
         </div>

@@ -229,20 +229,50 @@
 
         <div class="article-content markdown-body">
             <p><strong>为什么要研究Pm2？</strong><br><a id="more"></a><br>当你的项目每次都要改动时，本地改完，<br>push到仓库内，<br>再从服务器pull下来，重新build，<br>再采用如上的各种方法。这样无形之中就加大了时间成本，<br>因而我的解决方法时采用pm2的自动化部署方法，来实现本地一键部署到服务器。</p>
-<p>首先你要确保你本地/服务器/Github上实现了无密登录<br><img src="http://book.52react.cn/20190529130841.png" alt=""></p>
+<p>首先你要确保你本地/服务器/Github上实现了无密登录<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190529130841.png"
+                      alt=""
+                ></p>
 <h3 id="具体流程"><a href="#具体流程" class="headerlink" title="具体流程"></a>具体流程</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.看你有没有.ssh的文件。</span></span><br><span class="line">cd ~/.ssh</span><br><span class="line"><span class="comment">//2.没有则需要创建一个。</span></span><br><span class="line">mkdir ~/.ssh</span><br><span class="line"><span class="comment">//3.生成一个证明（默认会生成id_rsa和id_rsa.pub，如果你之前有生成这两个文件，现在就不需要再生成了，可以复用的，而且新生成的id_rsa和id_rsa.pub还会覆盖掉原来的，特别是连着公司的svn和git的一些，最好不要再生成了）</span></span><br><span class="line">ssh-keygen -t rsa</span><br><span class="line"><span class="comment">//4.将证明复制到阿里云的虚拟机</span></span><br><span class="line">首先需要进入到.ssh目录</span><br><span class="line">cd ~/.ssh</span><br><span class="line">scp id_rsa.pub chan@IP地址:~<span class="regexp">/.ssh/i</span>d_rsa.pub</span><br><span class="line"><span class="comment">//5.将证书写入到authorized_keys（这样就能保证不输入密码登入）</span></span><br><span class="line">登入自己的虚拟机</span><br><span class="line">ssh root@IP地址</span><br><span class="line">cd ~/.ssh</span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br><span class="line"><span class="comment">//6.销毁之前的证书就行</span></span><br><span class="line">rm id_rsa.pub</span><br><span class="line">exit</span><br><span class="line"><span class="comment">//好了，现在你就可以不用输入密码就登入到你的阿里云虚拟机了。</span></span><br></pre></td></tr></table></figure>
 <h3 id="配置服务器上的文件夹权限"><a href="#配置服务器上的文件夹权限" class="headerlink" title="配置服务器上的文件夹权限"></a>配置服务器上的文件夹权限</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /test</span><br><span class="line">cd /test</span><br><span class="line">sudo mkdir production</span><br><span class="line">#修改权限,先切换到test</span><br><span class="line">sudo chmod <span class="number">777</span> production</span><br></pre></td></tr></table></figure>
 <h3 id="配置你的项目在根目录添加ecosystem-json"><a href="#配置你的项目在根目录添加ecosystem-json" class="headerlink" title="配置你的项目在根目录添加ecosystem.json"></a>配置你的项目在根目录添加ecosystem.json</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;apps&quot;</span>:&#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>:<span class="string">&quot;项目名称&quot;</span>,</span><br><span class="line">    <span class="string">&quot;script&quot;</span>:<span class="string">&quot;index.js&quot;</span>,</span><br><span class="line">    <span class="string">&quot;env&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;COMMON_VARIABLE&quot;</span>:<span class="string">&quot;true&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;env_production&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;NODE_ENV&quot;</span>:<span class="string">&quot;production&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;deploy&quot;</span>:&#123;</span><br><span class="line">    <span class="string">&quot;production&quot;</span>:&#123;</span><br><span class="line">        <span class="string">&quot;user&quot;</span>:<span class="string">&quot;服务器登录账号不要用root&quot;</span>, <span class="comment">//服务器名称 比如 chan</span></span><br><span class="line">        <span class="string">&quot;host&quot;</span>:[<span class="string">&quot;192.168.2.31&quot;</span>], <span class="comment">//服务器ip</span></span><br><span class="line">        <span class="string">&quot;port&quot;</span>:<span class="string">&quot;22&quot;</span>  <span class="comment">//服务器端口</span></span><br><span class="line">        <span class="string">&quot;ref&quot;</span>:<span class="string">&quot;origin/master&quot;</span>,</span><br><span class="line">        <span class="string">&quot;repo&quot;</span>:<span class="string">&quot;http://git仓库地址&quot;</span>,</span><br><span class="line">        <span class="string">&quot;path&quot;</span>:<span class="string">&quot;/test/production&quot;</span>, <span class="comment">//项目目录</span></span><br><span class="line">        <span class="string">&quot;ssh_options&quot;</span>:<span class="string">&quot;StrictHostKeyChecking=no&quot;</span>,</span><br><span class="line">        <span class="string">&quot;post-deploy&quot;</span>:<span class="string">&quot;yarn &amp;&amp; yarn build &amp;&amp; pm2 startOrRestart ecosystem.json --env production&quot;</span>, <span class="comment">//执行操作</span></span><br><span class="line">        <span class="string">&quot;env&quot;</span>:&#123;</span><br><span class="line">            <span class="string">&quot;NODE_ENV&quot;</span>:<span class="string">&quot;production&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="注意踩过的坑："><a href="#注意踩过的坑：" class="headerlink" title="注意踩过的坑："></a>注意踩过的坑：</h3><p><img src="http://book.52react.cn/20190529112847.png" alt=""></p>
-<p><img src="http://book.52react.cn/20190529112917.png" alt=""></p>
+<h3 id="注意踩过的坑："><a href="#注意踩过的坑：" class="headerlink" title="注意踩过的坑："></a>注意踩过的坑：</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190529112847.png"
+                      alt=""
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190529112917.png"
+                      alt=""
+                ></p>
 <p>然后输入 </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><img src="http://book.52react.cn/20190529113109.png" alt=""></p>
-<p><img src="http://book.52react.cn/20190529113140.png" alt=""></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190529113109.png"
+                      alt=""
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190529113140.png"
+                      alt=""
+                ></p>
 <p>第一次部署在本地iterm中输入</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pm2 deploy ecosystem.json production setup</span><br><span class="line"><span class="comment">//此时会在服务器 /www/test/production新建三个目录</span></span><br></pre></td></tr></table></figure>
 <p>第二次以后可以输入<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 deploy ecosystem.json production</span><br></pre></td></tr></table></figure><br>即发布成功。</p>
-<p>按照上述步骤操作，就可以实现利用pm2本地部署项目到服务器，这样就省掉了登入服务器取更新代码的步骤了。<br><img src="http://book.52react.cn/20190529113204.png" alt=""></p>
+<p>按照上述步骤操作，就可以实现利用pm2本地部署项目到服务器，这样就省掉了登入服务器取更新代码的步骤了。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190529113204.png"
+                      alt=""
+                ></p>
 
         </div>
 

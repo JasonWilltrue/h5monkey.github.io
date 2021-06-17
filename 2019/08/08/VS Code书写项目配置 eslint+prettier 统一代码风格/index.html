@@ -229,7 +229,12 @@
 
         <div class="article-content markdown-body">
             <p>项目写的人越来越多，统一代码规范的趋势越来越重要，研究下eslint吧<br><a id="more"></a></p>
-<p><img src="http://book.52react.cn/166295c5abb096f9.jpg" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/166295c5abb096f9.jpg"
+                      alt=""
+                ></p>
 <p>关于eslint的历史<code>谷歌</code>吧</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn <span class="built_in">global</span> add eslint </span><br></pre></td></tr></table></figure>
 <h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> eslint-<span class="built_in">demo</span></span><br><span class="line"></span><br><span class="line">cd eslint-<span class="built_in">demo</span></span><br><span class="line"></span><br><span class="line">eslint --init</span><br></pre></td></tr></table></figure>
@@ -244,7 +249,12 @@
 <p>然后终端输入</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint <span class="built_in">demo</span>.js</span><br></pre></td></tr></table></figure>
 <p>结果显示</p>
-<p><img src="http://book.52react.cn/20190822111018.png" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190822111018.png"
+                      alt=""
+                ></p>
 <p>解决<code>no-undef</code>:出错的原因是因为JavaScript有很多种运行环境,<br>比如常见的有浏览器和Node.js，另外还有很多软件系统使用JavaScript作为其脚本引擎，比如PostgreSQL就支持使用JavaScript来编写存储引擎，而这些运行环境可能并不存在console这个对象。另外在浏览器环境下会有window对象，而Node.js下没有；在Node.js下会有process对象，而浏览器环境下没有。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="keyword">extends</span>: <span class="string">&#x27;eslint:recommended&#x27;</span>,</span><br><span class="line">    env: &#123;</span><br><span class="line">        node: <span class="literal">true</span>, <span class="comment">//程序的运行环境</span></span><br><span class="line">    &#125;,</span><br><span class="line">    rules: &#123;</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>再运行</p>

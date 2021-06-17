@@ -230,7 +230,12 @@
         <div class="article-content markdown-body">
             <h1 id="什么是-SourceMap"><a href="#什么是-SourceMap" class="headerlink" title="什么是 SourceMap"></a>什么是 SourceMap</h1><p>当我们发现打包后程序出现错误时候会一般用 chromse</p>
 <a id="more"></a>
-<p><img src="http://book.52react.cn/20190821151023.png" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190821151023.png"
+                      alt=""
+                ></p>
 <p>当点击之后代码中发现是 96 行，这个 main.js 是打包的</p>
 <p>我希望是我打包前那个文件的那一行错误了。我们如何让 webpack 做到呢？</p>
 <p>我们要用 sourceMap 它是一个映射关系，它知道 dist 目录下 main.js96 行就是 src 中 index.js 文件中第一行</p>

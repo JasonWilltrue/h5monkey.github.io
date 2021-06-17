@@ -323,7 +323,12 @@
 <p>删除mysql的配置文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /etc/mysql/ -R</span><br></pre></td></tr></table></figure></p>
 <p>自动卸载mysql（包括server和client）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get autoremove mysql* --purge </span><br><span class="line">sudo apt-get remove apparmor</span><br></pre></td></tr></table></figure></p>
 <p>检查是否卸载干净<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l | grep mysql # 若没有返回，说明已完成卸载</span><br></pre></td></tr></table></figure></p>
-<p>接下来安装就是件简单的事情默认安装5.5版本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server mysql-client</span><br></pre></td></tr></table></figure><br>查看mysql版本：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysqladmin -u root -p version</span><br></pre></td></tr></table></figure><br><img src="http://book.52react.cn/20190805151037.png" alt=""></p>
+<p>接下来安装就是件简单的事情默认安装5.5版本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server mysql-client</span><br></pre></td></tr></table></figure><br>查看mysql版本：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysqladmin -u root -p version</span><br></pre></td></tr></table></figure><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190805151037.png"
+                      alt=""
+                ></p>
 <p>记录下安装步骤<br>
                     
                 </div>

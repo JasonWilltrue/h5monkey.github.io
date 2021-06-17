@@ -236,13 +236,33 @@
         
 
         <div class="article-content markdown-body">
-            <p>认识下redux<br><a id="more"></a><br>什么是redux<br>当你去开发复杂的单页应用的时候你需要管理各种复杂的应用状态，这鞋状态可能是服务器返回的状，态，本地的数据  url   redux可预测的状态管理 只维护数据<br><img src="http://pp.52react.cn/clipboard-201821.png" alt="clipboard-201821"><br>一个应用如何复杂 只有一个store 数据只存store<br>得到store数据  用 getstate（）<br>不能直接修改store  而是应该发起一个action 请求  然后 reducer会去更改数据，如何更改你不用关心</p>
+            <p>认识下redux<br><a id="more"></a><br>什么是redux<br>当你去开发复杂的单页应用的时候你需要管理各种复杂的应用状态，这鞋状态可能是服务器返回的状，态，本地的数据  url   redux可预测的状态管理 只维护数据<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/clipboard-201821.png"
+                      alt="clipboard-201821"
+                ><br>一个应用如何复杂 只有一个store 数据只存store<br>得到store数据  用 getstate（）<br>不能直接修改store  而是应该发起一个action 请求  然后 reducer会去更改数据，如何更改你不用关心</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createStore&#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span>;</span><br><span class="line"><span class="comment">// reducer唯一  state</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params">state = <span class="number">0</span>, action</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;type&#125; = action;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;INCREMENT&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span>++ state;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取最新的store数据</span></span><br><span class="line"><span class="keyword">let</span> store = createStore(counter);</span><br><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).click(<span class="function"><span class="params">ev</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 发布action来更新数据</span></span><br><span class="line">  store.dispatch(&#123;<span class="attr">type</span>: <span class="string">&#x27;INCREMENT&#x27;</span>&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 监听state的变化</span></span><br><span class="line">store.subscribe(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//一旦state变化就可以再去更新View视图相关</span></span><br><span class="line">  <span class="keyword">let</span> state = store.getState();</span><br><span class="line">  <span class="built_in">console</span>.log(state);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="错误的更新state"><a href="#错误的更新state" class="headerlink" title="错误的更新state"></a>错误的更新state</h4><p><img src="http://pp.52react.cn/QQ截图20180201125747-201821.jpg" alt="QQ截图20180201125747-201821"></p>
-<h4 id="正确的更新state"><a href="#正确的更新state" class="headerlink" title="正确的更新state"></a>正确的更新state</h4><p><img src="http://pp.52react.cn/QQ截图20180201125840-201821.jpg" alt="QQ截图20180201125840-201821"></p>
+<h4 id="错误的更新state"><a href="#错误的更新state" class="headerlink" title="错误的更新state"></a>错误的更新state</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/QQ截图20180201125747-201821.jpg"
+                      alt="QQ截图20180201125747-201821"
+                ></p>
+<h4 id="正确的更新state"><a href="#正确的更新state" class="headerlink" title="正确的更新state"></a>正确的更新state</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/QQ截图20180201125840-201821.jpg"
+                      alt="QQ截图20180201125840-201821"
+                ></p>
 <p>action可能非常多，一个可维护的应用你要把acion放再一个文件里面<br>或者视图相关的action放在某个模块里面</p>
 <p>counter不能副作用 什么是副作用  就是里面如果ajax请求 路由跳转  或者 counter1 counter2</p>
-<h4 id="react与redux如何一起用"><a href="#react与redux如何一起用" class="headerlink" title="react与redux如何一起用"></a>react与redux如何一起用</h4><p><img src="http://pp.52react.cn/QQ截图20180131184308-201821.jpg" alt="QQ截图20180131184308-201821"></p>
+<h4 id="react与redux如何一起用"><a href="#react与redux如何一起用" class="headerlink" title="react与redux如何一起用"></a>react与redux如何一起用</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/QQ截图20180131184308-201821.jpg"
+                      alt="QQ截图20180131184308-201821"
+                ></p>
 
         </div>
 

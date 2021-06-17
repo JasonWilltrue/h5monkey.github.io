@@ -236,8 +236,18 @@
 <p>Fiber体系的核心机制是负责任务调度的<code>ReactFiberScheduler</code>，相当于之前的ReactReconciler</p>
 <p>vDOM tree变成fiber tree了，以前是自上而下的简单树结构，现在是基于单链表的树结构，维护的节点关系更多一些</p>
 <h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>优化渲染任务，让一个大组件细化，从同步变成异步，让渲染任务有了优先级。生命周期函数调用不再是同步的，让用户能感知的性能提高了。<br>fiber可以把很大的工作分成一个个小块（<code>trunk</code>），trunk之间是异步的，每个trunk之间可以执行别的操作。<br>以render函数为界，分为两个阶段，在render之前改变 workInProgress tree，执行生命周期函数比如<code>componentWillMount</code>，<code>componentWillReceiveProp</code>。在render函数之后，执行<code>componentDidMount</code>， <code>componentDidUpdate</code>。在第一个阶段，可能被中断。</p>
-<h3 id="fiber-tree来张图感受一下"><a href="#fiber-tree来张图感受一下" class="headerlink" title="fiber tree来张图感受一下"></a>fiber tree来张图感受一下</h3><p><img src="http://book.52react.cn/20190614102044.png" alt=""></p>
-<p><img src="http://book.52react.cn/20190509010801.png" alt=""></p>
+<h3 id="fiber-tree来张图感受一下"><a href="#fiber-tree来张图感受一下" class="headerlink" title="fiber tree来张图感受一下"></a>fiber tree来张图感受一下</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190614102044.png"
+                      alt=""
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190509010801.png"
+                      alt=""
+                ></p>
 <p>参考：<br><a class="link"   target="_blank" rel="noopener" href="http://www.ayqy.net/blog/dive-into-react-fiber/" >完全理解React Fiber<i class="fas fa-external-link-alt"></i></a></p>
 
         </div>

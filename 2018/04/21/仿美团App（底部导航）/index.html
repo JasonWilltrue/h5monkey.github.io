@@ -233,7 +233,12 @@
 
         <div class="article-content markdown-body">
             <p>首先App开始写一个底部导航按钮<br><a id="more"></a></p>
-<p>效果图如下<br><img src="http://pp.52react.cn/tabbar.png" alt="image"></p>
+<p>效果图如下<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/tabbar.png"
+                      alt="image"
+                ></p>
 <h6 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h6><p>安卓默认位置Top<br>iOS默认位置是 bottom<br>组件化思想封装的重要性</p>
 <h4 id="react-navigation-标题在安卓上不居中问题"><a href="#react-navigation-标题在安卓上不居中问题" class="headerlink" title="react-navigation 标题在安卓上不居中问题"></a>react-navigation 标题在安卓上不居中问题</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">headerTitleStyle:&#123;</span><br><span class="line">       flex: <span class="number">1</span>,</span><br><span class="line">        textAlign: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">      headerTintColor:<span class="string">&#x27;#000&#x27;</span>,</span><br><span class="line">      headerBackTitle:<span class="literal">null</span>,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="react-navigation-导航去掉下面边框，阴影"><a href="#react-navigation-导航去掉下面边框，阴影" class="headerlink" title="react-navigation 导航去掉下面边框，阴影"></a>react-navigation 导航去掉下面边框，阴影</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">static</span> navigationOptions = &#123;</span><br><span class="line">        headerStyle:&#123;</span><br><span class="line">            borderBottomWidth: <span class="number">0</span>,</span><br><span class="line">            elevation: <span class="number">0</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>

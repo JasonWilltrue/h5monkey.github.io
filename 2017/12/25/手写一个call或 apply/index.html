@@ -239,9 +239,24 @@
 <li>指定 this到函数并传入给定参数执行函数</li>
 <li>如果不传入参数，默认指向为 window</li>
 </ol>
-<p>乞丐版本：<br><img src="http://book.52react.cn/carbon1.png" alt=""></p>
+<p>乞丐版本：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/carbon1.png"
+                      alt=""
+                ></p>
 <p>代码：<br>如果我们想要实现一个新的newcall理想状态应该怎么样？</p>
-<p><img src="http://book.52react.cn/carbon.png" alt=""><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.newcall = <span class="function"><span class="keyword">function</span> (<span class="params">content = <span class="built_in">window</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//this指的是bar(name,age)</span></span><br><span class="line">  content.fn = <span class="built_in">this</span>;</span><br><span class="line">  <span class="comment">// 取出参数中的第一个参数 与其他参数</span></span><br><span class="line">  <span class="keyword">let</span> args = [...arguments].slice(<span class="number">1</span>);</span><br><span class="line">  <span class="comment">//content.fn就是指bar方法</span></span><br><span class="line">  <span class="keyword">let</span> result = content.fn(...args);</span><br><span class="line">  <span class="comment">//删除this</span></span><br><span class="line">  <span class="keyword">delete</span> content.fn;</span><br><span class="line">  <span class="comment">//返回新对象</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><img src="http://book.52react.cn/20190424102151.png" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/carbon.png"
+                      alt=""
+                ><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.newcall = <span class="function"><span class="keyword">function</span> (<span class="params">content = <span class="built_in">window</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//this指的是bar(name,age)</span></span><br><span class="line">  content.fn = <span class="built_in">this</span>;</span><br><span class="line">  <span class="comment">// 取出参数中的第一个参数 与其他参数</span></span><br><span class="line">  <span class="keyword">let</span> args = [...arguments].slice(<span class="number">1</span>);</span><br><span class="line">  <span class="comment">//content.fn就是指bar方法</span></span><br><span class="line">  <span class="keyword">let</span> result = content.fn(...args);</span><br><span class="line">  <span class="comment">//删除this</span></span><br><span class="line">  <span class="keyword">delete</span> content.fn;</span><br><span class="line">  <span class="comment">//返回新对象</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190424102151.png"
+                      alt=""
+                ></p>
 <h1 id="apply语法："><a href="#apply语法：" class="headerlink" title="apply语法："></a>apply语法：</h1><blockquote>
 <p>func.apply(thisArg,[argsArray])，调用一个函数，以及作为一个数组（或类似数组对象）提供的参数。</p>
 </blockquote>

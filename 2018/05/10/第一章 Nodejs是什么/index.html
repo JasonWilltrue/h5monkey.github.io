@@ -249,7 +249,12 @@
 <p>为什么官网 Node没有 标榜自己是异步io  而是非阻塞io呢？<br>因为非阻塞是实打实的  Node的异步Io 是靠 Libuv模拟出来的</p>
 <p><code>同步调用会造成进程的Io阻塞  异步调用不会造成进行的Io阻塞</code>**</p>
 <h2 id="6-事件循环的运行过程"><a href="#6-事件循环的运行过程" class="headerlink" title="6.事件循环的运行过程"></a>6.事件循环的运行过程</h2><p>浏览器循环：Ajax为例，当javascript执行对应代码，注册一个事件，请求后就执行完毕了，后续操作会交给回调函数来处理，<br>浏览器会在不断的遍历事件队列，ajax完成之前，事件队列还是空的（<code>不是请求这动作被加入队列，而是请求完成这一事件被加入队列</code>），当ajax完成后这个队列就好增加一个事件，如果这个事件绑定回调，则循环就去执行这个回调</p>
-<p>Node的循环：事件循环由libuv来实现<br><img src="http://pp.52react.cn/node%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.png" alt="image"></p>
+<p>Node的循环：事件循环由libuv来实现<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://pp.52react.cn/node%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.png"
+                      alt="image"
+                ></p>
 <p>timers：出来settimeout 和 setinterval的回调</p>
 <p>I/O callbacks  除了timers close setImmediate事件回调外，大多数回调在这个阶段执行</p>
 <p>idle prepare：内部使用，不管他</p>

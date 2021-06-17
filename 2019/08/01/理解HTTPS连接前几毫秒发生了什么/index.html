@@ -232,7 +232,12 @@
 <p>2.HTTPS使用证书保证它的安全吗？</p>
 <p>3.为什么证书需要购买？<br><a id="more"></a></p>
 <h2 id="HTTPS解决了什么问题？"><a href="#HTTPS解决了什么问题？" class="headerlink" title="HTTPS解决了什么问题？"></a>HTTPS解决了什么问题？</h2><p>HTTPS解决了<code>中间人攻击</code></p>
-<h3 id="什么是中间人攻击"><a href="#什么是中间人攻击" class="headerlink" title="什么是中间人攻击"></a>什么是中间人攻击</h3><p><img src="http://book.52react.cn/20190801224029.png" alt=""><br>你和服务器传输数据之间经过了一个中间人，数据都被中间人拦截或者纂改你根本不知道，中间人对你来说是透明的</p>
+<h3 id="什么是中间人攻击"><a href="#什么是中间人攻击" class="headerlink" title="什么是中间人攻击"></a>什么是中间人攻击</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190801224029.png"
+                      alt=""
+                ><br>你和服务器传输数据之间经过了一个中间人，数据都被中间人拦截或者纂改你根本不知道，中间人对你来说是透明的</p>
 <h3 id="中间人攻击方法"><a href="#中间人攻击方法" class="headerlink" title="中间人攻击方法"></a>中间人攻击方法</h3><p>1.域名污染<br>2.ARP欺骗</p>
 <h3 id="HTTPS是应对中间人攻击的唯一方法"><a href="#HTTPS是应对中间人攻击的唯一方法" class="headerlink" title="HTTPS是应对中间人攻击的唯一方法"></a>HTTPS是应对中间人攻击的唯一方法</h3><h4 id="HTTPS连接过程"><a href="#HTTPS连接过程" class="headerlink" title="HTTPS连接过程"></a>HTTPS连接过程</h4><p>简单描述：HTTPS链接，服务器发送它的证书给浏览器，浏览器确认<code>证书</code>正确，并检查证书中对应的主机名是否正确，如果正确则双方加密数据后发送给对方，对方再进行解密，保证数据是不透明的。</p>
 <h4 id="完整连接建立过程"><a href="#完整连接建立过程" class="headerlink" title="完整连接建立过程"></a>完整连接建立过程</h4><h5 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h5><p>1.建立TCP连接<br>2.手机端发送一个hello 给服务端，我们再抓包中观察，将hello里面手机端发给服务端的信息罗列出来：<br>A.使用了TLS版本为1.2   其他版本有1.0 1.1 1.2，HTTPS加密靠TLS安全传输层协议<br>B.手机端当前的时间和一个随机密码串，<br>C.SessionID 第一次连接为0，如果有SessionID则可以恢复会话，而不用重复握手过程。服务端会告知SessionID，再刷新页面的时候，客户端就会把这个SessionID带上<br>D.浏览器支持加密组合方式。浏览器一共支持22种加密组合方式，发送给服务器让服务器选一个<br>E.服务器根据域名发送相应的证书。HTTPS= HTTP + TLS</p>

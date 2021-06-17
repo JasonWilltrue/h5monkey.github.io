@@ -236,9 +236,19 @@
 <p>  3、提高代码的可扩展性。一个好的架构，一定扩展性要强，不能写死。需求变更太TM正常了，新增需求也太TM正常了。因此好的架构，必须要考虑到这些情况的发生，因为他们是一定会发生的。所以，<code>一定要避免把代码写死</code>。比如页面组件A里需要有一个日历组件，而这个日历组件引用的是别人的（比如从github上找的）。那么尽量不要直接在页面组件A里面直接引用这个日历组件，而是将写一个日历组件B，在这个日历组件B里封装你引用的日历组件C，然后通过这个日历组件B来进行操作。<code>原因很简单，假如某天产品经理说，这个日历组件太丑了，我们换一个吧。如果你直接在页面组件A里内嵌这个引用的日历组件C，你很可能就要改很多代码（因为不同日历组件的使用方法和暴露的接口可能不同）</code>。假如你还在其他多个地方引用了这个日历组件，那就更糟糕了！每个地方都要改。而若是将引用的日历组件C封装到自己写的日历组件B之中，那么你只需要改日历组件B里的相应代码即可，而因为日历组件B暴露的接口是不变的，那么自然不用修改页面中的代码了。</p>
 <p> 附图，以日历组件为例，是否考虑到扩展性的结果</p>
 <p> <strong>未考虑到扩展性</strong></p>
-<p> <img src="http://typora.pp.52react.cn/fuckb/image-202011302242444772020113022.png" alt="image-20201130224244477"></p>
+<p> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202011302242444772020113022.png"
+                      alt="image-20201130224244477"
+                ></p>
 <p> <strong>考虑到扩展性：</strong></p>
-<p> <img src="http://typora.pp.52react.cn/fuckb/image-202011302243019392020113022.png" alt="image-20201130224301939"></p>
+<p> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202011302243019392020113022.png"
+                      alt="image-20201130224301939"
+                ></p>
 <p>  4、便于协同。包括前端和后端的协同，前端和前端之间的协同。具体来说，前后端的协同通常是以ajax为交互，那么应至少有一个用于专门封装了所有ajax请求的文件，所有ajax请求都封装在这里。在开发时，这里封装的方法应该可以模拟发送和接收约定好的交互内容，方便开发联调。而前端和前端的协同，主要体现在同时在更改代码时，不会影响对方代码的正常运行。因此要求封装、解耦以及低干扰度是必须的。</p>
 <p>  5、自动化自动打包，压缩，混淆，如果有必要，再加上自动单元测试。</p>
 <p>  总结：总结来说，一个好的架构的目的是，让前端写代码写的舒服，让后端联调的舒服，让产品经理改需求改的舒服。</p>
@@ -246,7 +256,12 @@
 <h3 id="首先，确定需求："><a href="#首先，确定需求：" class="headerlink" title="首先，确定需求："></a><strong>首先，确定需求：</strong></h3><p>  1、一个中小型网站，同时面向移动端和PC端（单端大概15个页面，算上弹窗大约20个）。2、预算有限（给的钱少），开发时间有限（一个月）。3、可能存在一定程度上的需求变更（比如增加页面或修改某些页面内容）。4、客户可能不太在乎优化（但是我自己在乎啊！）5、要求兼容IE9以上。</p>
 <h3 id="其次开始决定："><a href="#其次开始决定：" class="headerlink" title="其次开始决定："></a><strong>其次开始决定：</strong></h3><p>  1、兼容IE9以上说明可以使用主流框架，而无需必须使用jquery。因此我采用了vue，版本是2.0；2、预算有限，时间有限，因此PC端和移动端共html和js，独立css。3、页面有限，因此无需将架构层级划分的比较细，只需要按其类型划分即可；4、根据原型图来看，页面复杂程度有限，复用部分不是很多，因此可以确定哪些东西需要封装复用，哪些比较复杂需要独立封装，哪些比较简单为了简化开发难度可以直接耦合。5、自己比较熟练单页面网站，因此采用以单页面为主，异步加载其他页面的形式。</p>
 <p> 于是使用相关配套的东西，比如webpack，vue-router等，另外为了开发和生产的方便性，采用以下模式进行开发。</p>
-<p> <img src="http://typora.pp.52react.cn/fuckb/image-202011302243206212020113022.png" alt="image-20201130224320621"></p>
+<p> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202011302243206212020113022.png"
+                      alt="image-20201130224320621"
+                ></p>
 <hr>
 <h3 id="第三，划分功能。"><a href="#第三，划分功能。" class="headerlink" title="第三，划分功能。"></a><strong>第三，划分功能。</strong></h3><p> 首先有一个根html，用户需要通过访问它来加载我们的js逻辑，因此js逻辑的代码被写在main.js之中。</p>
 <p> 在main.js之下，我们的前端代码可以被划分为三部分：</p>
@@ -255,7 +270,12 @@
 <li>功能模块；</li>
 <li><p>各种资源；</p>
 <p>如下图：</p>
-<p><img src="http://typora.pp.52react.cn/fuckb/image-202011302243474002020113022.png" alt="image-20201130224347400"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202011302243474002020113022.png"
+                      alt="image-20201130224347400"
+                ></p>
 <p>功能划分好之后，相同功能的放在同一个文件夹下，命名风格应该类似。</p>
 <p>具体来说，组件树相关的东西，通常是以.vue结尾，放置在components文件夹下；资源，有图片或者国际化资源等，以.png或者.js或.json结尾，放置在resources文件夹下；而功能插件、服务等，因为可能被多处引用，因此为了方便引用，放在src文件夹下，并且该文件夹是components文件夹和resources文件夹的上级文件夹；</p>
 </li>
@@ -263,7 +283,12 @@
 <hr>
 <h3 id="第四、细化功能模块"><a href="#第四、细化功能模块" class="headerlink" title="第四、细化功能模块"></a><strong>第四、细化功能模块</strong></h3><p> 功能、组件树以及资源，我们已经明确了有哪些东西，那么接下来，我们要明确这些东西该如何以文件的形式来划分。</p>
 <p> 如下图：</p>
-<p> <img src="http://typora.pp.52react.cn/fuckb/image-202011302244049912020113022.png" alt="image-20201130224404991"></p>
+<p> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202011302244049912020113022.png"
+                      alt="image-20201130224404991"
+                ></p>
 <h3 id="1、项目构建相关"><a href="#1、项目构建相关" class="headerlink" title="1、项目构建相关"></a><strong>1、项目构建相关</strong></h3><p> 因为要使用vue.js，也要使用es6语法，因此<strong>babel</strong>是必须的；又因为要自动化混淆打包，因此<strong>webpack</strong>也是必须的；最后因为要方便多人协同，因此npm的<strong>package.json</strong>的配置，方便不同人可以快速自动化通过npm install来安装依赖，也是必须的；</p>
 <h3 id="2、CDN相关"><a href="#2、CDN相关" class="headerlink" title="2、CDN相关"></a><strong>2、CDN相关</strong></h3><p> 而又因为我们要采用外部字体（需求要求引入非常见字体），因此<strong>CDN加速</strong>是必须的，该字体文件放在html中来配置引用即可；</p>
 <h3 id="3、配置和插件"><a href="#3、配置和插件" class="headerlink" title="3、配置和插件"></a><strong>3、配置和插件</strong></h3><p> 我们需要直接引入一些插件和配置文件；为了使用vue，我们需要一个根组件，那么就是<strong>App.vue</strong>；使用vue-router，我们需要配置路由文件，因此<strong>router-config.js</strong>这个路由配置也是必须的；然后我们还需要以插件形式引入一些功能和服务，因此有了<strong>Plugin-开头的若干个vue插件</strong>，这些都是根据需要封装好的低耦合高内聚方法；</p>
@@ -273,7 +298,12 @@
 <h3 id="第五、组件树"><a href="#第五、组件树" class="headerlink" title="第五、组件树"></a><strong>第五、组件树</strong></h3><p> 之前谈了功能模块的划分，接下来是组件树；</p>
 <p> 因此是中小型页面，因此组件树的层级无需太深，但该抽离出来的依然还是要抽离，尽量保证抽离出来的组件解耦以及一个页面组件的逻辑不要太多；</p>
 <p> 如下图：</p>
-<p> <img src="http://typora.pp.52react.cn/fuckb/SouthEast2020113022.png" alt="img"></p>
+<p> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/SouthEast2020113022.png"
+                      alt="img"
+                ></p>
 <h3 id="0、根组件"><a href="#0、根组件" class="headerlink" title="0、根组件"></a><strong>0、根组件</strong></h3><p> 所有组件最终往上找，都会找到共同的根组件App.vue，根组件只负责管理他的直接子组件；每个组件都只负责管理自己的直接子组件，不跨级管理，并且不依赖于自己的子组件（否则可能因为子组件的未加载或错误而导致父组件错误），做到解耦和内聚；</p>
 <h3 id="1、弹窗dialog和弹窗tips"><a href="#1、弹窗dialog和弹窗tips" class="headerlink" title="1、弹窗dialog和弹窗tips"></a><strong>1、弹窗dialog和弹窗tips</strong></h3><p> 因为弹窗dialog和弹窗提示tips可能同时存在，因此将其划分为2个组件，方便管理；</p>
 <h3 id="2、未登录页面和登录页面"><a href="#2、未登录页面和登录页面" class="headerlink" title="2、未登录页面和登录页面"></a><strong>2、未登录页面和登录页面</strong></h3><p> 因为页面存在登录和未登录状态，而为了加载速度考虑，当未登录时，不加载已登录页面，因此需要划分出来，并进行异步加载处理；</p>

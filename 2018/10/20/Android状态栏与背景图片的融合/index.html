@@ -229,11 +229,26 @@
 
         <div class="article-content markdown-body">
             <p>状态栏融合<br><a id="more"></a></p>
-<h4 id="优化前效果"><a href="#优化前效果" class="headerlink" title="优化前效果"></a>优化前效果</h4><p><img src="http://book.52react.cn/book/181019/8EgJmE2La1.jpg" alt="mark"></p>
+<h4 id="优化前效果"><a href="#优化前效果" class="headerlink" title="优化前效果"></a>优化前效果</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181019/8EgJmE2La1.jpg"
+                      alt="mark"
+                ></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实现背景与状态栏融合在一起 android大于5.0支持</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">21</span>) &#123;</span><br><span class="line">    View decorView = getWindow().getDecorView();</span><br><span class="line">    <span class="keyword">int</span> option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION ;</span><br><span class="line">    decorView.setSystemUiVisibility(option);</span><br><span class="line">    getWindow().setStatusBarColor(Color.TRANSPARENT);<span class="comment">//设置状态栏透明</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="优化后效果"><a href="#优化后效果" class="headerlink" title="优化后效果"></a>优化后效果</h4><p><img src="http://book.52react.cn/book/181019/7bfeCf6J9F.jpg" alt="mark"></p>
+<h4 id="优化后效果"><a href="#优化后效果" class="headerlink" title="优化后效果"></a>优化后效果</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181019/7bfeCf6J9F.jpg"
+                      alt="mark"
+                ></p>
 <p>增加状态栏高度</p>
-<p><img src="http://book.52react.cn/book/181019/HEidLc8D0c.png" alt="mark"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181019/HEidLc8D0c.png"
+                      alt="mark"
+                ></p>
 
         </div>
 

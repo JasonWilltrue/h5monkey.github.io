@@ -230,42 +230,102 @@
         <div class="article-content markdown-body">
             <p>工具如何使用<br><a id="more"></a></p>
 <blockquote>
-<p>设置断点（点击红点位置添加或取消断点）<br><img src="http://book.52react.cn/book/181018/dDif34E3hB.png" alt="mark"></p>
+<p>设置断点（点击红点位置添加或取消断点）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/dDif34E3hB.png"
+                      alt="mark"
+                ></p>
 </blockquote>
-<p>点击debug模式运行<br><img src="http://book.52react.cn/book/181018/3hKj47J1Hk.png" alt="mark"></p>
-<h1 id="一、简单调试"><a href="#一、简单调试" class="headerlink" title="一、简单调试"></a>一、简单调试</h1><h2 id="1-step-over：一步步往下走"><a href="#1-step-over：一步步往下走" class="headerlink" title="1. step over：一步步往下走"></a>1. step over：一步步往下走</h2><p><img src="http://book.52react.cn/book/181018/8AFbiBb4F0.png" alt="mark"></p>
+<p>点击debug模式运行<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/3hKj47J1Hk.png"
+                      alt="mark"
+                ></p>
+<h1 id="一、简单调试"><a href="#一、简单调试" class="headerlink" title="一、简单调试"></a>一、简单调试</h1><h2 id="1-step-over：一步步往下走"><a href="#1-step-over：一步步往下走" class="headerlink" title="1. step over：一步步往下走"></a>1. step over：一步步往下走</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/8AFbiBb4F0.png"
+                      alt="mark"
+                ></p>
 <blockquote>
 <p>当前程序运行的位置，我们看到i的值已经在程序代码中展示出来了，黄色的代码处，这个是AS的功能，对于我们调试来讲，这简直是非常大的福利了。</p>
 </blockquote>
-<p><img src="http://book.52react.cn/book/181018/IdiiD0Jl7a.png" alt="mark"></p>
-<p>这时我们继续F8，我们切换到logcat查看日志，我打印出的i的值是0<br><img src="http://book.52react.cn/book/181018/b6Hm3I6Fd5.png" alt="mark"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/IdiiD0Jl7a.png"
+                      alt="mark"
+                ></p>
+<p>这时我们继续F8，我们切换到logcat查看日志，我打印出的i的值是0<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/b6Hm3I6Fd5.png"
+                      alt="mark"
+                ></p>
 <h2 id="2-step-into：看到方法往里走"><a href="#2-step-into：看到方法往里走" class="headerlink" title="2. step into：看到方法往里走"></a>2. step into：看到方法往里走</h2><blockquote>
 <p>比如我们的for循环当中调用了一个stepNext(int i)方法，当我们走到这里想看看这个方法里面的运行过程的时候我们可以这样，当走到这个方法的时候我们可以按下F7,或者如下图的图标。</p>
 </blockquote>
-<p><img src="http://book.52react.cn/book/181018/90gJIhlGIf.png" alt="mark"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/90gJIhlGIf.png"
+                      alt="mark"
+                ></p>
 <blockquote>
 <p>这时就走到了stepNext方法当中。<br>在这里打印了一个log，我们再按一下F8我们来看看Logcat, 这里我打印的log都是为了做教程用，调试我们就不用打log了直接看显示面板就OK了</p>
 </blockquote>
-<p><img src="http://book.52react.cn/book/181018/21mlEAE37F.png" alt="mark"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/21mlEAE37F.png"
+                      alt="mark"
+                ></p>
 <h2 id="4-step-out-：有断点下一个，走完断点继续走"><a href="#4-step-out-：有断点下一个，走完断点继续走" class="headerlink" title="4. step out ：有断点下一个，走完断点继续走"></a>4. step out ：有断点下一个，走完断点继续走</h2><blockquote>
 <p>这里如果我们的一个流程当中，包括调用的方法，如果有断点走到下一个断点，如果没有断点，而是在一个调用的方法当中，会跳出这个方法，继续走。</p>
 </blockquote>
-<p><img src="http://book.52react.cn/book/181018/5HjlkbgJac.png" alt="mark"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/5HjlkbgJac.png"
+                      alt="mark"
+                ></p>
 <blockquote>
 <p>我现在程序位置在第一个断点位置（24行），我调用的stepNext方法中也有一个断点，此时我按下step out按钮会走到stepNext中的断点处（39行）我此时如果再按一下step out 会走到stepNext方法的调用出的下一个可执行代码（30行）</p>
 </blockquote>
-<p><img src="http://book.52react.cn/book/181018/e64993jDj0.png" alt="mark"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/e64993jDj0.png"
+                      alt="mark"
+                ></p>
 <h2 id="5-run-to-Cursor-：下个断点我们见"><a href="#5-run-to-Cursor-：下个断点我们见" class="headerlink" title="5. run to Cursor ：下个断点我们见"></a>5. run to Cursor ：下个断点我们见</h2><blockquote>
 <p>这里的意思就是说，会很快执行到下一个断点的位置，而且可以静如任何调用的方法</p>
 </blockquote>
-<p><img src="http://book.52react.cn/book/181018/ibdi2mHfIK.png" alt="mark"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/ibdi2mHfIK.png"
+                      alt="mark"
+                ></p>
 <h1 id="二、高级调试"><a href="#二、高级调试" class="headerlink" title="二、高级调试"></a>二、高级调试</h1><h2 id="1-跨断点调试"><a href="#1-跨断点调试" class="headerlink" title="1. 跨断点调试"></a>1. 跨断点调试</h2><blockquote>
-<p>如果我们设置了多个断点，现在我们需要直接跳转到下一个断点，那么直接点击下图就可以了<br><img src="http://book.52react.cn/book/181018/50BLK889h5.png" alt="mark"></p>
+<p>如果我们设置了多个断点，现在我们需要直接跳转到下一个断点，那么直接点击下图就可以了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/50BLK889h5.png"
+                      alt="mark"
+                ></p>
 </blockquote>
 <h2 id="2-观察变量"><a href="#2-观察变量" class="headerlink" title="2.观察变量"></a>2.观察变量</h2><blockquote>
 <p>如果我们想观察1个或者几个变量的值的变化，如果我们在Variables显示面版中观察如果我这里有太多太多的自定义变量和系统变量了，那么就难观察了，我们可以做如下操作:点击Watches,点击＋号，然后输入变量的名称回车就OK了，而且会有历史记录哦</p>
 </blockquote>
-<p><img src="http://book.52react.cn/book/181018/93ED7LaHLA.png" alt="mark"></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/book/181018/93ED7LaHLA.png"
+                      alt="mark"
+                ></p>
 <blockquote>
 <p>如果变量名比较长我们可以这样：<br>选择［Variables］中的变量名然后点击［右键］，选择［Add to Watches],然后Watches面板中就有了</p>
 </blockquote>

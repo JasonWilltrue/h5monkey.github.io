@@ -242,7 +242,12 @@
 <p><code>render</code>方法的作用就是将虚拟 DOM 渲染成真实的 DOM</p>
 <p>我们首先要将 ele 中的 dom 对象解析成 jsx 对象</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> React = &#123;</span><br><span class="line">  createElement</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createElement</span>(<span class="params">tag, attrs, ...childrens</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    tag,</span><br><span class="line">    attrs,</span><br><span class="line">    childrens</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> React;</span><br></pre></td></tr></table></figure>
-<p><img src="http://book.52react.cn/20200212004617.png" alt=""></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20200212004617.png"
+                      alt=""
+                ></p>
 <p>如下代码实现<code>ReactDOM.render</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最简单的实现</span></span><br><span class="line"><span class="keyword">const</span> ReactDOM = &#123;</span><br><span class="line">  render</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">vnode, container</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> ReactDOM;</span><br></pre></td></tr></table></figure>
 <h3 id="虚拟节点的校验"><a href="#虚拟节点的校验" class="headerlink" title="虚拟节点的校验"></a>虚拟节点的校验</h3><p>接下来继续细化每一个细节,<code>render</code>中要校验一下<code>vnode</code></p>

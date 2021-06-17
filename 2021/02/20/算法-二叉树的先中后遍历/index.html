@@ -236,12 +236,22 @@
 <li>对根节点左子树进行先序遍历</li>
 <li>对根节点右子树进行先序遍历</li>
 </ol>
-<h3 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h3><p><img src="http://typora.pp.52react.cn/fuckb/image-202102210004234802021022100.png" alt="image-20210221000423480" style="zoom:50%;" /></p>
+<h3 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202102210004234802021022100.png"
+                      alt="image-20210221000423480" style="zoom:50%;" 
+                ></p>
 <h2 id="先序遍历（递归版本）"><a href="#先序遍历（递归版本）" class="headerlink" title="先序遍历（递归版本）"></a>先序遍历（递归版本）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> preorder = <span class="function">(<span class="params">root</span>)=&gt;</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(root)&#123;</span><br><span class="line">     <span class="comment">//遍历左节点</span></span><br><span class="line">     preorder(root.left)</span><br><span class="line">     <span class="comment">//遍历右节点</span></span><br><span class="line">     preorder(root.right)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="先序遍历（迭代版本）"><a href="#先序遍历（迭代版本）" class="headerlink" title="先序遍历（迭代版本）"></a>先序遍历（迭代版本）</h2><blockquote>
 <p>思路：我们也可以用迭代的方式实现方法一的递归函数，两种方式是等价的，区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，其余的实现与细节都相同</p>
 </blockquote>
-<h3 id="图解-1"><a href="#图解-1" class="headerlink" title="图解"></a>图解</h3><p><img src="http://typora.pp.52react.cn/fuckb/2021-02-21%2000.19.152021022100.gif" alt="2021-02-21 00.19.15"></p>
+<h3 id="图解-1"><a href="#图解-1" class="headerlink" title="图解"></a>图解</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/2021-02-21%2000.19.152021022100.gif"
+                      alt="2021-02-21 00.19.15"
+                ></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
 <li><p>前序遍历是中左右，每次先处理的是中间节点，那么先将<strong><em>跟节点</em></strong>放入栈中，</p>
 </li>
@@ -256,9 +266,19 @@
 <li>访问根节点</li>
 <li>对根节点右子树进行先序遍历</li>
 </ol>
-<h3 id="图解-2"><a href="#图解-2" class="headerlink" title="图解"></a>图解</h3><p><img src="http://typora.pp.52react.cn/fuckb/image-202102210007115022021022100.png" alt="image-20210221000711502" style="zoom:50%;" /></p>
+<h3 id="图解-2"><a href="#图解-2" class="headerlink" title="图解"></a>图解</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202102210007115022021022100.png"
+                      alt="image-20210221000711502" style="zoom:50%;" 
+                ></p>
 <h2 id="中序遍历（递归版本）"><a href="#中序遍历（递归版本）" class="headerlink" title="中序遍历（递归版本）"></a>中序遍历（递归版本）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inorderTraversal = <span class="function">(<span class="params">root</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> midSort = <span class="function">(<span class="params">root</span>)=&gt;</span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(!root) <span class="keyword">return</span></span><br><span class="line">     midSort(root.left)</span><br><span class="line">     res.push(root.val)</span><br><span class="line">     midSort(root.right)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> midSort(root)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="中序遍历（迭代版本）"><a href="#中序遍历（迭代版本）" class="headerlink" title="中序遍历（迭代版本）"></a>中序遍历（迭代版本）</h2><h3 id="图解-3"><a href="#图解-3" class="headerlink" title="图解"></a>图解</h3><p><img src="http://typora.pp.52react.cn/fuckb/2021-02-21%2000.42.122021022100.gif" alt="2021-02-21 00.42.12"></p>
+<h2 id="中序遍历（迭代版本）"><a href="#中序遍历（迭代版本）" class="headerlink" title="中序遍历（迭代版本）"></a>中序遍历（迭代版本）</h2><h3 id="图解-3"><a href="#图解-3" class="headerlink" title="图解"></a>图解</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/2021-02-21%2000.42.122021022100.gif"
+                      alt="2021-02-21 00.42.12"
+                ></p>
 <h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>中序遍历是<code>左中右</code>，先访问的是二叉树顶部的节点，然后一层一层向下访问。</p>
 <p>直到到达树左面的最底部，再开始处理节点（也就是在把节点的数值放进result数组中），这就造成了处理顺序和访问顺序是不一致的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inorderTraversal = <span class="function">(<span class="params">root</span>)=&gt;</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(!root) <span class="keyword">return</span></span><br><span class="line">   <span class="keyword">let</span> stack = []  <span class="comment">//设置一个空栈</span></span><br><span class="line">   <span class="keyword">let</span> p = root <span class="comment">//设置指</span></span><br><span class="line">   <span class="keyword">while</span>(stack.length || p)&#123;</span><br><span class="line">      <span class="comment">/*****一直找左节点****/</span>            </span><br><span class="line">       <span class="keyword">while</span>(p)&#123;</span><br><span class="line">          stack.push(p) <span class="comment">//每当左子树有值 [root left left left]</span></span><br><span class="line">          p = p.left</span><br><span class="line">       &#125;</span><br><span class="line">    <span class="comment">/*****一直找左节点****/</span></span><br><span class="line">    <span class="comment">//找完所有左节点 推出栈 [root left1 left2 left3] ==&gt; [left3 left2 left1 root ]</span></span><br><span class="line">    <span class="keyword">const</span> n = stack.pop()</span><br><span class="line">    <span class="comment">//拿n.val</span></span><br><span class="line">    p = n.right</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -267,23 +287,48 @@
 <li>对根节点右子树进行先序遍历</li>
 <li>访问根节点</li>
 </ol>
-<h3 id="图解-4"><a href="#图解-4" class="headerlink" title="图解"></a>图解</h3><p><img src="http://typora.pp.52react.cn/fuckb/image-202102210008331602021022100.png" alt="image-20210221000833160" style="zoom:50%;" /></p>
+<h3 id="图解-4"><a href="#图解-4" class="headerlink" title="图解"></a>图解</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202102210008331602021022100.png"
+                      alt="image-20210221000833160" style="zoom:50%;" 
+                ></p>
 <h2 id="后序遍历（递归版本）"><a href="#后序遍历（递归版本）" class="headerlink" title="后序遍历（递归版本）"></a>后序遍历（递归版本）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> res = []</span><br><span class="line"><span class="keyword">const</span> postorderTraversal = <span class="function">(<span class="params">root</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!root) <span class="keyword">return</span></span><br><span class="line">  postorderTraversal(root.left)</span><br><span class="line">  postorderTraversal(root.right)</span><br><span class="line">  res.push(root.val)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="后序遍历（迭代版本）"><a href="#后序遍历（迭代版本）" class="headerlink" title="后序遍历（迭代版本）"></a>后序遍历（迭代版本）</h2><h3 id="思路（这是一个讨巧的办法）"><a href="#思路（这是一个讨巧的办法）" class="headerlink" title="思路（这是一个讨巧的办法）"></a>思路（这是一个讨巧的办法）</h3><ol>
 <li>如果我们把前序遍历的 list.push(node.val) 变更为 list.unshift(node.val) （遍历结果逆序），</li>
 <li>那么遍历顺序就由 根左右 变更为 右左根。</li>
 <li>然后我们仅需将 右左根 变更为 <code>左右根</code> 即可完成后序遍</li>
 </ol>
-<h3 id="图解-5"><a href="#图解-5" class="headerlink" title="图解"></a>图解</h3><p><img src="http://typora.pp.52react.cn/fuckb/image-202102211144390252021022111.png" alt="image-20210221114439025"></p>
-<p><img src="http://typora.pp.52react.cn/fuckb/2021-02-21%2012.18.14-tuya2021022113.gif" alt="2021-02-21 12.18.14-tuya"></p>
+<h3 id="图解-5"><a href="#图解-5" class="headerlink" title="图解"></a>图解</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202102211144390252021022111.png"
+                      alt="image-20210221114439025"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/2021-02-21%2012.18.14-tuya2021022113.gif"
+                      alt="2021-02-21 12.18.14-tuya"
+                ></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> postorderTraversal = <span class="function">(<span class="params">root</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> list = [] <span class="comment">//遍历结果</span></span><br><span class="line">    <span class="keyword">let</span> stack = [root] <span class="comment">//</span></span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span></span><br><span class="line">     <span class="keyword">while</span>(stack.length &gt;<span class="number">0</span>)&#123;</span><br><span class="line">       <span class="keyword">const</span> n = stack.pop() <span class="comment">// [n.left,n.right]</span></span><br><span class="line">       list.unshift(n.val) <span class="comment">//根是最后加的 最里面  [ n.left  n.right  n.val]</span></span><br><span class="line">       <span class="keyword">if</span>(n.left) stack.push(n.left)</span><br><span class="line">       <span class="keyword">if</span>(n.right) stack.push(n.right)</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="keyword">return</span> list</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h2><blockquote>
 <p>题目来源：LeetCode：102 二叉树的层序遍历</p>
 </blockquote>
-<p><img src="http://typora.pp.52react.cn/fuckb/image-202102211313433592021022113.png" alt="image-20210221131343359" style="zoom: 80%;" /></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/image-202102211313433592021022113.png"
+                      alt="image-20210221131343359" style="zoom: 80%;" 
+                ></p>
 <p>👑类似广度优先遍历二叉树。</p>
 <p>👑遍历工程中，记录<code>每一个节点的层级</code>，并将其添加到不同的数组中。</p>
-<h3 id="图解-6"><a href="#图解-6" class="headerlink" title="图解"></a>图解</h3><p><img src="http://typora.pp.52react.cn/fuckb/%E5%B1%82%E5%BA%8F2021022113.gif" alt="层序"></p>
+<h3 id="图解-6"><a href="#图解-6" class="headerlink" title="图解"></a>图解</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://typora.pp.52react.cn/fuckb/%E5%B1%82%E5%BA%8F2021022113.gif"
+                      alt="层序"
+                ></p>
 <h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>先写一个广度优先遍历</p>
 <p>加入层级计算</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> levelOrder = <span class="function"><span class="keyword">function</span> (<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span> []</span><br><span class="line">    <span class="keyword">const</span> q = [[root,<span class="number">0</span>]] <span class="comment">//把顶层加入栈中</span></span><br><span class="line">    <span class="keyword">const</span> res = []</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(q.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="comment">//推出每一个栈中顶层节点</span></span><br><span class="line">      <span class="keyword">const</span> [n,level]= q.shift()</span><br><span class="line">      <span class="keyword">if</span>(!res[level])&#123;</span><br><span class="line">          res.push([n.val])</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         res[level].push(n.val)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//如果左右节点都存在则层级+1</span></span><br><span class="line">      <span class="keyword">if</span>(n.left) q.push([n.left,level+<span class="number">1</span>])</span><br><span class="line">      <span class="keyword">if</span>(n.right) q.push([n.right,level+<span class="number">1</span>])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

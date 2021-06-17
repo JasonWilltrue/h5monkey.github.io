@@ -248,7 +248,12 @@
 <li><code>$$typeof</code>用于确定是否属于ReactElement</li>
 </ol>
 <h2 id="typeof与type的区别？"><a href="#typeof与type的区别？" class="headerlink" title="$$typeof与type的区别？"></a>$$typeof与type的区别？</h2><p><code>$$typeof</code>用于确定是否属于ReactElement，我们在用jsx写代码的时候所有的标签都是ReactElement创建的。类型$$typeof: REACT_ELEMENT_TYPE,<br>type是记录我们节点类型的是原生组件还是自定义组件，还是标签类型</p>
-<h2 id="流程图大致内容感谢yck"><a href="#流程图大致内容感谢yck" class="headerlink" title="流程图大致内容感谢yck"></a>流程图大致内容感谢yck</h2><p><img src="http://book.52react.cn/20190504004316.png" alt=""></p>
+<h2 id="流程图大致内容感谢yck"><a href="#流程图大致内容感谢yck" class="headerlink" title="流程图大致内容感谢yck"></a>流程图大致内容感谢yck</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190504004316.png"
+                      alt=""
+                ></p>
 <p>接下来我们来看看react.createElement这个函数里面会帮我们做什么事情。</p>
 <p>defineKeyPropWarningGetter和defineRefPropWarningGetter两个函数是干什么的？<br>这两个函数仅仅只是将key和ref添加到即将传入ReactElement函数的props对象中而已。并且对get绑定了一个函数，当尝试获通过props获取key和ref的时候会出现警告。<br>什么情况下childrenLength大于1？<br>将原来的h1改成一个div，并且嵌套2个h1元素就可以发现childrenLength大于1了。<br>ReactElement是干嘛的？<br>包装在一个element对象</p>
 <h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ol>

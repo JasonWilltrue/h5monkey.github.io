@@ -232,17 +232,42 @@
 <p>删除mysql的配置文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /etc/mysql/ -R</span><br></pre></td></tr></table></figure></p>
 <p>自动卸载mysql（包括server和client）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get autoremove mysql* --purge </span><br><span class="line">sudo apt-get remove apparmor</span><br></pre></td></tr></table></figure></p>
 <p>检查是否卸载干净<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l | grep mysql # 若没有返回，说明已完成卸载</span><br></pre></td></tr></table></figure></p>
-<p>接下来安装就是件简单的事情默认安装5.5版本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server mysql-client</span><br></pre></td></tr></table></figure><br>查看mysql版本：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysqladmin -u root -p version</span><br></pre></td></tr></table></figure><br><img src="http://book.52react.cn/20190805151037.png" alt=""></p>
+<p>接下来安装就是件简单的事情默认安装5.5版本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server mysql-client</span><br></pre></td></tr></table></figure><br>查看mysql版本：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysqladmin -u root -p version</span><br></pre></td></tr></table></figure><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/20190805151037.png"
+                      alt=""
+                ></p>
 <p>记录下安装步骤<br><a id="more"></a></p>
 <h1 id="安装msyql"><a href="#安装msyql" class="headerlink" title="安装msyql"></a>安装msyql</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment">//说明没有你不是root用户，则需要用sudo命令</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">apt-get install MySQL-client-core-<span class="number">5.6</span></span><br><span class="line"></span><br><span class="line">apt-get install mysql-client-<span class="number">5.6</span></span><br><span class="line"></span><br><span class="line">apt-get install mysql-server-<span class="number">5.6</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h1 id="检查mysql是否启动"><a href="#检查mysql是否启动" class="headerlink" title="检查mysql是否启动"></a>检查mysql是否启动</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">检查mysql是否启动</span><br><span class="line">ps -ef | grep mysql</span><br></pre></td></tr></table></figure>
 <h1 id="查看msyql-监听端口"><a href="#查看msyql-监听端口" class="headerlink" title="查看msyql 监听端口"></a>查看msyql 监听端口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">检查mysql是否启动</span><br><span class="line">netstat -tap | grep mysql</span><br></pre></td></tr></table></figure>
-<h1 id="Mysql-服务远程访问"><a href="#Mysql-服务远程访问" class="headerlink" title="Mysql 服务远程访问"></a>Mysql 服务远程访问</h1><p>修改配置文件：sudo gedit /etc/mysql/conf.cnf<br><img src="http://book.52react.cn/blog/20181109/095124771.png" alt="mark"></p>
+<h1 id="Mysql-服务远程访问"><a href="#Mysql-服务远程访问" class="headerlink" title="Mysql 服务远程访问"></a>Mysql 服务远程访问</h1><p>修改配置文件：sudo gedit /etc/mysql/conf.cnf<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/blog/20181109/095124771.png"
+                      alt="mark"
+                ></p>
 <h1 id="重启msyql"><a href="#重启msyql" class="headerlink" title="重启msyql"></a>重启msyql</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
-<p>分配所有访问权限,如果已分配过，该步骤可跳过<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line"><span class="comment">//输入密码</span></span><br><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;root密码&#x27;</span> WITH GRANT OPTION;</span><br></pre></td></tr></table></figure><br>强制刷新权限<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; flush privileges<span class="comment">;</span></span><br></pre></td></tr></table></figure><br>再次查看用户表,root用户的host变成%，即允许所有的ip远程访问，如果需要指定具体的ip，就写上具体的ip即可<br><img src="http://book.52react.cn/blog/20181109/095048368.png" alt="mark"></p>
+<p>分配所有访问权限,如果已分配过，该步骤可跳过<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line"><span class="comment">//输入密码</span></span><br><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="string">&#x27;root密码&#x27;</span> WITH GRANT OPTION;</span><br></pre></td></tr></table></figure><br>强制刷新权限<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; flush privileges<span class="comment">;</span></span><br></pre></td></tr></table></figure><br>再次查看用户表,root用户的host变成%，即允许所有的ip远程访问，如果需要指定具体的ip，就写上具体的ip即可<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/blog/20181109/095048368.png"
+                      alt="mark"
+                ></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># netstat -an|grep 3306</span><br><span class="line">tcp        <span class="number">0</span>      <span class="number">0</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">3306</span>          <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:*               LISTEN </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="配置阿里云安全组规则"><a href="#配置阿里云安全组规则" class="headerlink" title="配置阿里云安全组规则"></a>配置阿里云安全组规则</h1><p>登录阿里云进入控制台，依次访问网络和安全-&gt;安全组-&gt;配置规则，在入方向上开放MySQL监听端口3306即可，如下所示<br><img src="http://book.52react.cn/blog/20181109/095151772.png" alt="mark"></p>
-<h1 id="阿里云服务器的MYSQL数据库远程访问开启成功，使用客户端测试连接成功。"><a href="#阿里云服务器的MYSQL数据库远程访问开启成功，使用客户端测试连接成功。" class="headerlink" title="阿里云服务器的MYSQL数据库远程访问开启成功，使用客户端测试连接成功。"></a>阿里云服务器的MYSQL数据库远程访问开启成功，使用客户端测试连接成功。</h1><p><img src="http://book.52react.cn/blog/20181109/095214628.png" alt="mark"></p>
+<h1 id="配置阿里云安全组规则"><a href="#配置阿里云安全组规则" class="headerlink" title="配置阿里云安全组规则"></a>配置阿里云安全组规则</h1><p>登录阿里云进入控制台，依次访问网络和安全-&gt;安全组-&gt;配置规则，在入方向上开放MySQL监听端口3306即可，如下所示<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/blog/20181109/095151772.png"
+                      alt="mark"
+                ></p>
+<h1 id="阿里云服务器的MYSQL数据库远程访问开启成功，使用客户端测试连接成功。"><a href="#阿里云服务器的MYSQL数据库远程访问开启成功，使用客户端测试连接成功。" class="headerlink" title="阿里云服务器的MYSQL数据库远程访问开启成功，使用客户端测试连接成功。"></a>阿里云服务器的MYSQL数据库远程访问开启成功，使用客户端测试连接成功。</h1><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://book.52react.cn/blog/20181109/095214628.png"
+                      alt="mark"
+                ></p>
 
         </div>
 
