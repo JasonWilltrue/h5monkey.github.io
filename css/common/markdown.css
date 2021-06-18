@@ -15,6 +15,7 @@
 }
 .markdown-body p {
   line-height: 2;
+  font-size: 20px;
   color: var(--default-text-color);
 }
 .markdown-body p code {
@@ -58,6 +59,9 @@
 .markdown-body ol > li {
   margin-left: 16px;
   line-height: 2rem;
+}
+.markdown-body ul {
+  font-size: 20px;
 }
 .markdown-body ul li {
   list-style: disc;
