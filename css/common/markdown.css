@@ -181,3 +181,13 @@ keep-tablet()
   text-shadow: #666 1px 1px 1px;
   box-shadow: #666 1px 1px 2px;
 }
+.markdown-body .highlight-container .highlight {
+  width: 100%;
+  background: #fefbec;
+}
+.markdown-body .highlight-container .highlight .code pre {
+  background: #fefbec;
+}
+.markdown-body .highlight-container .highlight .gutter pre {
+  background: #fefbec;
+}
