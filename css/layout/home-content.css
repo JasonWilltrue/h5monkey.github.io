@@ -28,6 +28,7 @@ keep-mobile()
   text-align: justify;
   margin: 20px 0;
   color: var(--default-text-color);
+  display: none;
 }
 .home-content-container .home-article-list .home-article-item .home-article-meta-info-container {
   display: flex;

@@ -20,7 +20,7 @@
 }
 .markdown-body p code {
   background: #eee;
-  color: #ff7979;
+  color: #42b983;
   font-weight: bold;
   font-size: 16px;
   border-radius: 4px;
@@ -159,5 +159,25 @@ keep-tablet()
   background-color: var(--second-background-color);
 }
 .page-main-content-middle .article-copyright-info-container::after {
-  background-color: #ff7979;
+  background-color: #42b983;
+}
+.markdown-body blockquote {
+  border-left: 5px solid #42b983;
+  background: #ecf8f2;
+}
+.markdown-body blockquote p {
+  color: #999;
+}
+.markdown-body h2 {
+  margin-bottom: 2em;
+  margin-right: 5px;
+  padding: 8px 15px;
+  letter-spacing: 2px;
+  background-image: linear-gradient(to right bottom, #00cab5, #53c290);
+/* background-color: #19ca05; */
+  color: #fff;
+  border-left: 10px solid #5c5e6a;
+  border-radius: 5px;
+  text-shadow: #666 1px 1px 1px;
+  box-shadow: #666 1px 1px 2px;
 }
